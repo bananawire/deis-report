@@ -222,65 +222,114 @@ Organización de componentes en el Platform API para el contexto acotado de Noti
 
 #### 4.9.1.1 Bounded Context: Identity & Access (IAM)
 
-4.9.1.1.1 Domain Layer
+##### 4.9.1.1.1 Domain Layer
 
-4.9.1.1.2 Interface Layer
+La capa de dominio de IAM contiene las reglas fundamentales de negocio independientes de cualquier infraestructura. Define las entidades críticas del ciclo de vida de usuario y las abstracciones de persistencia (puertos).
 
-4.9.1.1.3 Application Layer
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Vanana-Desarrollo-de-Soluciones-IOT/c4-diagrams/main/assets/class-diagrams/backend/iam-bc/domain-layer.svg" alt="IAM Domain Layer Class Diagram" width="750">
+</p>
 
-4.9.1.1.4 Infrastructure Layer
+*   **Entities y Aggregates:** `User` actúa como la raíz de agregado que mantiene la identidad de la persona y sus vinculaciones externas (como Google). `TokenSession` es la entidad que administra la sesión del usuario a nivel de tokens JWT, permitiendo su revocación inmediata (`invalidate()`). `RegistrationSession` resguarda de manera temporal la contraseña encriptada y el código de verificación del flujo de registro.
+*   **Value Objects:** `EmailAddress`, `Password` y `VerificationCode` encapsulan las restricciones estructurales y aseguran la validez y encapsulamiento de los datos del dominio desde el momento de su instanciación.
+*   **Ports (Interfaces):** `UserRepository`, `TokenSessionRepository` y `RegistrationSessionRepository` definen las operaciones lógicas de almacenamiento sin depender de tecnologías específicas como JPA o Redis.
+
+##### 4.9.1.1.2 Interface Layer
+
+La capa de interfaz expone las API REST del contexto acotado, traduciendo las peticiones JSON HTTP externas en comandos de aplicación fuertemente tipados.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Vanana-Desarrollo-de-Soluciones-IOT/c4-diagrams/main/assets/class-diagrams/backend/iam-bc/interfaces-layer.svg" alt="IAM Interface Layer Class Diagram" width="750">
+</p>
+
+*   **AuthenticationController:** Expone endpoints HTTP estándar para el registro local (`signUp`), confirmación vía código por correo (`confirmSignUp`), inicio de sesión (`signIn`), renovación de tokens (`refreshToken`) y cierre de sesión (`signOut`).
+*   **GoogleOAuthController:** Administra el flujo federado de OpenID Connect. Redirecciona al usuario al servidor de autorización de Google y recibe el código de autorización en el endpoint de callback para autenticar la sesión.
+*   **UserController:** Controlador simple que recupera los datos del perfil del usuario autenticado con base en la sesión de seguridad actual.
+
+##### 4.9.1.1.3 Application Layer
+
+Esta capa actúa como el orquestador principal del contexto acotado. Implementa los casos de uso definidos del sistema, interactuando con las interfaces de dominio y coordinando el flujo de las transacciones sin contener lógica de negocio directa.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Vanana-Desarrollo-de-Soluciones-IOT/c4-diagrams/main/assets/class-diagrams/backend/iam-bc/application-layer.svg" alt="IAM Application Layer Class Diagram" width="750">
+</p>
+
+*   **Command Handlers:** `UserCommandServiceImpl` implementa la lógica para iniciar el registro enviando un código de confirmación asíncrono (`InitiateRegistrationCommand`) y para validar el código y persistir definitivamente al usuario en el sistema (`ConfirmRegistrationCommand`).
+*   **TokenCommandServiceImpl:** Orquesta las transacciones relacionadas con la sesión de tokens, controlando la persistencia de las firmas de tokens de refresco y su rotación segura para mitigar ataques de replay.
+*   **GoogleOAuthCallbackApplicationService:** Orquesta el flujo de inicio de sesión social. Convierte el código de Google en un perfil de usuario verificado y delega la creación de tokens en el servicio de tokens de la aplicación.
+*   **AsyncNotificationService (Port):** Interfaz que permite al servicio de aplicación delegar el envío de correos electrónicos a un sistema de mensajería asíncrono o un proveedor de correo externo sin acoplarse directamente a este.
+
+##### 4.9.1.1.4 Infrastructure Layer
+
+La capa de infraestructura implementa las interfaces de dominio (puertos) y provee los adaptadores concretos para interactuar con bases de datos relacionales, almacenamiento en memoria caché Redis, servicios OAuth2 y generadores de tokens criptográficos.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Vanana-Desarrollo-de-Soluciones-IOT/c4-diagrams/main/assets/class-diagrams/backend/iam-bc/infrastructure-layer.svg" alt="IAM Infrastructure Layer Class Diagram" width="750">
+</p>
+
+*   **Adaptadores de Persistencia:** `JpaUserRepository` utiliza Spring Data JPA e Hibernate para persistir usuarios en la base de datos central PostgreSQL. Para las sesiones de tokens y registro temporal de alta volatilidad, `RedisTokenSessionRepository` y `RedisRegistrationSessionRepository` encapsulan el acceso mediante `StringRedisTemplate`, configurando tiempos de expiración automáticos (TTL).
+*   **GoogleTokenVerifierImpl:** Adaptador que consume las librerías cliente de Google para validar de forma criptográfica la autenticidad del ID Token recibido durante el flujo de OAuth2.
+*   **JwtTokenEncoder:** Clase de infraestructura encargada de firmar algoritmos criptográficos HMAC-SHA256 para generar los Access Tokens (de corta duración) y Refresh Tokens (de larga duración).
 
 #### 4.9.1.2 Bounded Context: Billing
 
-4.9.1.1.1 Domain Layer
+##### 4.9.1.2.1 Domain Layer
 
-4.9.1.1.2 Interface Layer
+##### 4.9.1.2.2 Interface Layer
 
-4.9.1.1.3 Application Layer
+##### 4.9.1.2.3 Application Layer
 
-4.9.1.1.4 Infrastructure Layer
+##### 4.9.1.2.4 Infrastructure Layer
 
 #### 4.9.1.3 Bounded Context: Device & Space Management
 
-4.9.1.1.1 Domain Layer
+##### 4.9.1.3.1 Domain Layer
 
-4.9.1.1.2 Interface Layer
+##### 4.9.1.3.2 Interface Layer
 
-4.9.1.1.3 Application Layer
+##### 4.9.1.3.3 Application Layer
 
-4.9.1.1.4 Infrastructure Layer
+##### 4.9.1.3.4 Infrastructure Layer
 
 #### 4.9.1.4 Bounded Context: Air Quality Evaluation
 
-4.9.1.1.1 Domain Layer
+##### 4.9.1.4.1 Domain Layer
 
-4.9.1.1.2 Interface Layer
+##### 4.9.1.4.2 Interface Layer
 
-4.9.1.1.3 Application Layer
+##### 4.9.1.4.3 Application Layer
 
-4.9.1.1.4 Infrastructure Layer
+##### 4.9.1.4.4 Infrastructure Layer
 
 #### 4.9.1.5 Bounded Context: Alerting & Response
 
-4.9.1.1.1 Domain Layer
+##### 4.9.1.5.1 Domain Layer
 
-4.9.1.1.2 Interface Layer
+##### 4.9.1.5.2 Interface Layer
 
-4.9.1.1.3 Application Layer
+##### 4.9.1.5.3 Application Layer
 
-4.9.1.1.4 Infrastructure Layer
+##### 4.9.1.5.4 Infrastructure Layer
 
 #### 4.9.1.6 Bounded Context: Analytics & Reporting
 
-4.9.1.1.1 Domain Layer
+##### 4.9.1.6.1 Domain Layer
 
-4.9.1.1.2 Interface Layer
+##### 4.9.1.6.2 Interface Layer
 
-4.9.1.1.3 Application Layer
+##### 4.9.1.6.3 Application Layer
 
-4.9.1.1.4 Infrastructure Layer
+##### 4.9.1.6.4 Infrastructure Layer
 
 #### 4.9.1.7 Bounded Context: Analytics & Notifications
+
+##### 4.9.1.7.1 Domain Layer
+
+##### 4.9.1.7.2 Interface Layer
+
+##### 4.9.1.7.3 Application Layer
+
+##### 4.9.1.7.4 Infrastructure Layer
 
 ### 4.9.2. Class Dictionary.
 
