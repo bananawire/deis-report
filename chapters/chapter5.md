@@ -478,8 +478,215 @@ Para la Web Application desarrollada en Angular, se creó un proyecto en **Fireb
 
 ### 5.2.6. Implemented RESTful API and/or Serverless Backend Evidence
 
+Los servicios backend de la plataforma **Clair** (`clair-core`) han sido desarrollados sobre **Java 25** y el framework **Spring Boot 3.x**, estructurados bajo un enfoque de arquitectura limpia y principios de Domain-Driven Design (DDD). La infraestructura de despliegue y entrega continua experimentó una evolución técnica a lo largo de las iteraciones del proyecto para garantizar alta disponibilidad, seguridad perimetral y total reproducibilidad en entornos de producción:
+
+1. **Infraestructura de Despliegue Inicial (Contabo VPS + Docker + Cloudflare Tunnel):**
+   Durante la fase inicial, el backend fue contenedorizado mediante **Docker** y desplegado en un servidor VPS dedicado contratado en **Contabo**. Para evitar la exposición directa de la dirección IP pública del servidor hacia internet, se implementó **Cloudflare Tunnel**, estableciendo un túnel encriptado saliente hacia la red perimetral de Cloudflare. Asimismo, se integraron los servicios externos SaaS de **Google OAuth 2.0** (autenticación segura federada) y **Resend** (envío de correos transaccionales y códigos OTP).
+
+<p align="center">
+  <img src="https://imgur.com/rHOetSh.png" alt="Web Services Deployment Contabo" width="700">
+</p>
+
+2. **Evolución a Infraestructura Declarativa e Inmutable con NixOS:**
+   Con el fin de eliminar por completo las inconsistencias entre los entornos locales de desarrollo y producción (*"funciona en mi máquina"*) y optimizar el rendimiento suprimiendo la sobrecarga de capas de virtualización de Docker, el equipo migró la infraestructura hacia **NixOS**, una distribución Linux declarativa e inmutable gestionada mediante el gestor de paquetes **Nix**.
+   
+   A través de un entorno reproducible configurado con `shell.nix`, se fijan con precisión determinista las versiones del runtime (**JDK 25**), herramientas de construcción (**Maven**) y utilitarios de pasarela de pagos (**stripe-cli**).
+
+3. **Enrutamiento, Proxy Inverso y Certificados SSL con Caddy:**
+   Para gestionar el tráfico web entrante hacia los microservicios sin intermediarios pesados, se configuró **Caddy** como servidor web y proxy inverso nativo directamente en la declaración del sistema de NixOS. Caddy gestiona automáticamente el aprovisionamiento y renovación de certificados TLS/HTTPS mediante Let's Encrypt, redirigiendo las peticiones del dominio principal del backend (`clair-api.giks.net`) hacia el puerto interno `8081` (`clair-api`), y las solicitudes de la estación de borde (`clair-edge.giks.net`) hacia el puerto `5000` (`clair-edge`).
+
+A continuación se presenta la configuración declarativa de NixOS empleada en el servidor:
+
+```nix
+{ pkgs, ... }:
+
+let
+  ports = {
+    caddy = "8088";
+    clair-api = "8081";
+    clair-edge = "5000";
+  };
+in
+{
+  services.caddy = {
+    enable = true;
+    configFile = pkgs.writeText "Caddyfile" ''
+      :${ports.caddy} {
+        @api host clair-api.giks.net
+        handle @api {
+          reverse_proxy 127.0.0.1:${ports.clair-api}
+        }
+
+        @edge host clair-edge.giks.net
+        handle @edge {
+          reverse_proxy 127.0.0.1:${ports.clair-edge}
+        }
+
+        respond "not found" 404
+      }
+    '';
+  };
+}
+```
+
+**URL de producción del API Backend:** https://clair-api.giks.net/
+
+**Evidencia de Configuración y Estado del Servidor VPS con NixOS:**
+<p align="center">
+  <img src="https://imgur.com/xAjvwmM.png" alt="NixOS VPS Backend Deployment" width="700">
+</p>
+
 ### 5.2.7. RESTful API documentation
+
+La documentación técnica e interactiva de los servicios web de **Clair Core** se encuentra completamente implementada bajo el estándar internacional **OpenAPI 3.0 (Swagger)** mediante la integración de la librería `springdoc-openapi`. Los endpoints del sistema se encuentran protegidos mediante un esquema de autenticación centralizada por token portador (`BearerAuth` con JSON Web Tokens - JWT), permitiendo la inspección y ejecución de pruebas directamente desde la interfaz gráfica de Swagger UI.
+
+**URL de Documentación Swagger UI:** https://clair-api.giks.net/swagger-ui.html
+
+A continuación, se detalla la documentación exhaustiva de todos los endpoints y operaciones soportadas por la API REST organizados por contexto de negocio:
+
+#### 1. Autenticación y Sesión (IAM)
+
+Gestiona el ciclo de vida de la cuenta de usuario, autenticación federada, renovación de tokens y control de sesiones activas.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/auth/sign-up | POST | Registra un nuevo usuario en el sistema. | — | `{ email, password }` | `{ sessionId, message }` | Inicia el proceso de registro enviando un código de verificación al correo del usuario. |
+| /api/v1/auth/sign-in | POST | Autentica a un usuario previamente registrado. | — | `{ email, password }` | `{ id, email, token, refreshToken }` | Permite iniciar sesión y obtener los tokens necesarios para acceder a recursos protegidos. |
+| /api/v1/auth/refresh | POST | Genera un nuevo token de acceso usando un refresh token válido. | — | `{ refreshToken }` | `{ id, email, token, refreshToken }` | Permite renovar la sesión del usuario sin necesidad de volver a autenticarse. |
+| /api/v1/auth/google/sign-in | POST | Autentica o registra usuarios mediante Google OAuth 2.0. | — | `{ idToken }` | `{ id, email, token, refreshToken }` | Permite iniciar sesión utilizando una cuenta de Google y obtener los tokens de acceso de la aplicación. |
+| /api/v1/auth/confirm | POST | Confirma el registro de un usuario mediante un código de verificación. | — | `{ sessionId, verificationCode }` | `{ id, email }` | Finaliza el proceso de registro y crea la cuenta del usuario una vez validado el código recibido. |
+| /api/v1/auth/verify | GET | Verifica la validez de un token de acceso. | `Authorization` (header) | — | `{ valid, userId, expiresAt }` | Permite comprobar si el token sigue siendo válido y obtener información básica sobre su vigencia. |
+| /api/v1/auth/google/callback | GET | Procesa la respuesta de Google OAuth después de la autenticación. | `code` (query), `state` (query), `error` (query, opcional) | — | Redirección al frontend. | Intercambia el código de autorización por tokens y redirige al usuario a la aplicación cliente. |
+| /api/v1/auth/google/authorize | GET | Inicia el flujo de autenticación mediante Google OAuth 2.0. | — | — | Redirección a Google OAuth. | Redirige al usuario a la pantalla de consentimiento de Google para autorizar el acceso. |
+| /api/v1/auth/sign-out | DELETE | Cierra la sesión del usuario y revoca los tokens activos. | `Authorization` (header) | — | — | Finaliza la sesión actual e invalida los tokens asociados al usuario autenticado. |
+
+#### 2. Notificaciones
+
+Permite auditar el despacho y estado de entrega de alertas multicanal.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/notifications/push | GET | Obtiene el historial de notificaciones push del usuario autenticado. | `page` (query, opcional) | — | Página de notificaciones con información de envío, alertas asociadas y estado de entrega de las mismas. | Permite consultar las notificaciones push enviadas al usuario, incluyendo si fueron entregadas correctamente o si ocurrió algún error durante el envío. |
+
+#### 3. Dispositivos (Devices)
+
+Representa y administra el ciclo de vida de los sensores físicos Clair Alpha y dispositivos embebidos.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/devices/pair | POST | Inicia el proceso de vinculación de un dispositivo físico. | — | `{ hardwareId }` | `{ deviceId, claimToken }` | Permite registrar un dispositivo Clair utilizando su identificador de hardware y generar un token temporal para asociarlo posteriormente a un espacio monitoreado. |
+| /api/v1/devices/claim | POST | Asigna un dispositivo a un espacio del usuario. | — | `{ claimToken, spaceId }` | Datos completos del dispositivo asignado. | Permite incorporar un dispositivo Clair a un espacio específico para comenzar el monitoreo de calidad del aire y la recolección de mediciones ambientales. |
+| /api/v1/devices/{deviceId} | GET | Obtiene la información de un dispositivo específico. | `deviceId` (path) | — | Datos detallados del dispositivo. | Permite consultar la configuración, estado y datos generales de un dispositivo instalado en un espacio monitoreado. |
+| /api/v1/devices/{deviceId} | DELETE | Restablece la asignación de un dispositivo. | `deviceId` (path) | — | — | Permite desvincular un dispositivo de un espacio para su reubicación, mantenimiento o nueva configuración. |
+| /api/v1/devices/{deviceId} | PATCH | Actualiza el nombre visible de un dispositivo. | `deviceId` (path) | `{ name }` | Dispositivo actualizado. | Permite personalizar el nombre con el que se identifica el dispositivo dentro de la plataforma Clair. |
+| /api/v1/devices/{deviceId}/name | PATCH | Actualiza el nombre visible de un dispositivo. | `deviceId` (path) | `{ name }` | Dispositivo actualizado. | Permite modificar la identificación visual del dispositivo para facilitar su reconocimiento dentro de un espacio monitoreado. |
+| /api/v1/devices | GET | Obtiene los dispositivos asociados a un espacio. | `spaceId` (query), `page` (query), `size` (query) | — | Lista paginada de dispositivos. | Permite visualizar todos los dispositivos Clair instalados en un espacio determinado y gestionar su estado de monitoreo. |
+| /api/v1/devices/{deviceId}/status | GET | Obtiene el estado actual de un dispositivo. | `deviceId` (path) | — | `{ deviceId, status, lastSeenAt }` | Permite verificar si el dispositivo se encuentra conectado y transmitiendo datos ambientales correctamente a la plataforma. |
+
+#### 4. Comandos de Control Remoto (Device Commands)
+
+Administra las instrucciones de control bidireccional sobre los dispositivos Clair (ej. reposo, reinicio, configuración).
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/devices/{deviceId}/commands | POST | Crea un comando para un dispositivo específico. | `deviceId` (path) | `{ type, payload }` | Datos del comando creado. | Permite enviar instrucciones a un dispositivo Clair para modificar su comportamiento operativo, como cambiar de estado, aplicar configuraciones o ejecutar acciones de mantenimiento. |
+| /api/v1/devices/{deviceId}/commands/{commandId} | GET | Obtiene la información de un comando específico. | `deviceId` (path), `commandId` (path) | — | Datos detallados del comando. | Permite verificar el estado de ejecución de una instrucción enviada a un dispositivo, incluyendo si fue procesada correctamente o si ocurrió algún error. |
+| /api/v1/devices/{deviceId}/commands/latest | GET | Obtiene el último comando enviado a un dispositivo. | `deviceId` (path) | — | Datos del comando más reciente. | Permite consultar la última instrucción enviada al dispositivo para conocer su estado actual de procesamiento y validar que la acción solicitada haya sido recibida. |
+
+#### 5. Umbrales de Calidad del Aire (Device Thresholds)
+
+Configura las reglas límite personalizadas por el usuario sobre las métricas ambientales (PM2.5, CO₂, temperatura y humedad).
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/devices/{deviceId}/thresholds | GET | Obtiene todos los umbrales configurados para un dispositivo. | `deviceId` (path) | — | Lista de umbrales configurados. | Permite consultar los límites establecidos para las métricas ambientales monitoreadas por el dispositivo, como PM2.5, CO₂, temperatura y humedad. |
+| /api/v1/devices/{deviceId}/thresholds | POST | Crea un nuevo umbral para una métrica específica. | `deviceId` (path) | `{ metric, value, enabled }` | Datos del umbral creado. | Permite definir valores máximos aceptables para una métrica ambiental, de modo que Clair pueda detectar condiciones potencialmente perjudiciales y generar alertas cuando sean superadas. |
+| /api/v1/devices/{deviceId}/thresholds | PUT | Actualiza un umbral existente para una métrica específica. | `deviceId` (path) | `{ metric, value, enabled }` | Datos del umbral actualizado. | Permite ajustar los criterios de monitoreo según las necesidades del ambiente, modificando los valores que activan alertas de calidad del aire. |
+| /api/v1/devices/{deviceId}/thresholds/{metric} | DELETE | Elimina el umbral configurado para una métrica específica. | `deviceId` (path), `metric` (path) | — | — | Permite retirar una regla de monitoreo para que las mediciones de esa métrica ya no generen alertas basadas en límites configurados por el usuario. |
+
+#### 6. Espacios Físicos (Spaces)
+
+Estructura las ubicaciones físicas (habitaciones, salas, laboratorios) pertenecientes a una organización donde se instalan los sensores.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/spaces | GET | Obtiene los espacios asociados a una organización. | `organizationId` (query) | — | Lista de espacios registrados. | Permite visualizar todos los ambientes monitoreados dentro de una organización para gestionar la calidad del aire en diferentes ubicaciones. |
+| /api/v1/spaces | POST | Crea un nuevo espacio. | `organizationId` (query) | `{ name }` | Datos del espacio creado. | Permite registrar un nuevo ambiente que será monitoreado por dispositivos Clair para el seguimiento de las condiciones ambientales. |
+| /api/v1/spaces/{spaceId} | GET | Obtiene la información de un espacio específico. | `spaceId` (path) | — | Datos detallados del espacio. | Permite consultar la información de un ambiente monitoreado y su relación con la organización a la que pertenece. |
+| /api/v1/spaces/{spaceId} | DELETE | Elimina un espacio registrado. | `spaceId` (path) | — | — | Permite remover un ambiente de la plataforma cuando ya no requiere monitoreo, siempre que no tenga dispositivos asociados. |
+| /api/v1/spaces/{spaceId} | PATCH | Actualiza el nombre de un espacio. | `spaceId` (path) | `{ name }` | Datos actualizados del espacio. | Permite modificar la identificación de un ambiente monitoreado para reflejar cambios en su uso o ubicación. |
+| /api/v1/spaces/{spaceId}/name | PATCH | Actualiza el nombre de un espacio. | `spaceId` (path) | `{ name }` | Datos actualizados del espacio. | Permite cambiar el nombre visible de un ambiente dentro de la plataforma para facilitar su administración. |
+
+#### 7. Organizaciones (Organizations)
+
+Representa las empresas, instituciones o sedes que agrupan jerárquicamente espacios y dispositivos.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/organizations | GET | Obtiene las organizaciones asociadas al usuario autenticado. | — | — | Lista de organizaciones registradas. | Permite visualizar las organizaciones que administra el usuario y desde las cuales se gestionan los espacios y dispositivos de monitoreo ambiental. |
+| /api/v1/organizations | POST | Crea una nueva organización. | — | `{ name }` | Datos de la organización creada. | Permite registrar una nueva organización dentro de Clair para centralizar la gestión de espacios, dispositivos y métricas de calidad del aire. |
+| /api/v1/organizations/{organizationId} | GET | Obtiene la información de una organización específica. | `organizationId` (path) | — | Datos detallados de la organización. | Permite consultar la información de una organización y acceder a su estructura de monitoreo ambiental. |
+| /api/v1/organizations/{organizationId} | DELETE | Elimina una organización registrada. | `organizationId` (path) | — | — | Permite remover una organización de la plataforma cuando ya no requiere monitoreo, siempre que no existan recursos asociados que dependan de ella. |
+| /api/v1/organizations/{organizationId} | PATCH | Actualiza el nombre de una organización. | `organizationId` (path) | `{ name }` | Datos actualizados de la organización. | Permite modificar la identificación de una organización para reflejar cambios administrativos o de denominación. |
+| /api/v1/organizations/{organizationId}/name | PATCH | Actualiza el nombre de una organización. | `organizationId` (path) | `{ name }` | Datos actualizados de la organización. | Permite cambiar el nombre visible de una organización dentro de la plataforma Clair. |
+
+#### 8. Analítica y Resumen General (Analytics & Overview)
+
+Procesa series temporales y métricas agregadas para proveer tendencias retrospectivas y dashboards consolidados.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/analytics/devices/{deviceId}/trends | GET | Obtiene datos históricos de tendencias para un dispositivo. | `deviceId` (path), `period` (query), `startDate` (query), `endDate` (query) | — | Serie temporal de mediciones ambientales. | Permite visualizar la evolución de indicadores como AQI, PM2.5, CO₂, temperatura y humedad a lo largo del tiempo para identificar patrones, variaciones y posibles problemas recurrentes en la calidad del aire. |
+| /api/v1/analytics/devices/{deviceId}/live | GET | Obtiene indicadores clave de desempeño (KPIs) para un dispositivo. | `deviceId` (path), `period` (query), `startDate` (query), `endDate` (query) | — | Métricas agregadas y estado actual del ambiente monitoreado. | Permite consultar un resumen de las condiciones ambientales de un espacio, incluyendo el índice de calidad del aire (AQI), promedios de CO₂, PM2.5, temperatura y humedad, así como las variaciones porcentuales respecto a periodos anteriores. |
+| /api/v1/analytics/overview | GET | Obtiene el dashboard consolidado de analítica para el usuario autenticado. | `deviceLimitPerSpace` (query), `alertLimit` (query) | — | Resumen general de métricas ambientales, organizaciones, espacios y alertas recientes. | Proporciona una vista integral del estado ambiental de todos los espacios asociados al usuario. Incluye indicadores globales como AQI, niveles promedio de CO₂, PM2.5, temperatura y humedad, variaciones porcentuales respecto a periodos anteriores, cantidad de organizaciones, espacios y dispositivos registrados, así como un resumen de alertas activas y el estado de actualización de los datos. |
+
+#### 9. Evaluaciones de Telemetría (Evaluations)
+
+Almacena y sirve los registros brutos y evaluaciones instantáneas provenientes de los dispositivos IoT.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/evaluations/devices/{deviceId} | GET | Obtiene el historial de registros de telemetría de un dispositivo. | `deviceId` (path), `page` (query), `size` (query) | — | Lista paginada de registros de telemetría. | Permite consultar las mediciones históricas capturadas por un dispositivo Clair, incluyendo indicadores de calidad del aire, material particulado, condiciones ambientales, conectividad y estado operativo del dispositivo. |
+| /api/v1/evaluations/devices/{deviceId}/latest | GET | Obtiene el registro de telemetría más reciente de un dispositivo. | `deviceId` (path) | — | Último registro de telemetría almacenado. | Permite conocer las condiciones ambientales más recientes detectadas por el dispositivo, así como su estado de funcionamiento y conectividad en tiempo real. |
+
+#### 10. Gestión de Alertas (Alerts)
+
+Notifica anomalías y violaciones de umbrales ambientales calculadas en tiempo real.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/spaces/{spaceId}/alerts | GET | Obtiene las alertas registradas para un espacio específico. | `spaceId` (path), `page` (query), `size` (query), `status` (query) | — | Lista paginada de alertas. | Permite consultar todas las alertas generadas por los dispositivos instalados en un espacio determinado. Incluye información sobre la métrica afectada (PM2.5, temperatura, humedad, CO₂, etc.), valores detectados, severidad, estado de la alerta y fechas de ocurrencia o resolución. |
+| /api/v1/spaces/{spaceId}/alerts/daily-summary | GET | Obtiene un resumen diario de alertas para un espacio. | `spaceId` (path), `days` (query) | — | Lista de fechas con cantidad de alertas registradas. | Permite visualizar la cantidad de alertas generadas por día dentro de un espacio durante un período determinado, facilitando el análisis de tendencias e identificación de periodos con mayor incidencia de eventos ambientales. |
+| /api/v1/devices/{deviceId}/alerts | GET | Obtiene las alertas generadas por un dispositivo específico. | `deviceId` (path), `page` (query), `size` (query), `status` (query) | — | Lista paginada de alertas del dispositivo. | Permite consultar el historial de alertas asociadas a un dispositivo concreto, incluyendo las métricas monitoreadas, valores registrados, nivel de severidad y estado actual de cada alerta para facilitar el diagnóstico y seguimiento del dispositivo. |
+| /api/v1/alerts | GET | Obtiene todas las alertas asociadas a los dispositivos del usuario autenticado. | `page` (query), `size` (query), `status` (query) | — | Lista paginada de alertas. | Permite centralizar la consulta de alertas provenientes de todos los dispositivos pertenecientes al usuario, facilitando el monitoreo global de incidentes y condiciones ambientales detectadas en sus espacios registrados. |
+| /api/v1/alerts/daily-summary | GET | Obtiene un resumen diario de alertas para todos los dispositivos del usuario autenticado. | `days` (query) | — | Lista de fechas con cantidad de alertas registradas. | Permite analizar la evolución diaria de las alertas generadas en todos los dispositivos del usuario durante un período determinado, ayudando a identificar patrones de comportamiento y frecuencia de incidentes ambientales. |
+
+#### 11. Suscripciones y Pagos (Subscriptions & Stripe Webhooks)
+
+Gestiona la facturación recurrente, planes SaaS e integración asíncrona mediante webhooks con Stripe.
+
+| endpoint | verbo http | descripción | parámetros | request body | response body | explicación |
+|---|---|---|---|---|---|---|
+| /api/v1/subscriptions/payment-intent | POST | Crea una intención de pago mediante Stripe. | — | `userId`, `amount`, `currency`, `returnUrl` | Información de la intención de pago generada. | Permite iniciar el proceso de pago para la contratación o renovación de servicios premium dentro de Clair, preparando la transacción que será procesada por Stripe. |
+| /api/v1/subscriptions/checkout-session | POST | Crea una sesión de pago en Stripe. | — | `userId`, `amount`, `currency`, `returnUrl` | Información de la sesión de pago creada. | Permite redirigir al usuario a una experiencia de pago segura para completar la suscripción a planes premium y habilitar funcionalidades avanzadas de monitoreo ambiental. |
+| /api/v1/subscriptions/downgrade/{userId} | POST | Cambia el plan de un usuario a FREEMIUM. | `userId` (path) | — | Confirmación de la operación. | Permite cancelar los beneficios premium y regresar al plan gratuito, ajustando el acceso del usuario a las funcionalidades disponibles dentro de Clair. |
+| /api/v1/subscriptions/user/{userId} | GET | Obtiene el historial de suscripciones y pagos de un usuario. | `userId` (path) | — | Lista de suscripciones registradas. | Permite consultar las transacciones y suscripciones realizadas por el usuario, facilitando el seguimiento de pagos, renovaciones y estados de facturación asociados a la plataforma. |
+| /api/v1/subscriptions/plans/{userId} | GET | Obtiene el plan actual de un usuario. | `userId` (path) | — | Información del plan y estado de suscripción. | Permite verificar si el usuario dispone de un plan FREEMIUM o PREMIUM, determinando el acceso a funcionalidades avanzadas relacionadas con el monitoreo y análisis de la calidad del aire. |
+| /api/v1/webhooks/stripe | POST | Recibe eventos webhook enviados por Stripe. | `Stripe-Signature` (header) | Evento enviado por Stripe (JSON) | Mensaje de confirmación. | Permite que Clair reciba notificaciones automáticas cuando ocurre un evento de pago o suscripción en Stripe, asegurando que el estado de las membresías Premium se mantenga sincronizado con la plataforma de pagos sin intervención manual. |
 
 ### 5.2.8. Team Collaboration Insights
 
+todo
+
 ## 5.3. Video About-the-Product.
+
+El video About-the-Product es una herramienta de comunicación audiovisual diseñada para presentar la propuesta de valor, el modelo de negocio y el funcionamiento de la solución Clair. Este recurso audiovisual está dirigido a dos audiencias principales:
+
+1. **Visitantes de la Landing Page:** Administradores y propietarios de locales comerciales (gimnasios, restaurantes, coworkings) interesados en comprender el valor de negocio de Clair, sus beneficios competitivos y las características clave del producto.
+2. **Usuarios de las Aplicaciones:** Clientes y operadores finales que buscan interactuar con el sistema de monitoreo en tiempo real, visualizar indicadores de CO₂ y PM2.5, y ejecutar acciones preventivas basadas en las notificaciones del sistema.
+
+| Detalle Técnico | Información / Recurso |
+| --- | --- |
+| **Duración total (Timing)** | 46 segundos |
+| **Enlace del video** | https://bit.ly/4olR1cf |
+| **Screenshot del Video** | ![About the product](https://i.imgur.com/3SeQtsr.png) |
