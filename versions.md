@@ -14,4 +14,6 @@
 | 0.0.10  | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.5 Mobile Applications Prototyping, incluyendo documentación de prototipos Android e iOS de la aplicación móvil. |
 
 
+| 0.0.11  | 02/09/2026 | Iker Barturen | Adaptacion de la seccion 4.6 Web Applications UX/UI Design, incluyendo wireframes, wireflows, mock-ups y user flow diagrams de la aplicacion web. |
+
 # Project Report Collaboration Insights

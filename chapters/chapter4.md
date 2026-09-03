@@ -453,6 +453,60 @@ La seccion transforma datos complejos en resumenes estrategicos de cumplimiento.
 
 ### 4.6.4. Web Applications User Flow Diagrams.
 
+Esta seccion presenta los diagramas de flujo de los usuarios de la aplicacion web. Estos ilustran las rutas y procesos que siguen los usuarios dentro del sistema, facilitando la comprension de la navegacion y las interacciones clave.
+
+**Web Application User Flow**
+
+**User Flow: Gestion de alertas y acciones correctivas**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG01 | Garantizar la salud ambiental: Mantener un aire fresco y libre de viciamento para que los clientes permanezcan mas tiempo en el local |
+| UG03 | Optimizar la productividad: Evitar que los empleados sufran de fatiga o perdida de concentracion por mala ventilacion |
+
+Ambos User Goals comparten el mismo flujo de interaccion. El usuario recibe una alerta automatica por niveles elevados de CO2 o VOC, accede a la pantalla Alerts & Actions y activa una respuesta correctiva preconfigurada. La diferencia radica en el proposito, pero la experiencia de usuario es identica.
+
+<img src="../assets/webapp-userflows/webapp-uflow1.png" alt="webapp-uflow1" width="1000">
+
+**User Flow: Generacion y gestion de reportes**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG02 | Demostrar salubridad: Contar con evidencia tangible de que el local cumple con estandares de aire seguro para clientes y fiscalizaciones |
+| UG05 | Validar acciones preventivas: Saber con certeza si los habitos de limpieza y ventilacion estan funcionando para mejorar la calidad del aire |
+
+Ambos User Goals comparten el mismo flujo de interaccion. El usuario accede a Reports, selecciona el tipo de reporte, configura los parametros, genera el reporte y lo exporta. La diferencia radica en el proposito, pero la experiencia de usuario es identica.
+
+<img src="../assets/webapp-userflows/webapp-uflow2.png" alt="webapp-uflow2" width="1000">
+
+**User Flow: Configuracion de umbrales personalizados (Rules Builder)**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG04 | Controlar sintomas cronicos: Reducir la frecuencia de episodios asociados al ambiente cargado |
+
+El usuario accede a Alerts & Actions, navega a Rules Builder y configura reglas personalizadas basadas en sus alergias o sintomas. Define una metrica, un operador, un umbral especifico y una accion asociada. El sistema monitorea continuamente los sensores y, cuando se supera el umbral, dispara la accion configurada y genera una alerta preventiva en el Dashboard y en Alerts & Actions.
+
+<img src="../assets/webapp-userflows/webapp-uflow3.png" alt="webapp-uflow3" width="1000">
+
+**User Flow: Verificacion de calidad del aire y cumplimiento de estandares**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG06 | Crear un refugio seguro: Garantizar que el interior del hogar sea un espacio de respiracion pura a pesar de la contaminacion exterior |
+
+El usuario accede a Air Quality para visualizar el indicador AQI y los registros de los sensores Clair. Opcionalmente, navega a Reports para consultar el widget de cumplimiento de directrices de la Organizacion Mundial de la Salud, que compara los valores actuales con los limites recomendados. Al verificar que el AQI es saludable y que se cumplen los estandares, confirma que el interior del hogar es un refugio seguro.
+
+<img src="../assets/webapp-userflows/webapp-uflow4.png" alt="webapp-uflow4" width="1000">
+
 ## 4.7. Web Applications Prototyping.
 
 El prototipo de la aplicación web muestra la estructura general de navegación, el diseño de las principales vistas y las funcionalidades clave que tendrá la plataforma. Permite simular el flujo de navegación de los usuarios y visualizar cómo interactúan con los distintos módulos del sistema.
