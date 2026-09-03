@@ -268,6 +268,8 @@ El usuario accede al Dashboard de Mobile Application. En esta pantalla, se muest
 
 ## 4.5. Mobile Applications Prototyping.
 
+En esta sección se presentan los prototipos interactivos de la aplicación móvil, que permiten visualizar y probar la experiencia de usuario antes del desarrollo final. Estos prototipos materializan los wireframes, mock-ups, wireflows y user flows definidos previamente para validar la navegación, la ergonomía táctil y la coherencia entre las diferentes pantallas operativas del sistema Clair en formato móvil.
+
 ### 4.5.1. Android Mobile Applications Prototyping.
 
 ### 4.5.2. iOS Mobile Applications Prototyping.
