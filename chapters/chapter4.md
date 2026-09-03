@@ -90,6 +90,8 @@ Este mock-up utiliza la fotografía de alto impacto como eje central para conect
 
 ## 4.4. Mobile Applications UX/UI Design.
 
+Esta sección está dedicada al diseño de la experiencia de usuario (UX) y la interfaz de usuario (UI) de la aplicación móvil que forma parte de la solución Clair. El objetivo es crear interfaces funcionales, accesibles y visualmente coherentes que respondan a las necesidades y expectativas de los usuarios finales en un entorno mobile-first.
+
 ### 4.4.1. Mobile Applications Wireframes.
 
 ### 4.4.2. Mobile Applications Wireflow Diagrams.
