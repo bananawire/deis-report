@@ -11,6 +11,7 @@
 | 0.0.7   | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.3 Landing Page UI Design, incluyendo la documentación de wireframes y mock-ups de Home, Product, Pricing y About. |
 | 0.0.8   | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.4 Mobile Applications UX/UI Design, incluyendo documentación de wireframes y wireflow diagrams de la aplicación móvil. |
 | 0.0.9   | 02/09/2026 | Iker Barturen | Adaptación de las secciones 4.4.3 y 4.4.4, incluyendo documentación de mock-ups y user flow diagrams de la aplicación móvil. |
+| 0.0.10  | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.5 Mobile Applications Prototyping, incluyendo documentación de prototipos Android e iOS de la aplicación móvil. |
 
 
 # Project Report Collaboration Insights
