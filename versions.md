@@ -7,6 +7,13 @@
 | 0.0.3   | 02/09/2026 | Dante Mateo Aleman Romano | Diseño de la Arquitectura de Software orientada al dominio (DDD) con diagramas C4 de contexto, contenedores y componentes. |
 | 0.0.4   | 02/09/2026 | Dante Mateo Aleman Romano | Especificación técnica detallada y diagramas de clases para los Bounded Contexts (IAM, Billing, Device Management, Air Quality Evaluation, Alerting y Analytics). |
 | 0.0.5   | 02/09/2026 | Dante Mateo Aleman Romano | Incorporación de la matriz de criterios específicos de Student Outcome (4.c.1 y 4.c.2) y estructuración de la sección de anexos. |
+| 0.0.6   | 02/09/2026 | Dante Mateo Aleman Romano | Implementación del Capítulo V con Sprint Backlogs, Acuerdo SaaS, evidencias y documentación de la API REST, y Video About-the-Product. |
+| 0.0.7   | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.3 Landing Page UI Design, incluyendo la documentación de wireframes y mock-ups de Home, Product, Pricing y About. |
+| 0.0.8   | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.4 Mobile Applications UX/UI Design, incluyendo documentación de wireframes y wireflow diagrams de la aplicación móvil. |
+| 0.0.9   | 02/09/2026 | Iker Barturen | Adaptación de las secciones 4.4.3 y 4.4.4, incluyendo documentación de mock-ups y user flow diagrams de la aplicación móvil. |
+| 0.0.10  | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.5 Mobile Applications Prototyping, incluyendo documentación de prototipos Android e iOS de la aplicación móvil. |
 
+
+| 0.0.11  | 02/09/2026 | Iker Barturen | Adaptacion de la seccion 4.6 Web Applications UX/UI Design, incluyendo wireframes, wireflows, mock-ups y user flow diagrams de la aplicacion web. |
 
 # Project Report Collaboration Insights

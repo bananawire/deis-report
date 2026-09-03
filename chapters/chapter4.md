@@ -26,35 +26,486 @@
 
 ## 4.3. Landing Page UI Design.
 
+A continuación, se presentan los wireframes y mock-ups para la Landing Page de Clair, enfocada en comunicar de manera efectiva la propuesta de valor del producto y guiar al visitante hacia la conversión.
+
 ### 4.3.1. Landing Page Wireframe.
+
+**Home**
+
+<img src="../assets/landing-page-wireframes/WF-Home.png" alt="WF-Home" width="1000">
+
+Presentación principal de Clair Alpha. Este esquema define la jerarquía principal del sitio. En la parte superior, se establece un Hero Section con mensajes claros y botones de conversión inmediata.
+
+La sección central de Sensory Intelligence utiliza una estructura de tres columnas para presentar las métricas clave (PM2.5, CO₂ e Índice de Aire), permitiendo que el usuario entienda el valor del monitoreo de un vistazo. Finaliza con bloques de imagen y texto alternados para explicar la integración del dispositivo en espacios físicos.
+
+**Product**
+
+<img src="../assets/landing-page-wireframes/WF-Product.png" alt="WF-Product" width="1000">
+
+Detalle técnico y funcional del dispositivo. Se enfoca en la arquitectura técnica del dispositivo. Utiliza un layout de rejilla (grid) para organizar las "Clair Specs", donde cada tarjeta contiene un icono, un título y una descripción breve. Este diseño está pensado para descomponer conceptos complejos (como sensores láser o procesamiento de datos) en fragmentos de información digeribles. Incluye un pie de página con un CTA de refuerzo para incentivar la compra tras leer las especificaciones.
+
+**Pricing**
+
+<img src="../assets/landing-page-wireframes/WF-Pricing.png" alt="WF-Pricing" width="1000">
+
+Estructura de costos de los servicios de Clair Alpha. La estructura está diseñada para facilitar la comparativa de servicios. Presenta dos contenedores principales que separan el plan gratuito del plan avanzado ("Mesh Network").
+
+Cada contenedor detalla mediante una lista de viñetas las funcionalidades incluidas, permitiendo al usuario diferenciar rápidamente entre el monitoreo local y la gestión centralizada multidispositivo. Además, el diseño ofrece una visualización limpia de los costos.
+
+**About**
+
+<img src="../assets/landing-page-wireframes/WF-About.png" alt="WF-About" width="1000">
+
+Sección dedicada a la visión de la empresa y el equipo. En la parte inferior, se reserva un espacio para el "Clair Team", organizando al equipo por etiquetas funcionales (Ingeniería, Diseño, Investigación) para proyectar confianza y multidisciplinariedad.
 
 ### 4.3.2. Landing Page Mock-up.
 
+**Home**
+
+<img src="../assets/landing-page-mockups/Home.png" alt="MP-Home" width="1000">
+
+Implementación visual final con un estilo minimalista y tecnológico. Se sustituyen los contenedores vacíos por imágenes fotorrealistas que muestran el dispositivo integrado en oficinas.
+
+Los indicadores de calidad del aire ahora incluyen micro-interacciones visuales, como anillos de progreso y estados de color (verde para "Pristine Air"), que permiten una lectura intuitiva y rápida del estado ambiental.
+
+**Product**
+
+<img src="../assets/landing-page-mockups/Product.png" alt="MP-Product" width="1000">
+
+Diseño detallado que muestra los componentes internos del ecosistema. Se detallan los componentes internos mediante una tipografía Space Grotesk y un espaciado amplio que evita la saturación visual.
+
+Se han integrado los nombres específicos de los sensores (SCD41 y PMS5003) para dar credibilidad técnica al producto.
+
+**Pricing**
+
+<img src="../assets/landing-page-mockups/Pricing.png" alt="MP-Pricing" width="1000">
+
+Interfaz de suscripción con un enfoque limpio y directo. Se utilizan tarjetas con bordes definidos y botones de acción claros. Los iconos de moneda y los botones de compra (CTA) siguen una estética de alto contraste (blanco sobre negro), asegurando que el proceso de selección de plan sea visualmente directo y libre de distracciones.
+
+**About**
+
+<img src="../assets/landing-page-mockups/About.jpg" alt="MP-About" width="1000">
+
+Este mock-up utiliza la fotografía de alto impacto como eje central para conectar emocionalmente con el usuario. La sección presenta al equipo multidisciplinario con un diseño elegante que equilibra el espacio en blanco y el contenido textual.
+
 ## 4.4. Mobile Applications UX/UI Design.
+
+Esta sección está dedicada al diseño de la experiencia de usuario (UX) y la interfaz de usuario (UI) de la aplicación móvil que forma parte de la solución Clair. El objetivo es crear interfaces funcionales, accesibles y visualmente coherentes que respondan a las necesidades y expectativas de los usuarios finales en un entorno mobile-first.
 
 ### 4.4.1. Mobile Applications Wireframes.
 
+En esta sección se presentan los wireframes de la aplicación móvil, los cuales muestran el diseño estructural y la disposición de los elementos clave para la experiencia de usuario en dispositivos móviles.
+
+**Login**
+
+<img src="../assets/mobileapp-wf/WF-LOGIN.png" alt="wf-Login" width="300">
+
+La interfaz de autenticación móvil adopta un diseño vertical y centrado, adaptado a la ergonomía del pulgar. El wireframe simplifica los elementos a un campo de correo electrónico, un botón de acción primario ("Login") de alto contraste y un enlace textual para el registro de nuevos usuarios. Este enfoque minimalista reduce la carga cognitiva y acelera el acceso a la plataforma, manteniendo la estética limpia y tecnológica característica de Clair en un entorno mobile-first.
+
+**Register**
+
+<img src="../assets/mobileapp-wf/WF-REGISTER.png" alt="wf-Register" width="300">
+
+El flujo de registro en dispositivos móviles prioriza la eficiencia y la seguridad mediante una estructura de pasos clara. El wireframe incorpora campos de entrada para correo electrónico y contraseña, acompañados de un componente de verificación (checkbox) para la aceptación de términos legales. Adicionalmente, se integran botones de autenticación con Google para facilitar el proceso, culminando con un enlace de navegación para usuarios ya registrados, todo ello dentro de un contenedor de bordes redondeados que sugiere una interfaz amigable y moderna.
+
+**Dashboard**
+
+<img src="../assets/mobileapp-wf/WF-DASHBOARD.png" alt="wf-Dashboard" width="300">
+
+La pantalla principal de la aplicación presenta un panel de control resumido pero altamente informativo, ideal para la supervisión rápida del estado ambiental desde un dispositivo móvil.
+
+**Sensor Selection**
+
+<img src="../assets/mobileapp-wf/WF-SENSOR-SELECTION.png" alt="wf-Sensor-Selection" width="300">
+
+La interfaz de selección de ubicación o dispositivo utiliza un patrón de navegación jerárquica común en móviles: una lista de selección que ocupa la mayor parte de la pantalla. Este patrón modal o de pantalla dedicada guía al usuario a través de la estructura física de la organización (Edificio → Piso) antes de visualizar datos específicos, reduciendo la complejidad y enfocando la atención en la decisión actual.
+
+**Sensor Detail**
+
+<img src="../assets/mobileapp-wf/WF-SENSOR.png" alt="wf-Sensor" width="300">
+
+La vista de detalle de un sensor específico concentra la información técnica más relevante en una sola pantalla optimizada para consultas rápidas. Este diseño de alta densidad de información, pero visualmente ordenado, permite a los técnicos y administradores evaluar el estado operativo de un sensor de forma inmediata desde su dispositivo móvil.
+
+**Settings**
+
+<img src="../assets/mobileapp-wf/WF-SETTINGS.png" alt="wf-Settings" width="300">
+
+La pantalla de configuración sigue el estándar de plataformas móviles (iOS/Android) mediante una vista de lista desplazable (table view) agrupada por categorías funcionales. La presencia de un botón de "LOGOUT" claramente diferenciado al final de la lista refuerza las normas de usabilidad y seguridad en aplicaciones móviles, ofreciendo un control total sobre la sesión del usuario.
+
+**Alerts**
+
+<img src="../assets/mobileapp-wf/WF-ALERTS.png" alt="wf-Alerts" width="300">
+
+La pantalla de alertas consolida las notificaciones generadas por el sistema Clair, organizadas por niveles de prioridad para facilitar la atención diferenciada por parte del usuario. Cada alerta presenta un encabezado descriptivo, un mensaje contextual y un par de acciones rápidas que permiten responder de manera inmediata o ignorar la notificación. Refleja una arquitectura de notificaciones que equilibra la urgencia operativa con el mantenimiento programado, siguiendo las mejores prácticas de diseño de centros de control y monitoreo en aplicaciones móviles industriales o de seguridad.
+
 ### 4.4.2. Mobile Applications Wireflow Diagrams.
+
+Esta sección presenta los diagramas de flujo (wireflows) de la aplicación móvil, que ilustran la navegación y las interacciones del usuario entre las diferentes pantallas, facilitando la comprensión del recorrido dentro del sistema.
+
+**User Goals**
+
+| ID | User Goal | Descripción operativa |
+|:---:|:---|:---|
+| **UG01** | Garantizar la salud ambiental | Mantener un aire fresco y libre de viciamento para que los clientes permanezcan más tiempo en el local. |
+| **UG04** | Controlar síntomas crónicos | Reducir la frecuencia de episodios de rinitis alérgica, asma o dolores de cabeza asociados al ambiente cargado. |
+| **UG06** | Crear un refugio seguro | Garantizar que, a pesar de la contaminación exterior de la ciudad, el interior de su hogar sea un espacio de respiración pura. |
+
+**Wireflow: Gestión de alertas y activación de respuestas**
+
+**User Goals cubiertos:**
+
+| ID | User Goal |
+|:---|:---|
+| UG01 | Garantizar la salud ambiental: Mantener un aire fresco y libre de viciamento para que los clientes permanezcan más tiempo en el local |
+| UG04 | Controlar síntomas crónicos: Reducir la frecuencia de episodios de rinitis alérgica, asma o dolores de cabeza asociados al ambiente cargado |
+
+El usuario ingresa a la aplicación y visualiza el Dashboard principal, donde se muestran los indicadores de calidad del aire en tiempo real y el estado general por zonas. El sistema monitorea continuamente los sensores y, cuando detecta una condición crítica (UG01: CO₂/VOC elevado) o la superación de un umbral personalizado configurado desde la Web App (UG04), genera una notificación emergente en la parte superior de la pantalla.
+
+El usuario ingresa a la lista de alerts mediante un tap en el ícono de campana o directamente en la notificación, accediendo a la pantalla Alerts donde la alerta aparece destacada con información contextual. El sistema muestra cada alerta con título, mensaje y botones de acción ("Activar respuesta" si está configurada, "Descartar", "Ver más").
+
+Si el usuario realiza tap en el botón "Activar respuesta" correspondiente a la alerta, siempre que la acción haya sido preconfigurada desde la Web App, el sistema ejecuta la acción correctiva de inmediato (por ejemplo, activar ventilación o enviar notificación al administrador), muestra un toast o snackbar de confirmación y marca la alerta como "En proceso" o "Resuelta". Opcionalmente, el usuario puede tap en "Descartar" o "Recordar más tarde", en cuyo caso la alerta se archiva o se programa para reaparecer después de un tiempo definido.
+
+UG01 y UG04 comparten el mismo wireflow para Mobile Application, ya que ambos flujos se detonan por una alerta automática o preventiva y conducen a la misma pantalla Alerts para la gestión de la respuesta. La diferencia radica en el origen de la regla: UG01 responde a reglas por defecto del sistema, mientras que UG04 responde a reglas personalizadas configuradas desde Web App. En ambos casos, la experiencia de usuario en mobile es idéntica.
+
+<img src="../assets/mobileapp-wireflows/mobileapp-wflow1.png" alt="mobileapp-wflow1" width="600">
+
+**Wireflow: Verificación de calidad del aire (Refugio seguro)**
+
+**User Goals cubiertos:**
+
+| ID | User Goal |
+|:---|:---|
+| UG06 | Crear un refugio seguro: Garantizar que, a pesar de la contaminación exterior de la ciudad, el interior de su hogar sea un espacio de respiración pura |
+
+El usuario ingresa a la aplicación y visualiza el Dashboard principal. En esta pantalla, el sistema muestra los indicadores de calidad del aire (CO₂, VOC, temperatura, humedad), el estado general por zonas y el indicador AQI (Bueno/Moderado/Malo). El usuario visualiza el AQI y los valores de los sensores directamente en el Dashboard.
+
+El sistema presenta el estado actual del aire, indicando si es saludable o no. Al observar que los indicadores están dentro de rangos saludables y que el AQI es "Bueno" o "Moderado", el usuario confirma que su hogar es un "refugio seguro", es decir, un espacio de respiración pura a pesar de la contaminación exterior del entorno urbano.
+
+UG06 en Mobile se resuelve íntegramente en el Dashboard, ya que esta pantalla muestra el AQI y los valores de calidad del aire en tiempo real. No existe funcionalidad equivalente al widget de cumplimiento OMS en la versión mobile de Reports. El usuario valida que su hogar es un refugio seguro al observar indicadores saludables en el Dashboard.
+
+<img src="../assets/mobileapp-wireflows/mobileapp-wflow2.png" alt="mobileapp-wflow2" width="340">
 
 ### 4.4.3. Mobile Applications Mock-ups.
 
+**Login**
+
+<img src="../assets/mobileapp-mockup/LOGIN.png" alt="LOGIN" width="300">
+
+La pantalla de autenticación presenta una implementación visual final de estilo sobrio y corporativo, con fondo oscuro uniforme y el logotipo de Clair centrado en la parte superior. El mock-up dispone campos de entrada de bordes redondeados con etiquetas flotantes o internas, acompañados de un botón de acción primaria ("Login") de color de contraste moderado que ocupa el ancho completo. Un enlace textual secundario ("Register") permite la navegación al flujo de creación de cuenta, manteniendo una estética limpia, profesional y alineada con la identidad tecnológica de la marca en el ecosistema móvil.
+
+**Register**
+
+<img src="../assets/mobileapp-mockup/REGISTER.png" alt="mobile-register" width="300">
+
+La interfaz de registro mantiene la coherencia visual con la pantalla de login, utilizando un fondo oscuro y una tarjeta central que organiza el contenido de forma vertical. El mock-up integra campos de entrada para correo electrónico y contraseña, este último con un indicador visual de caracteres enmascarados, acompañados de un componente de verificación para la aceptación de términos y condiciones. El botón de registro principal se complementa con una opción de autenticación con Google mediante un contenedor secundario. Finalmente, un enlace "Login" dirige a los usuarios ya registrados, completando un flujo de alta eficiente y visualmente consistente.
+
+**Air Quality**
+
+<img src="../assets/mobileapp-mockup/AIRQUALITY.png" alt="mobile-dashboard" width="300">
+
+La pantalla de calidad del aire ofrece una visión centralizada y altamente legible del estado ambiental actual. En la parte superior, selectores desplegables permiten filtrar los datos por organización, espacio y dispositivo específico, lo cual se complementa con un indicador visual del "Air Quality Index" que clasifica la calidad del aire como "GOOD" con una puntuación numérica. Debajo, se despliegan tarjetas individuales para variables clave como material particulado (PM2.5), CO₂, temperatura y humedad, cada una con su valor actual y un indicador de estado. Finalmente, la sección de "Thresholds" proporciona una referencia clara de los límites operativos configurados para cada parámetro.
+
+**Sensor Selection**
+
+<img src="../assets/mobileapp-mockup/SENSOR-SELECTION1.png" alt="mobile-sensor-selection" width="300">
+
+<img src="../assets/mobileapp-mockup/SENSOR-SELECTION2.png" alt="mobile-sensor-selection" width="300">
+
+<img src="../assets/mobileapp-mockup/SENSOR-SELECTION3.png" alt="mobile-sensor-selection" width="300">
+
+La estructura de selección de sensores en Clair sigue una jerarquía de navegación lógica, diseñada para gestionar grandes despliegues de infraestructura de forma intuitiva. El sistema guía al usuario a través de niveles de agregación progresiva: desde el despliegue general de organizaciones, pasando por edificios específicos y niveles de planta, hasta llegar a la gestión individual de los dispositivos. Esta arquitectura jerárquica permite al usuario alternar entre vistas de cuadrícula (grid) y lista, proporcionando flexibilidad visual para monitorear el estado operativo y la última actividad de múltiples dispositivos simultáneamente.
+
+**Sensor Detail**
+
+<img src="../assets/mobileapp-mockup/SENSOR1.png" alt="mobile-sensor-detail" width="300">
+
+<img src="../assets/mobileapp-mockup/SENSOR2.png" alt="mobile-sensor-detail" width="300">
+
+La interfaz de detalle del sensor "Clair-01" proporciona un diagnóstico técnico integral y una capacidad de configuración precisa del entorno monitorizado. La vista principal despliega métricas de estado operativo como conectividad, tiempo de actividad (uptime), salud general del dispositivo y la antigüedad de la última actualización. Bajo este, la sección de umbrales permite el ajuste granular de parámetros críticos de calidad ambiental, como material particulado (PM2.5), CO₂, temperatura y humedad, a través de una interfaz interactiva de deslizadores.
+
+**Settings**
+
+<img src="../assets/mobileapp-mockup/SETTINGS.png" alt="mobile-settings" width="300">
+
+La pantalla de configuración sigue el estándar de plataformas móviles mediante una vista de lista desplazable (table view) agrupada por categorías funcionales. El mock-up organiza las opciones en secciones claramente diferenciadas: "ACCOUNT", "PREFERENCES", "DEVICE SETTINGS" y "SUPPORT & LEGAL". Finalmente, un botón "LOGOUT" claramente diferenciado permite el cierre de sesión.
+
+**Alerts**
+
+<img src="../assets/mobileapp-mockup/ALERTS.png" alt="mobile-alerts" width="300">
+
+La pantalla de alertas presenta un panel de control dentro del sistema Clair dedicado al monitoreo de alertas. En la parte superior, destaca un gráfico de barras que resume la frecuencia de eventos durante los últimos 30 días, permitiendo visualizar tendencias de actividad a lo largo del tiempo. Debajo, una interfaz tabulada divide la información en "Active Alerts" e "History", enfocándose en la gestión inmediata de incidencias críticas mediante una tabla organizada por severidad, ubicación y variable afectada, e integrando una navegación intuitiva con barra inferior para acceso rápido a otras funciones del sistema.
+
 ### 4.4.4. Mobile Applications User Flow Diagrams.
+
+Esta sección presenta los diagramas de flujo de los usuarios en la aplicación móvil, los cuales ilustran las rutas y procesos que siguen dentro de Clair, facilitando la comprensión de la navegación y las interacciones clave.
+
+**Mobile Application User Flow**
+
+**User Flow: Gestión de alertas y activación de respuestas**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG01 | Garantizar la salud ambiental: Mantener un aire fresco y libre de viciamento para que los clientes permanezcan más tiempo en el local |
+| UG04 | Controlar síntomas crónicos: Reducir la frecuencia de episodios de rinitis alérgica, asma o dolores de cabeza asociados al ambiente cargado |
+
+Ambos User Goals comparten el mismo flujo de interacción en Mobile Application. El usuario recibe una notificación emergente en el Dashboard cuando el sistema detecta una condición crítica (UG01) o la superación de un umbral personalizado (UG04). El usuario ingresa a la pantalla Alerts, visualiza la alerta destacada, y puede activar una respuesta preconfigurada, si está disponible desde Web App, o descartarla. La diferencia radica en el origen de la regla: UG01 responde a reglas por defecto del sistema, mientras que UG04 responde a reglas personalizadas configuradas desde Web App. En ambos casos, la experiencia de usuario en mobile es idéntica.
+
+<img src="../assets/mobileapp-userflows/mobileapp-uflow1.png" alt="mobileapp-uflow1" width="1000">
+
+**User Flow: Verificación de calidad del aire (Refugio seguro)**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG06 | Crear un refugio seguro: Garantizar que, a pesar de la contaminación exterior de la ciudad, el interior de su hogar sea un espacio de respiración pura |
+
+El usuario accede al Dashboard de Mobile Application. En esta pantalla, se muestran los indicadores de calidad del aire (CO₂, VOC, temperatura, humedad) y el indicador AQI (Bueno/Moderado/Malo). El usuario visualiza estos indicadores y verifica que el aire interior es saludable. Al observar que el AQI es "Bueno" o "Moderado" y que los valores están dentro de rangos saludables, el usuario confirma que su hogar es un "refugio seguro". No existe funcionalidad equivalente al widget de cumplimiento OMS en la versión mobile.
+
+<img src="../assets/mobileapp-userflows/mobileapp-uflow2.png" alt="mobileapp-uflow2" width="600">
 
 ## 4.5. Mobile Applications Prototyping.
 
+En esta sección se presentan los prototipos interactivos de la aplicación móvil, que permiten visualizar y probar la experiencia de usuario antes del desarrollo final. Estos prototipos materializan los wireframes, mock-ups, wireflows y user flows definidos previamente para validar la navegación, la ergonomía táctil y la coherencia entre las diferentes pantallas operativas del sistema Clair en formato móvil.
+
 ### 4.5.1. Android Mobile Applications Prototyping.
+
+El prototipo Android de la aplicación móvil representa la materialización interactiva de los wireframes, mock-ups, wireflows y user flows diseñados para dispositivos móviles. Este prototipo simula la experiencia táctil del usuario final en un entorno Android, permitiendo validar la ergonomía, la navegación entre pantallas y la coherencia visual de las principales secciones operativas del sistema Clair.
+
+<img src="../assets/prototypes/mobileapp-proto.png" alt="android-mobileapp-proto" width="300">
+
+Android Mobile Application Prototype: https://sl1nk.com/s0e7d73
+
+<img src="../assets/prototypes/mobileapp-video.png" alt="android-mobileapp-video" width="300">
+
+Video de presentación del prototipo Android Mobile Application: https://bit.ly/43bBBh7
 
 ### 4.5.2. iOS Mobile Applications Prototyping.
 
+El prototipo iOS de la aplicación móvil representa la validación interactiva de la experiencia de Clair en dispositivos Apple. A partir de los wireframes, mock-ups, wireflows y user flows previamente definidos, este prototipo permite comprobar la consistencia de navegación, la lectura de indicadores ambientales y la interacción táctil con pantallas clave como Dashboard, Alerts, Sensor Selection, Sensor Detail y Settings.
+
+<img src="../assets/prototypes/mobileapp-proto.png" alt="ios-mobileapp-proto" width="300">
+
+iOS Mobile Application Prototype: https://sl1nk.com/s0e7d73
+
+<img src="../assets/prototypes/mobileapp-video.png" alt="ios-mobileapp-video" width="300">
+
+Video de presentación del prototipo iOS Mobile Application: https://bit.ly/43bBBh7
+
 ## 4.6. Web Applications UX/UI Design.
+
+Esta seccion esta dedicada al diseno de la experiencia de usuario (UX) y la interfaz de usuario (UI) de la aplicacion web que conforma la solucion. El objetivo es crear una interfaz funcional, accesible y visualmente coherente que responda a las necesidades y expectativas de los usuarios finales.
 
 ### 4.6.1. Web Applications Wireframes.
 
+En esta seccion se presentan los wireframes de la aplicacion web, que muestran el diseno estructural y la disposicion de los elementos clave para la experiencia de usuario.
+
+**Web Application**
+
+**Login**
+
+<img src="../assets/webapp-wf/wf-login.png" alt="wf-login" width="1000">
+
+La interfaz de autenticacion presenta un diseno centralizado y minimalista que prioriza la claridad funcional. El wireframe utiliza un contenedor de bordes definidos sobre un fondo neutro, integrando campos de entrada directos para credenciales y un boton de accion de alto contraste, lo que refuerza una estetica tecnologica y ordenada coherente con el ecosistema de Clair.
+
+**Register**
+
+<img src="../assets/webapp-wf/wf-register.png" alt="wf-register" width="1000">
+
+El diseno de registro mantiene la coherencia visual mediante una estructura vertical limpia que facilita el flujo de los usuarios. Este wireframe integra campos de entrada estandar, un selector para terminos legales y una opcion de autenticacion social con Google, logrando un equilibrio entre simplicidad y funcionalidad bajo una estetica tecnica y minimalista.
+
+**Overview**
+
+<img src="../assets/webapp-wf/wf-overview.png" alt="wf-overview" width="1000">
+
+La interfaz principal despliega un tablero de control avanzado con un estilo "dark mode" que resalta metricas criticas de calidad de aire mediante una jerarquia visual clara. El diseno utiliza tarjetas modulares para organizar contaminantes como PM2.5 y CO2, integrando graficos de barras de estado y paneles laterales de alertas en tiempo real, lo que ofrece una experiencia analitica, tecnica y altamente funcional para la gestion de multiples organizaciones.
+
+**Space & Devices**
+
+<img src="../assets/webapp-wf/wf-space1.png" alt="wf-space1" width="1000">
+
+<img src="../assets/webapp-wf/wf-space2.png" alt="wf-space2" width="1000">
+
+La interfaz de gestion de dispositivos presenta una estructura organizada mediante un panel de navegacion jerarquico que facilita la administracion de organizaciones y espacios. El diseno utiliza tarjetas de inventario detalladas y una vista individual para monitorear el estado tecnico de cada sensor, integrando indicadores de conectividad, salud del dispositivo y umbrales personalizados bajo una estetica limpia y profesional.
+
+**Air Quality**
+
+<img src="../assets/webapp-wf/wf-airquality.png" alt="wf-airquality" width="1000">
+
+La interfaz de analisis ambiental presenta un tablero detallado que permite la visualizacion de metricas en tiempo real y periodos historicos mediante selectores de tiempo y ubicacion. El diseno integra tarjetas de diagnostico para multiples contaminantes, un panel de analisis de causa raiz y una comparativa entre espacios, culminando en una seccion de generacion de reportes tecnicos en formatos PDF y CSV que refuerza el enfoque profesional y orientado a datos del ecosistema Clair.
+
+**Alerts & Actions**
+
+<img src="../assets/webapp-wf/wf-alerts.png" alt="wf-alerts" width="1000">
+
+La interfaz de gestion de alertas ofrece un centro de control operativo que combina el monitoreo critico con la capacidad de respuesta inmediata. El diseno destaca un grafico de distribucion semanal de incidencias y una tabla detallada de alertas activas, integrando paneles laterales para la configuracion de notificaciones, visualizacion de tendencias especificas por evento y un registro de auditoria, lo que permite una administracion proactiva y tecnica de las contingencias ambientales en el ecosistema Clair.
+
+**Reports**
+
+<img src="../assets/webapp-wf/wf-reports.png" alt="wf-reports" width="1000">
+
+La interfaz de reportes presenta un panel analitico robusto disenado para la interpretacion de datos estrategicos y el cumplimiento normativo. El wireframe organiza la informacion mediante tarjetas de resumen diario, semanal y mensual, integrando visualizaciones de correlacion de particulas y un gestor de exportaciones automatizado que detalla la frecuencia y el estado de los registros. Este diseno facilita una supervision integral del ecosistema Clair, permitiendo desde el analisis tecnico profundo hasta la generacion de resumenes ejecutivos con una estetica limpia y profesional.
+
 ### 4.6.2. Web Applications Wireflow Diagrams.
+
+Esta seccion presenta los diagramas de flujo (wireflows) de la aplicacion web, que ilustran la navegacion y las interacciones del usuario entre las diferentes pantallas, facilitando la comprension del recorrido dentro del sistema.
+
+**Web Application**
+
+**Wireflow: Generacion y gestion de reportes**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG02 | Demostrar salubridad: Contar con evidencia tangible de que el local cumple con estandares de aire seguro para clientes y fiscalizaciones |
+| UG05 | Validar acciones preventivas: Saber con certeza si los habitos de limpieza y ventilacion estan funcionando para mejorar la calidad del aire |
+
+El usuario accede al Overview y navega a la seccion Reports mediante un clic en el menu lateral. En Reports selecciona el tipo de reporte deseado, configura el rango de fechas y las zonas a incluir, y hace clic en "Generar reporte". El sistema recopila los datos, muestra una barra de progreso y genera el reporte con graficos, metricas clave y comparativas con estandares. Finalmente, el usuario puede exportarlo en formato PDF o compartirlo, recibiendo una confirmacion de que la accion fue exitosa y quedando registrada en el historial.
+
+UG02 y UG05 comparten el mismo wireflow para Web Application. La diferencia radica en el proposito: UG02 busca evidencia para terceros, mientras que UG05 busca validacion personal. En ambos casos, el flujo de generacion de reportes es identico.
+
+<img src="../assets/webapp-wireflows/webapp-wflow1.png" alt="webapp-wflow1" width="1000">
+
+**Wireflow: Generacion y gestion de reportes**
+
+El usuario accede al Overview y visualiza el Dashboard principal con los indicadores de calidad del aire en tiempo real. Desde alli navega a Reports, selecciona el tipo de reporte, configura los parametros y genera el reporte. El sistema muestra un mensaje de confirmacion y registra la accion en el historial del usuario.
+
+<img src="../assets/webapp-wireflows/webapp-wflow2.png" alt="webapp-wflow2" width="1000">
+
+**Wireflow: Configuracion de umbrales personalizados (Rules Builder)**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG04 | Controlar sintomas cronicos: Reducir la frecuencia de episodios asociados al ambiente cargado |
+
+El usuario accede al Overview y navega a Alerts & Actions. Dentro de Rules Builder crea una regla personalizada seleccionando una metrica, un operador, un umbral numerico y una accion asociada. El sistema valida y guarda la regla, monitorea los sensores en tiempo real y, cuando se supera el umbral, dispara la accion configurada y genera una alerta preventiva en el Dashboard y en Alerts & Actions.
+
+<img src="../assets/webapp-wireflows/webapp-wflow3.png" alt="webapp-wflow3" width="1000">
+
+**Wireflow: Verificacion de calidad del aire y cumplimiento de estandares**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG06 | Crear un refugio seguro: Garantizar que el interior del hogar sea un espacio de respiracion pura a pesar de la contaminacion exterior |
+
+El usuario accede al Overview y navega a Air Quality para consultar los registros de los sensores Clair y el indicador AQI. Opcionalmente, navega a Reports para consultar el cumplimiento de los estandares de la Organizacion Mundial de la Salud. El sistema presenta una comparativa entre las metricas actuales y los limites recomendados, permitiendo verificar que el aire interior es saludable.
+
+<img src="../assets/webapp-wireflows/webapp-wflow4.png" alt="webapp-wflow4" width="1000">
 
 ### 4.6.3. Web Applications Mock-ups.
 
+La aplicacion web cuenta con mock-ups de alta fidelidad que representan la implementacion visual final de sus principales pantallas.
+
+**Web Application**
+
+**Login**
+
+<img src="../assets/webapp-mockup/LOGIN.png" alt="LOGIN" width="1000">
+
+La interfaz de inicio de sesion presenta un estilo sofisticado, minimalista y tecnologico. El mock-up utiliza un fondo oscuro que resalta un contenedor de bordes sutiles y el logotipo central de Clair, integrando campos de entrada con iconos descriptivos y un boton de accion principal de contraste moderado.
+
+**Register**
+
+<img src="../assets/webapp-mockup/CREATE-ACCOUNT.png" alt="CREATE-ACCOUNT" width="1000">
+
+La interfaz de creacion de cuenta mantiene la coherencia visual con Login. Integra campos de entrada, selectores de terminos legales y una opcion de autenticacion social con Google, logrando una experiencia sobria y profesional.
+
+**Overview**
+
+<img src="../assets/webapp-mockup/OVERVIEW.png" alt="OVERVIEW" width="1000">
+
+El tablero principal utiliza un fondo oscuro para resaltar los indicadores de calidad de aire. Organiza el AQI y contaminantes especificos como CO2 y PM2.5 mediante tarjetas modulares de alto contraste, integrando paneles de alertas y acciones en tiempo real.
+
+**Space & Devices**
+
+<img src="../assets/webapp-mockup/SPACE&DEVICES1.png" alt="SPACE&DEVICES1" width="1000">
+
+<img src="../assets/webapp-mockup/SPACE&DEVICES2.png" alt="SPACE&DEVICES2" width="1000">
+
+<img src="../assets/webapp-mockup/SPACE&DEVICES3.png" alt="SPACE&DEVICES3" width="1000">
+
+La seccion permite navegar por organizaciones, edificios y plantas, proporcionando control sobre el despliegue de sensores. El usuario puede visualizar dispositivos en formato Grid o List y consultar el estado, ubicacion, version, conectividad, uptime, salud y umbrales de cada dispositivo.
+
+**Air Quality**
+
+<img src="../assets/webapp-mockup/AIR-QUALITY.png" alt="AIR-QUALITY" width="1000">
+
+La pantalla ofrece una vision integral del estado ambiental mediante filtros por organizacion, espacio y dispositivo. Incluye el indicador Air Quality Index, tarjetas de metricas como PM2.5, CO2, temperatura y humedad, y un grafico de tendencias con vistas en tiempo real, dia, semana o mes.
+
+**Alerts & Actions**
+
+<img src="../assets/webapp-mockup/ALERTS&ACTION.png" alt="ALERTS&ACTION" width="1000">
+
+La pantalla centraliza el monitoreo de incidentes. Presenta un grafico de frecuencia y severidad de alertas, una tabla de alertas activas con identificador, severidad, ubicacion, variable, fecha y estado, y acceso a funciones de calidad del aire y reportes.
+
+**Reports**
+
+<img src="../assets/webapp-mockup/REPORTS.png" alt="REPORTS" width="1000">
+
+La seccion transforma datos complejos en resumenes estrategicos de cumplimiento. Utiliza tarjetas temporales para resumenes diarios, semanales y mensuales, visualizaciones de correlacion de particulas y un panel de exportaciones programadas dentro de una estetica dark mode profesional.
+
 ### 4.6.4. Web Applications User Flow Diagrams.
+
+Esta seccion presenta los diagramas de flujo de los usuarios de la aplicacion web. Estos ilustran las rutas y procesos que siguen los usuarios dentro del sistema, facilitando la comprension de la navegacion y las interacciones clave.
+
+**Web Application User Flow**
+
+**User Flow: Gestion de alertas y acciones correctivas**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG01 | Garantizar la salud ambiental: Mantener un aire fresco y libre de viciamento para que los clientes permanezcan mas tiempo en el local |
+| UG03 | Optimizar la productividad: Evitar que los empleados sufran de fatiga o perdida de concentracion por mala ventilacion |
+
+Ambos User Goals comparten el mismo flujo de interaccion. El usuario recibe una alerta automatica por niveles elevados de CO2 o VOC, accede a la pantalla Alerts & Actions y activa una respuesta correctiva preconfigurada. La diferencia radica en el proposito, pero la experiencia de usuario es identica.
+
+<img src="../assets/webapp-userflows/webapp-uflow1.png" alt="webapp-uflow1" width="1000">
+
+**User Flow: Generacion y gestion de reportes**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG02 | Demostrar salubridad: Contar con evidencia tangible de que el local cumple con estandares de aire seguro para clientes y fiscalizaciones |
+| UG05 | Validar acciones preventivas: Saber con certeza si los habitos de limpieza y ventilacion estan funcionando para mejorar la calidad del aire |
+
+Ambos User Goals comparten el mismo flujo de interaccion. El usuario accede a Reports, selecciona el tipo de reporte, configura los parametros, genera el reporte y lo exporta. La diferencia radica en el proposito, pero la experiencia de usuario es identica.
+
+<img src="../assets/webapp-userflows/webapp-uflow2.png" alt="webapp-uflow2" width="1000">
+
+**User Flow: Configuracion de umbrales personalizados (Rules Builder)**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG04 | Controlar sintomas cronicos: Reducir la frecuencia de episodios asociados al ambiente cargado |
+
+El usuario accede a Alerts & Actions, navega a Rules Builder y configura reglas personalizadas basadas en sus alergias o sintomas. Define una metrica, un operador, un umbral especifico y una accion asociada. El sistema monitorea continuamente los sensores y, cuando se supera el umbral, dispara la accion configurada y genera una alerta preventiva en el Dashboard y en Alerts & Actions.
+
+<img src="../assets/webapp-userflows/webapp-uflow3.png" alt="webapp-uflow3" width="1000">
+
+**User Flow: Verificacion de calidad del aire y cumplimiento de estandares**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG06 | Crear un refugio seguro: Garantizar que el interior del hogar sea un espacio de respiracion pura a pesar de la contaminacion exterior |
+
+El usuario accede a Air Quality para visualizar el indicador AQI y los registros de los sensores Clair. Opcionalmente, navega a Reports para consultar el widget de cumplimiento de directrices de la Organizacion Mundial de la Salud, que compara los valores actuales con los limites recomendados. Al verificar que el AQI es saludable y que se cumplen los estandares, confirma que el interior del hogar es un refugio seguro.
+
+<img src="../assets/webapp-userflows/webapp-uflow4.png" alt="webapp-uflow4" width="1000">
 
 ## 4.7. Web Applications Prototyping.
 
