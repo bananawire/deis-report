@@ -9,6 +9,7 @@
 | 0.0.5   | 02/09/2026 | Dante Mateo Aleman Romano | Incorporación de la matriz de criterios específicos de Student Outcome (4.c.1 y 4.c.2) y estructuración de la sección de anexos. |
 | 0.0.6   | 02/09/2026 | Dante Mateo Aleman Romano | Implementación del Capítulo V con Sprint Backlogs, Acuerdo SaaS, evidencias y documentación de la API REST, y Video About-the-Product. |
 | 0.0.7   | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.3 Landing Page UI Design, incluyendo la documentación de wireframes y mock-ups de Home, Product, Pricing y About. |
+| 0.0.8   | 02/09/2026 | Iker Barturen | Adaptación de la sección 4.4 Mobile Applications UX/UI Design, incluyendo documentación de wireframes y wireflow diagrams de la aplicación móvil. |
 
 
 # Project Report Collaboration Insights
