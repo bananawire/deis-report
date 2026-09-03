@@ -26,9 +26,67 @@
 
 ## 4.3. Landing Page UI Design.
 
+A continuación, se presentan los wireframes y mock-ups para la Landing Page de Clair, enfocada en comunicar de manera efectiva la propuesta de valor del producto y guiar al visitante hacia la conversión.
+
 ### 4.3.1. Landing Page Wireframe.
 
+**Home**
+
+<img src="../assets/landing-page-wireframes/WF-Home.png" alt="WF-Home" width="1000">
+
+Presentación principal de Clair Alpha. Este esquema define la jerarquía principal del sitio. En la parte superior, se establece un Hero Section con mensajes claros y botones de conversión inmediata.
+
+La sección central de Sensory Intelligence utiliza una estructura de tres columnas para presentar las métricas clave (PM2.5, CO₂ e Índice de Aire), permitiendo que el usuario entienda el valor del monitoreo de un vistazo. Finaliza con bloques de imagen y texto alternados para explicar la integración del dispositivo en espacios físicos.
+
+**Product**
+
+<img src="../assets/landing-page-wireframes/WF-Product.png" alt="WF-Product" width="1000">
+
+Detalle técnico y funcional del dispositivo. Se enfoca en la arquitectura técnica del dispositivo. Utiliza un layout de rejilla (grid) para organizar las "Clair Specs", donde cada tarjeta contiene un icono, un título y una descripción breve. Este diseño está pensado para descomponer conceptos complejos (como sensores láser o procesamiento de datos) en fragmentos de información digeribles. Incluye un pie de página con un CTA de refuerzo para incentivar la compra tras leer las especificaciones.
+
+**Pricing**
+
+<img src="../assets/landing-page-wireframes/WF-Pricing.png" alt="WF-Pricing" width="1000">
+
+Estructura de costos de los servicios de Clair Alpha. La estructura está diseñada para facilitar la comparativa de servicios. Presenta dos contenedores principales que separan el plan gratuito del plan avanzado ("Mesh Network").
+
+Cada contenedor detalla mediante una lista de viñetas las funcionalidades incluidas, permitiendo al usuario diferenciar rápidamente entre el monitoreo local y la gestión centralizada multidispositivo. Además, el diseño ofrece una visualización limpia de los costos.
+
+**About**
+
+<img src="../assets/landing-page-wireframes/WF-About.png" alt="WF-About" width="1000">
+
+Sección dedicada a la visión de la empresa y el equipo. En la parte inferior, se reserva un espacio para el "Clair Team", organizando al equipo por etiquetas funcionales (Ingeniería, Diseño, Investigación) para proyectar confianza y multidisciplinariedad.
+
 ### 4.3.2. Landing Page Mock-up.
+
+**Home**
+
+<img src="../assets/landing-page-mockups/Home.png" alt="MP-Home" width="1000">
+
+Implementación visual final con un estilo minimalista y tecnológico. Se sustituyen los contenedores vacíos por imágenes fotorrealistas que muestran el dispositivo integrado en oficinas.
+
+Los indicadores de calidad del aire ahora incluyen micro-interacciones visuales, como anillos de progreso y estados de color (verde para "Pristine Air"), que permiten una lectura intuitiva y rápida del estado ambiental.
+
+**Product**
+
+<img src="../assets/landing-page-mockups/Product.png" alt="MP-Product" width="1000">
+
+Diseño detallado que muestra los componentes internos del ecosistema. Se detallan los componentes internos mediante una tipografía Space Grotesk y un espaciado amplio que evita la saturación visual.
+
+Se han integrado los nombres específicos de los sensores (SCD41 y PMS5003) para dar credibilidad técnica al producto.
+
+**Pricing**
+
+<img src="../assets/landing-page-mockups/Pricing.png" alt="MP-Pricing" width="1000">
+
+Interfaz de suscripción con un enfoque limpio y directo. Se utilizan tarjetas con bordes definidos y botones de acción claros. Los iconos de moneda y los botones de compra (CTA) siguen una estética de alto contraste (blanco sobre negro), asegurando que el proceso de selección de plan sea visualmente directo y libre de distracciones.
+
+**About**
+
+<img src="../assets/landing-page-mockups/About.jpg" alt="MP-About" width="1000">
+
+Este mock-up utiliza la fotografía de alto impacto como eje central para conectar emocionalmente con el usuario. La sección presenta al equipo multidisciplinario con un diseño elegante que equilibra el espacio en blanco y el contenido textual.
 
 ## 4.4. Mobile Applications UX/UI Design.
 
