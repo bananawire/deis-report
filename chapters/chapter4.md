@@ -284,6 +284,16 @@ Video de presentación del prototipo Android Mobile Application: https://bit.ly/
 
 ### 4.5.2. iOS Mobile Applications Prototyping.
 
+El prototipo iOS de la aplicación móvil representa la validación interactiva de la experiencia de Clair en dispositivos Apple. A partir de los wireframes, mock-ups, wireflows y user flows previamente definidos, este prototipo permite comprobar la consistencia de navegación, la lectura de indicadores ambientales y la interacción táctil con pantallas clave como Dashboard, Alerts, Sensor Selection, Sensor Detail y Settings.
+
+<img src="../assets/prototypes/mobileapp-proto.png" alt="ios-mobileapp-proto" width="300">
+
+iOS Mobile Application Prototype: https://sl1nk.com/s0e7d73
+
+<img src="../assets/prototypes/mobileapp-video.png" alt="ios-mobileapp-video" width="300">
+
+Video de presentación del prototipo iOS Mobile Application: https://bit.ly/43bBBh7
+
 ## 4.6. Web Applications UX/UI Design.
 
 ### 4.6.1. Web Applications Wireframes.
