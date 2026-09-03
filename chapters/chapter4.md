@@ -272,6 +272,16 @@ En esta sección se presentan los prototipos interactivos de la aplicación móv
 
 ### 4.5.1. Android Mobile Applications Prototyping.
 
+El prototipo Android de la aplicación móvil representa la materialización interactiva de los wireframes, mock-ups, wireflows y user flows diseñados para dispositivos móviles. Este prototipo simula la experiencia táctil del usuario final en un entorno Android, permitiendo validar la ergonomía, la navegación entre pantallas y la coherencia visual de las principales secciones operativas del sistema Clair.
+
+<img src="../assets/prototypes/mobileapp-proto.png" alt="android-mobileapp-proto" width="300">
+
+Android Mobile Application Prototype: https://sl1nk.com/s0e7d73
+
+<img src="../assets/prototypes/mobileapp-video.png" alt="android-mobileapp-video" width="300">
+
+Video de presentación del prototipo Android Mobile Application: https://bit.ly/43bBBh7
+
 ### 4.5.2. iOS Mobile Applications Prototyping.
 
 ## 4.6. Web Applications UX/UI Design.
