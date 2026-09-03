@@ -187,7 +187,84 @@ UG06 en Mobile se resuelve íntegramente en el Dashboard, ya que esta pantalla m
 
 ### 4.4.3. Mobile Applications Mock-ups.
 
+**Login**
+
+<img src="../assets/mobileapp-mockup/LOGIN.png" alt="LOGIN" width="300">
+
+La pantalla de autenticación presenta una implementación visual final de estilo sobrio y corporativo, con fondo oscuro uniforme y el logotipo de Clair centrado en la parte superior. El mock-up dispone campos de entrada de bordes redondeados con etiquetas flotantes o internas, acompañados de un botón de acción primaria ("Login") de color de contraste moderado que ocupa el ancho completo. Un enlace textual secundario ("Register") permite la navegación al flujo de creación de cuenta, manteniendo una estética limpia, profesional y alineada con la identidad tecnológica de la marca en el ecosistema móvil.
+
+**Register**
+
+<img src="../assets/mobileapp-mockup/REGISTER.png" alt="mobile-register" width="300">
+
+La interfaz de registro mantiene la coherencia visual con la pantalla de login, utilizando un fondo oscuro y una tarjeta central que organiza el contenido de forma vertical. El mock-up integra campos de entrada para correo electrónico y contraseña, este último con un indicador visual de caracteres enmascarados, acompañados de un componente de verificación para la aceptación de términos y condiciones. El botón de registro principal se complementa con una opción de autenticación con Google mediante un contenedor secundario. Finalmente, un enlace "Login" dirige a los usuarios ya registrados, completando un flujo de alta eficiente y visualmente consistente.
+
+**Air Quality**
+
+<img src="../assets/mobileapp-mockup/AIRQUALITY.png" alt="mobile-dashboard" width="300">
+
+La pantalla de calidad del aire ofrece una visión centralizada y altamente legible del estado ambiental actual. En la parte superior, selectores desplegables permiten filtrar los datos por organización, espacio y dispositivo específico, lo cual se complementa con un indicador visual del "Air Quality Index" que clasifica la calidad del aire como "GOOD" con una puntuación numérica. Debajo, se despliegan tarjetas individuales para variables clave como material particulado (PM2.5), CO₂, temperatura y humedad, cada una con su valor actual y un indicador de estado. Finalmente, la sección de "Thresholds" proporciona una referencia clara de los límites operativos configurados para cada parámetro.
+
+**Sensor Selection**
+
+<img src="../assets/mobileapp-mockup/SENSOR-SELECTION1.png" alt="mobile-sensor-selection" width="300">
+
+<img src="../assets/mobileapp-mockup/SENSOR-SELECTION2.png" alt="mobile-sensor-selection" width="300">
+
+<img src="../assets/mobileapp-mockup/SENSOR-SELECTION3.png" alt="mobile-sensor-selection" width="300">
+
+La estructura de selección de sensores en Clair sigue una jerarquía de navegación lógica, diseñada para gestionar grandes despliegues de infraestructura de forma intuitiva. El sistema guía al usuario a través de niveles de agregación progresiva: desde el despliegue general de organizaciones, pasando por edificios específicos y niveles de planta, hasta llegar a la gestión individual de los dispositivos. Esta arquitectura jerárquica permite al usuario alternar entre vistas de cuadrícula (grid) y lista, proporcionando flexibilidad visual para monitorear el estado operativo y la última actividad de múltiples dispositivos simultáneamente.
+
+**Sensor Detail**
+
+<img src="../assets/mobileapp-mockup/SENSOR1.png" alt="mobile-sensor-detail" width="300">
+
+<img src="../assets/mobileapp-mockup/SENSOR2.png" alt="mobile-sensor-detail" width="300">
+
+La interfaz de detalle del sensor "Clair-01" proporciona un diagnóstico técnico integral y una capacidad de configuración precisa del entorno monitorizado. La vista principal despliega métricas de estado operativo como conectividad, tiempo de actividad (uptime), salud general del dispositivo y la antigüedad de la última actualización. Bajo este, la sección de umbrales permite el ajuste granular de parámetros críticos de calidad ambiental, como material particulado (PM2.5), CO₂, temperatura y humedad, a través de una interfaz interactiva de deslizadores.
+
+**Settings**
+
+<img src="../assets/mobileapp-mockup/SETTINGS.png" alt="mobile-settings" width="300">
+
+La pantalla de configuración sigue el estándar de plataformas móviles mediante una vista de lista desplazable (table view) agrupada por categorías funcionales. El mock-up organiza las opciones en secciones claramente diferenciadas: "ACCOUNT", "PREFERENCES", "DEVICE SETTINGS" y "SUPPORT & LEGAL". Finalmente, un botón "LOGOUT" claramente diferenciado permite el cierre de sesión.
+
+**Alerts**
+
+<img src="../assets/mobileapp-mockup/ALERTS.png" alt="mobile-alerts" width="300">
+
+La pantalla de alertas presenta un panel de control dentro del sistema Clair dedicado al monitoreo de alertas. En la parte superior, destaca un gráfico de barras que resume la frecuencia de eventos durante los últimos 30 días, permitiendo visualizar tendencias de actividad a lo largo del tiempo. Debajo, una interfaz tabulada divide la información en "Active Alerts" e "History", enfocándose en la gestión inmediata de incidencias críticas mediante una tabla organizada por severidad, ubicación y variable afectada, e integrando una navegación intuitiva con barra inferior para acceso rápido a otras funciones del sistema.
+
 ### 4.4.4. Mobile Applications User Flow Diagrams.
+
+Esta sección presenta los diagramas de flujo de los usuarios en la aplicación móvil, los cuales ilustran las rutas y procesos que siguen dentro de Clair, facilitando la comprensión de la navegación y las interacciones clave.
+
+**Mobile Application User Flow**
+
+**User Flow: Gestión de alertas y activación de respuestas**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG01 | Garantizar la salud ambiental: Mantener un aire fresco y libre de viciamento para que los clientes permanezcan más tiempo en el local |
+| UG04 | Controlar síntomas crónicos: Reducir la frecuencia de episodios de rinitis alérgica, asma o dolores de cabeza asociados al ambiente cargado |
+
+Ambos User Goals comparten el mismo flujo de interacción en Mobile Application. El usuario recibe una notificación emergente en el Dashboard cuando el sistema detecta una condición crítica (UG01) o la superación de un umbral personalizado (UG04). El usuario ingresa a la pantalla Alerts, visualiza la alerta destacada, y puede activar una respuesta preconfigurada, si está disponible desde Web App, o descartarla. La diferencia radica en el origen de la regla: UG01 responde a reglas por defecto del sistema, mientras que UG04 responde a reglas personalizadas configuradas desde Web App. En ambos casos, la experiencia de usuario en mobile es idéntica.
+
+<img src="../assets/mobileapp-userflows/mobileapp-uflow1.png" alt="mobileapp-uflow1" width="1000">
+
+**User Flow: Verificación de calidad del aire (Refugio seguro)**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG06 | Crear un refugio seguro: Garantizar que, a pesar de la contaminación exterior de la ciudad, el interior de su hogar sea un espacio de respiración pura |
+
+El usuario accede al Dashboard de Mobile Application. En esta pantalla, se muestran los indicadores de calidad del aire (CO₂, VOC, temperatura, humedad) y el indicador AQI (Bueno/Moderado/Malo). El usuario visualiza estos indicadores y verifica que el aire interior es saludable. Al observar que el AQI es "Bueno" o "Moderado" y que los valores están dentro de rangos saludables, el usuario confirma que su hogar es un "refugio seguro". No existe funcionalidad equivalente al widget de cumplimiento OMS en la versión mobile.
+
+<img src="../assets/mobileapp-userflows/mobileapp-uflow2.png" alt="mobileapp-uflow2" width="600">
 
 ## 4.5. Mobile Applications Prototyping.
 
