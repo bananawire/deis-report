@@ -350,7 +350,106 @@ La interfaz de reportes presenta un panel analitico robusto disenado para la int
 
 ### 4.6.2. Web Applications Wireflow Diagrams.
 
+Esta seccion presenta los diagramas de flujo (wireflows) de la aplicacion web, que ilustran la navegacion y las interacciones del usuario entre las diferentes pantallas, facilitando la comprension del recorrido dentro del sistema.
+
+**Web Application**
+
+**Wireflow: Generacion y gestion de reportes**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG02 | Demostrar salubridad: Contar con evidencia tangible de que el local cumple con estandares de aire seguro para clientes y fiscalizaciones |
+| UG05 | Validar acciones preventivas: Saber con certeza si los habitos de limpieza y ventilacion estan funcionando para mejorar la calidad del aire |
+
+El usuario accede al Overview y navega a la seccion Reports mediante un clic en el menu lateral. En Reports selecciona el tipo de reporte deseado, configura el rango de fechas y las zonas a incluir, y hace clic en "Generar reporte". El sistema recopila los datos, muestra una barra de progreso y genera el reporte con graficos, metricas clave y comparativas con estandares. Finalmente, el usuario puede exportarlo en formato PDF o compartirlo, recibiendo una confirmacion de que la accion fue exitosa y quedando registrada en el historial.
+
+UG02 y UG05 comparten el mismo wireflow para Web Application. La diferencia radica en el proposito: UG02 busca evidencia para terceros, mientras que UG05 busca validacion personal. En ambos casos, el flujo de generacion de reportes es identico.
+
+<img src="../assets/webapp-wireflows/webapp-wflow1.png" alt="webapp-wflow1" width="1000">
+
+**Wireflow: Generacion y gestion de reportes**
+
+El usuario accede al Overview y visualiza el Dashboard principal con los indicadores de calidad del aire en tiempo real. Desde alli navega a Reports, selecciona el tipo de reporte, configura los parametros y genera el reporte. El sistema muestra un mensaje de confirmacion y registra la accion en el historial del usuario.
+
+<img src="../assets/webapp-wireflows/webapp-wflow2.png" alt="webapp-wflow2" width="1000">
+
+**Wireflow: Configuracion de umbrales personalizados (Rules Builder)**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG04 | Controlar sintomas cronicos: Reducir la frecuencia de episodios asociados al ambiente cargado |
+
+El usuario accede al Overview y navega a Alerts & Actions. Dentro de Rules Builder crea una regla personalizada seleccionando una metrica, un operador, un umbral numerico y una accion asociada. El sistema valida y guarda la regla, monitorea los sensores en tiempo real y, cuando se supera el umbral, dispara la accion configurada y genera una alerta preventiva en el Dashboard y en Alerts & Actions.
+
+<img src="../assets/webapp-wireflows/webapp-wflow3.png" alt="webapp-wflow3" width="1000">
+
+**Wireflow: Verificacion de calidad del aire y cumplimiento de estandares**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG06 | Crear un refugio seguro: Garantizar que el interior del hogar sea un espacio de respiracion pura a pesar de la contaminacion exterior |
+
+El usuario accede al Overview y navega a Air Quality para consultar los registros de los sensores Clair y el indicador AQI. Opcionalmente, navega a Reports para consultar el cumplimiento de los estandares de la Organizacion Mundial de la Salud. El sistema presenta una comparativa entre las metricas actuales y los limites recomendados, permitiendo verificar que el aire interior es saludable.
+
+<img src="../assets/webapp-wireflows/webapp-wflow4.png" alt="webapp-wflow4" width="1000">
+
 ### 4.6.3. Web Applications Mock-ups.
+
+La aplicacion web cuenta con mock-ups de alta fidelidad que representan la implementacion visual final de sus principales pantallas.
+
+**Web Application**
+
+**Login**
+
+<img src="../assets/webapp-mockup/LOGIN.png" alt="LOGIN" width="1000">
+
+La interfaz de inicio de sesion presenta un estilo sofisticado, minimalista y tecnologico. El mock-up utiliza un fondo oscuro que resalta un contenedor de bordes sutiles y el logotipo central de Clair, integrando campos de entrada con iconos descriptivos y un boton de accion principal de contraste moderado.
+
+**Register**
+
+<img src="../assets/webapp-mockup/CREATE-ACCOUNT.png" alt="CREATE-ACCOUNT" width="1000">
+
+La interfaz de creacion de cuenta mantiene la coherencia visual con Login. Integra campos de entrada, selectores de terminos legales y una opcion de autenticacion social con Google, logrando una experiencia sobria y profesional.
+
+**Overview**
+
+<img src="../assets/webapp-mockup/OVERVIEW.png" alt="OVERVIEW" width="1000">
+
+El tablero principal utiliza un fondo oscuro para resaltar los indicadores de calidad de aire. Organiza el AQI y contaminantes especificos como CO2 y PM2.5 mediante tarjetas modulares de alto contraste, integrando paneles de alertas y acciones en tiempo real.
+
+**Space & Devices**
+
+<img src="../assets/webapp-mockup/SPACE&DEVICES1.png" alt="SPACE&DEVICES1" width="1000">
+
+<img src="../assets/webapp-mockup/SPACE&DEVICES2.png" alt="SPACE&DEVICES2" width="1000">
+
+<img src="../assets/webapp-mockup/SPACE&DEVICES3.png" alt="SPACE&DEVICES3" width="1000">
+
+La seccion permite navegar por organizaciones, edificios y plantas, proporcionando control sobre el despliegue de sensores. El usuario puede visualizar dispositivos en formato Grid o List y consultar el estado, ubicacion, version, conectividad, uptime, salud y umbrales de cada dispositivo.
+
+**Air Quality**
+
+<img src="../assets/webapp-mockup/AIR-QUALITY.png" alt="AIR-QUALITY" width="1000">
+
+La pantalla ofrece una vision integral del estado ambiental mediante filtros por organizacion, espacio y dispositivo. Incluye el indicador Air Quality Index, tarjetas de metricas como PM2.5, CO2, temperatura y humedad, y un grafico de tendencias con vistas en tiempo real, dia, semana o mes.
+
+**Alerts & Actions**
+
+<img src="../assets/webapp-mockup/ALERTS&ACTION.png" alt="ALERTS&ACTION" width="1000">
+
+La pantalla centraliza el monitoreo de incidentes. Presenta un grafico de frecuencia y severidad de alertas, una tabla de alertas activas con identificador, severidad, ubicacion, variable, fecha y estado, y acceso a funciones de calidad del aire y reportes.
+
+**Reports**
+
+<img src="../assets/webapp-mockup/REPORTS.png" alt="REPORTS" width="1000">
+
+La seccion transforma datos complejos en resumenes estrategicos de cumplimiento. Utiliza tarjetas temporales para resumenes diarios, semanales y mensuales, visualizaciones de correlacion de particulas y un panel de exportaciones programadas dentro de una estetica dark mode profesional.
 
 ### 4.6.4. Web Applications User Flow Diagrams.
 
