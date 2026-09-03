@@ -94,6 +94,50 @@ Esta sección está dedicada al diseño de la experiencia de usuario (UX) y la i
 
 ### 4.4.1. Mobile Applications Wireframes.
 
+En esta sección se presentan los wireframes de la aplicación móvil, los cuales muestran el diseño estructural y la disposición de los elementos clave para la experiencia de usuario en dispositivos móviles.
+
+**Login**
+
+<img src="../assets/mobileapp-wf/WF-LOGIN.png" alt="wf-Login" width="300">
+
+La interfaz de autenticación móvil adopta un diseño vertical y centrado, adaptado a la ergonomía del pulgar. El wireframe simplifica los elementos a un campo de correo electrónico, un botón de acción primario ("Login") de alto contraste y un enlace textual para el registro de nuevos usuarios. Este enfoque minimalista reduce la carga cognitiva y acelera el acceso a la plataforma, manteniendo la estética limpia y tecnológica característica de Clair en un entorno mobile-first.
+
+**Register**
+
+<img src="../assets/mobileapp-wf/WF-REGISTER.png" alt="wf-Register" width="300">
+
+El flujo de registro en dispositivos móviles prioriza la eficiencia y la seguridad mediante una estructura de pasos clara. El wireframe incorpora campos de entrada para correo electrónico y contraseña, acompañados de un componente de verificación (checkbox) para la aceptación de términos legales. Adicionalmente, se integran botones de autenticación con Google para facilitar el proceso, culminando con un enlace de navegación para usuarios ya registrados, todo ello dentro de un contenedor de bordes redondeados que sugiere una interfaz amigable y moderna.
+
+**Dashboard**
+
+<img src="../assets/mobileapp-wf/WF-DASHBOARD.png" alt="wf-Dashboard" width="300">
+
+La pantalla principal de la aplicación presenta un panel de control resumido pero altamente informativo, ideal para la supervisión rápida del estado ambiental desde un dispositivo móvil.
+
+**Sensor Selection**
+
+<img src="../assets/mobileapp-wf/WF-SENSOR-SELECTION.png" alt="wf-Sensor-Selection" width="300">
+
+La interfaz de selección de ubicación o dispositivo utiliza un patrón de navegación jerárquica común en móviles: una lista de selección que ocupa la mayor parte de la pantalla. Este patrón modal o de pantalla dedicada guía al usuario a través de la estructura física de la organización (Edificio → Piso) antes de visualizar datos específicos, reduciendo la complejidad y enfocando la atención en la decisión actual.
+
+**Sensor Detail**
+
+<img src="../assets/mobileapp-wf/WF-SENSOR.png" alt="wf-Sensor" width="300">
+
+La vista de detalle de un sensor específico concentra la información técnica más relevante en una sola pantalla optimizada para consultas rápidas. Este diseño de alta densidad de información, pero visualmente ordenado, permite a los técnicos y administradores evaluar el estado operativo de un sensor de forma inmediata desde su dispositivo móvil.
+
+**Settings**
+
+<img src="../assets/mobileapp-wf/WF-SETTINGS.png" alt="wf-Settings" width="300">
+
+La pantalla de configuración sigue el estándar de plataformas móviles (iOS/Android) mediante una vista de lista desplazable (table view) agrupada por categorías funcionales. La presencia de un botón de "LOGOUT" claramente diferenciado al final de la lista refuerza las normas de usabilidad y seguridad en aplicaciones móviles, ofreciendo un control total sobre la sesión del usuario.
+
+**Alerts**
+
+<img src="../assets/mobileapp-wf/WF-ALERTS.png" alt="wf-Alerts" width="300">
+
+La pantalla de alertas consolida las notificaciones generadas por el sistema Clair, organizadas por niveles de prioridad para facilitar la atención diferenciada por parte del usuario. Cada alerta presenta un encabezado descriptivo, un mensaje contextual y un par de acciones rápidas que permiten responder de manera inmediata o ignorar la notificación. Refleja una arquitectura de notificaciones que equilibra la urgencia operativa con el mantenimiento programado, siguiendo las mejores prácticas de diseño de centros de control y monitoreo en aplicaciones móviles industriales o de seguridad.
+
 ### 4.4.2. Mobile Applications Wireflow Diagrams.
 
 ### 4.4.3. Mobile Applications Mock-ups.
