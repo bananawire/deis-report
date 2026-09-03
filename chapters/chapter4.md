@@ -296,7 +296,57 @@ Video de presentación del prototipo iOS Mobile Application: https://bit.ly/43bB
 
 ## 4.6. Web Applications UX/UI Design.
 
+Esta seccion esta dedicada al diseno de la experiencia de usuario (UX) y la interfaz de usuario (UI) de la aplicacion web que conforma la solucion. El objetivo es crear una interfaz funcional, accesible y visualmente coherente que responda a las necesidades y expectativas de los usuarios finales.
+
 ### 4.6.1. Web Applications Wireframes.
+
+En esta seccion se presentan los wireframes de la aplicacion web, que muestran el diseno estructural y la disposicion de los elementos clave para la experiencia de usuario.
+
+**Web Application**
+
+**Login**
+
+<img src="../assets/webapp-wf/wf-login.png" alt="wf-login" width="1000">
+
+La interfaz de autenticacion presenta un diseno centralizado y minimalista que prioriza la claridad funcional. El wireframe utiliza un contenedor de bordes definidos sobre un fondo neutro, integrando campos de entrada directos para credenciales y un boton de accion de alto contraste, lo que refuerza una estetica tecnologica y ordenada coherente con el ecosistema de Clair.
+
+**Register**
+
+<img src="../assets/webapp-wf/wf-register.png" alt="wf-register" width="1000">
+
+El diseno de registro mantiene la coherencia visual mediante una estructura vertical limpia que facilita el flujo de los usuarios. Este wireframe integra campos de entrada estandar, un selector para terminos legales y una opcion de autenticacion social con Google, logrando un equilibrio entre simplicidad y funcionalidad bajo una estetica tecnica y minimalista.
+
+**Overview**
+
+<img src="../assets/webapp-wf/wf-overview.png" alt="wf-overview" width="1000">
+
+La interfaz principal despliega un tablero de control avanzado con un estilo "dark mode" que resalta metricas criticas de calidad de aire mediante una jerarquia visual clara. El diseno utiliza tarjetas modulares para organizar contaminantes como PM2.5 y CO2, integrando graficos de barras de estado y paneles laterales de alertas en tiempo real, lo que ofrece una experiencia analitica, tecnica y altamente funcional para la gestion de multiples organizaciones.
+
+**Space & Devices**
+
+<img src="../assets/webapp-wf/wf-space1.png" alt="wf-space1" width="1000">
+
+<img src="../assets/webapp-wf/wf-space2.png" alt="wf-space2" width="1000">
+
+La interfaz de gestion de dispositivos presenta una estructura organizada mediante un panel de navegacion jerarquico que facilita la administracion de organizaciones y espacios. El diseno utiliza tarjetas de inventario detalladas y una vista individual para monitorear el estado tecnico de cada sensor, integrando indicadores de conectividad, salud del dispositivo y umbrales personalizados bajo una estetica limpia y profesional.
+
+**Air Quality**
+
+<img src="../assets/webapp-wf/wf-airquality.png" alt="wf-airquality" width="1000">
+
+La interfaz de analisis ambiental presenta un tablero detallado que permite la visualizacion de metricas en tiempo real y periodos historicos mediante selectores de tiempo y ubicacion. El diseno integra tarjetas de diagnostico para multiples contaminantes, un panel de analisis de causa raiz y una comparativa entre espacios, culminando en una seccion de generacion de reportes tecnicos en formatos PDF y CSV que refuerza el enfoque profesional y orientado a datos del ecosistema Clair.
+
+**Alerts & Actions**
+
+<img src="../assets/webapp-wf/wf-alerts.png" alt="wf-alerts" width="1000">
+
+La interfaz de gestion de alertas ofrece un centro de control operativo que combina el monitoreo critico con la capacidad de respuesta inmediata. El diseno destaca un grafico de distribucion semanal de incidencias y una tabla detallada de alertas activas, integrando paneles laterales para la configuracion de notificaciones, visualizacion de tendencias especificas por evento y un registro de auditoria, lo que permite una administracion proactiva y tecnica de las contingencias ambientales en el ecosistema Clair.
+
+**Reports**
+
+<img src="../assets/webapp-wf/wf-reports.png" alt="wf-reports" width="1000">
+
+La interfaz de reportes presenta un panel analitico robusto disenado para la interpretacion de datos estrategicos y el cumplimiento normativo. El wireframe organiza la informacion mediante tarjetas de resumen diario, semanal y mensual, integrando visualizaciones de correlacion de particulas y un gestor de exportaciones automatizado que detalla la frecuencia y el estado de los registros. Este diseno facilita una supervision integral del ecosistema Clair, permitiendo desde el analisis tecnico profundo hasta la generacion de resumenes ejecutivos con una estetica limpia y profesional.
 
 ### 4.6.2. Web Applications Wireflow Diagrams.
 
