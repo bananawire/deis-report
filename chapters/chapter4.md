@@ -237,6 +237,35 @@ La pantalla de alertas presenta un panel de control dentro del sistema Clair ded
 
 ### 4.4.4. Mobile Applications User Flow Diagrams.
 
+Esta sección presenta los diagramas de flujo de los usuarios en la aplicación móvil, los cuales ilustran las rutas y procesos que siguen dentro de Clair, facilitando la comprensión de la navegación y las interacciones clave.
+
+**Mobile Application User Flow**
+
+**User Flow: Gestión de alertas y activación de respuestas**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG01 | Garantizar la salud ambiental: Mantener un aire fresco y libre de viciamento para que los clientes permanezcan más tiempo en el local |
+| UG04 | Controlar síntomas crónicos: Reducir la frecuencia de episodios de rinitis alérgica, asma o dolores de cabeza asociados al ambiente cargado |
+
+Ambos User Goals comparten el mismo flujo de interacción en Mobile Application. El usuario recibe una notificación emergente en el Dashboard cuando el sistema detecta una condición crítica (UG01) o la superación de un umbral personalizado (UG04). El usuario ingresa a la pantalla Alerts, visualiza la alerta destacada, y puede activar una respuesta preconfigurada, si está disponible desde Web App, o descartarla. La diferencia radica en el origen de la regla: UG01 responde a reglas por defecto del sistema, mientras que UG04 responde a reglas personalizadas configuradas desde Web App. En ambos casos, la experiencia de usuario en mobile es idéntica.
+
+<img src="../assets/mobileapp-userflows/mobileapp-uflow1.png" alt="mobileapp-uflow1" width="1000">
+
+**User Flow: Verificación de calidad del aire (Refugio seguro)**
+
+User Goals cubiertos:
+
+| ID | User Goal |
+|:---|:---|
+| UG06 | Crear un refugio seguro: Garantizar que, a pesar de la contaminación exterior de la ciudad, el interior de su hogar sea un espacio de respiración pura |
+
+El usuario accede al Dashboard de Mobile Application. En esta pantalla, se muestran los indicadores de calidad del aire (CO₂, VOC, temperatura, humedad) y el indicador AQI (Bueno/Moderado/Malo). El usuario visualiza estos indicadores y verifica que el aire interior es saludable. Al observar que el AQI es "Bueno" o "Moderado" y que los valores están dentro de rangos saludables, el usuario confirma que su hogar es un "refugio seguro". No existe funcionalidad equivalente al widget de cumplimiento OMS en la versión mobile.
+
+<img src="../assets/mobileapp-userflows/mobileapp-uflow2.png" alt="mobileapp-uflow2" width="600">
+
 ## 4.5. Mobile Applications Prototyping.
 
 ### 4.5.1. Android Mobile Applications Prototyping.
