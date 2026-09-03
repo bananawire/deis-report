@@ -575,6 +575,7 @@ Los As-Is Scenario Maps representan el recorrido actual de cada User Persona al 
   <h4>2. As-Is Scenario Mapping - Lara Alemán</h4>
   <img src="../assets/scenario-maps/ASM2.jpg" alt="As-Is Scenario Map - Segmento 2: Lara Alemán" style="max-width:100%; width:800px;">
 </div>
+
 ## 2.4 Ubiquitous Language
 
 <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px;">
