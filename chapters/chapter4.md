@@ -260,6 +260,240 @@ Los mockups presentados en la sección 4.6.3 corresponden a resolución `xl` (19
 
 ### 4.1.3. Mobile Style Guidelines.
 
+**Comportamiento Responsivo y Sistema de Layout**
+
+**Orientación soportada:**
+
+| Orientación | Soporte | Comportamiento |
+|-------------|---------|----------------|
+| Portrait (vertical) | **Principal** | Todas las pantallas optimizadas para 375px - 428px de ancho |
+| Landscape (horizontal) | Opcional | Rotación bloqueada o redimensionamiento básico (no crítico) |
+
+**Unidad de espaciado base: 4px (4dp en Flutter)**
+
+Siguiendo la grilla de Material Design 3, todos los márgenes, paddings y separaciones son múltiplos de 4px:
+
+| Tamaño | Valor | Uso típico |
+|--------|-------|-------------|
+| `xs` | 4px | Espaciado mínimo entre elementos inline (ícono y texto) |
+| `sm` | 8px | Entre elementos relacionados dentro de una tarjeta |
+| `md` | 12px | Entre secciones pequeñas del mismo componente |
+| `lg` | 16px | Padding estándar de tarjetas y contenedores |
+| `xl` | 24px | Márgenes laterales de pantalla, entre secciones grandes |
+
+**Safe Area (Status Bar integrada):**
+
+Todas las pantallas utilizan el widget `SafeArea` de Flutter para evitar que el contenido se superponga con el status bar (iOS notch, Android barra de estado). El fondo oscuro se extiende detrás del status bar para mantener la integración visual, mientras que el contenido (logo, títulos, botones) respeta el área segura.
+
+**Alturas táctiles mínimas (Material Design):**
+
+| Elemento | Altura mínima |
+|----------|---------------|
+| Botones principales (Login, Register, Confirm Selection) | 48px |
+| Bottom Navigation Bar (cada ítem) | 56px |
+| Items de lista (Select Floor, Settings) | 48px |
+| Toggle switch, Slider (área de toque) | 40px |
+
+**Scroll:**
+
+Las pantallas principales (Dashboard, Sensors, Settings) **no implementan scroll vertical** en condiciones normales, ya que todo el contenido cabe dentro del área visible de la pantalla en orientación portrait. En dispositivos de pantalla pequeña (menos de 380px de altura), se permite el scroll únicamente como mecanismo de contingencia.
+
+
+
+**Componentes UI Especificados**
+
+**A. Bottom Navigation Bar (Navegación principal)**
+
+| Propiedad | Especificación |
+|-----------|----------------|
+| Estructura | 3 ítems fijos: Dashboard, Sensors, Settings |
+| Íconos | Material Icons (dashboard, sensors, settings) |
+| Comportamiento | type: BottomNavigationBarType.fixed |
+| Color seleccionado | #4D84FF (azul Clair primario) |
+| Color no seleccionado | #9E9E9E (gris medio) |
+| Fondo | #1E1E1E (oscuro, ligeramente más claro que el fondo general) |
+| Altura total | 56px |
+| Elevación | 8px (sombra superior) |
+
+**Nota:** No se implementa comportamiento adaptativo para tablets (migración a sidebar) por tratarse de una app exclusivamente móvil.
+
+**B. Tarjeta de Umbrales (Dashboard)**
+
+| Elemento | Especificación |
+|----------|----------------|
+| Contenedor | Fondo #2C2C2C, border-radius 16px, padding interno 16px |
+| Grid interno | 2 columnas (PM2.5 y CO₂ en fila 1; TEMP y HUMIDITY en fila 2) |
+| Nombre del parámetro | Inter, 14px, color #B0B0B0 |
+| Valor | Space Grotesk (o Roboto Mono en Flutter), 24px, peso bold, color #FFFFFF |
+| Unidad | Inter, 12px, color #808080 (junto al valor o debajo) |
+
+**Estado de advertencia contextual:**
+
+Bajo el grid de umbrales, se muestra un texto de advertencia: "May affect device health" en Inter, 12px, color #FFB74D (ámbar), solo si algún umbral supera el rango óptimo.
+
+**C. Gráfico de Network Stability (Dashboard)**
+
+| Componente | Especificación |
+|------------|----------------|
+| Título | "NETWORK STABILITY" – Inter, 12px, tracking (letter-spacing) 1px, color #B0B0B0 |
+| Gráfico | Línea o área simple (sin interacción táctil), altura 80px |
+| Eje X temporal | "00:00" a "24:00" – Inter, 10px, color #808080 |
+| Estado general | Badge "EXCELLENT" – fondo #4D84FF 20% de opacidad, texto #4D84FF, Inter 14px, border-radius 16px, padding horizontal 12px, vertical 4px |
+
+**D. Bottom Sheet de Selección de Piso (reemplaza pantalla completa)**
+
+| Propiedad | Especificación |
+|-----------|----------------|
+| Disparador | Tap en "Sensors" en bottom navigation |
+| Forma | Esquinas superiores redondeadas (16px), fondo #1E1E1E |
+| Altura | wrap_content (se adapta al contenido, típicamente 40-60% de la pantalla) |
+| Título | "Select Floor" – Inter, 16px, peso semibold, padding vertical 16px |
+| Lista de opciones | Items de 48px de altura, padding horizontal 16px, separador sutil de 0.5px entre items |
+| Opción seleccionable | Texto "Floor A101", "Floor A102", "Floor B101", "Floor B202" – Inter, 16px, color #FFFFFF |
+| Botón de confirmación | "CONFIRM SELECTION" – fondo #4D84FF, texto blanco, border-radius 8px, altura 48px, margen 16px |
+| Cierre | Tap fuera del bottom sheet o arrastre hacia abajo |
+
+**E. Pantalla de Detalle de Sensor (Sensor Detail)**
+
+| Elemento | Especificación |
+|----------|----------------|
+| Header de ubicación | "BUILDING: A101", "FLOOR: A101" – Inter, 12px, color #B0B0B0, mayúsculas sostenidas |
+| Nombre del dispositivo | "Clair-01" – Space Grotesk, 24px, peso bold |
+| Indicador de estado | Ícono 🔋 estático (no representa nivel de batería, solo indica que el dispositivo está encendido). Color #4CAF50 si activo, #FF4444 si inactivo. |
+| Tarjetas de métricas | Grid 2x2. Cada tarjeta: fondo #2C2C2C, border-radius 12px, padding 12px |
+| Métrica - CONNECTIVITY | Valor "60 DBM" – Space Grotesk, 20px, color #FFFFFF. Subtítulo "CONNECTIVITY" – Inter, 10px, color #B0B0B0 |
+| Métrica - UPTIME | Valor "~101 HOURS" – mismo estilo. Subtítulo "UPTIME" |
+| Métrica - DEVICE HEALTH | Valor "92 %" – mismo estilo. Subtítulo "DEVICE HEALTH" |
+| Métrica - LAST UPDATE | Valor "$ 2 M" – mismo estilo (interpretable como "2 minutes"). Subtítulo "LAST UPDATE" |
+
+**Conectividad IoT:** El estado de conexión en tiempo real se refleja únicamente en la métrica "CONNECTIVITY". No hay indicadores persistentes adicionales en la barra superior.
+
+**Mensaje de reconexión:** Si el dispositivo pierde conectividad, se muestra un SnackBar en la parte inferior con el texto "Dispositivo desconectado. Reconectando..." de duración indefinida hasta recuperar conexión, acompañado de un botón "Reintentar" como acción opcional.
+
+**F. Pantalla de Configuración (Settings)**
+
+| Categoría | Componente | Especificación |
+|-----------|------------|----------------|
+| ACCOUNT | Texto simple | "Neil Curipaco" – Inter, 16px, color #FFFFFF. Padding vertical 16px. No es interactivo. |
+| PREFERENCES | Notificaciones (toggle) | Switch nativo de Flutter. Valor por defecto: true. Color activo: #4D84FF. |
+| PREFERENCES | Idioma (dropdown) | DropdownButton nativo. Opciones: "ESPAÑOL", "ENGLISH". Valor por defecto: "ESPAÑOL". |
+| DEVICE SETTINGS | Unit System (dropdown) | DropdownButton nativo. Opciones: "METRIC", "IMPERIAL". Valor por defecto: "METRIC". |
+| DEVICE SETTINGS | Data Refresh Rate (slider) | Slider nativo con divisiones discretas. Valores: 1, 5, 15, 30, 60 minutos. Valor por defecto: 15. Etiqueta de valor actual visible. |
+| SUPPORT & LEGAL | Help Center | Item de lista con texto "Help Center" y flecha. Tap → abre URL o navega a webview. |
+| Acción final | LOGOUT | Botón o item de lista con texto "LOGOUT" en color #FF4444. Tap → muestra AlertDialog de confirmación. |
+
+**AlertDialog de Logout:**
+
+| Propiedad | Especificación |
+|-----------|----------------|
+| Título | "Cerrar sesión" – Inter, 18px, peso medium |
+| Mensaje | "¿Estás seguro de que quieres cerrar sesión?" – Inter, 14px |
+| Fondo | #2C2C2C |
+| Botón Cancelar | Texto "Cancelar", color #B0B0B0, sin acción adicional |
+| Botón Confirmar | Texto "Cerrar sesión", color #FF4444. Tap → limpia estado de autenticación y navega a Login |
+
+**G. Pantallas de Autenticación (Login / Register)**
+
+| Campo | Especificación |
+|-------|----------------|
+| Contenedor principal | Centrado vertical y horizontal. Ancho: 90% de la pantalla (márgenes laterales 5%). |
+| Logo | "CLAIR" – Space Grotesk, 32px, peso bold, color #FFFFFF, margin-bottom 24px |
+| Subtítulo | "Login to Clair" / "Create an account" – Inter, 14px, color #B0B0B0, margin-bottom 32px |
+| Campo Email | TextFormField con keyboardType: email. Label "Email" o placeholder. Altura 48px. |
+| Campo Password | TextFormField con texto enmascarado (obscureText) + ícono de visibilidad (ojo) para toggle. |
+| Términos y condiciones (Register) | Checkbox nativo + texto enlazado "Acepto los Términos y Condiciones y la Política de Privacidad de Clair". Checkbox color #4D84FF. |
+| Botón principal | "Login" / "Register" – fondo #4D84FF, texto blanco, altura 48px, border-radius 8px, ancho 100%. |
+| Separador "OR REGISTER WITH" | Texto Inter, 12px, color #808080. Líneas horizontales a los lados. |
+| Botón Google | Ícono Google + texto "Google". Fondo #FFFFFF (o #2C2C2C), texto negro (o blanco), border-radius 8px, altura 48px. |
+| Enlace de navegación | "Do not have an account? Register" / "Already have an account? Login" – Inter, 14px, color #4D84FF. |
+
+
+**Estados de Interacción y Micro-interacciones Táctiles**
+
+| Interacción | Comportamiento | Retroalimentación |
+|-------------|----------------|--------------------|
+| Tap en botón primario | Ejecuta acción inmediata | Ripple effect (Material Design). Cambio de opacidad al 0.8 durante 50ms. |
+| Tap en item de lista (Settings, Floor Selection) | Navega o selecciona | Ripple effect, sin cambio de color permanente. |
+| Toggle switch | Cambia estado ON/OFF | Animación nativa de Flutter (deslizamiento). Sin haptic feedback. |
+| Dropdown | Despliega opciones | Menú nativo desde abajo (Android) o rueda (iOS). |
+| Slider (discreto) | Ajusta valor | Thumb se mueve a los puntos de división definidos. Valor actual mostrado en etiqueta. |
+| Pull-to-Refresh (Dashboard) | Recarga datos | Indicador circular con animación de carga. |
+| Tap fuera de Bottom Sheet | Cierra el modal | Animación de contracción hacia abajo (0.2s). |
+| AlertDialog | Confirmación destructiva (Logout) | Diálogo modal. Tap fuera → cierra sin acción. |
+| SnackBar (reconexión IoT) | Informa pérdida de conectividad | Aparece desde borde inferior. Permanece visible hasta reconexión. |
+
+**Nota:** No se implementan long press, swipe lateral, ni haptic feedback en la versión actual.
+
+**Accesibilidad (WCAG 2.1 Nivel AA y Material Design)**
+
+| Requisito | Implementación en Clair Mobile |
+|-----------|-------------------------------|
+| Contraste de color | Texto blanco (#FFFFFF) sobre fondo oscuro (#1E1E1E) → ratio 14:1. Texto gris (#B0B0B0) sobre fondo oscuro → ratio 7:1. |
+| Tamaño táctil mínimo | Todos los elementos interactivos (botones, items de lista, toggles) ≥ 48px de altura. |
+| TalkBack / VoiceOver | Semantics en Flutter. Etiquetas descriptivas: "Botón de inicio de sesión", "Seleccionar piso A101". |
+| Navegación por teclado externo | No aplica (app puramente táctil). |
+| Manejo de zoom (200%) | Layout fluido con Flexible y Expanded. En 200% zoom, bottom sheet y diálogos escalan correctamente. |
+| Texto alternativo en íconos | Semantics con label descriptivo en bottom navigation items sin texto visible (aunque tienen label textual). |
+
+
+**Permisos de Notificaciones Push**
+
+| Flujo | Comportamiento |
+|-------|----------------|
+| Primer inicio | Al instalar y abrir la app por primera vez (post-login), se solicita permiso de notificaciones mediante diálogo nativo del sistema operativo. |
+| Rechazo inicial | Si el usuario rechaza, puede habilitarlas más tarde desde Settings del dispositivo (fuera de la app). |
+| Settings dentro de la app | El toggle "Notifications" refleja el estado del permiso. Si el usuario intenta activarlo sin permiso, se muestra un diálogo informativo: "Habilita las notificaciones desde Configuración de tu dispositivo". |
+| Comportamiento de las notificaciones | Todas las notificaciones (críticas y normales) tienen el mismo comportamiento: suena alerta, aparece en centro de notificaciones, badge en ícono de la app. Sin diferenciación especial. |
+
+
+**Conectividad IoT y Datos en Tiempo Real**
+
+| Funcionalidad | Estándar técnico | Representación en UI |
+|---------------|------------------|----------------------|
+| Datos en tiempo real | WebSocket o HTTP polling según refresh rate configurado | Dashboard actualiza valores sin recarga visual. Indicador visual de "última actualización" opcional. |
+| Estado de conexión del dispositivo | Heartbeat periódico | Visible solo en Sensor Detail, métrica "CONNECTIVITY" (60 DBM = buena). Si es "0 DBM" o "OFFLINE", se considera desconectado. |
+| Pérdida de conectividad | Timeout tras heartbeats consecutivos sin respuesta | SnackBar inferior: "Dispositivo desconectado. Reconectando..." + botón "Reintentar". |
+| Recuperación de conexión | Reconexión automática con backoff exponencial (1s, 2s, 4s, max 30s) | SnackBar desaparece automáticamente. Los datos se refrescan en el siguiente ciclo. |
+| Refresh manual | Pull-to-Refresh en Dashboard | Fuerza una consulta inmediata a la API/WebSocket. |
+| Cache offline | No implementado (diseño simple) | Sin mensajes de datos cacheados. Si no hay conexión, se muestran valores estáticos o "--". |
+
+
+**Consideraciones de Rendimiento para Flutter**
+
+| Aspecto | Estándar / Recomendación |
+|---------|--------------------------|
+| Imágenes | Assets locales (formato PNG o WebP). Sin imágenes externas pesadas. |
+| Tipografía | Fuentes empaquetadas en assets (Inter.ttf, SpaceGrotesk.ttf). font-weight correctamente mapeado. |
+| Animaciones | Evitar repaints innecesarios. Usar AnimatedContainer y AnimatedCrossFade sobre setState extensivo. |
+| Bottom Navigation | IndexedStack para mantener estado de cada pestaña (no reconstruir al cambiar de tab). |
+| Slider | divisions definido para evitar valores no deseados. onChangeEnd para persistencia, no onChanged en tiempo real. |
+| Build context | Evitar contextos largos. Usar BuildContext en widgets estatales (StatefulWidget o Riverpod/Bloc según arquitectura). |
+| Tamaño de bundle | Flutter build con optimizaciones para producción. Remove debug painting. |
+
+
+**Resumen de Especificaciones para Desarrolladores Flutter**
+
+**Tema global (Material 3 oscuro):**
+
+| Propiedad | Valor |
+|-----------|-------|
+| scaffoldBackgroundColor | #121212 (fondo general) |
+| cardColor | #1E1E1E (tarjetas, bottom sheet) |
+| primaryColor | #4D84FF (botones, switches, links) |
+| colorScheme.secondary | #5CFFB1 (opcional, para estados positivos) |
+| colorScheme.error | #FF4444 (logout, desconexión crítica) |
+| textTheme.bodyLarge | Inter, 16px, #FFFFFF |
+| textTheme.bodyMedium | Inter, 14px, #B0B0B0 |
+
+**Dependencias clave (pubspec.yaml):**
+
+- flutter (SDK)
+- material_design_icons_flutter (íconos adicionales)
+- shared_preferences (persistir settings: refresh rate, unidades)
+- http (API calls)
+- web_socket_channel (conexión en tiempo real con IoT)
+- flutter_local_notifications (notificaciones push)
+
 ### 4.1.3.1. iOS Mobile Style Guidelines.
 
 #### 4.1.3.2. Android Mobile Style Guidelines.
