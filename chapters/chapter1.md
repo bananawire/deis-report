@@ -44,10 +44,43 @@ Los hallazgos también muestran que la adopción depende de que la solución sea
 
 #### 1.2.2.1. Lean UX Problem Statements.
 
+**Administradores de establecimientos públicos y privados:** Los administradores necesitan conocer de manera rápida y comprensible el estado del aire interior de sus locales porque actualmente toman decisiones de ventilación basadas principalmente en percepciones, sin indicadores objetivos ni protocolos formales. Esta situación puede afectar el bienestar de clientes y colaboradores y dificultar la gestión oportuna del establecimiento.
+
+**Personas preocupadas por la calidad del aire en el hogar:** Las personas necesitan identificar si el ambiente de su vivienda presenta condiciones que requieren atención porque no suelen contar con dispositivos especializados y no tienen una forma clara de interpretar el estado del aire. Esta falta de información limita la prevención de molestias respiratorias y la adopción de medidas correctivas.
+
+**Problema común:** Ambos segmentos necesitan transformar mediciones ambientales en información sencilla, accesible y accionable. Las soluciones que solo muestran datos técnicos no resuelven completamente la necesidad, ya que los usuarios también requieren saber cuándo actuar y qué medidas preventivas pueden aplicar.
+
 #### 1.2.2.2. Lean UX Assumptions.
+
+Partimos de los siguientes supuestos, que deberán ser validados mediante prototipos, entrevistas y pruebas de uso:
+
+- Los administradores de establecimientos revisarán periódicamente el estado del aire si la información se presenta de forma rápida y visual.
+- Las personas preocupadas por la calidad del aire en el hogar valorarán una herramienta que les permita detectar cambios ambientales antes de que aparezcan molestias persistentes.
+- Los usuarios confiarán más en Clair cuando las alertas incluyan una explicación breve y una recomendación concreta, en lugar de mostrar únicamente valores numéricos.
+- La facilidad de instalación, el precio accesible y la posibilidad de consultar la información desde el celular serán condiciones importantes para la adopción.
+- La evidencia de mejoras en el bienestar o en la gestión del establecimiento aumentará la disposición de los usuarios a continuar utilizando y recomendar la solución.
 
 #### 1.2.2.3. Lean UX Hypothesis Statements.
 
+Validaremos las siguientes hipótesis mediante pruebas con prototipos y sesiones de uso:
+
+- **Hipótesis 1 - comprensión:** Creemos que los administradores y las personas preocupadas por el aire en el hogar comprenderán el estado ambiental con mayor rapidez cuando Clair utilice colores, alertas y lenguaje claro. Tendremos éxito si al menos el 80% de los participantes interpreta correctamente el estado mostrado y selecciona una acción adecuada.
+- **Hipótesis 2 - utilidad de las recomendaciones:** Creemos que los usuarios considerarán más útil una alerta acompañada de una recomendación concreta que una alerta compuesta solo por valores técnicos. Tendremos éxito si al menos el 70% de los participantes identifica la recomendación como útil y puede explicar qué acción realizaría.
+- **Hipótesis 3 - intención de uso:** Creemos que una consulta desde el celular y una instalación sencilla aumentarán la intención de utilizar Clair de forma recurrente. Tendremos éxito si al menos el 70% de los participantes declara que consultaría la solución semanalmente o ante una alerta.
+- **Hipótesis 4 - adopción:** Creemos que demostrar resultados concretos y mantener un precio accesible reducirá las principales barreras de adopción. Tendremos éxito si al menos el 60% de los participantes manifiesta intención de probar o recomendar Clair después de conocer su funcionamiento y propuesta de valor.
+
 #### 1.2.2.4. Lean UX Canvas.
+
+| Elemento | Definición inicial |
+|---|---|
+| **Usuarios y clientes** | Administradores de establecimientos públicos y privados, y personas preocupadas por la calidad del aire en el hogar. |
+| **Problemas y necesidades** | Falta de indicadores objetivos, dificultad para interpretar datos ambientales y ausencia de recomendaciones claras para actuar. |
+| **Resultados esperados** | Mejorar la comprensión del estado del aire, facilitar decisiones preventivas y aumentar la sensación de control sobre el ambiente interior. |
+| **Propuesta de valor** | Clair convierte mediciones ambientales en información visual, comprensible y accionable mediante alertas y recomendaciones oportunas. |
+| **Solución propuesta** | Dispositivo y plataforma de monitoreo que registran indicadores relevantes, muestran su estado desde el celular y orientan al usuario sobre posibles acciones. |
+| **Canales** | Aplicación móvil o interfaz web, comunicación digital, demostraciones del producto y recomendación de usuarios o administradores. |
+| **Métricas de aprendizaje** | Porcentaje de usuarios que interpreta correctamente una alerta, utilidad percibida de las recomendaciones, frecuencia de consulta e intención de prueba o recomendación. |
+| **Riesgos y supuestos críticos** | Precio poco accesible, instalación compleja, exceso de información técnica, baja confianza en las mediciones o recomendaciones que no se adapten al contexto del usuario. |
+| **Experimentos iniciales** | Pruebas de comprensión de alertas, entrevistas de seguimiento, prototipo navegable y comparación entre alertas técnicas y alertas con recomendaciones. |
 
 ## 1.3. Segmentos objetivo.
