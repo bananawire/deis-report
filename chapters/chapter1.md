@@ -28,6 +28,14 @@ Para materializar este compromiso con nuestra ciudad, hemos desarrollado **Clair
 
 ### 1.2.1. Antecedentes y problemática
 
+En Lima Metropolitana, las personas permanecen durante varias horas en espacios interiores como tiendas, oficinas y viviendas, donde la calidad del aire puede verse afectada por la acumulación de dióxido de carbono, partículas y una ventilación insuficiente. Sin embargo, estas condiciones no siempre son visibles ni generan una respuesta inmediata, por lo que suelen pasar desapercibidas hasta que aparecen molestias, fatiga o síntomas respiratorios.
+
+Actualmente, los administradores de establecimientos suelen tomar decisiones sobre la ventilación a partir de percepciones subjetivas o medidas reactivas, como abrir puertas o encender ventiladores. Del mismo modo, las personas preocupadas por el aire de su hogar no suelen contar con dispositivos especializados para conocer el estado real del ambiente. Esta ausencia de indicadores objetivos dificulta saber cuándo existe un riesgo y qué acción resulta más conveniente.
+
+El análisis exploratorio de entrevistas realizado en el proyecto evidencia que aproximadamente el 67% de los administradores consultados no cuenta con un protocolo técnico formal ni con indicadores objetivos para verificar la calidad del aire. En el segmento residencial, cerca del 100% de las personas entrevistadas indicó que no utiliza dispositivos especializados para monitorear el aire en casa. Además, ambos segmentos valoran una solución que presente la información de manera simple, mediante colores, notificaciones y recomendaciones accionables.
+
+Frente a esta problemática surge **Clair**, una solución de monitoreo de calidad del aire interior orientada a convertir datos ambientales en información comprensible y útil. Su propósito es ayudar a los usuarios a identificar cambios en el ambiente, comprender su posible impacto y actuar oportunamente, sin exigir conocimientos técnicos avanzados. El alcance inicial se concentra en espacios comerciales cerrados y hogares de Lima Metropolitana, considerando las necesidades de administradores y personas preocupadas por el bienestar respiratorio de sus familias.
+
 ### 1.2.2. Lean UX Process.
 
 #### 1.2.2.1. Lean UX Problem Statements.
