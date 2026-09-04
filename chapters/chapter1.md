@@ -62,6 +62,13 @@ Partimos de los siguientes supuestos, que deberán ser validados mediante protot
 
 #### 1.2.2.3. Lean UX Hypothesis Statements.
 
+Validaremos las siguientes hipótesis mediante pruebas con prototipos y sesiones de uso:
+
+- **Hipótesis 1 - comprensión:** Creemos que los administradores y las personas preocupadas por el aire en el hogar comprenderán el estado ambiental con mayor rapidez cuando Clair utilice colores, alertas y lenguaje claro. Tendremos éxito si al menos el 80% de los participantes interpreta correctamente el estado mostrado y selecciona una acción adecuada.
+- **Hipótesis 2 - utilidad de las recomendaciones:** Creemos que los usuarios considerarán más útil una alerta acompañada de una recomendación concreta que una alerta compuesta solo por valores técnicos. Tendremos éxito si al menos el 70% de los participantes identifica la recomendación como útil y puede explicar qué acción realizaría.
+- **Hipótesis 3 - intención de uso:** Creemos que una consulta desde el celular y una instalación sencilla aumentarán la intención de utilizar Clair de forma recurrente. Tendremos éxito si al menos el 70% de los participantes declara que consultaría la solución semanalmente o ante una alerta.
+- **Hipótesis 4 - adopción:** Creemos que demostrar resultados concretos y mantener un precio accesible reducirá las principales barreras de adopción. Tendremos éxito si al menos el 60% de los participantes manifiesta intención de probar o recomendar Clair después de conocer su funcionamiento y propuesta de valor.
+
 #### 1.2.2.4. Lean UX Canvas.
 
 ## 1.3. Segmentos objetivo.
