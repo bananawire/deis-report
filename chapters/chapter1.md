@@ -71,4 +71,16 @@ Validaremos las siguientes hipótesis mediante pruebas con prototipos y sesiones
 
 #### 1.2.2.4. Lean UX Canvas.
 
+| Elemento | Definición inicial |
+|---|---|
+| **Usuarios y clientes** | Administradores de establecimientos públicos y privados, y personas preocupadas por la calidad del aire en el hogar. |
+| **Problemas y necesidades** | Falta de indicadores objetivos, dificultad para interpretar datos ambientales y ausencia de recomendaciones claras para actuar. |
+| **Resultados esperados** | Mejorar la comprensión del estado del aire, facilitar decisiones preventivas y aumentar la sensación de control sobre el ambiente interior. |
+| **Propuesta de valor** | Clair convierte mediciones ambientales en información visual, comprensible y accionable mediante alertas y recomendaciones oportunas. |
+| **Solución propuesta** | Dispositivo y plataforma de monitoreo que registran indicadores relevantes, muestran su estado desde el celular y orientan al usuario sobre posibles acciones. |
+| **Canales** | Aplicación móvil o interfaz web, comunicación digital, demostraciones del producto y recomendación de usuarios o administradores. |
+| **Métricas de aprendizaje** | Porcentaje de usuarios que interpreta correctamente una alerta, utilidad percibida de las recomendaciones, frecuencia de consulta e intención de prueba o recomendación. |
+| **Riesgos y supuestos críticos** | Precio poco accesible, instalación compleja, exceso de información técnica, baja confianza en las mediciones o recomendaciones que no se adapten al contexto del usuario. |
+| **Experimentos iniciales** | Pruebas de comprensión de alertas, entrevistas de seguimiento, prototipo navegable y comparación entre alertas técnicas y alertas con recomendaciones. |
+
 ## 1.3. Segmentos objetivo.
