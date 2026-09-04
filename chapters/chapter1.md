@@ -84,3 +84,24 @@ Validaremos las siguientes hipótesis mediante pruebas con prototipos y sesiones
 | **Experimentos iniciales** | Pruebas de comprensión de alertas, entrevistas de seguimiento, prototipo navegable y comparación entre alertas técnicas y alertas con recomendaciones. |
 
 ## 1.3. Segmentos objetivo.
+
+Clair se orienta inicialmente a dos segmentos que enfrentan dificultades para conocer y gestionar la calidad del aire en espacios interiores:
+
+1. **Administradores de establecimientos públicos y privados:** Personas responsables de tiendas y otros locales comerciales cerrados, especialmente en zonas urbanas de Lima Metropolitana. Necesitan supervisar las condiciones del ambiente para proteger el bienestar de clientes y colaboradores y mantener una operación adecuada.
+2. **Personas preocupadas por la calidad del aire en el hogar:** Adultos que desean conocer el estado del aire de su vivienda y tomar medidas preventivas frente a alergias, rinitis, fatiga u otras molestias asociadas al ambiente interior. El segmento incluye principalmente usuarios que consultan información desde el celular y valoran recomendaciones fáciles de comprender.
+
+Los segmentos se representan mediante dos personas de usuario que sintetizan los hallazgos de las entrevistas. **María Moreira** representa a los administradores de establecimientos: busca proteger a clientes y colaboradores, pero enfrenta falta de información técnica y soluciones difíciles de usar. **Lara Alemán** representa a las personas preocupadas por el aire en el hogar: desea prevenir problemas respiratorios y necesita interpretar el estado ambiental sin recurrir a conocimientos especializados. Ambas personas valoran información clara, alertas oportunas y acciones concretas.
+
+### Necesidades y barreras por segmento
+
+| Segmento | Necesidades principales | Barreras de adopción |
+|---|---|---|
+| Administradores de establecimientos públicos y privados | Medir el aire en tiempo real, recibir alertas fáciles de interpretar, saber cuándo ventilar y contar con evidencia para mejorar el bienestar de clientes y colaboradores. | Precio elevado, instalación compleja, falta de tiempo para revisar datos y desconfianza frente a mediciones que no se traduzcan en acciones concretas. |
+| Personas preocupadas por la calidad del aire en el hogar | Conocer el estado del ambiente desde el celular, prevenir molestias respiratorias, recibir recomendaciones sencillas y verificar si las medidas aplicadas producen mejoras. | Costo del dispositivo, exceso de información técnica, baja percepción de riesgo hasta que aparecen síntomas y dudas sobre la precisión de las mediciones. |
+
+### Actores relacionados con los segmentos
+
+- **Usuario principal en establecimientos:** el administrador consulta el estado del aire, interpreta las alertas y decide acciones como mejorar la ventilación o revisar el ambiente del local.
+- **Usuario principal en el hogar:** la persona responsable del bienestar del hogar consulta las mediciones, identifica cambios en el ambiente y aplica medidas preventivas según las recomendaciones.
+- **Beneficiarios indirectos:** clientes, colaboradores y familiares se benefician de ambientes interiores mejor gestionados, aunque no sean quienes consulten directamente la plataforma.
+- **Actores de soporte y validación:** el equipo de Bananawire mantiene la solución y analiza los resultados de las pruebas, mientras que profesionales de salud o especialistas ambientales pueden aportar criterios para interpretar los indicadores y las recomendaciones.
