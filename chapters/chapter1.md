@@ -98,3 +98,10 @@ Los segmentos se representan mediante dos personas de usuario que sintetizan los
 |---|---|---|
 | Administradores de establecimientos públicos y privados | Medir el aire en tiempo real, recibir alertas fáciles de interpretar, saber cuándo ventilar y contar con evidencia para mejorar el bienestar de clientes y colaboradores. | Precio elevado, instalación compleja, falta de tiempo para revisar datos y desconfianza frente a mediciones que no se traduzcan en acciones concretas. |
 | Personas preocupadas por la calidad del aire en el hogar | Conocer el estado del ambiente desde el celular, prevenir molestias respiratorias, recibir recomendaciones sencillas y verificar si las medidas aplicadas producen mejoras. | Costo del dispositivo, exceso de información técnica, baja percepción de riesgo hasta que aparecen síntomas y dudas sobre la precisión de las mediciones. |
+
+### Actores relacionados con los segmentos
+
+- **Usuario principal en establecimientos:** el administrador consulta el estado del aire, interpreta las alertas y decide acciones como mejorar la ventilación o revisar el ambiente del local.
+- **Usuario principal en el hogar:** la persona responsable del bienestar del hogar consulta las mediciones, identifica cambios en el ambiente y aplica medidas preventivas según las recomendaciones.
+- **Beneficiarios indirectos:** clientes, colaboradores y familiares se benefician de ambientes interiores mejor gestionados, aunque no sean quienes consulten directamente la plataforma.
+- **Actores de soporte y validación:** el equipo de Bananawire mantiene la solución y analiza los resultados de las pruebas, mientras que profesionales de salud o especialistas ambientales pueden aportar criterios para interpretar los indicadores y las recomendaciones.
