@@ -52,6 +52,14 @@ Los hallazgos también muestran que la adopción depende de que la solución sea
 
 #### 1.2.2.2. Lean UX Assumptions.
 
+Partimos de los siguientes supuestos, que deberán ser validados mediante prototipos, entrevistas y pruebas de uso:
+
+- Los administradores de establecimientos revisarán periódicamente el estado del aire si la información se presenta de forma rápida y visual.
+- Las personas preocupadas por la calidad del aire en el hogar valorarán una herramienta que les permita detectar cambios ambientales antes de que aparezcan molestias persistentes.
+- Los usuarios confiarán más en Clair cuando las alertas incluyan una explicación breve y una recomendación concreta, en lugar de mostrar únicamente valores numéricos.
+- La facilidad de instalación, el precio accesible y la posibilidad de consultar la información desde el celular serán condiciones importantes para la adopción.
+- La evidencia de mejoras en el bienestar o en la gestión del establecimiento aumentará la disposición de los usuarios a continuar utilizando y recomendar la solución.
+
 #### 1.2.2.3. Lean UX Hypothesis Statements.
 
 #### 1.2.2.4. Lean UX Canvas.
