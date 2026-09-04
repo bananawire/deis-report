@@ -36,6 +36,8 @@ El análisis exploratorio de entrevistas realizado en el proyecto evidencia que 
 
 Frente a esta problemática surge **Clair**, una solución de monitoreo de calidad del aire interior orientada a convertir datos ambientales en información comprensible y útil. Su propósito es ayudar a los usuarios a identificar cambios en el ambiente, comprender su posible impacto y actuar oportunamente, sin exigir conocimientos técnicos avanzados. El alcance inicial se concentra en espacios comerciales cerrados y hogares de Lima Metropolitana, considerando las necesidades de administradores y personas preocupadas por el bienestar respiratorio de sus familias.
 
+En su primera versión, Clair se enfocará en registrar indicadores ambientales relevantes, mostrar su estado mediante una interfaz clara y emitir alertas o recomendaciones cuando se detecten condiciones que requieran atención. La solución busca apoyar la toma de decisiones, pero no reemplaza una evaluación médica ni una inspección técnica especializada. Tampoco pretende diagnosticar enfermedades o garantizar por sí sola la calidad total del aire; su valor está en ofrecer información oportuna que permita adoptar medidas preventivas y verificar sus resultados.
+
 ### 1.2.2. Lean UX Process.
 
 #### 1.2.2.1. Lean UX Problem Statements.
