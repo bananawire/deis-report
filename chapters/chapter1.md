@@ -10,9 +10,9 @@ En Bananawire, creemos firmemente que respirar aire limpio no debería ser un pr
 
 Para materializar este compromiso con nuestra ciudad, hemos desarrollado **Clair**. Más que una herramienta tecnológica, Clair es un sistema integral de monitoreo diseñado para cuidar de las personas.
 
-- **Misión:** Despertar una conciencia colectiva y fomentar el cuidado activo del aire en los espacios que compartimos a diario, democratizando el acceso a la información para proteger la salud y elevar la calidad de vida.
+- **Misión:** Despertar una conciencia colectiva y fomentar el cuidado activo del aire en los espacios que compartimos a diario, democratizando el acceso a la información para proteger la salud y elevar la calidad de vida de nuestra comunidad.
 
-- **Visión:** Convertirnos en la plataforma líder y el principal motor de cambio en el monitoreo de la calidad del aire interior en el Perú, liderando una transformación hacia un futuro.
+- **Visión:** Convertirnos en la plataforma líder y el principal motor de cambio en el monitoreo de la calidad del aire interior en el Perú, impulsando una transformación hacia un futuro más saludable y consciente.
 
 ### 1.1.2. Perfiles de integrantes del equipo
 
