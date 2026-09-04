@@ -6,7 +6,7 @@
 
 ### 1.1.1. Descripción de la Startup
 
-En Bananawire, creemos firmemente que respirar aire limpio no debería ser un privilegio ni una incógnita, sino una garantía para las personas. Al observar y transitar los espacios comerciales cerrados de Lima Metropolitana, hemos identificado una problemática invisible, pero de profundo impacto: la calidad del aire interior suele ser una variable ignorada y descuidada. Nuestro proyecto nace del deseo genuino de proteger la salud de nuestra comunidad frente a los riesgos que representa esta amenaza silenciosa. Nuestro propósito es visibilizar lo invisible, empoderar a las personas para que puedan tomar decisiones conscientes sobre los lugares que habita y frecuenta.
+En Bananawire, creemos firmemente que respirar aire limpio no debería ser un privilegio ni una incógnita, sino una garantía para las personas. Al observar y transitar los espacios comerciales cerrados de Lima Metropolitana, hemos identificado una problemática invisible, pero de profundo impacto: la calidad del aire interior suele ser una variable ignorada y descuidada. Nuestro proyecto nace del deseo genuino de proteger la salud de nuestra comunidad frente a los riesgos que representa esta amenaza silenciosa. Nuestro propósito es visibilizar lo invisible, empoderar a las personas para que puedan tomar decisiones conscientes sobre los lugares que habitan y frecuentan.
 
 Para materializar este compromiso con nuestra ciudad, hemos desarrollado **Clair**. Más que una herramienta tecnológica, Clair es un sistema integral de monitoreo diseñado para cuidar de las personas.
 
