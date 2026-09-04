@@ -84,3 +84,8 @@ Validaremos las siguientes hipótesis mediante pruebas con prototipos y sesiones
 | **Experimentos iniciales** | Pruebas de comprensión de alertas, entrevistas de seguimiento, prototipo navegable y comparación entre alertas técnicas y alertas con recomendaciones. |
 
 ## 1.3. Segmentos objetivo.
+
+Clair se orienta inicialmente a dos segmentos que enfrentan dificultades para conocer y gestionar la calidad del aire en espacios interiores:
+
+1. **Administradores de establecimientos públicos y privados:** Personas responsables de tiendas y otros locales comerciales cerrados, especialmente en zonas urbanas de Lima Metropolitana. Necesitan supervisar las condiciones del ambiente para proteger el bienestar de clientes y colaboradores y mantener una operación adecuada.
+2. **Personas preocupadas por la calidad del aire en el hogar:** Adultos que desean conocer el estado del aire de su vivienda y tomar medidas preventivas frente a alergias, rinitis, fatiga u otras molestias asociadas al ambiente interior. El segmento incluye principalmente usuarios que consultan información desde el celular y valoran recomendaciones fáciles de comprender.
