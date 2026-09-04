@@ -38,6 +38,8 @@ Frente a esta problemática surge **Clair**, una solución de monitoreo de calid
 
 En su primera versión, Clair se enfocará en registrar indicadores ambientales relevantes, mostrar su estado mediante una interfaz clara y emitir alertas o recomendaciones cuando se detecten condiciones que requieran atención. La solución busca apoyar la toma de decisiones, pero no reemplaza una evaluación médica ni una inspección técnica especializada. Tampoco pretende diagnosticar enfermedades o garantizar por sí sola la calidad total del aire; su valor está en ofrecer información oportuna que permita adoptar medidas preventivas y verificar sus resultados.
 
+Los hallazgos también muestran que la adopción depende de que la solución sea fácil de usar, económicamente accesible y capaz de demostrar resultados concretos. Los administradores necesitan saber cuándo actuar sin interpretar datos técnicos complejos, mientras que las personas en el hogar buscan prevenir molestias respiratorias y recibir indicaciones claras. Por ello, la problemática no se limita a la falta de sensores, sino también a la dificultad de transformar las mediciones en decisiones cotidianas que los usuarios puedan comprender y aplicar.
+
 ### 1.2.2. Lean UX Process.
 
 #### 1.2.2.1. Lean UX Problem Statements.
