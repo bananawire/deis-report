@@ -44,6 +44,12 @@ Los hallazgos también muestran que la adopción depende de que la solución sea
 
 #### 1.2.2.1. Lean UX Problem Statements.
 
+**Administradores de establecimientos públicos y privados:** Los administradores necesitan conocer de manera rápida y comprensible el estado del aire interior de sus locales porque actualmente toman decisiones de ventilación basadas principalmente en percepciones, sin indicadores objetivos ni protocolos formales. Esta situación puede afectar el bienestar de clientes y colaboradores y dificultar la gestión oportuna del establecimiento.
+
+**Personas preocupadas por la calidad del aire en el hogar:** Las personas necesitan identificar si el ambiente de su vivienda presenta condiciones que requieren atención porque no suelen contar con dispositivos especializados y no tienen una forma clara de interpretar el estado del aire. Esta falta de información limita la prevención de molestias respiratorias y la adopción de medidas correctivas.
+
+**Problema común:** Ambos segmentos necesitan transformar mediciones ambientales en información sencilla, accesible y accionable. Las soluciones que solo muestran datos técnicos no resuelven completamente la necesidad, ya que los usuarios también requieren saber cuándo actuar y qué medidas preventivas pueden aplicar.
+
 #### 1.2.2.2. Lean UX Assumptions.
 
 #### 1.2.2.3. Lean UX Hypothesis Statements.
