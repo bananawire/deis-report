@@ -496,7 +496,23 @@ Bajo el grid de umbrales, se muestra un texto de advertencia: "May affect device
 
 ### 4.1.3.1. iOS Mobile Style Guidelines.
 
+Aunque la aplicación móvil de **Clair** se desarrolla sobre Flutter para mantener una base de código única, se han definido ajustes específicos para que la experiencia en iOS respete las Human Interface Guidelines de Apple y se sienta nativa para el usuario, en lugar de una adaptación genérica de la versión Android.
+
+- **Safe Area y Notch:** Se utiliza el widget `SafeArea` de Flutter para respetar el notch (o Dynamic Island en modelos recientes) y la barra de estado superior, evitando que elementos como el logo "CLAIR" o los controles principales queden ocultos u obstruidos.
+- **Selectores nativos (Dropdown):** Los campos de selección (ej. Idioma, Unit System en Settings) se presentan como una rueda de selección (*picker wheel*, estilo `CupertinoPicker`) que se despliega desde la parte inferior, en lugar del menú desplegable plano usado en Android. Esto respeta el patrón de interacción táctil que los usuarios de iOS esperan.
+- **Tipografía y renderizado:** Se mantiene la familia Inter/Space Grotesk definida en las guías generales, pero se ajusta el *font smoothing* y el interlineado para alinearse con el renderizado nativo de San Francisco, evitando que el texto se vea "importado" de Android.
+- **Navegación y retroceso:** Dado que la aplicación no implementa gestos de swipe lateral (según lo definido en las guías generales de Mobile Style Guidelines), el retroceso entre pantallas se realiza exclusivamente mediante controles visibles en la interfaz (botones o AppBar), sin depender del gesto nativo de "volver" por borde de pantalla de iOS.
+- **Iconografía:** Se prioriza el uso de variantes de ícono más delgadas y de trazo fino, coherentes con el lenguaje visual de SF Symbols, manteniendo el mismo significado semántico que la iconografía de Material Icons usada en Android.
+
 #### 4.1.3.2. Android Mobile Style Guidelines.
+
+La versión Android de **Clair** se apega de forma estricta a Material Design 3, sistema de diseño que ya sirve como base para el tema global de la aplicación (`scaffoldBackgroundColor`, `cardColor`, `primaryColor` definidos en las guías generales de Mobile Style Guidelines), por lo que los ajustes específicos de plataforma son menores que en iOS.
+
+- **Barra de estado y navegación del sistema:** Se respeta la barra de estado nativa de Android (íconos de batería, señal, hora) sin superposición, y se mantiene coherencia visual con la barra de navegación del sistema (gestual o de 3 botones), evitando que el `Bottom Navigation Bar` de la app compita visualmente con los controles del sistema operativo.
+- **Selectores nativos (Dropdown):** Los campos de selección se presentan como un menú desplegable plano (`DropdownButton` nativo) que aparece anclado justo debajo del campo, siguiendo el patrón estándar de Material Design, a diferencia de la rueda de selección usada en iOS.
+- **Botón físico/gestual de retroceso:** Al no implementarse gestos de swipe lateral dentro de la app, el botón de retroceso del sistema (físico, gestual o en pantalla, según el dispositivo) debe mapearse de forma consistente a la navegación jerárquica de la app, retrocediendo un nivel a la vez (ej. de Sensor Detail a Dashboard) en lugar de cerrar la aplicación de forma abrupta.
+- **Ripple effect:** Todas las interacciones táctiles (botones, ítems de lista, tarjetas) muestran el efecto *ripple* nativo de Material Design al ser presionadas, reforzando la retroalimentación visual ya definida en las guías generales de interacción.
+- **Iconografía:** Se utiliza Material Icons de forma consistente en toda la interfaz (Dashboard, Sensors, Settings), manteniendo el mismo peso visual y significado semántico que la iconografía adaptada para iOS.
 
 ## 4.2. Information Architecture.
 
