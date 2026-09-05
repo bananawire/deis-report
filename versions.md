@@ -21,6 +21,10 @@
 | 0.0.17 | 03/09/2026 | Luis Alonso Huaco Oliva   | Adaptación de la sección 3.2 User Stories, incluye documentación de las historias y según el formato requerido.                                                    |
 | 0.0.18 | 03/09/2026 | Luis Alonso Huaco Oliva   | Adaptación de la sección 3.3 Product Backlog, incluye documentación y ordenamiento de las historias de usuario.                                                    |
 | 0.0.19 | 03/09/2026 | Luis Alonso Huaco Oliva   | Adaptación de la sección 3.4 Impact Mapping, incluye documentación y análisis de los impactos identificados.                                                       |
+| 0.0.20 | 03/09/2026 | Victor Nicolas Ortiz Alarcon | Desarrollo de la introducción y del perfil de la startup en el Capítulo I.                                                                                         |
+| 0.0.21 | 03/09/2026 | Victor Nicolas Ortiz Alarcon | Desarrollo de la descripción de la solución Clair y de la problemática identificada en el Capítulo I.                                                            |
+| 0.0.22 | 03/09/2026 | Victor Nicolas Ortiz Alarcon | Desarrollo del proceso Lean UX, incluyendo problemas, supuestos, hipótesis y canvas en el Capítulo I.                                                            |
+| 0.0.23 | 03/09/2026 | Victor Nicolas Ortiz Alarcon | Desarrollo de los segmentos objetivo, necesidades, barreras y actores relacionados en el Capítulo I.                                                             |
 
 
 
