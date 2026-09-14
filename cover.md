@@ -30,13 +30,13 @@
 
 <h4 style="margin: 5px 0;"><strong> Integrantes</strong></h4>
 
-| Código     | Apellidos y Nombres        |
-| ---------- | -------------------------- |
-| u202319963 | Aleman Romano, Dante Mateo |
-|            |                            |
-|            |                            |
-|            |                            |
-|            |                            |
+| Código     | Apellidos y Nombres                  |
+| ---------- | ------------------------------------ |
+| u202319963 | Aleman Romano, Dante Mateo           |
+| u202319025 | Barturen, Iker                       |
+| u202417743 | Huaco Oliva, Luis Alonso             |
+| u202312899 | Ortiz Alarcon, Victor Nicolas        |
+| u202319095 | Ventosilla Trujillo, Anderson Ricardo |
 
 <h4 style="margin-top: 25px;"><strong>Período 202620</strong></h4>
 
