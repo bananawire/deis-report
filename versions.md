@@ -25,6 +25,16 @@
 | 0.0.21 | 03/09/2026 | Victor Nicolas Ortiz Alarcon | Describí la solución Clair y planteé la problemática identificada en el Capítulo I.                                                                              |
 | 0.0.22 | 03/09/2026 | Victor Nicolas Ortiz Alarcon | Definí el proceso Lean UX (problemas, supuestos, hipótesis y canvas) en el Capítulo I.                                                                            |
 | 0.0.23 | 03/09/2026 | Victor Nicolas Ortiz Alarcon | Identifiqué los segmentos objetivo, sus necesidades, barreras y los actores relacionados en el Capítulo I.                                                       |
+| 0.0.24 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Redacté las General Style Guidelines de Clair (branding, tipografía, paleta de colores, espaciado y tono de comunicación) en la sección 4.1.1.                |
+| 0.0.25 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Documenté las Web Style Guidelines (layout responsivo, breakpoints, componentes y especificaciones CSS/SCSS) en la sección 4.1.2.                              |
+| 0.0.26 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Documenté las Mobile Style Guidelines (componentes, interacciones táctiles y especificaciones de la app Flutter) en la sección 4.1.3.                          |
+| 0.0.27 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Redacté las guías de estilo específicas de plataforma iOS y Android en las secciones 4.1.3.1 y 4.1.3.2.                                                        |
+| 0.0.28 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Documenté los Organization Systems de la plataforma (jerarquía visual, flujos secuenciales y esquemas por audiencia) en la sección 4.2.1.                      |
+| 0.0.29 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Definí los Labeling Systems del producto (etiquetado de métricas, estados de salud y nomenclatura de navegación) en la sección 4.2.2.                          |
+| 0.0.30 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Especifiqué los SEO Tags, Meta Tags y elementos ASO para web y aplicaciones móviles en la sección 4.2.3.                                                       |
+| 0.0.31 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Documenté los Searching Systems de la plataforma (segmentación temporal, visualización de resultados) en la sección 4.2.4.                                     |
+| 0.0.32 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Documenté los Navigation Systems de la plataforma (navegación global, contextual, breadcrumbs y gestos móviles) en la sección 4.2.5.                           |
+| 0.0.33 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Corregí la imagen faltante del sistema de diseño en la sección 4.1.1 General Style Guidelines.                                                                 |
 
 # Project Report Collaboration Insights
 
