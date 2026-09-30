@@ -6,6 +6,14 @@
 
 ### 7.1.2. Build & Test Suite Pipeline Components.
 
+
+
+
+
+
+
+**“This will be included in the next submission.”**
+
 ## 7.2. Continuous Delivery
 
 ### 7.2.1. Tools and Practices.
