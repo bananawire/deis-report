@@ -35,6 +35,12 @@
 | 0.0.31 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Documenté los Searching Systems de la plataforma (segmentación temporal, visualización de resultados) en la sección 4.2.4.                                     |
 | 0.0.32 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Documenté los Navigation Systems de la plataforma (navegación global, contextual, breadcrumbs y gestos móviles) en la sección 4.2.5.                           |
 | 0.0.33 | 13/09/2026 | Anderson Ricardo Ventosilla Trujillo | Corregí la imagen faltante del sistema de diseño en la sección 4.1.1 General Style Guidelines.                                                                 |
+| 1.0.0  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.1.1 Tools and Practices del Capítulo VII con la tabla de herramientas y las prácticas de ingeniería de software adoptadas. |
+| 1.0.1  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.1.2 Build & Test Suite Pipeline Components del Capítulo VII con los componentes del pipeline CI divididos por web services, web application y mobile application. |
+| 1.0.2  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.2.1 Tools and Practices de Continuous Delivery del Capítulo VII con las herramientas y prácticas de entrega automatizada. |
+| 1.0.3  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.2.2 Stages Deployment Pipeline Components de Continuous Delivery con las etapas del pipeline sobre Dokploy. |
+| 1.0.4  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.3.1 Tools and Practices de Continuous Deployment con las prácticas de despliegue automatizado en producción. |
+| 1.0.5  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.3.2 Production Deployment Pipeline Components con la topología productiva definitiva del backend, frontend, edge station y servicios externos. |
 
 # Project Report Collaboration Insights
 
