@@ -41,6 +41,7 @@
 | 1.0.3  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.2.2 Stages Deployment Pipeline Components de Continuous Delivery con las etapas del pipeline sobre Dokploy. |
 | 1.0.4  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.3.1 Tools and Practices de Continuous Deployment con las prácticas de despliegue automatizado en producción. |
 | 1.0.5  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.3.2 Production Deployment Pipeline Components con la topología productiva definitiva del backend, frontend, edge station y servicios externos. |
+| 1.0.6  | 01/10/2026 | Iker Barturen | Redacté las secciones 6.1 Testing Suites & Validation, 6.1.1 Core Entities Unit Tests y 6.1.2 Core Integration Tests con las tablas de cada clase de prueba y las capturas de su ejecución. |
 
 # Project Report Collaboration Insights
 
