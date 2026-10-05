@@ -43,6 +43,7 @@
 | 1.0.5  | 30/09/2026 | Dante Mateo Aleman Romano | Redacté la sección 7.3.2 Production Deployment Pipeline Components con la topología productiva definitiva del backend, frontend, edge station y servicios externos. |
 | 1.0.6  | 01/10/2026 | Iker Barturen | Redacté las secciones 6.1 Testing Suites & Validation, 6.1.1 Core Entities Unit Tests y 6.1.2 Core Integration Tests con las tablas de cada clase de prueba y las capturas de su ejecución. |
 | 1.0.7  | 01/10/2026 | Victor Nicolas Ortiz Alarcon | Redacté las secciones 6.1.3 Core Behavior-Driven Development y 6.1.4 Core System Tests con las features Gherkin, el recorrido HTTP y las capturas de Cucumber, System Tests y GitHub Actions. |
+| 1.0.8  | 04/10/2026 | Victor Nicolas Ortiz Alarcon | Corregí las secciones 6.1.3 y 6.1.4: las suites HTTP corren sobre H2 con sesiones en memoria y mocks, sin PostgreSQL ni Redis, y actualicé las capturas de Cucumber y System Tests. |
 
 # Project Report Collaboration Insights
 

@@ -4,14 +4,14 @@
 
 ## 6.1. Testing Suites & Validation
 
-El backend de Clair Core (`clair-core`, Spring Boot 3.5.5 con Java 25) se prueba con cuatro suites. Las de Unit e Integration Tests corren dentro de la JVM con H2 en memoria, así que no necesitan Docker. Las de BDD y System Tests levantan la aplicación en un puerto real contra PostgreSQL y Redis, y la prueban por HTTP. Todas se ejecutan con `nix-shell --run "mvn test"` y cada prueba está asociada a una User Story (WS-US) del backlog.
+El backend de Clair Core (`clair-core`, Spring Boot 3.5.5 con Java 25) se prueba con cuatro suites. Todas corren dentro de la JVM: Unit e Integration Tests instancian servicios o el contexto Spring sobre H2; BDD y System Tests levantan la aplicación en un puerto aleatorio, también sobre H2, y la recorren por HTTP. Ninguna suite necesita Docker, PostgreSQL ni Redis. Todas se ejecutan con `nix-shell --run "mvn test"` y cada prueba está asociada a una User Story (WS-US) del backlog.
 
 | Suite | Nivel | Aísla | Tecnología | Pruebas |
 |---|---|---|---|---|
 | Unit Tests | Dominio | Sin Spring ni base de datos | JUnit 5 + Mockito | 49 (5 clases) |
 | Integration Tests | Servicios de aplicación y persistencia, entre bounded contexts | Spring real sobre H2; solo se mockean los servicios externos | `@SpringBootTest` + JPA + `@MockitoBean` | 15 (5 clases) |
-| Behavior-Driven Development | Especificación de negocio | App HTTP contra PostgreSQL y Redis | Cucumber 7.20.1 (Gherkin español) | 13 (5 features) |
-| System Tests | Sistema completo | App en puerto aleatorio contra PostgreSQL y Redis | JUnit 5 + `TestRestTemplate` | 9 (1 clase) |
+| Behavior-Driven Development | Especificación de negocio | App HTTP sobre H2; sesiones en memoria | Cucumber 7.20.1 (Gherkin español) | 13 (5 features) |
+| System Tests | Sistema completo | App en puerto aleatorio sobre H2; sesiones en memoria | JUnit 5 + `TestRestTemplate` | 9 (1 clase) |
 
 Convenciones que siguen todas las pruebas, según la rúbrica:
 
@@ -214,10 +214,11 @@ Estas pruebas escriben los criterios de aceptación de las User Stories como esp
 
 Ubicación: `src/test/resources/features/`. Los archivos siguen el patrón `WS-USxx-Titulo.feature`. El runner es `CucumberRunnerTest` (`@Suite`, motor Cucumber, glue `com.claircore.bdd`).
 
-La suite se apoya en dos piezas:
+La suite se apoya en las mismas piezas herméticas que las Integration Tests:
 
-- El perfil `system` (`src/test/resources/application-system.properties`) usa PostgreSQL y Redis reales, aplica las migraciones Flyway V1–V10 y pone valores ficticios para JWT, Google, Stripe y OneSignal. También apaga el local edge.
-- `CucumberSpringConfiguration` activa ese perfil. Las *step definitions* (`RegistrationStepDefinitions`, `SignInStepDefinitions`, `OrganizationSpaceStepDefinitions`, `DeviceThresholdStepDefinitions`, `TelemetryAlertStepDefinitions`, `HttpResponseStepDefinitions`) usan anotaciones Cucumber en español (`@Dado`, `@Cuando`, `@Entonces`, `@Y`) y heredan de `AbstractCucumberSteps`, que centraliza el JWT, el `TestRestTemplate` y la captura del código de `/api/v1/auth/confirm` con `ArgumentCaptor` sobre `ExternalNotificationService`. Stripe, Google OAuth y el envío de correo se reemplazan con `@MockitoBean`. OneSignal se sustituye por `PushNotificationDeliveryService` para no llamar la API real.
+- El perfil `it` (`src/test/resources/application-it.properties`) usa H2 en memoria, desactiva Flyway, genera el esquema con `ddl-auto=create-drop` y apaga el local edge. JWT, Google, Stripe y OneSignal llevan valores ficticios.
+- `CucumberSpringConfiguration` activa ese perfil e importa `HermeticHttpTestConfiguration`: las sesiones de IAM viven en `InMemoryTokenSessionRepository` e `InMemoryRegistrationSessionRepository`, y la caché es un `NoOpCacheManager`. Así no se contacta Redis.
+- Las *step definitions* (`RegistrationStepDefinitions`, `SignInStepDefinitions`, `OrganizationSpaceStepDefinitions`, `DeviceThresholdStepDefinitions`, `TelemetryAlertStepDefinitions`, `HttpResponseStepDefinitions`) usan anotaciones Cucumber en español (`@Dado`, `@Cuando`, `@Entonces`, `@Y`) y heredan de `AbstractCucumberSteps`, que centraliza el JWT, el `TestRestTemplate` y la captura del código de `/api/v1/auth/confirm` con `ArgumentCaptor` sobre `ExternalNotificationService`. Stripe, Google OAuth, el correo SMTP y OneSignal se reemplazan con `@MockitoBean`. Después de cada escenario se vacían las tablas H2.
 
 Cumplen la rúbrica: hay al menos dos features con `Esquema del escenario` + `Ejemplos` (inicio de sesión y umbrales) y al menos dos con `Data Table` (espacios y telemetría). Los decimales viajan como `String` y se convierten a `BigDecimal` en las step definitions.
 
@@ -378,11 +379,11 @@ Las 13 pruebas pasan (64 pasos). El runner confirma el registro con el código c
 
 ### 6.1.4. Core System Tests.
 
-Esta prueba recorre Clair Core de punta a punta por HTTP: levanta la aplicación con `@SpringBootTest` y `RANDOM_PORT`, usa el perfil `system` (PostgreSQL, Redis y Flyway V1–V10) y encadena IAM, Billing, Device, Evaluation, Alerting y Analytics en un solo usuario. La clase es `ClairEndToEndSystemTest` (`@TestMethodOrder(OrderAnnotation.class)`). Cada paso tiene `@DisplayName` en español, patrón AAA y el comentario `// Business / User Story Rational (WS-US-xx):`.
+Esta prueba recorre Clair Core de punta a punta por HTTP: levanta la aplicación con `@SpringBootTest` y `RANDOM_PORT`, usa el perfil `it` (H2 en memoria) y la misma `HermeticHttpTestConfiguration` que BDD, y encadena IAM, Billing, Device, Evaluation, Alerting y Analytics en un solo usuario. La clase es `ClairEndToEndSystemTest` (`@TestMethodOrder(OrderAnnotation.class)`). Cada paso tiene `@DisplayName` en español, patrón AAA y el comentario `// Business / User Story Rational (WS-US-xx):`.
 
 Ubicación: `src/test/java/com/claircore/system/ClairEndToEndSystemTest.java`.
 
-Los adaptadores fuera del proceso se mockean igual que en BDD: `PaymentGateway`, `GoogleTokenVerifier`, `GoogleTokenExchange`, `ExternalNotificationService` y `PushNotificationDeliveryService`. El inventario de fábrica está fijado por seeds; el recorrido inserta su propio sensor no reclamado y lo empareja, para no depender de un `hardwareId` compartido.
+Los adaptadores fuera del proceso se mockean igual que en BDD: `PaymentGateway`, `GoogleTokenVerifier`, `GoogleTokenExchange`, `ExternalNotificationService`, `EmailDeliveryService` y `PushNotificationDeliveryService`. El recorrido crea su propio sensor con `ImportDevicesCommand` y lo empareja, para no depender de seeds ni de un `hardwareId` compartido.
 
 | Paso | Prueba | Verifica | US |
 |---|---|---|---|
@@ -400,7 +401,7 @@ Los adaptadores fuera del proceso se mockean igual que en BDD: `PaymentGateway`,
 
 Las 9 pruebas pasan. El recorrido confirma que un usuario Freemium recién verificado puede ubicar un sensor, definir un umbral, recibir la alerta de una lectura fuera de rango y perder el refresh token al cerrar sesión.
 
-El workflow `.github/workflows/ci.yml` (`Build and Run Test Suites`) levanta Postgres 15 (`clair_test`) y Redis 7, exporta `CLAIR_TEST_POSTGRES_*` y ejecuta `mvn -B clean verify`. Las suites BDD y de sistema corren en ese job junto al resto de la batería.
+El workflow `.github/workflows/ci.yml` (`Build and Run Test Suites`) no levanta contenedores: solo configura JDK 25 y ejecuta `mvn -B clean verify`. Las cuatro suites corren en ese job sobre H2.
 
 ![GitHubActionsCI](../assets/testing/GitHubActionsCI.png)
 
