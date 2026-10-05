@@ -23,7 +23,9 @@ Convenciones que siguen todas las pruebas, según la rúbrica:
 
 Las suites de Unit e Integration Tests cubren los bounded contexts IAM, Device, Evaluation, Alerting y Billing.
 
-### 6.1.1. Core Entities Unit Tests.
+### 6.1.1. Web Services Tests.
+
+#### 6.1.1.1 Core Entities Unit Tests.
 
 Estas pruebas instancian los agregados y value objects del dominio directamente, sin contexto de Spring y sin base de datos. Algunas reglas no están en el agregado sino en su command service, como la severidad de una alerta o el límite de espacios del plan. En esos casos (`AlertUnitTest`, `OrganizationSpaceUnitTest` y `DeviceThresholdUnitTest`) se instancia el service con sus repositorios y dependencias externas reemplazados por mocks de Mockito. Cada clase tiene entre 9 y 10 pruebas y cubre las ocho categorías de la rúbrica: happy path, límite superior, límite inferior, datos insuficientes, estado inválido, condicional A, condicional B e integridad.
 
@@ -133,7 +135,7 @@ Prueba los agregados `User` y `RegistrationSession` y los value objects `Verific
 
 Las 10 pruebas pasan. Las condicionales separan los dos tipos de cuenta: la creada con correo queda pendiente hasta confirmar el código, y la creada con Google nace activa porque Google ya verificó el correo.
 
-### 6.1.2. Core Integration Tests.
+#### 6.1.1.2. Core Integration Tests.
 
 Estas pruebas levantan el contexto completo de Spring con `@SpringBootTest` y usan los command services, query services y repositorios JPA reales sobre H2 en memoria. Cada prueba pasa por al menos dos capas o dos bounded contexts. Llaman a los services y no a los controllers, porque los controllers ya están cubiertos por las pruebas `@WebMvcTest` del proyecto.
 
@@ -208,7 +210,7 @@ Las 3 pruebas pasan. El evento de telemetría se publica dentro de una transacci
 
 Las 3 pruebas pasan. La segunda revisa los dos contextos a la vez: con un código incorrecto no queda un usuario sin plan ni un plan sin usuario.
 
-### 6.1.3. Core Behavior-Driven Development
+#### 6.1.1.3. Core Behavior-Driven Development
 
 Estas pruebas escriben los criterios de aceptación de las User Stories como especificaciones ejecutables en Gherkin español (`# language: es`). Cada feature usa `Característica:`, escenarios `Dado` / `Cuando` / `Entonces` / `Y` y se vincula a su WS-US en la cabecera. A diferencia de las Unit e Integration Tests, el runner levanta Clair Core en un puerto aleatorio y habla con la API por HTTP.
 
@@ -377,7 +379,7 @@ Los 2 escenarios pasan. El cuerpo HTTP sigue `EvaluateTelemetryResource`. Una le
 
 Las 13 pruebas pasan (64 pasos). El runner confirma el registro con el código capturado, aplica los cupos de Billing y evalúa la telemetría contra umbrales persistidos.
 
-### 6.1.4. Core System Tests.
+#### 6.1.1.4. Core System Tests.
 
 Esta prueba recorre Clair Core de punta a punta por HTTP: levanta la aplicación con `@SpringBootTest` y `RANDOM_PORT`, usa el perfil `it` (H2 en memoria) y la misma `HermeticHttpTestConfiguration` que BDD, y encadena IAM, Billing, Device, Evaluation, Alerting y Analytics en un solo usuario. La clase es `ClairEndToEndSystemTest` (`@TestMethodOrder(OrderAnnotation.class)`). Cada paso tiene `@DisplayName` en español, patrón AAA y el comentario `// Business / User Story Rational (WS-US-xx):`.
 
@@ -405,9 +407,15 @@ El workflow `.github/workflows/ci.yml` (`Build and Run Test Suites`) no levanta 
 
 ![GitHubActionsCI](../assets/testing/GitHubActionsCI.png)
 
+### 6.1.2. Mobile App Tests.
 
+####  6.1.2.1 Core Entities Unit Tests.
 
+####  6.1.2.2 Mobile App Integration Tests.
 
+####  6.1.2.3 Mobile App Behavior-Driven Development.
+
+####  6.1.2.4 Mobile App System Tests
 
 
 
