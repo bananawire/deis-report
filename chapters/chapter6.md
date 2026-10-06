@@ -409,6 +409,12 @@ El workflow `.github/workflows/ci.yml` (`Build and Run Test Suites`) no levanta 
 
 ### 6.1.2. Mobile App Tests.
 
+Video Demo con Patrol
+
+https://youtu.be/gBeA6RfTZ70
+
+[![Patrol Flutter](https://img.youtube.com/vi/gBeA6RfTZ70/maxresdefault.jpg)](https://youtu.be/gBeA6RfTZ70)
+
 La aplicación móvil de Clair (Flutter 3 / Dart, `mobile/`) se prueba con tres capas que ejercitan distintos niveles de la arquitectura hexagonal. Ninguna requiere Docker, base de datos ni Redis externos.
 
 | Suite | Nivel | Aísla | Tecnología | Pruebas |
