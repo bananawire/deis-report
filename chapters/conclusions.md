@@ -62,5 +62,6 @@ Cirkit Designer. (s. f.). *Online circuit design and prototyping platform for Io
 - About the Product: https://bit.ly/4olR1cf
 - Validation Interviews Video: https://bit.ly/4xI4vDB
 - Patrol E2E Test Demo (Flutter mobile): https://youtu.be/gBeA6RfTZ70
+- Playwright E2E Test Demo (Angular web app): https://youtu.be/-FPnRmG9cCE
 - Unit and Integration Tests Demo (Java web services): https://youtu.be/byowkw5CBEc
 
