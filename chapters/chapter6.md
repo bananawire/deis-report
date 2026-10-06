@@ -597,7 +597,7 @@ La trazabilidad se mantiene de dos formas:
 
 Por lo tanto, la columna BDD del cuadro comparativo del backend no tiene contraparte mobile: el comportamiento se prueba con Patrol (§6.1.2.4) y el detalle de las reglas de negocio se prueba en el backend (§6.1.1.3).
 
-#### 6.1.2.4 Mobile App System Tests (Patrol).
+#### 6.1.2.4 Mobile App System Tests.
 
 A diferencia de las dos suites previas (que se ejecutan dentro del proceso Dart sobre el binding de test), las pruebas de sistema movilizan la app sobre un emulador Android (o un dispositivo físico) y la recorren interactuando con la UI real mientras golpean `clair-core` desplegado en staging. La URL del backend se carga desde `mobile/.env` (`CLAIR_BACKEND_BASE_URL`); si está vacía o el backend está caído, los 15 tests que tocan la API fallan (es un fallo real, no un mock).
 
