@@ -725,6 +725,211 @@ El test monolítico tenía tres problemas que este refactor resolvió:
 
 ### 6.1.3. Web App Tests.
 
+#### 6.1.3.1 Pruebas Unitarias
+
+#### 6.1.3.1 Core Entities Unit Tests.
+
+El frontend web de Clair (`clair-ui`, Angular 21 con arquitectura DDD por bounded
+context) se prueba con una suite unitaria construida sobre Vitest 5.0.3 y jsdom.
+Los tests instancian los value objects, commands, queries, transforms, servicios
+de aplicación y gateways del dominio directamente, sin abrir un navegador ni
+conectarse al backend. Los componentes y servicios que dependen de Angular se
+prueban con `TestBed`, `HttpTestingController` y `createComponent`, un helper
+que construye la instancia vía `runInInjectionContext` sin renderizar la
+plantilla.
+
+Ubicación: `src/app/<bounded_context>/**/*.spec.ts`. Los archivos siguen la
+convención `<clase>.spec.ts` junto al archivo que prueban.
+
+| Bounded Context | Archivos | Pruebas |
+|---|---|---|
+| `iam` | 21 | 125 |
+| `device` | 80 | 499 |
+| **Total** | **101** | **626** |
+
+Distribución por capa DDD:
+
+| Capa | Archivos |
+|---|---|
+| `domain` (value objects, commands, queries) | 47 |
+| `application` (servicios de aplicación y facade ACL) | 9 |
+| `infrastructure` (gateways HTTP, storage, interceptors) | 5 |
+| `interfaces` (componentes UI, transforms, guards, páginas) | 40 |
+
+Convenciones que sigue la suite:
+
+- Cada `it()` tiene un nombre en español descriptivo ("acepta...", "rechaza...",
+  "es inmutable", "propaga errores").
+- Los casos parametrizados usan `it.each([...])` para cubrir valores vacíos,
+  límites y formatos inválidos.
+- Las dependencias externas se mockean con `vi.fn()`; los `Observable` se
+  construyen con `of()` y `throwError()` y se consumen con `firstValueFrom()`.
+- Se verifica la inmutabilidad con `Object.isFrozen` en los value objects y
+  transforms que aplican `Object.freeze`.
+- Los tests con `TestBed` y `HttpTestingController` no abren conexiones reales
+  de red; el `HttpClient` se reemplaza por el módulo de testing de Angular.
+
+A continuación las clases más representativas. El total se distribuye en 101
+archivos con entre 1 y 30 pruebas cada uno.
+
+**`email.value-object.spec.ts`** (IAM, 13 pruebas, WS-US-01)
+
+Prueba el value object `Email`, que normaliza el correo con `trim()` y
+`toLowerCase()` y lo valida contra una expresión regular.
+
+| Categoría | Prueba |
+|---|---|
+| Happy | Un correo válido se acepta, se normaliza a minúsculas y se congela |
+| Happy | Los espacios alrededor del correo se recortan antes de validar |
+| Datos insuficientes | Cadena vacía, solo espacios, `null` y `undefined` lanzan `'Email is required'` |
+| Formato inválido | 7 variantes sin `@`, sin dominio, con espacio interno o `@@` lanzan `'Email format is invalid'` |
+
+Las 13 pruebas pasan.
+
+**`auth-command-service.impl.spec.ts`** (IAM, 8 pruebas, WS-US-01 a WS-US-04)
+
+Prueba el `AuthCommandServiceImpl`, que traduce commands de dominio a recursos
+REST, delega al `AuthGateway` y envuelve la respuesta en value objects
+(`AccessToken`, `RefreshToken`, `UserId`). El gateway se mockea con `vi.fn()`.
+
+| Categoría | Prueba |
+|---|---|
+| Happy | `handleSignUp` envía el recurso del transform y devuelve `sessionId` + `message` |
+| Happy | `handleSignIn` mapea la respuesta a `AccessToken` y `RefreshToken` |
+| Happy | `handleRefreshToken` renueva los tokens y los envuelve |
+| Happy | `handleConfirmRegistration` mapea el id a `UserId` y conserva el email |
+| Happy | `handleSignOut` delega y propaga el `void` |
+| Happy | `handleGoogleSignIn` envía el idToken y devuelve los tokens |
+| Happy | `getGoogleAuthorizeUrl` devuelve la URL del gateway |
+| Estado inválido | Un error 401 del gateway se propaga tal cual |
+
+Las 8 pruebas pasan.
+
+**`auth-http.interceptor.spec.ts`** (IAM, 11 pruebas, WS-US-03, WS-US-07, WS-US-08)
+
+Prueba el `AuthHttpInterceptor`, que añade el header `Authorization: Bearer
+<token>` a las peticiones privadas y maneja el 401 refrescando el token. Usa
+`TestBed` con `HttpClientTestingModule` y mockea `TokenStorageGateway` y
+`Router`.
+
+| Categoría | Prueba |
+|---|---|
+| Límite | Las rutas públicas (`/sign-up`, `/sign-in`, `/confirm`, `/refresh`) no llevan header |
+| Happy | Sin token en storage, las rutas privadas no llevan header |
+| Happy | Con token, las rutas privadas llevan `Bearer <token>` |
+| Happy | Un 401 dispara la llamada al endpoint `/refresh` y reintenta la petición original con el token nuevo |
+| Estado inválido | Un 401 sin refresh token ejecuta logout y navega a `/login` |
+| Estado inválido | Un 401 con refresh token fallido ejecuta logout y propaga el error |
+| Estado inválido | Un 401 sin token previo no intenta refresh |
+| Estado inválido | Un 500 se propaga sin tocar el storage ni el router |
+
+Las 11 pruebas pasan.
+
+**`device-http.gateway.spec.ts`** (Device, 8 pruebas, WA-US-09 a WA-US-19)
+
+Prueba el `DeviceHttpGateway` contra `HttpTestingController`: verifica el método
+HTTP, la URL exacta y el body de cada endpoint.
+
+| Categoría | Prueba |
+|---|---|
+| Happy | `createOrganization` hace POST a la URL base |
+| Happy | `getOrganizations` hace GET a la URL base |
+| Happy | `getOrganizationById` hace GET con el id en la ruta |
+| Happy | `deleteOrganization` hace DELETE con el id |
+| Happy | `updateOrganizationName` hace PATCH a `/name` |
+| Happy | `createSpace` hace POST con `organizationId` como query param |
+| Happy | `getDevicesBySpace` envía `spaceId`, `page` y `size` |
+| Happy | `createDeviceCommand` hace POST a `/commands` |
+
+Las 8 pruebas pasan.
+
+**`organizations-panel.component.spec.ts`** (Device, 14 pruebas, WA-US-08 a WA-US-11)
+
+El componente más complejo de la suite unitaria: usa `inject()` con 7
+dependencias (`MatDialog`, `MatSnackBar`, `TranslateService`,
+`ChangeDetectorRef`, `DestroyRef`, dos servicios de dominio). Se construye con
+`TestBed.runInInjectionContext` para disponer del contexto de inyección.
+
+| Categoría | Prueba |
+|---|---|
+| Happy | `ngOnInit` carga las organizaciones y restaura las expandidas de `localStorage` |
+| Happy | `toggleOrganization` expande y persiste el estado |
+| Happy | `toggleOrganization` colapsa una organización ya expandida |
+| Happy | `selectSpace` emite `spaceSelected` cuando lo encuentra |
+| Estado inválido | `selectSpace` no emite si el space no está en el mapa |
+| Happy | `openAddOrganizationDialog` llama al command service al confirmar |
+| Estado inválido | `openAddOrganizationDialog` no llama si el usuario cancela |
+| Happy | `openDeleteOrganizationDialog` confirma y recarga |
+| Estado inválido | `openDeleteOrganizationDialog` no llama si cancela |
+| Happy | `loadSpaces` pone `loading=true` y luego `false` |
+| Estado inválido | `loadSpaces` con error guarda el mensaje |
+| Límite | `restoreExpandedOrganizations` ignora ids que ya no existen |
+| Límite | `restoreExpandedOrganizations` ignora JSON inválido en `localStorage` |
+| Integridad | La carga inicial se llama una sola vez aunque `ngOnInit` se dispare |
+
+Las 14 pruebas pasan.
+
+#### Defectos encontrados por la suite
+
+La suite no solo verifica el comportamiento esperado: detectó cuatro defectos
+reales en el código de producción. Están documentados en los specs con tests
+`it.fails` o comentarios `// DEFECTO CONOCIDO`, y se reportaron al equipo.
+
+| ID | Componente | Descripción | Severidad | Estado |
+|---|---|---|---|---|
+| DEF-01 | `claim-device.command.ts` | `claimToken.trim()` sin protección contra `null`/`undefined`. Lanza `TypeError` en vez del mensaje de validación. | Media | Documentado en `claim-device.command.spec.ts` |
+| DEF-02 | `device-connectivity-color.transform.ts` | `'DISCONNECTED'.includes('CONNECTED') === true`, así que un dispositivo desconectado se pinta como conectado. | Alta | Documentado con `it.fails` |
+| DEF-03 | `device-threshold.transform.ts` | No congela el resultado (`Object.freeze`), inconsistente con el resto de transforms de `device`. | Baja | Documentado en el spec |
+| DEF-04 | `space-devices-navigation-state.service.ts` | `deviceId = "   "` no dispara el early return porque `"   "` es truthy en JavaScript. | Baja | Documentado en el spec |
+
+![WebAppUnitTests](../assets/testing/WebAppUnitTests.png)
+
+**User Stories web sin test unitario (y por qué).**
+
+| User Story | Razón | Acción futura |
+|---|---|---|
+| WA-US-01 / WA-US-02 Registro y verificación | Lógica en el backend; el frontend solo reenvía | Cubierto por e2e si se añade endpoint de seed |
+| WA-US-05 Google SSO | Requiere interacción real con Google | Se mockea a nivel de service y se cubre en e2e |
+| `edit-device-thresholds-dialog.component` | Usa `inject()` con 7 dependencias y `ChangeDetectorRef`; se dejó como `it.todo` | Refactor para aislar la lógica testeable |
+| `space-devices-page.component` | 8 dependencias inyectadas, timers y suscripciones; el esfuerzo/beneficio no justificó cubrirlo en unit | Cubierto indirectamente por `space-devices-page-actions.service` |
+
+**Ejecución.**
+
+```bash
+# Toda la suite:
+bun run test -- --watch=false
+
+# Un archivo específico:
+bun run test -- src/app/iam/domain/model/valueobjects/email.value-object.spec.ts --watch=false
+
+# Modo watch (desarrollo):
+bun run test
+```
+
+**Evidencia de commits.**
+
+| Repository | Branch | Commit Id | Commit Message | Committed on |
+|---|---|---|---|---|
+| bananawire/clair-ui | `test/unit-tests-luis` | `4e64ff9` | `test(device): add gateway, facade and outbound service specs` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `ff7b147` | `test(iam): add value object specs (user-id, password, verification-code, tokens)` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `eed6d90` | `test(iam): add command and query specs` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `cc2b5f1` | `test(iam): add auth transform spec` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `886151d` | `test(iam): add auth command and query service specs` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `6a8262a` | `test(iam): add token storage and http gateway specs` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `9964a57` | `test(iam): add auth guard and http interceptor specs` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `c513236` | `test(device): add value object specs` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `3701c8f` | `test(device): add command specs (batch 1)` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `41afee5` | `test(device): add query specs` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `953c3db` | `test(device): add transform specs (connectivity color, api error)` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `b8aaec7` | `add testing` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `6c394c8` | `ci: add workflow for unit tests and build` | 2026-10-05 |
+| bananawire/clair-ui | `test/unit-tests-luis` | `4d0ed09` | `ci: simplify workflow to run unit tests only` | 2026-10-06 |
+
+También se incluye la sección siguiente para cubrir el flujo de integración
+continua exigido por el capítulo VII.
+
+#### 6.1.3.2. Prubas con Playwright
+
 Video Demo con Playwright
 
 https://youtu.be/-FPnRmG9cCE
