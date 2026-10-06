@@ -25,6 +25,12 @@ Las suites de Unit e Integration Tests cubren los bounded contexts IAM, Device, 
 
 ### 6.1.1. Web Services Tests.
 
+Esta subsección reúne las pruebas del backend `clair-core`. Las dos primeras suites suman 64 pruebas en 10 clases. Las 49 unitarias prueban por separado los agregados y value objects de IAM, Device y Alerting, y las 15 de integración levantan Spring sobre H2 para recorrer flujos que pasan de un bounded context a otro. Por ejemplo, una lectura de telemetría que supera el umbral termina en una alerta, y confirmar un registro en IAM le asigna al usuario el plan Freemium en Billing.
+
+En el siguiente video se exponen las suites de Unit e Integration Tests:
+
+Unit and Integration Tests Demo (Java web services): https://youtu.be/byowkw5CBEc
+
 #### 6.1.1.1 Core Entities Unit Tests.
 
 Estas pruebas instancian los agregados y value objects del dominio directamente, sin contexto de Spring y sin base de datos. Algunas reglas no están en el agregado sino en su command service, como la severidad de una alerta o el límite de espacios del plan. En esos casos (`AlertUnitTest`, `OrganizationSpaceUnitTest` y `DeviceThresholdUnitTest`) se instancia el service con sus repositorios y dependencias externas reemplazados por mocks de Mockito. Cada clase tiene entre 9 y 10 pruebas y cubre las ocho categorías de la rúbrica: happy path, límite superior, límite inferior, datos insuficientes, estado inválido, condicional A, condicional B e integridad.
