@@ -723,6 +723,84 @@ El test monolítico tenía tres problemas que este refactor resolvió:
 
 
 
+### 6.1.3. Web App Tests.
+
+Video Demo con Playwright
+
+https://youtu.be/-FPnRmG9cCE
+
+[![Playwright Web App](../assets/testing/PlaywrightWebAppDemo.png)](https://youtu.be/-FPnRmG9cCE)
+
+La aplicación web de Clair (Angular 21, `clair-ui`) se prueba con una suite de sistema construida con Playwright. Igual que las pruebas Patrol de la app móvil, recorre la UI real y golpea el backend `clair-core` desplegado (`https://clair-api.giks.net`); no se usa ningún mock, ningún token falso ni interceptación de red.
+
+| Suite | Nivel | Aísla | Tecnología | Pruebas |
+|---|---|---|---|---|
+| System Tests (Playwright) | App web completa contra el backend real | Front local (`ng serve`) con proxy de `/api` al backend; Chromium (Desktop Chrome) | Playwright + TypeScript | 1 (1 archivo) |
+
+Alcance de la suite:
+
+- Cubre el núcleo del producto: **IAM (inicio de sesión)** y **Devices** (organización, espacio, dispositivo, configuración y limpieza). Registro, billing, alertas, analítica y reportes quedan fuera de esta suite.
+- La cuenta de pruebas y el hardware del seed van fijos en el archivo de la prueba: cuenta E2E dedicada y `CLAIR-0003`, uno de los cinco sensores del seed del backend (`V9__seed__device__demo_inventory.sql`).
+- El claim token no está en el seed: se obtiene al emparejar el hardware. La prueba lo lee del aviso que muestra la app (`Sensor paired. Claim token: ...`) y lo usa en el paso de reclamar.
+
+**Estructura del directorio `clair-ui/`.**
+
+```
+clair-ui/
+├── playwright.config.ts          # un proyecto (devices), video y trace siempre activos
+└── tests/
+    ├── devices.spec.ts           # recorrido completo: login → devices → limpieza
+    └── proxy.conf.json           # proxy de /api hacia clair-api.giks.net
+```
+
+**Recorrido de `tests/devices.spec.ts`.**
+
+Un solo `test` ejecuta el camino feliz completo. Los nombres de la organización y del espacio llevan un sufijo con la marca de tiempo, de modo que cada corrida crea sus propios recursos y al final solo borra esos.
+
+| Paso | Acción en la UI | User Story | Verificación observable |
+|---|---|---|---|
+| 1 | Iniciar sesión con la cuenta E2E | WA-US-03 | La URL sale de `/login` |
+| 2 | Crear organización | WA-US-09 | Aviso `Organization created` |
+| 3 | Crear espacio dentro de la organización | WA-US-13 | Aviso `Space created`; el espacio aparece vacío |
+| 4 | Emparejar `CLAIR-0003` por hardware ID | WA-US-18 | Aviso `Sensor paired` con el claim token |
+| 5 | Reclamar el dispositivo en el espacio con ese token | WA-US-17 | Aviso `Sensor claimed` |
+| 6 | Renombrar el dispositivo | WA-US-19 | Aviso `Device updated` |
+| 7 | Ajustar los cuatro umbrales (PM2.5, CO₂, temperatura, humedad) | WA-US-30 / WA-US-31 | Aviso `Thresholds saved` |
+| 8 | Liberar el dispositivo (`Delete Device`) | WA-US-21 | Aviso `Device deleted`; el espacio vuelve a quedar sin dispositivos |
+| 9 | Eliminar el espacio | WA-US-15 | Aviso `Space deleted` |
+| 10 | Eliminar la organización | WA-US-11 | Aviso `Organization deleted`; la organización desaparece del panel |
+
+![PlaywrightWebAppTests](../assets/testing/PlaywrightWebAppTests.png)
+
+**Limpieza.** Los pasos 8 a 10 devuelven el sistema al estado inicial y permiten repetir la prueba sin intervención manual. En `clair-core`, `DELETE /api/v1/devices/{id}` no elimina el sensor: resetea su asignación (`ResetDeviceAssignmentCommand`), lo desvincula del espacio y le devuelve el nombre de fábrica, por lo que `CLAIR-0003` queda disponible para la siguiente corrida. El backend limita a 3 las organizaciones por usuario (`409: User has 3 organizations, max allowed is 3`); por eso la prueba no deja organizaciones residuales.
+
+**Video y reporte.** El proyecto está configurado con `video: 'on'` y `trace: 'on'`, con una pausa de 1 s entre acciones (`slowMo`) para que el recorrido pueda seguirse. El `.webm` queda en `test-results/` y también dentro del reporte HTML. Como el inicio de sesión está dentro del mismo test, un único video cubre todo el recorrido.
+
+**User Stories web pendientes sin test E2E (y por qué).**
+
+| User Story | Razón | Acción futura |
+|---|---|---|
+| WA-US-01 / WA-US-02 Registro y verificación | Requiere interceptar el código de verificación enviado por correo | Endpoint de seed o buzón de pruebas en CI |
+| WA-US-05 Google SSO | No existe modo de prueba de Google Sign-In en CI | Cuenta de prueba dedicada o fake id token |
+| Billing, alertas, analítica y reportes | Fuera del alcance acordado para esta suite (solo core: IAM y Devices) | Ampliar la suite si el alcance cambia |
+| Casos de error del servidor (500, listas vacías forzadas) | Sin mocks no se puede forzar el fallo del backend real | Cubrirlos en pruebas de backend |
+
+**Ejecución.**
+
+```bash
+# Toda la suite (levanta el front local con proxy al backend real):
+npx playwright test
+
+# Ver el recorrido en vivo:
+npx playwright test --headed
+
+# Modo interactivo, paso a paso:
+npx playwright test --ui
+
+# Reporte HTML con video y trace:
+npx playwright show-report
+```
+
 ## 6.2. Static testing & Verification
 
 ### 6.2.1. Static Code Analysis
