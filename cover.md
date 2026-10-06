@@ -9,26 +9,28 @@
 ">
 <img src="https://raw.githubusercontent.com/bananawire/iot-report/e9675ff926a72205d0e30e312a2bc1da2e5e1077/assets/cover/upc.svg" alt="UPC-LOGO" width="100" style="margin-bottom: 30px;"/>
 
-<p style="margin: 5px 0;">Universidad Peruana de Ciencias Aplicadas</p>
-<p style="margin: 5px 0;">Carrera de Ingeniería de Software</p>
+<div style="text-align: center; width: 100%;">
+<p style="margin: 5px 0; text-align: center; width: 100%;">Universidad Peruana de Ciencias Aplicadas</p>
+<p style="margin: 5px 0; text-align: center; width: 100%;">Carrera de Ingeniería de Software</p>
 
-<h4 style="margin: 5px 0;"><strong>1ASI0732:</strong></h4>
-<h4 style="margin: 5px 0;"><strong>Diseño de Experimentos de Ingeniería de Software:</strong></h4>
-<p style="margin: 5px 0;">NRC</p>
-<h4 style="margin: 5px 0;"><strong>9112</strong></h4>
+<h4 style="margin: 5px 0; text-align: center; width: 100%;"><strong>1ASI0732:</strong></h4>
+<h4 style="margin: 5px 0; text-align: center; width: 100%;"><strong>Diseño de Experimentos de Ingeniería de Software:</strong></h4>
+<p style="margin: 5px 0; text-align: center; width: 100%;">NRC</p>
+<h4 style="margin: 5px 0; text-align: center; width: 100%;"><strong>9112</strong></h4>
 
-<h4 style="margin: 5px 0;"><strong>Informe del Trabajo Final</strong></h4>
-<p style="margin: 5px 0;">Docente</p>
-<h4 style="margin: 5px 0;"><strong>Lennin Percy Cenas Vasquez
+<h4 style="margin: 5px 0; text-align: center; width: 100%;"><strong>Informe del Trabajo Final</strong></h4>
+<p style="margin: 5px 0; text-align: center; width: 100%;">Docente</p>
+<h4 style="margin: 5px 0; text-align: center; width: 100%;"><strong>Lennin Percy Cenas Vasquez
 </strong></h4>
 
-<p style="margin: 5px 0;">Equipo</p>
-<h4 style="margin: 5px 0;"><strong>bananawire</strong></h4>
+<p style="margin: 5px 0; text-align: center; width: 100%;">Equipo</p>
+<h4 style="margin: 5px 0; text-align: center; width: 100%;"><strong>bananawire</strong></h4>
 
-<p style="margin: 5px 0;">Proyecto</p>
-<h4 style="margin: 5px 0;"><strong> Clair</strong></h4>
+<p style="margin: 5px 0; text-align: center; width: 100%;">Proyecto</p>
+<h4 style="margin: 5px 0; text-align: center; width: 100%;"><strong> Clair</strong></h4>
 
-<h4 style="margin: 5px 0;"><strong> Integrantes</strong></h4>
+<h4 style="margin: 5px 0; text-align: center; width: 100%;"><strong> Integrantes</strong></h4>
+</div>
 
 | Código     | Apellidos y Nombres                  |
 | ---------- | ------------------------------------ |
@@ -38,6 +40,6 @@
 | u202312899 | Ortiz Alarcon, Victor Nicolas        |
 | u202319095 | Ventosilla Trujillo, Anderson Ricardo |
 
-<h4 style="margin-top: 25px;"><strong>Período 202620</strong></h4>
+<h4 style="margin-top: 25px; text-align: center; width: 100%;"><strong>Período 202620</strong></h4>
 
 </div>
