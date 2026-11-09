@@ -1020,6 +1020,172 @@ npx playwright show-report
 
 ### 6.3.1. Diseño de Entrevistas.
 
+#### 6.3.1.1. Objetivo y alcance de la validación
+
+**Objetivo general:** Validar con usuarios representativos de ambos segmentos que la solución Clair cumple con los atributos de usabilidad, comprensibilidad y utilidad esperados, y detectar oportunidades de mejora antes del lanzamiento oficial.
+
+**Objetivos específicos:**
+
+1. Verificar que el visitante comprende la propuesta de valor y el modelo de precios de Clair en la Landing Page en menos de 60 segundos.
+2. Confirmar que el **Facility Admin** puede completar el flujo crítico de gestión (crear organización → crear espacio → vincular dispositivo → configurar umbral) sin asistencia del moderador.
+3. Confirmar que el **Home User** puede interpretar el estado del aire y reaccionar ante una alerta desde la Mobile App.
+4. Evaluar la percepción de confianza, claridad y accesibilidad del sistema en ambos segmentos.
+5. Recoger insumos cualitativos y cuantitativos que alimenten la evaluación heurística descrita en la sección **6.3.3**.
+
+**Alcance de la validación:**
+
+| Componente validado | Segmento principal | User Goals cubiertos |
+|---|---|---|
+| Landing Page (comprensión de propuesta y precios) | Ambos | — |
+| Web Application — gestión de organizaciones, espacios y dispositivos | Facility Admin | UG01, UG02, UG03 |
+| Web Application — Rules Builder y umbrales | Facility Admin | UG03, UG04 |
+| Web Application — Analytics y Reports | Facility Admin | UG02, UG05 |
+| Mobile Application — Dashboard y alertas | Home User | UG01, UG04, UG06 |
+| Mobile Application — Settings y notificaciones | Home User | UG04, UG06 |
+
+#### 6.3.1.2. Perfil de los participantes
+
+Se convocará a **6 participantes** (3 por segmento), siguiendo la recomendación de Nielsen de que **3 usuarios por segmento permiten detectar aproximadamente el 66 % de los problemas de usabilidad** en una misma interfaz.
+
+**Segmento 1 — Facility Admins:**
+
+| Criterio | Detalle |
+|---|---|
+| Rol | Administradores, dueños o responsables de establecimientos comerciales (retail, gimnasios, restaurantes, coworkings, laboratorios) |
+| Ubicación | Lima Metropolitana |
+| Experiencia digital | Uso cotidiano de smartphone y al menos una herramienta web de gestión (POS, CRM, hojas de cálculo) |
+| Conocimiento previo de Clair | Ninguno (usuarios nuevos) |
+| Criterio de exclusión | Personas que hayan participado en el diseño del producto o en las entrevistas del Capítulo II en calidad de *stakeholders* técnicos |
+
+**Segmento 2 — Home Users:**
+
+| Criterio | Detalle |
+|---|---|
+| Rol | Adultos responsables del bienestar del hogar, con o sin sensibilidad respiratoria propia o de un conviviente |
+| Ubicación | Lima Metropolitana |
+| Experiencia digital | Uso cotidiano de smartphone; familiaridad con apps de salud, clima o domótica |
+| Conocimiento previo de Clair | Ninguno (usuarios nuevos) |
+| Criterio de exclusión | Personas con formación técnica en calidad del aire que pudieran sesgar la interpretación de los datos |
+
+**Reclutamiento:** se invitará A **6 participantes nuevos**, contactados por recomendación y redes del equipo.
+
+#### 6.3.1.3. Guion de la entrevista
+
+El guion se estructura en **seis bloques** y se adapta ligeramente según el segmento. Los tiempos son referenciales.
+
+**Bloque 0 — Bienvenida y consentimiento (5 min)**
+
+- Agradecimiento y presentación del equipo.
+- Explicación del objetivo: *"Vamos a mostrarte Clair, un sistema de monitoreo de calidad del aire. Queremos saber qué tu opinión, no evaluamos tus conocimientos."*
+- Consentimiento informado.
+- Confirmación del permiso de grabación.
+- Recordatorio del *think-aloud*: *"Mientras navegas, cuéntanos en voz alta lo que piensas, lo que esperas que ocurra y lo que te confunde."*
+
+**Bloque 1 — Perfil del participante**
+
+Preguntas Iniciales:
+1. ¿A qué te dedicas y cómo es un día típico en tu hogar / establecimiento?
+2. ¿Qué dispositivos digitales usas con más frecuencia?
+3. ¿Cómo cuidas hoy la calidad del a ire (si aplica) o cómo decides ventilar?
+
+**Bloque 2 — Landing Page: primera impresión (10 min)**
+
+- Abrir la Landing Page en un navegador limpio.
+- *"Sin hacer clic todavía, dime qué crees que hace Clair y para quién es."*
+- *"Encuentra cuánto cuesta y qué incluye el plan gratuito vs. el premium."*
+
+Preguntas posteriores:
+4. ¿En tus propias palabras, qué es Clair?
+5. ¿Qué parte de la propuesta de valor te generó más confianza? ¿Alguna te generó dudas?
+6. ¿La información de precios te pareció clara? ¿Faltó algo?
+7. ¿Qué tan probable es que dejes tus datos de contacto aquí del 1 al 5? ¿Por qué?
+
+**Bloque 3 — Web App: flujo de administrador (solo Segmento 1)**
+
+Tareas secuenciales (think-aloud):
+- **T1:** Inicia sesión con las credenciales demo y crea una organización llamada *"Sucursal Demo"*.
+- **T2:** Crea un espacio llamado *"Sala de Reuniones"* dentro de esa organización.
+- **T3:** Empareja el dispositivo *CLAIR-DEMO* y reclámalo en ese espacio.
+- **T4:** Configura el umbral de PM2.5 en **50 µg/m³**.
+- **T5:** Interpreta el panel de *Air Quality* y dime si el aire del espacio está en estado saludable, moderado o crítico.
+- **T6:** Navega a *Alerts & Actions* y revisa si hay alertas activas. Si hay una, descríbeme qué harías.
+
+Preguntas de refuerzo:
+8. ¿Qué fue lo más fácil? ¿Y lo más confuso?
+9. ¿En algún momento sentiste que el sistema no te decía qué hacer a continuación?
+10. ¿Confiarías en la información que muestra el dashboard para tomar una decisión? ¿Por qué?
+11. Si pudieras cambiar una sola cosa de esta pantalla, ¿cuál sería?
+
+**Bloque 4 — Mobile App: flujo de usuario del hogar (solo Segmento 2)**
+
+Tareas secuenciales (think-aloud):
+- **T1:** Inicia sesión en la Mobile App con las credenciales demo.
+- **T2:** En el Dashboard, dime si el aire de tu hogar está en buen estado y por qué.
+- **T3:** Cambia el rango de fechas a *"Semana"* y describe qué observas en la tendencia.
+- **T4:** Abre el detalle de un sensor e identifica los valores de PM2.5, CO₂ y humedad.
+- **T5:** Configura una regla personalizada: *"Cuando el CO₂ supere 1000 ppm, avísame."*
+- **T6:** Imagina que recibes una notificación push de alerta crítica. Ábrela y dime qué harías.
+
+Preguntas de refuerzo:
+12. ¿Qué tan fácil fue configurar una regla de alerta sin ayuda?
+13. ¿Los colores y las etiquetas del estado del aire te resultaron comprensibles? ¿Habría otra forma de mostrarlo que te resultara más clara?
+14. ¿Qué te pareció el tamaño de los textos, los botones y la navegación inferior?
+15. ¿Usarías esta app a diario? ¿Semanalmente? ¿Por qué?
+
+**Bloque 5 — Validación general**
+
+Preguntas comunes a ambos segmentos:
+16. En una escala del 1 al 5, ¿qué tan útil te pareció Clair para el problema que te describimos al inicio?
+17. ¿Qué tan probable es que lo recomiendes a un colega / familiar? (escala 1–10, NPS)
+18. ¿Hubo algún término técnico que no entendieras?
+19. ¿Qué funcionalidad sentiste que faltaba?
+20. ¿Algo de la interfaz te generó desconfianza o incomodidad?
+21. ¿Hay algo más que quieras comentarnos antes de terminar?
+
+**Bloque 6 — Cierre**
+
+- Agradecimiento.
+- Aplicación del cuestionario **SUS** (System Usability Scale, 10 ítems Likert).
+- Confirmación de la entrega del agradecimiento y del canal de contacto para futuras validaciones.
+
+#### 6.3.1.5. Matriz de tareas ↔ User Goals ↔ User Stories
+
+Esta matriz asegura que cada tarea del guion está justificada por el backlog y por los objetivos de usuario definidos en el Capítulo IV.
+
+| ID | Tarea del guion | User Goal | User Stories asociadas | Componente |
+|---|---|---|---|---|
+| T1 | Crear organización | UG02 | WA-US-09 | Web App |
+| T2 | Crear espacio | UG02 | WA-US-13 | Web App |
+| T3 | Emparejar y reclamar dispositivo | UG01 | WA-US-17, WA-US-18 | Web App |
+| T4 | Configurar umbral PM2.5 | UG04 | WA-US-30 | Web App |
+| T5 | Interpretar panel Air Quality | UG01, UG03 | WA-US-42, WA-US-47 | Web App |
+| T6 | Revisar alertas activas | UG01 | WA-US-34, WA-US-35 | Web App |
+| T7 | Interpretar Dashboard Mobile | UG06 | MA-US-23, MA-US-24 | Mobile App |
+| T8 | Cambiar rango de fechas en tendencia | UG05 | MA-US-26 | Mobile App |
+| T9 | Abrir detalle de sensor | UG04 | MA-US-23 | Mobile App |
+| T10 | Configurar regla de alerta | UG04 | MA-US-16 | Mobile App |
+| T11 | Reaccionar a notificación push | UG01, UG04 | MA-US-22, MA-US-27 | Mobile App |
+
+
+#### 6.3.1.6. Criterios de evaluación que alimentan la sección 6.3.3
+
+Los datos recogidos en cada sesión se consolidan para la evaluación heurística según los **10 principios de Nielsen**. La correspondencia es la siguiente:
+
+| Heurística de Nielsen | Evidencia recogida en la entrevista |
+|---|---|
+| H1. Visibilidad del estado del sistema | T5, T6, T7, T11 — ¿el usuario sabe en qué estado está el aire y el sistema? |
+| H2. Correspondencia entre sistema y mundo real | Preguntas 4, 13, 18 — lenguaje y metáforas usadas |
+| H3. Control y libertad del usuario | T1–T6, T8 — posibilidad de deshacer, cancelar, volver |
+| H4. Consistencia y estándares | Observación de patrones en Landing, Web y Mobile |
+| H5. Prevención de errores | T4, T10 — validaciones y mensajes |
+| H6. Reconocimiento antes que recuerdo | T5, T7 — ¿el usuario recuerda datos o los ve? |
+| H7. Flexibilidad y eficiencia de uso | T6, T8, T11 — atajos, filtros, acciones rápidas |
+| H8. Diseño estético y minimalista | Preguntas 5, 11, 14 — percepción visual |
+| H9. Ayuda al usuario a reconocer, diagnosticar y recuperarse de errores | T4, T10 — mensajes de error |
+| H10. Ayuda y documentación | Pregunta 19 — ¿faltó ayuda contextual? |
+
+Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (citas, observaciones) se presentarán en **6.3.2 Registro de Entrevistas** y se sintetizarán en **6.3.3 Evaluación según heurísticas**.
+
 ## 6.3.2. Registro de Entrevistas.
 
 ### 6.3.3. Evaluacionessegún heurísticas.
