@@ -1084,9 +1084,9 @@ El guion se estructura en **seis bloques** y se adapta ligeramente según el seg
 **Bloque 1 — Perfil del participante**
 
 Preguntas Iniciales:
-1. ¿A qué te dedicas y cómo es un día típico en tu hogar / establecimiento?
-2. ¿Qué dispositivos digitales usas con más frecuencia?
-3. ¿Cómo cuidas hoy la calidad del a ire (si aplica) o cómo decides ventilar?
+- 1. ¿A qué te dedicas y cómo es un día típico en tu hogar / establecimiento?
+- 2. ¿Qué dispositivos digitales usas con más frecuencia?
+- 3. ¿Cómo cuidas hoy la calidad del a ire (si aplica) o cómo decides ventilar?
 
 **Bloque 2 — Landing Page: primera impresión (10 min)**
 
@@ -1095,10 +1095,10 @@ Preguntas Iniciales:
 - *"Encuentra cuánto cuesta y qué incluye el plan gratuito vs. el premium."*
 
 Preguntas posteriores:
-4. ¿En tus propias palabras, qué es Clair?
-5. ¿Qué parte de la propuesta de valor te generó más confianza? ¿Alguna te generó dudas?
-6. ¿La información de precios te pareció clara? ¿Faltó algo?
-7. ¿Qué tan probable es que dejes tus datos de contacto aquí del 1 al 5? ¿Por qué?
+- 4. ¿En tus propias palabras, qué es Clair?
+- 5. ¿Qué parte de la propuesta de valor te generó más confianza? ¿Alguna te generó dudas?
+- 6. ¿La información de precios te pareció clara? ¿Faltó algo?
+- 7. ¿Qué tan probable es que dejes tus datos de contacto aquí del 1 al 5? ¿Por qué?
 
 **Bloque 3 — Web App: flujo de administrador (solo Segmento 1)**
 
@@ -1111,10 +1111,10 @@ Tareas secuenciales (think-aloud):
 - **T6:** Navega a *Alerts & Actions* y revisa si hay alertas activas. Si hay una, descríbeme qué harías.
 
 Preguntas de refuerzo:
-8. ¿Qué fue lo más fácil? ¿Y lo más confuso?
-9. ¿En algún momento sentiste que el sistema no te decía qué hacer a continuación?
-10. ¿Confiarías en la información que muestra el dashboard para tomar una decisión? ¿Por qué?
-11. Si pudieras cambiar una sola cosa de esta pantalla, ¿cuál sería?
+- 8. ¿Qué fue lo más fácil? ¿Y lo más confuso?
+- 9. ¿En algún momento sentiste que el sistema no te decía qué hacer a continuación?
+- 10. ¿Confiarías en la información que muestra el dashboard para tomar una decisión? ¿Por qué?
+- 11. Si pudieras cambiar una sola cosa de esta pantalla, ¿cuál sería?
 
 **Bloque 4 — Mobile App: flujo de usuario del hogar (solo Segmento 2)**
 
@@ -1127,26 +1127,24 @@ Tareas secuenciales (think-aloud):
 - **T6:** Imagina que recibes una notificación push de alerta crítica. Ábrela y dime qué harías.
 
 Preguntas de refuerzo:
-12. ¿Qué tan fácil fue configurar una regla de alerta sin ayuda?
-13. ¿Los colores y las etiquetas del estado del aire te resultaron comprensibles? ¿Habría otra forma de mostrarlo que te resultara más clara?
-14. ¿Qué te pareció el tamaño de los textos, los botones y la navegación inferior?
-15. ¿Usarías esta app a diario? ¿Semanalmente? ¿Por qué?
+- 12. ¿Qué tan fácil fue configurar una regla de alerta sin ayuda?
+- 13. ¿Los colores y las etiquetas del estado del aire te resultaron comprensibles? ¿Habría otra forma de mostrarlo que te resultara más clara?
+- 14. ¿Qué te pareció el tamaño de los textos, los botones y la navegación inferior?
+- 15. ¿Usarías esta app a diario? ¿Semanalmente? ¿Por qué?
 
 **Bloque 5 — Validación general**
 
 Preguntas comunes a ambos segmentos:
-16. En una escala del 1 al 5, ¿qué tan útil te pareció Clair para el problema que te describimos al inicio?
-17. ¿Qué tan probable es que lo recomiendes a un colega / familiar? (escala 1–10, NPS)
-18. ¿Hubo algún término técnico que no entendieras?
-19. ¿Qué funcionalidad sentiste que faltaba?
-20. ¿Algo de la interfaz te generó desconfianza o incomodidad?
-21. ¿Hay algo más que quieras comentarnos antes de terminar?
+- 16. En una escala del 1 al 5, ¿qué tan útil te pareció Clair para el problema que te describimos al inicio?
+- 17. ¿Qué tan probable es que lo recomiendes a un colega / familiar? (escala 1–10, NPS)
+- 18. ¿Hubo algún término técnico que no entendieras?
+- 19. ¿Qué funcionalidad sentiste que faltaba?
+- 20. ¿Algo de la interfaz te generó desconfianza o incomodidad?
+- 21. ¿Hay algo más que quieras comentarnos antes de terminar?
 
 **Bloque 6 — Cierre**
 
 - Agradecimiento.
-- Aplicación del cuestionario **SUS** (System Usability Scale, 10 ítems Likert).
-- Confirmación de la entrega del agradecimiento y del canal de contacto para futuras validaciones.
 
 #### 6.3.1.5. Matriz de tareas ↔ User Goals ↔ User Stories
 
