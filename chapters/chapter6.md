@@ -1186,17 +1186,653 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 
 ## 6.3.2. Registro de Entrevistas.
 
-### 6.3.3. Evaluacionessegún heurísticas.
+## 6.3.2.1. Sesión VI-01 — Administrador de tienda comercial
+
+**Datos del participante:**
+
+| Campo                                    | Detalle |
+|------------------------------------------|---|
+| ID de sesión                             | VI-01 |
+| Sexo                                     | Varón |
+| Edad                                     | 32 años |
+| Ocupación                                | Administrador de tienda de productos |
+| Rol en el establecimiento                | Administrador |
+| Experiencia digital                      | Uso cotidiano de celular y computadora para gestión del negocio |
+| Conocimiento previo de Clair             | Ninguno |
+| Consentimiento informado                 | Sí |
+| Grabación autorizada                     | Sí |
+| Link de la grabación                     | [Enlace a la grabación](#) |
+
+**Respuestas por bloque del guion:**
+
+| Bloque | Pregunta | Respuesta del participante |
+|---|---|---|
+| Perfil | ¿A qué se dedica y cómo es un día normal? | Administra una tienda; supervisa ventas, atiende proveedores y organiza productos. Nota que el ambiente se siente "más cargado" cuando hay mucha gente. |
+| Perfil | ¿Qué dispositivos usa? ¿Cómo controla la ventilación? | Celular y computadora. Abre puertas o ventanas cuando siente calor o hay demasiadas personas. |
+| Landing | Primera impresión de Clair | Lo percibe como un sistema que permite conocer si el aire de un establecimiento está limpio o contaminado. |
+| Landing | ¿Qué genera más confianza? ¿Precios claros? | Valora el monitoreo en tiempo real. Sobre precios, pide claridad sobre el costo del dispositivo y si hay pago mensual. |
+| Web App | ¿Qué esperaría ver en el panel? | Indicadores fáciles de entender, colores que indiquen si el aire está bien o mal, y recomendaciones para solucionar el problema. |
+| Web App | ¿Confiaría en las alertas? | Sí, siempre que las mediciones sean precisas. Le ayudaría a ventilar con criterio y no solo por sensación térmica. |
+| Cierre | Utilidad (1–5) y recomendación | **4 / 5**. Lo recomendaría a otros administradores, especialmente si permite recibir alertas al celular. |
+
+**Citas literales relevantes:**
+
+> *"Normalmente uno no puede saber eso solamente mirando el ambiente."*
+> *"Esperaría encontrar indicadores fáciles de entender, colores que indiquen si el aire está bien o mal y alguna recomendación para solucionar el problema."*
+> *"Me ayudaría a saber cuándo ventilar, en lugar de hacerlo solamente cuando siento que hace calor."*
+
+**Hallazgos:**
+
+| ID | Hallazgo | Tipo | Severidad | Componente |
+|---|---|---|---|---|
+| H-VI01-01 | El monitoreo en tiempo real es el principal generador de confianza en la propuesta de valor. | Positivo | — | Landing Page |
+| H-VI01-02 | El participante no encontró explícito en la primera vista el costo del dispositivo ni la existencia de un pago mensual. | Oportunidad de mejora | Media | Landing Page — Pricing |
+| H-VI01-03 | Espera recomendaciones accionables (qué hacer) además del valor numérico en el panel. | Requisito de diseño | Media | Web App — Air Quality |
+| H-VI01-04 | La confianza en las alertas depende de la percepción de precisión del sensor. | Requisito de confianza | Media | Web App / Mobile |
+| H-VI01-05 | Prefiere recibir alertas en el celular antes que tener que revisar el panel web. | Oportunidad de mejora | Baja | Mobile App |
+
+**Puntaje de utilidad percibida:** 4 / 5
+**Intención de recomendación:** Sí
+
+---
+
+## 6.3.2.2. Sesión VI-02 — Encargado de cafetería
+
+**Datos del participante:**
+
+| Campo | Detalle |
+|---|---|
+| ID de sesión | VI-02 |
+| Sexo | Varón |
+| Edad | 38 años |
+| Ocupación | Encargado de cafetería |
+| Rol en el establecimiento | Encargado (personal, pedidos y atención al cliente) |
+| Experiencia digital | Uso de dispositivos para gestión del local; no cuenta con equipos de medición ambiental |
+| Conocimiento previo de Clair | Ninguno |
+| Consentimiento informado | Sí |
+| Grabación autorizada | Sí |
+| Link de la grabación | [Enlace a la grabación](#) |
+
+**Respuestas por bloque del guion:**
+
+| Bloque | Pregunta | Respuesta del participante |
+|---|---|---|
+| Perfil | ¿Cuál es su función y cómo es un día habitual? | Encargado de cafetería; gestiona personal, pedidos y atención al cliente. En horas punta el ambiente se vuelve "caluroso o cargado". |
+| Perfil | ¿Cómo controlan actualmente la ventilación? | Usan ventiladores y algunas ventanas. No tienen ningún equipo que mida la calidad del aire. |
+| Landing | ¿Qué entiende que hace Clair? | Lo interpreta como una herramienta para medir la contaminación del aire dentro de establecimientos. Valora el impacto en trabajadores y clientes que permanecen varias horas en el mismo espacio. |
+| Landing | ¿Qué característica le interesa más? ¿Qué dudas tiene? | Le interesa recibir alertas cuando la calidad del aire empeore. Sus dudas son el costo y si la instalación requiere un técnico. |
+| Web App | ¿Qué información le gustaría encontrar primero en el panel? | Ver rápidamente si el ambiente está saludable, si hay exceso de CO₂ o partículas, y qué hacer para mejorar. |
+| Web App | Si recibe una alerta crítica, ¿qué haría? | Verificaría la alerta, abriría ventanas o mejoraría la ventilación y avisaría al personal. |
+| Cierre | Facilidad de uso y frecuencia | Considera que sería fácil si la interfaz es sencilla. La revisaría **diariamente antes de la jornada y durante las horas de mayor actividad**. |
+| Cierre | Utilidad (1–5) | **5 / 5**, condicionado a que las mediciones sean confiables. |
+
+**Citas literales relevantes:**
+
+> *"En un restaurante hay trabajadores y clientes que permanecen varias horas en el mismo espacio."*
+> *"Mi principal duda sería el costo y si instalar el dispositivo requiere contratar a un técnico."*
+> *"Quisiera ver rápidamente si el ambiente está saludable, si hay demasiado CO₂ o partículas y qué debería hacer para mejorar las condiciones."*
+> *"La revisaría diariamente antes de comenzar la jornada y durante las horas de mayor actividad."*
+
+**Hallazgos:**
+
+| ID | Hallazgo | Tipo | Severidad | Componente |
+|---|---|---|---|---|
+| H-VI02-01 | La ausencia actual de cualquier equipo de medición ambiental refuerza el valor percibido de Clair. | Positivo | — | Propuesta de valor |
+| H-VI02-02 | Existe incertidumbre sobre el **costo total** y sobre si la **instalación requiere un técnico**. | Oportunidad de mejora | Alta | Landing Page — Pricing / Onboarding |
+| H-VI02-03 | Espera ver primero un **resumen del estado** (saludable / no saludable) antes que los valores numéricos. | Requisito de diseño | Media | Web App — Air Quality |
+| H-VI02-04 | Espera **recomendaciones accionables** junto a la alerta (abrir ventanas, avisar al personal). | Requisito de diseño | Media | Web App / Mobile |
+| H-VI02-05 | Proyecta un uso **diario y recurrente** (antes de la jornada y en horas punta), lo que valida la frecuencia de uso hipotética del segmento. | Positivo | — | Web App |
+| H-VI02-06 | La confianza en el sistema depende de la **percepción de precisión** del sensor. | Requisito de confianza | Media | Landing / Web App |
+
+**Puntaje de utilidad percibida:** 5 / 5 (condicionado a fiabilidad de las mediciones)
+**Intención de recomendación:** No se preguntó explícitamente; se infiere positiva por el puntaje y el cierre.
+
+---
+
+## 6.3.2.3. Sesión VI-03 — Administrador de local de servicios
+
+**Datos del participante:**
+
+| Campo | Detalle |
+|---|---|
+| ID de sesión | VI-03 |
+| Sexo | Varón |
+| Edad | 29 años |
+| Ocupación | Administrador de un pequeño local de servicios |
+| Rol en el establecimiento | Responsable del local |
+| Experiencia digital | Uso cotidiano de laptop y celular para gestión |
+| Conocimiento previo de Clair | Ninguno |
+| Consentimiento informado | Sí |
+| Grabación autorizada | Sí |
+| Link de la grabación | [Enlace a la grabación](#) |
+
+**Respuestas por bloque del guion:**
+
+| Bloque | Pregunta | Respuesta del participante |
+|---|---|---|
+| Perfil | ¿A qué se dedica y cómo es el ambiente donde trabaja? | Administra un pequeño local de servicios. Trabaja con 4 personas y pasan toda la jornada dentro. No tienen mucha ventilación natural. |
+| Perfil | ¿Qué dispositivos usa? ¿Cómo sabe cuándo ventilar? | Usa laptop y celular. Abren la puerta cuando sienten que el ambiente está "encerrado", sin medición objetiva. |
+| Landing | ¿Qué cree que ofrece Clair? | Lo interpreta como una plataforma para monitorear indicadores del aire y saber si el espacio tiene buenas condiciones ambientales. |
+| Landing | ¿Qué le parece la propuesta? ¿Qué dudas tiene? | Le parece útil porque aporta información que normalmente se desconoce. Sus dudas: **precisión de los sensores** y **costo de mantener el servicio**. |
+| Web App | ¿Qué esperaría encontrar en el panel? | Un **resumen general del ambiente**, las **mediciones de cada sensor** y un **historial** para comparar la evolución semanal. |
+| Web App | Si recibe una alerta de PM2.5 elevado, ¿qué haría? | Revisaría qué tan elevado está el indicador, comprobaría fuentes de polvo o contaminación y trataría de ventilar. |
+| Cierre | ¿Qué mejoraría de Clair? | **Agregaría recomendaciones concretas**: no solo indicar que el aire está mal, sino explicar qué acciones tomar. |
+| Cierre | Utilidad (1–5) | **4 / 5**, condicionado a que el mantenimiento sea bajo y las recomendaciones fáciles de entender. |
+
+**Citas literales relevantes:**
+
+> *"Generalmente abrimos la puerta cuando sentimos que el ambiente está encerrado, pero no tenemos ninguna medición objetiva."*
+> *"Quisiera saber qué tan precisos son los sensores y cuánto cuesta mantener el servicio."*
+> *"Agregaría recomendaciones concretas. No solamente indicar que el aire está mal, sino explicar qué acciones podemos realizar para mejorarlo."*
+> *"Lo utilizaría si no requiere demasiado mantenimiento y si las recomendaciones son fáciles de entender."*
+
+**Hallazgos:**
+
+| ID | Hallazgo | Tipo | Severidad | Componente |
+|---|---|---|---|---|
+| H-VI03-01 | La ausencia de medición objetiva refuerza la propuesta de valor de Clair en locales pequeños. | Positivo | — | Propuesta de valor |
+| H-VI03-02 | Persiste la duda sobre la **precisión de los sensores** y el **costo de mantenimiento**. | Oportunidad de mejora | Alta | Landing / Documentación |
+| H-VI03-03 | Espera un **resumen general** antes que el detalle por sensor. | Requisito de diseño | Media | Web App — Air Quality |
+| H-VI03-04 | Valora el **historial semanal** para comparar la evolución del ambiente. | Requisito de diseño | Media | Web App — Analytics / Reports |
+| H-VI03-05 | Refuerza la necesidad de **recomendaciones concretas** junto a la alerta. | Requisito de diseño | Alta | Web App / Mobile |
+| H-VI03-06 | El **mantenimiento bajo** es un criterio de adopción explícito. | Requisito no funcional | Media | Producto / Soporte |
+
+**Puntaje de utilidad percibida:** 4 / 5 (condicionado a bajo mantenimiento y recomendaciones claras)
+**Intención de recomendación:** No se preguntó explícitamente; se infiere positiva por la disposición de uso.
+
+---
+
+## 6.3.2.4. Sesión VI-04 — Hombre que vive con su familia
+
+**Datos del participante:**
+
+| Campo | Detalle |
+|---|---|
+| ID de sesión | VI-04 |
+| Sexo | Varón |
+| Edad | 35 años |
+| Ocupación | Trabajador dependiente (no especifica rubro) |
+| Composición del hogar | Esposa y dos hijos |
+| Experiencia digital | Uso frecuente de celular; sin dispositivos de medición ambiental en casa |
+| Conocimiento previo de Clair | Ninguno |
+| Consentimiento informado | Sí |
+| Grabación autorizada | Sí |
+| Link de la grabación | [Enlace a la grabación](#) |
+
+**Respuestas por bloque del guion:**
+
+| Bloque | Pregunta | Respuesta del participante |
+|---|---|---|
+| Perfil | ¿Cómo es un día habitual en su hogar? | Trabaja durante el día y al regresar pasa tiempo con su familia. Sus hijos están en casa por las tardes; le preocupa que tengan un ambiente adecuado. |
+| Perfil | ¿Qué dispositivos usa? ¿Cómo controla la ventilación? | Usa bastante el celular. Abren ventanas por las mañanas o cuando sienten calor, pero **no saben realmente qué tan limpio está el aire**. |
+| Landing | ¿Qué cree que hace Clair? | Lo interpreta como un sistema que permite conocer la calidad del aire de una vivienda mediante sensores. Le parece relevante porque *"uno puede estar respirando aire contaminado sin darse cuenta"*. |
+| Landing | ¿Qué característica le parece más útil? ¿Qué dudas tiene? | Le interesan las **alertas y recomendaciones**, especialmente recibir una notificación cuando el aire de la habitación de sus hijos no esté en buenas condiciones. Su duda principal es el **costo del dispositivo**. |
+| Mobile App | ¿Qué esperaría encontrar al ver el estado del aire? | Un **indicador sencillo** (verde si está bien, rojo si hay problema). **No quiere interpretar muchos números**. |
+| Mobile App | Si recibe una alerta de CO₂ > 1000 ppm, ¿qué haría? | Abriría las ventanas para ventilar y luego revisaría si los niveles vuelven a bajar. |
+| Mobile App | ¿Le resultaría fácil configurar una alerta desde el celular? | Sí, siempre que los **pasos sean sencillos** y no tenga que buscar demasiadas opciones. |
+| Cierre | Utilidad (1–5) | **5 / 5**. La usaría **diariamente** si es fácil de manejar. |
+
+**Citas literales relevantes:**
+
+> *"Uno puede estar respirando aire contaminado sin darse cuenta."*
+> *"Me gustaría recibir una notificación cuando el aire de la habitación de mis hijos no esté en buenas condiciones."*
+> *"Esperaría ver un indicador sencillo, por ejemplo, verde si está bien y rojo si hay algún problema. No quisiera tener que interpretar muchos números."*
+> *"Sí, siempre que los pasos sean sencillos y no tenga que buscar demasiadas opciones."*
+> *"La utilizaría diariamente si es fácil de manejar."*
+
+**Hallazgos:**
+
+| ID | Hallazgo | Tipo | Severidad | Componente |
+|---|---|---|---|---|
+| H-VI04-01 | La **protección de los hijos** es el motivador principal de adopción. | Positivo | — | Propuesta de valor |
+| H-VI04-02 | Valora explícitamente el **enfoque preventivo** ("respirar aire contaminado sin darse cuenta"). | Positivo | — | Landing / Mobile |
+| H-VI04-03 | Prefiere **indicadores visuales simples** (semáforo verde/rojo) sobre valores numéricos. | Requisito de diseño | Alta | Mobile App — Dashboard |
+| H-VI04-04 | Espera **alertas contextualizadas por espacio** (habitación de los hijos), no solo un estado global. | Requisito de diseño | Media | Mobile App — Notificaciones |
+| H-VI04-05 | El **costo del dispositivo** sigue siendo la duda principal antes de adoptar. | Oportunidad de mejora | Alta | Landing Page — Pricing |
+| H-VI04-06 | Requiere **flujos de configuración con pocos pasos** para crear reglas de alerta. | Requisito de usabilidad | Media | Mobile App — Rules Builder |
+| H-VI04-07 | Declara intención de **uso diario** si la app es fácil de manejar. | Positivo | — | Mobile App |
+
+**Puntaje de utilidad percibida:** 5 / 5
+**Intención de recomendación:** No se preguntó explícitamente; se infiere positiva por el puntaje y el cierre.
+
+---
+
+## 6.3.2.5. Sesión VI-05 — Hombre que vive solo o con su pareja
+
+**Datos del participante:**
+
+| Campo | Detalle |
+|---|---|
+| ID de sesión | VI-05 |
+| Sexo | Varón |
+| Edad | 27 años |
+| Ocupación | Trabaja y estudia |
+| Composición del hogar | Vive solo o con su pareja (departamento) |
+| Experiencia digital | Uso frecuente de celular, laptop y aplicaciones móviles |
+| Conocimiento previo de Clair | Ninguno |
+| Consentimiento informado | Sí |
+| Grabación autorizada | Sí |
+| Link de la grabación | [Enlace a la grabación](#) |
+
+**Respuestas por bloque del guion:**
+
+| Bloque | Pregunta | Respuesta del participante |
+|---|---|---|
+| Perfil | ¿Cómo es su rutina diaria en casa? | Trabaja y estudia; pasa bastante tiempo frente a la computadora. Vive en un departamento y **mantiene las ventanas cerradas por el ruido de la calle** cuando trabaja. |
+| Perfil | ¿Qué dispositivos usa? ¿Cómo decide cuándo ventilar? | Usa principalmente celular y laptop. Ventila cuando siente que el ambiente está "encerrado" o hace demasiado calor. |
+| Landing | ¿Qué entiende que ofrece Clair? | Un sistema que usa sensores para medir componentes del aire y mostrar los resultados en una aplicación. Lo percibe orientado a personas que quieren controlar el ambiente de su casa. |
+| Landing | ¿Qué le genera confianza o desconfianza? | Le da confianza el **acceso al historial de mediciones** y los datos en tiempo real. Sus dudas: **exactitud de los sensores** y **costo del equipo**. |
+| Mobile App | ¿Qué información le gustaría ver primero? | Un **resumen del estado del aire**, las **mediciones principales** y una **gráfica** para comparar la semana. |
+| Mobile App | ¿Le parece útil una alerta de CO₂ > 1000 ppm? | Sí, bastante: le permitiría **recibir una notificación mientras trabaja** sin revisar constantemente la app. |
+| Mobile App | ¿Qué opina de colores, etiquetas y navegación? | Los colores ayudan **siempre que vayan acompañados de explicaciones**. Prefiere **no tener demasiadas pantallas ni información innecesaria**. |
+| Cierre | Frecuencia de uso y utilidad (1–5) | **4 / 5**. La revisaría **algunas veces al día o al recibir una alerta**. Condiciona la adopción a un **precio accesible**. |
+
+**Citas literales relevantes:**
+
+> *"Normalmente mantengo las ventanas cerradas cuando estoy trabajando por el ruido de la calle."*
+> *"Me daría confianza poder consultar el historial de mediciones, aunque quisiera saber qué tan exactos son los sensores y cuánto cuesta el equipo."*
+> *"Así podría recibir una notificación mientras estoy trabajando y no tendría que estar revisando constantemente la aplicación."*
+> *"Los colores ayudan bastante, siempre que estén acompañados de explicaciones."*
+> *"Me gustaría que la aplicación no tuviera demasiadas pantallas ni información innecesaria."*
+
+**Hallazgos:**
+
+| ID | Hallazgo | Tipo | Severidad | Componente |
+|---|---|---|---|---|
+| H-VI05-01 | El **ruido de la calle** lleva a mantener ventanas cerradas, lo que refuerza la necesidad de monitoreo interior. | Positivo | — | Propuesta de valor |
+| H-VI05-02 | El **historial de mediciones** es un generador de confianza explícito. | Positivo | — | Mobile App — Analytics |
+| H-VI05-03 | Persiste la duda sobre **exactitud del sensor** y **costo del equipo**. | Oportunidad de mejora | Alta | Landing Page — Pricing / FAQ |
+| H-VI05-04 | Prefiere **resumen + gráfica semanal** como primera vista. | Requisito de diseño | Media | Mobile App — Dashboard |
+| H-VI05-05 | La **alerta push mientras trabaja** es el caso de uso más valorado. | Positivo | — | Mobile App — Notificaciones |
+| H-VI05-06 | Los **colores deben ir acompañados de explicación textual**; no basta el semáforo. | Requisito de accesibilidad | Media | Mobile App — Air Quality |
+| H-VI05-07 | Pide **simplicidad de navegación**: pocas pantallas, sin información innecesaria. | Requisito de usabilidad | Media | Mobile App — Navegación |
+| H-VI05-08 | La adopción está condicionada a un **precio accesible**. | Oportunidad de mejora | Alta | Landing Page — Pricing |
+
+**Puntaje de utilidad percibida:** 4 / 5 (condicionado a precio accesible)
+**Intención de recomendación:** No se preguntó explícitamente; se infiere positiva por el puntaje y la disposición de uso.
+
+---
+
+## 6.3.2.6. Sesión VI-06 — Hombre que pasa bastante tiempo en casa
+
+**Datos del participante:**
+
+| Campo | Detalle |
+|---|---|
+| ID de sesión | VI-06 |
+| Sexo | Varón |
+| Edad | 42 años |
+| Ocupación | Trabaja desde casa (home office) |
+| Composición del hogar | No especifica; pasa muchas horas en oficina en casa |
+| Experiencia digital | Uso cotidiano de celular; sin dispositivos de medición ambiental |
+| Conocimiento previo de Clair | Ninguno |
+| Consentimiento informado | Sí |
+| Grabación autorizada | Sí |
+| Link de la grabación | [Enlace a la grabación](#) |
+
+**Respuestas por bloque del guion:**
+
+| Bloque | Pregunta | Respuesta del participante |
+|---|---|---|
+| Perfil | ¿Cómo es su rutina y cuánto tiempo pasa dentro de casa? | Trabaja desde casa la mayor parte de la semana. Pasa muchas horas en su oficina y, según el clima, **mantiene las ventanas cerradas durante bastante tiempo**. |
+| Perfil | ¿Cómo controla la ventilación? | Abre ventanas por las mañanas y usa ventiladores cuando hace calor. **No tiene forma de saber si el aire está en buenas condiciones**. |
+| Landing | ¿Qué cree que hace Clair? | Un sistema para medir la calidad del aire y consultar resultados desde el celular. Le parece útil porque *"uno normalmente no presta atención a estos factores hasta que siente alguna molestia"*. |
+| Landing | ¿Qué parte le genera mayor interés? | Conocer **niveles de CO₂ y partículas**. También un **historial** para saber si la ventilación realmente está mejorando las condiciones. |
+| Mobile App | ¿Qué esperaría encontrar en el dashboard? | Un **indicador general del estado del aire**, los **valores de cada medición** y **recomendaciones sobre qué hacer** cuando algún indicador esté elevado. |
+| Mobile App | Si recibe una alerta crítica, ¿cómo reaccionaría? | Revisaría qué indicador está elevado, seguiría las recomendaciones (abrir ventanas, buscar la fuente del problema). |
+| Mobile App | Facilidad de uso y mejoras | Le parecería fácil **si tiene botones claros y explicaciones sencillas**. Mejoraría las **recomendaciones para que sean más específicas**, no solo estadísticas. |
+| Cierre | Utilidad (1–5) y recomendación | **5 / 5**. Lo recomendaría **siempre que las mediciones sean confiables**. |
+
+**Citas literales relevantes:**
+
+> *"Uno normalmente no presta atención a estos factores hasta que siente alguna molestia."*
+> *"Me gustaría tener un historial para saber si la ventilación realmente está mejorando las condiciones."*
+> *"Mejoraría las recomendaciones para que sean más específicas y no solamente muestren estadísticas."*
+> *"Sí lo recomendaría, siempre que las mediciones sean confiables."*
+
+**Hallazgos:**
+
+| ID | Hallazgo | Tipo | Severidad | Componente |
+|---|---|---|---|---|
+| H-VI06-01 | El **trabajo desde casa** y las ventanas cerradas refuerzan la necesidad de monitoreo interior. | Positivo | — | Propuesta de valor |
+| H-VI06-02 | El **historial de mediciones** se percibe como evidencia de mejora tras ventilar. | Positivo | — | Mobile App — Analytics |
+| H-VI06-03 | Espera **indicador general + valores + recomendaciones** en el dashboard. | Requisito de diseño | Media | Mobile App — Dashboard |
+| H-VI06-04 | Pide **recomendaciones específicas** y no solo estadísticas. | Requisito de diseño | Alta | Mobile App / Web App |
+| H-VI06-05 | Requiere **botones claros y explicaciones sencillas**. | Requisito de usabilidad | Media | Mobile App — UI |
+| H-VI06-06 | La confianza en la recomendación depende de la **fiabilidad de la medición**. | Requisito de confianza | Media | Transversal |
+| H-VI06-07 | Declara intención de **recomendar** el producto si las mediciones son confiables. | Positivo | — | Producto |
+
+**Puntaje de utilidad percibida:** 5 / 5 (condicionado a fiabilidad de las mediciones)
+**Intención de recomendación:** Sí
+
+---
+
+## 6.3.2.9. Tabla maestra de las 6 sesiones
+
+| ID | Segmento | Edad | Ocupación | Utilidad (1–5) | Recomienda | Grabación |
+|---|---|---|---|---|---|---|
+| VI-01 | Facility Admin | 32 | Administrador de tienda | 4 | Sí | [Enlace](#) |
+| VI-02 | Facility Admin | 38 | Encargado de cafetería | 5 | Sí (implícito) | [Enlace](#) |
+| VI-03 | Facility Admin | 29 | Administrador de local de servicios | 4 | Sí (implícito) | [Enlace](#) |
+| VI-04 | Home User | 35 | Trabajador dependiente (con familia) | 5 | Sí (implícito) | [Enlace](#) |
+| VI-05 | Home User | 27 | Trabaja y estudia | 4 | Sí (implícito) | [Enlace](#) |
+| VI-06 | Home User | 42 | Trabajo desde casa (home office) | 5 | Sí | [Enlace](#) |
+
+
+### 6.3.3. Evaluaciones según heurísticas.
+
+En esta sección se presenta la evaluación de la experiencia de usuario (UX) de la plataforma Clair, basada en las 6 sesiones de validación realizadas con los segmentos objetivo (3 Facility Admins y 3 Home Users). Para el análisis se ha utilizado el formato de evaluación heurística, considerando principios de Usabilidad, Arquitectura de Información e Inclusive Design.
+
+#### Anexo D. Formato para Evaluación de User Experience según Heurísticas
+
+**UX Heuristics & Principles Evaluation**
+**Usability – Inclusive Design – Information Architecture**
+
+| |                                                                                                                                                          |
+| :--- |:---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CARRERA** | Ingeniería de Software                                                                                                                                   |
+| **CURSO** | Diseño de Experimentos de Ingeniería de Software                                                                                                         |
+| **NRC** | 9112                                                                                                                                                     |
+| **PROFESORES** | Cenas Vasquez, Lennin Percy    |
+| **AUDITOR** | Equipo Bananawire / Clair                                                                                                                                |
+| **CLIENTE(S)** | Facility Admins (3) y Home Users (3)                                                                                                                     |
+
+**SITE o APP A EVALUAR:**
+Plataforma Clair (Landing Page, Web Application y Mobile Application)
+
+**TAREAS A EVALUAR:**
+
+El alcance de esta evaluación incluye la revisión de la usabilidad de las siguientes tareas:
+
+1. Comprensión de la propuesta de valor y planes de precios en la Landing Page.
+2. Registro e inicio de sesión (Web y Mobile).
+3. Creación de organización y espacios físicos (Web App).
+4. Emparejamiento y reclamo de dispositivo IoT (Web App).
+5. Configuración de umbrales de calidad del aire (Web App / Mobile App).
+6. Visualización del dashboard principal y estado del aire (Web App / Mobile App).
+7. Revisión de historial de métricas y tendencias semanales (Mobile App).
+8. Creación de reglas de alerta personalizadas (Mobile App).
+
+No están incluidas en esta versión de la evaluación las siguientes tareas:
+
+1. Flujo de pago real con tarjeta de crédito (Stripe).
+2. Autenticación con Google SSO.
+3. Configuración de integraciones con sistemas HVAC de terceros.
+4. Exportación de reportes en PDF desde la Web App.
+
+**ESCALA DE SEVERIDAD:**
+
+Los errores serán puntuados tomando en cuenta la siguiente escala de severidad:
+
+| Nivel | Descripción |
+| :---: | :--- |
+| **1** | **Problema superficial:** puede ser fácilmente superado por el usuario u ocurre con muy poca frecuencia. No necesita ser arreglado a no ser que exista disponibilidad de tiempo. |
+| **2** | **Problema menor:** puede ocurrir un poco más frecuentemente o es un poco más difícil de superar para el usuario. Se le debería asignar una prioridad baja resolverlo de cara al siguiente release. |
+| **3** | **Problema mayor:** ocurre frecuentemente o los usuarios no son capaces de resolverlos. Es importante que sean corregidos y se les debe asignar una prioridad alta. |
+| **4** | **Problema muy grave:** un error de gran impacto que impide al usuario continuar con el uso de la herramienta. Es imperativo que sea corregido antes del lanzamiento. |
+
+**TABLA RESUMEN:**
+
+| # | Problema | Escala de severidad | Heurística/Principio violada(o) |
+| :---: | :--- | :---: | :--- |
+| 1 | La información de costos del dispositivo y mantenimiento no es evidente en la primera vista de la Landing Page. | 3 | Information Architecture: Is it findable? / Usability: Visibilidad del estado del sistema |
+| 2 | El sistema muestra datos numéricos y colores, pero no ofrece recomendaciones accionables sobre qué hacer ante una alerta. | 3 | Usability: Correspondencia entre el sistema y el mundo real |
+| 3 | La confianza del usuario depende enteramente de la precisión del sensor, pero no se muestran certificaciones o información sobre la calibración. | 2 | Usability: Ayuda y documentación |
+| 4 | El indicador visual del estado del aire (semáforo) no cuenta con texto explicativo o leyendas accesibles en todas las vistas. | 2 | Inclusive Design: Proporciona experiencias comparables |
+| 5 | La configuración de reglas personalizadas en la app móvil puede volverse confusa si se requieren múltiples pasos. | 2 | Usability: Prevención de errores |
+
+---
+
+**DESCRIPCIÓN DE PROBLEMAS:**
+
+**PROBLEMA #1:** La información de costos del dispositivo y mantenimiento no es evidente en la primera vista de la Landing Page.
+
+**Severidad:** 3
+**Heurística violada:** Information Architecture - Is it findable? / Usability - Visibilidad del estado del sistema.
+
+**Problema:**
+Durante las entrevistas de validación (VI-01, VI-02, VI-03, VI-04 y VI-05), los usuarios expresaron dudas inmediatas sobre cuánto cuesta el dispositivo físico, si existe un pago mensual y si la instalación requiere un técnico. En la Landing Page actual, el usuario debe hacer scroll y navegar hacia la sección de precios para comprender el modelo, pero incluso allí, los detalles sobre el mantenimiento y la instalación no son explícitos. Esto genera fricción en el embudo de conversión y reduce la confianza inicial.
+
+<img src="../assets/landing-page-mockups/Product.png" alt="MP-Product" width="1000">
+
+**Recomendación:**
+Añadir un "Call to Action" (CTA) secundario en la sección Hero de la Landing Page que diga "Ver Precios y Planes", o incluir un pequeño badge debajo del título principal indicando el precio base del dispositivo (ej. "Desde S/ XXX"). Asimismo, se debe incluir una sección de Preguntas Frecuentes (FAQ) accesible desde el menú principal que responda directamente: "¿Necesito un técnico para instalarlo?" y "¿Hay costos de mantenimiento?".
+
+---
+
+**PROBLEMA #2:** El sistema muestra datos numéricos y colores, pero no ofrece recomendaciones accionables sobre qué hacer ante una alerta.
+
+**Severidad:** 3
+**Heurística violada:** Usability - Correspondencia entre el sistema y el mundo real.
+
+**Problema:**
+Los 6 participantes (100% de la muestra) coincidieron en la necesidad de recibir instrucciones claras junto con los datos. Expresiones como *"No solamente indicar que el aire está mal, sino explicar qué acciones podemos realizar para mejorarlo"* (VI-03) o *"Esperaría encontrar... alguna recomendación para solucionar el problema"* (VI-01) evidencian que un dashboard que solo muestra números y semáforos obliga al usuario a tener conocimientos técnicos previos. El sistema actual informa (ej. CO₂ alto) pero no asiste en la mitigación (ej. "Abrir ventanas por 10 minutos").
+
+<img src="../assets/webapp-mockup/OVERVIEW.png" alt="OVERVIEW" width="1000">
+
+**Recomendación:**
+Integrar un motor de recomendaciones simple en las tarjetas de métricas y en las notificaciones push. Cuando un valor supere el umbral, mostrar un texto contextual claro y accionable (ej. "Nivel de CO₂ elevado. Se recomienda ventilar el área abriendo ventanas"). Esto se alinea con el tono "Sereno y Formal" definido en las guías de estilo.
+
+---
+
+**PROBLEMA #3:** La confianza del usuario depende enteramente de la precisión del sensor, pero no se muestran certificaciones o información sobre la calibración.
+
+**Severidad:** 2
+**Heurística violada:** Usability - Ayuda y documentación.
+
+**Problema:**
+Cinco de los seis entrevistados (VI-01, VI-02, VI-03, VI-05 y VI-06) condicionaron explícitamente su recomendación y uso continuo a que las mediciones sean confiables. Sus dudas sobre "qué tan exactos son los sensores" no encuentran respuesta rápida en la Landing Page. Al no ser un dispositivo médico certificado, el usuario necesita entender cómo funciona el hardware (sensores SCD41 y PMS5003) para depositar su confianza en él.
+
+<img src="../assets/landing-page-mockups/Product.png" alt="MP-Product" width="1000">
+
+**Recomendación:**
+Destacar en la Landing Page un apartado de "Precisión y Calidad" que explique de forma sencilla los componentes del hardware (ej. "Equipado con sensores suizos de alta precisión"). Asimismo, dentro de la Web App, añadir un tooltip o ícono de información junto a los datos del dashboard que indique la fecha de la última calibración del dispositivo.
+
+---
+
+**PROBLEMA #4:** El indicador visual del estado del aire (semáforo) no cuenta con texto explicativo o leyendas accesibles en todas las vistas.
+
+**Severidad:** 2
+**Heurística violada:** Inclusive Design - Proporciona experiencias comparables.
+
+**Problema:**
+Aunque los usuarios del hogar (VI-04, VI-05) valoraron positivamente el uso de colores (verde/rojo) para interpretar el estado del aire de forma rápida, el usuario VI-05 acotó que *"los colores ayudan bastante, siempre que estén acompañados de explicaciones"*. Depender únicamente del color (especialmente en gráficos o en el dashboard de la app móvil) puede afectar a usuarios con daltonismo o baja visión, y deja espacio a la ambigüedad para usuarios noveles.
+
+<img src="../assets/mobileapp-mockup/AIRQUALITY.png" alt="mobile-dashboard" width="300">
+
+**Recomendación:**
+Asegurar que todos los indicadores de color vayan acompañados de una etiqueta textual (ej. "Óptimo", "Moderado", "Crítico") y un ícono distintivo. Aplicar los atributos ARIA necesarios (`aria-label`) en las interfaces web para que los lectores de pantalla puedan interpretar el estado del aire sin depender del color.
+
+---
+
+**PROBLEMA #5:** La configuración de reglas personalizadas en la app móvil puede volverse confusa si se requieren múltiples pasos.
+
+**Severidad:** 2
+**Heurística violada:** Usability - Prevención de errores / Flexibilidad y eficiencia de uso.
+
+**Problema:**
+El usuario del hogar que desea crear alertas personalizadas (por ejemplo, avisar si el CO₂ supera los 1000 ppm) manifestó (VI-04) que necesitaba que el proceso tuviera *"pasos sencillos y no tener que buscar demasiadas opciones"*. Si el "Rules Builder" o la configuración de umbrales en la app móvil presenta menús anidados o formularios largos, los usuarios con baja alfabetización digital podrían abandonar la tarea o configurar alertas erróneas.
+
+<img src="../assets/webapp-mockup/AIR-QUALITY.png" alt="AIR-QUALITY" width="1000">
+
+**Recomendación:**
+Implementar una interfaz de configuración basada en plantillas o "presets" rápidos (ej. "Alerta estándar de CO₂", "Alerta para habitación de niños") para que el usuario solo tenga que elegir una opción y confirmar, reduciendo la carga cognitiva y previniendo errores de configuración.
+
 
 ## 6.4. Auditoría de Experiencias de Usuario
 
-### 6.4.1. Auditoría realizada.
+### 6.4.1. Auditoría realizada
 
 #### 6.4.1.1. Información del grupo auditado.
 
+| Campo | Detalle                                                                                                                                                 |
+| :--- |:--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nombre de la Startup** | HuariApp                                                                                                                                                |
+| **Nombre del Producto** | PuntoSabor                                                                                                                                              |
+| **Integrante 1** | Contreras Rojas, Cesar Jair (u20241d995)                                                                                                                |
+| **Integrante 2** | Delgado Carrasco, Schneider (u202321843)                                                                                                                |
+| **Integrante 3** | Lopez Goitia, Carlos Alberto (u202312700)                                                                                                               |
+| **Integrante 4** | Montalván Palomino, Bruno Rodolfo (u202411282)                                                                                                          |
+| **Integrante 5** | Razuri Alvarez, Matias Francesco (u202410772)                                                                                                           |
+| **Repositorio del Informe** | https://github.com/HuariApp/puntosabor-report/tree/develop                                                                                              |
+| **Repositorio Landing Page** | https://github.com/HuariApp/PuntoSabor-Landing                                                                                                          |
+| **Repositorio Frontend Web** | https://github.com/HuariApp/PuntoSabor-Front                                                                                                            |
+| **Repositorio Backend/API** | https://github.com/HuariApp/PuntoSabor-Backend                                                                                                                                                       |
+| **URL Landing Page** | https://huariapp.github.io/PuntoSabor-Landing/                                                                                                          |
+| **URL Frontend Web** | https://punto-sabor-front.vercel.app                                                                                                                    |
+| **URL Backend/Swagger** | https://huariquehub-backend.up.railway.app/swagger                                                                                                      |
+
 #### 6.4.1.2. Cronograma de auditoría realizada.
 
+| Fecha          | Hora Inicio | Hora Fin   | Actividad Realizada | Duración    | Auditores Participantes |
+|:---------------|:------------|:-----------| :--- |:------------|:------------------------|
+| `[10/11/2026]` | `[12:52M]`  | `[14:52M]` | **Revisión de Landing Page:** Análisis de usabilidad, propuesta de valor, claridad en precios y formulario de contacto. | `[120] min` | `[Luis Huaco]`          |
+| `[10/11/2026]` | `[13:29]`   | `[15:24]`  | **Prueba de User Flows (Frontend):** Navegación por la Web App (Búsqueda, mapa, reseñas, login) y evaluación de heurísticas de Nielsen. | `[120] min` | `[Mateo]`               |
+| `[10/11/2026]` | `[16:00]`   | `[18:00]`  | **Prueba de Flujos de Dueño (Frontend):** Simulación de registro de huarique, selección de planes y gestión de perfil. | `[120] min` | `[Nicolas]`             |
+| `[10/11/2026]` | `[17:00]`   | `[19:00]`  | **Revisión de Acuerdo de Servicio (SaaS):** Análisis de claridad legal, políticas de cancelación y transparencia de precios. | `[120] min` | `[Anderson]`            |
+| `[10/11/2026]` | `[20:00]`   | `[23:00]`  | **Consolidación de hallazgos:** Redacción del documento de auditoría, asignación de severidades y propuestas de mitigación (Anexo D). | `[180] min` | `[Iker]`                |
+
+---
+**Nota:** Para el punto **6.4.2.4. Resumen de modificaciones para subsanar hallazgos**, puedes usar los 5 problemas que te redacté en el mensaje anterior (Prevención de errores en reseñas, botón "Cómo llegar" en el mapa, guardado automático del formulario de huarique, botón de cambio de rol y transparencia en la política de cancelación) y simplemente redactar una breve conclusión de cómo esas mejoras impactarían positivamente en el producto de HuariApp.
+
+
 #### 6.4.1.3. Contenido de auditoría realizada.
+
+#### Anexo D. Formato para Evaluación de User Experience según Heurísticas
+
+**UX Heuristics & Principles Evaluation**
+**Usability – Inclusive Design – Information Architecture**
+
+| |                                                                                                                                                        |
+| :--- |:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CARRERA** | Ingeniería de Software                                                                                                                                 |
+| **CURSO** | Diseño de Experimentos de Ingeniería de Software                                                                                                       |
+| **NRC** | `[9112]`                                                                                                                                               |
+| **PROFESORES** | Cenas Vasquez, Lennin Percy / Flores Morocco, Juan Antonio / Noriega Melendez, Julio Manuel / Sanchez Ponce, Alex humberto / Yesn Paiba, Juan Fernando |
+| **AUDITOR** | `[Banawire]`                                                                                                                                           |
+| **CLIENTE(S)** | HuariApp / PuntoSabor (Equipo auditado)                                                                                                                |
+
+**SITE o APP A EVALUAR:**
+PuntoSabor (Landing Page, Web Application y Mobile Application)
+
+**TAREAS A EVALUAR:**
+
+El alcance de esta evaluación incluye la revisión de la usabilidad de las siguientes tareas (basadas en los User Flows del equipo auditado):
+
+1. Iniciar sesión y registrarse como Explorador.
+2. Búsqueda y filtrado de huariques por categoría y precio (Explore).
+3. Visualización de huariques en el mapa e interacción con los marcadores.
+4. Publicación de una reseña y calificación en un huarique.
+5. Registro de un nuevo huarique (flujo para Dueños).
+6. Visualización y selección de planes de membresía (Basic, Premium, Exclusive).
+7. Guardar un huarique en la lista de favoritos.
+8. Enviar un mensaje a través del formulario de contacto (Landing Page).
+
+No están incluidas en esta versión de la evaluación las siguientes tareas:
+
+1. Flujo de pago real de membresía con pasarela externa (Stripe/Niubiz).
+2. Recuperación de contraseña vía correo electrónico.
+3. Módulo de notificaciones push en tiempo real (debido a que requiere configuración del dispositivo).
+4. Panel de administración avanzado o estadísticas para el Dueño del huarique.
+
+**ESCALA DE SEVERIDAD:**
+
+Los errores serán puntuados tomando en cuenta la siguiente escala de severidad:
+
+| Nivel | Descripción |
+| :---: | :--- |
+| **1** | **Problema superficial:** puede ser fácilmente superado por el usuario u ocurre con muy poca frecuencia. No necesita ser arreglado a no ser que exista disponibilidad de tiempo. |
+| **2** | **Problema menor:** puede ocurrir un poco más frecuentemente o es un poco más difícil de superar para el usuario. Se le debería asignar una prioridad baja resolverlo de cara al siguiente release. |
+| **3** | **Problema mayor:** ocurre frecuentemente o los usuarios no son capaces de resolverlos. Es importante que sean corregidos y se les debe asignar una prioridad alta. |
+| **4** | **Problema muy grave:** un error de gran impacto que impide al usuario continuar con el uso de la herramienta. Es imperativo que sea corregido antes del lanzamiento. |
+
+**TABLA RESUMEN:**
+
+| # | Problema | Escala de severidad | Heurística/Principio violada(o) |
+| :---: | :--- | :---: | :--- |
+| 1 | Falta de feedback visual inmediato al intentar publicar una reseña duplicada o con errores de validación. | 3 | Usability: Prevención de errores / Visibilidad del estado del sistema |
+| 2 | El popup del mapa (Explore) muestra información básica, pero no incluye un botón de acción rápida para "Cómo llegar" (integración con Google Maps/Waze). | 3 | Information Architecture: Is it useful? / Usability: Flexibilidad y eficiencia de uso |
+| 3 | El formulario de registro de huarique para los dueños presenta múltiples campos obligatorios sin guardado automático, lo que puede causar pérdida de datos. | 3 | Usability: Libertad y control del usuario |
+| 4 | La transición entre el rol de "Explorador" y "Dueño" dentro de la misma cuenta no es evidente en la navegación principal. | 2 | Usability: Consistencia y estándares |
+| 5 | En la Landing Page, los precios de las membresías (Básico, Premium, Exclusivo) se muestran, pero los detalles sobre cómo se procesa el pago o si hay contratos de permanencia no son explícitos. | 2 | Information Architecture: Is it findable? |
+
+---
+
+**DESCRIPCIÓN DE PROBLEMAS:**
+
+**PROBLEMA #1:** Falta de feedback visual inmediato al intentar publicar una reseña duplicada o con errores de validación.
+
+**Severidad:** 3
+**Heurística violada:** Usability - Prevención de errores / Visibilidad del estado del sistema.
+
+**Problema:**
+En la User Story US07 ("Publicar reseñas"), el sistema establece que un usuario no puede publicar más de una reseña para el mismo huarique. Sin embargo, en la interfaz evaluada, si el usuario ya reseñó el local o deja campos vacíos, el sistema no muestra un mensaje de error claro o un estado visual que indique por qué la acción está bloqueada. El botón de "Publicar" simplemente no responde o recarga la página, lo que genera confusión y frustración en el explorador gastronómico.
+
+<img src="../assets/auditor-6-4-1-3/PROBLEMA-1.png" width="1000">
+
+**Recomendación:**
+Implementar validaciones en línea (inline validation). Si el usuario ya dejó una reseña, el formulario debe ocultarse y reemplazarse por un mensaje como "Ya has calificado este huarique". Si faltan campos, el botón debe deshabilitarse o mostrar un texto en rojo indicando exactamente qué campo falta (ej. "Por favor, escribe un comentario antes de enviar").
+
+---
+
+**PROBLEMA #2:** El popup del mapa (Explore) muestra información básica, pero no incluye un botón de acción rápida para "Cómo llegar".
+
+**Severidad:** 3
+**Heurística violada:** Information Architecture - Is it useful? / Usability - Flexibilidad y eficiencia de uso.
+
+**Problema:**
+En el flujo de "Visualizar huariques en mapa" (US02), al hacer clic en el marcador de un huarique, aparece un popup flotante con el nombre, dirección y calificación. Sin embargo, para un explorador cuya principal motivación es visitar el lugar (según el User Persona de Carla Dípes), el flujo se interrumpe, ya que debe copiar la dirección manualmente y abrir otra aplicación. La falta de un botón directo que abra la ruta en Google Maps o Waze añade fricción al "happy path" del usuario.
+
+<img src="../assets/auditor-6-4-1-3/PROBLEMA-2.png" width="1000">
+
+**Recomendación:**
+Agregar un botón principal o un ícono de "Ruta" dentro del popup del marcador. Al hacer clic, debe abrir una nueva pestaña o la app nativa de mapas con la latitud y longitud del huarique ya configuradas. Esto reduce la carga cognitiva y agiliza el proceso de visita.
+
+---
+
+**PROBLEMA #3:** El formulario de registro de huarique para los dueños presenta múltiples campos obligatorios sin guardado automático.
+
+**Severidad:** 3
+**Heurística violada:** Usability - Libertad y control del usuario.
+
+**Problema:**
+El User Persona del dueño (Don Luis) representa a un emprendedor con restricciones tecnológicas. En el flujo de "Registrar un nuevo huarique" (US04), el formulario solicita nombre, categoría, dirección, distrito, rango de precios, horarios, descripción y fotos. Si el dueño se distrae o su conexión a internet falla a mitad del proceso, al regresar perderá todo el progreso. No hay un mecanismo de "borrador" ni una forma fácil de regresar sin salir del formulario por completo.
+
+<img src="../assets/auditor-6-4-1-3/PROBLEMA-3.png" width="1000">
+
+**Recomendación:**
+Dividir el formulario en un proceso "Paso a Paso" (Wizard) de máximo 3 pasos (Información Básica, Horarios/Ubicación, Fotos). Además, implementar un guardado automático temporal en el `localStorage` o en la base de datos, de modo que si el usuario sale o recarga, pueda retomar donde lo dejó.
+
+---
+
+**PROBLEMA #4:** La transición entre el rol de "Explorador" y "Dueño" dentro de la misma cuenta no es evidente.
+
+**Severidad:** 2
+**Heurística violada:** Usability - Consistencia y estándares.
+
+**Problema:**
+El backend de PuntoSabor permite que un mismo usuario (a través de la entidad `User` con el campo `Role`) pueda ser explorador o dueño. Sin embargo, en la interfaz web y móvil, la navegación está diseñada como si el usuario fuera uno u otro. Si un usuario que exploró huariques decide registrar su propio negocio, no hay un botón claro en el menú de perfil que diga "Convertirme en Dueño" o "Panel de Propietario", lo que obliga al usuario a buscar opciones ocultas o registrarse de nuevo.
+
+<img src="../assets/auditor-6-4-1-3/PROBLEMA-4.png" width="1000">
+
+**Recomendación:**
+Añadir un "Toggle" (interruptor) o un botón en el menú de perfil (como "Modo Dueño") que permita al usuario alternar la vista de la aplicación. Si no tiene un huarique registrado, este botón debe llevarlo al flujo de registro (US04). Si ya lo tiene, debe llevarlo a su panel de gestión.
+
+---
+
+**PROBLEMA #5:** En la Landing Page, los precios de las membresías se muestran, pero la letra pequeña sobre la cancelación o el procesamiento de pagos no es explícita.
+
+**Severidad:** 2
+**Heurística violada:** Information Architecture - Is it findable?
+
+**Problema:**
+El Acuerdo de Servicio (sección 5.2.4) detalla claramente que los dueños pueden cancelar su membresía en cualquier momento y que no hay reembolsos, pero en la sección de precios de la Landing Page solo se muestran los montos ($35 y $50) y los beneficios. Para generar confianza (especialmente en microempresarios que rechazan comisiones abusivas), la información sobre la facilidad para cancelar o la ausencia de contratos forzosos debe estar visible antes de hacer clic en "Empezar".
+
+<img src="../assets/auditor-6-4-1-3/PROBLEMA-5.png" width="1000">
+
+**Recomendación:**
+Añadir un texto corto debajo de los botones de pago de los planes que diga: "Cancela en cualquier momento. Sin contratos forzosos". También se puede agregar un enlace directo al apartado de "Política de Cancelación" del Acuerdo de Servicio.
+
 
 ## 6.4.2. Auditoría recibida.
 
