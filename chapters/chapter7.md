@@ -213,16 +213,20 @@ Esta sección describe la topología y los componentes de infraestructura en la 
 - **Notificaciones Push en Tiempo Real:** **OneSignal** se integra como canal de alertas inmediatas para los administradores cuando los sensores detectan condiciones de aire interior que requieren atención.
 - **Identidad y Acceso:** **Google OAuth2** opera como proveedor de identidad federada para el inicio de sesión seguro de los usuarios administradores.
 
-
-
-
-
 ## 7.4. Continuous Monitoring
 
 ### 7.4.1. Tools and Practices
 
+El monitoreo continuo de Clair observa el sistema en producción después del despliegue y no repite las pruebas de la sección 6.1 ni el análisis estático de la sección 6.2. La práctica es de caja negra: un vigilante externo consulta la salud pública de los servicios sin usar credenciales ni recorrer los flujos de negocio. UptimeRobot sondea la disponibilidad y la latencia. Dokploy conserva los logs de ejecución de `clair-core`, de `clair-ui` y del edge, y reemplaza el panel de Render que usa el ejemplo de referencia porque el despliegue productivo de Clair vive en Dokploy. Un canal de Discord recibe el aviso cuando el estado cambia. El endpoint de salud permanece público y liviano, separado de la telemetría, de las sesiones y de las operaciones de pago, para que la vigilancia no cargue PostgreSQL ni Redis ni exponga datos de los establecimientos. La misma separación evita confundir una alerta de operación con una alerta de calidad del aire: la primera avisa al equipo de que la plataforma no responde, y la segunda, ya cubierta por OneSignal, avisa al usuario de que una lectura superó su umbral.
+
 ### 7.4.2. Monitoring Pipeline Components
+
+El pipeline de monitoreo apunta a los endpoints públicos de salud del backend en Dokploy, de la aplicación web y del edge, y no a las rutas autenticadas de la API. UptimeRobot emite una verificación cada cinco minutos. Si la respuesta llega dentro del tiempo tolerable y con estado exitoso, el evento queda registrado como disponible. Si la respuesta falla, se demora o no llega, el evento queda registrado como no disponible y pasa al pipeline de alertas. Dokploy aporta el segundo componente: ante un fallo, los logs del contenedor permiten ver la traza de Spring Boot, el error del contenedor de Angular o la falla de sincronización del edge sin entrar al servidor. La evidencia de esta subsección es la captura del monitor con el endpoint, el intervalo y el estado, junto con la URL pública de salud. No se afirma un porcentaje de disponibilidad que todavía no haya sido medido.
 
 ### 7.4.3. Alerting Pipeline Components
 
+La alerta no se dispara con un único fallo transitorio. Pasa a estado crítico cuando el endpoint permanece caído durante sondeos consecutivos, cuando la latencia supera el umbral acordado o cuando el certificado y el proxy dejan de responder. Esas condiciones cubren la caída del contenedor, la pérdida de conectividad y la indisponibilidad de un servicio externo del que depende el arranque, sin tratar como incidencia de plataforma una alerta ambiental de PM2.5 o de CO2. Al recuperarse el endpoint, la alerta vuelve a estado normal y conserva la hora de inicio y la hora de cierre. La evidencia es la captura de una alerta disparada y de su recuperación, con la regla que la activó visible en la configuración del monitor.
+
 ### 7.4.4. Notification Pipeline Components.
+
+Cuando el estado cambia, UptimeRobot envía un POST al webhook del canal de operación en Discord. El mensaje indica el servicio afectado, el motivo de la falla y la hora, y un segundo mensaje confirma el regreso a la normalidad. El canal es interno del equipo y no sustituye a OneSignal ni a Resend: esos canales siguen reservados a la alerta ambiental y al correo transaccional del usuario. Discord solo avisa de que la plataforma dejó de responder o volvió a responder. La evidencia es la captura del mensaje de caída y del mensaje de recuperación en el canal, de modo que el aviso quede trazado desde el sondeo hasta quien debe actuar.
