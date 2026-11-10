@@ -1190,18 +1190,18 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 
 **Datos del participante:**
 
-| Campo                                    | Detalle |
-|------------------------------------------|---|
-| ID de sesión                             | VI-01 |
-| Sexo                                     | Varón |
-| Edad                                     | 32 años |
-| Ocupación                                | Administrador de tienda de productos |
-| Rol en el establecimiento                | Administrador |
+| Campo                                    | Detalle                                                         |
+|------------------------------------------|-----------------------------------------------------------------|
+| ID de sesión                             | VI-01                                                           |
+| Sexo                                     | Varón                                                           |
+| Edad                                     | 32 años                                                         |
+| Ocupación                                | Administrador de tienda de productos                            |
+| Rol en el establecimiento                | Administrador                                                   |
 | Experiencia digital                      | Uso cotidiano de celular y computadora para gestión del negocio |
-| Conocimiento previo de Clair             | Ninguno |
-| Consentimiento informado                 | Sí |
-| Grabación autorizada                     | Sí |
-| Link de la grabación                     | [Enlace a la grabación](#) |
+| Conocimiento previo de Clair             | Ninguno                                                         |
+| Consentimiento informado                 | Sí                                                              |
+| Grabación autorizada                     | Sí                                                              |
+| Link de la grabación                     | [[Enlace](https://drive.google.com/file/d/1OfZdCIdc8XxxFVLToAjkFliKZeVWlzoe/view?usp=sharing)](#) |
 
 **Respuestas por bloque del guion:**
 
@@ -1251,7 +1251,7 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 | Conocimiento previo de Clair | Ninguno |
 | Consentimiento informado | Sí |
 | Grabación autorizada | Sí |
-| Link de la grabación | [Enlace a la grabación](#) |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1OfZdCIdc8XxxFVLToAjkFliKZeVWlzoe/view?usp=sharing)](#) |
 
 **Respuestas por bloque del guion:**
 
@@ -1304,7 +1304,7 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 | Conocimiento previo de Clair | Ninguno |
 | Consentimiento informado | Sí |
 | Grabación autorizada | Sí |
-| Link de la grabación | [Enlace a la grabación](#) |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1OfZdCIdc8XxxFVLToAjkFliKZeVWlzoe/view?usp=sharing)](#) |
 
 **Respuestas por bloque del guion:**
 
@@ -1346,18 +1346,18 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 
 **Datos del participante:**
 
-| Campo | Detalle |
-|---|---|
-| ID de sesión | VI-04 |
-| Sexo | Varón |
-| Edad | 35 años |
-| Ocupación | Trabajador dependiente (no especifica rubro) |
-| Composición del hogar | Esposa y dos hijos |
-| Experiencia digital | Uso frecuente de celular; sin dispositivos de medición ambiental en casa |
-| Conocimiento previo de Clair | Ninguno |
-| Consentimiento informado | Sí |
-| Grabación autorizada | Sí |
-| Link de la grabación | [Enlace a la grabación](#) |
+| Campo | Detalle                                                                                                                                                               |
+|---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ID de sesión | VI-04                                                                                                                                                                 |
+| Sexo | Varón                                                                                                                                                                 |
+| Edad | 35 años                                                                                                                                                               |
+| Ocupación | Trabajador dependiente (no especifica rubro)                                                                                                                          |
+| Composición del hogar | Esposa y dos hijos                                                                                                                                                    |
+| Experiencia digital | Uso frecuente de celular; sin dispositivos de medición ambiental en casa                                                                                              |
+| Conocimiento previo de Clair | Ninguno                                                                                                                                                               |
+| Consentimiento informado | Sí                                                                                                                                                                    |
+| Grabación autorizada | Sí                                                                                                                                                                    |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1ZSzI9_VMVX7UIy0jLzjQFU7ATQkK2nxw/view?usp=sharing)](#) |
 
 **Respuestas por bloque del guion:**
 
@@ -1412,7 +1412,7 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 | Conocimiento previo de Clair | Ninguno |
 | Consentimiento informado | Sí |
 | Grabación autorizada | Sí |
-| Link de la grabación | [Enlace a la grabación](#) |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1ZSzI9_VMVX7UIy0jLzjQFU7ATQkK2nxw/view?usp=sharing)](#) |
 
 **Respuestas por bloque del guion:**
 
@@ -1468,7 +1468,7 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 | Conocimiento previo de Clair | Ninguno |
 | Consentimiento informado | Sí |
 | Grabación autorizada | Sí |
-| Link de la grabación | [Enlace a la grabación](#) |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1ZSzI9_VMVX7UIy0jLzjQFU7ATQkK2nxw/view?usp=sharing)](#) | 
 
 **Respuestas por bloque del guion:**
 
@@ -1511,12 +1511,12 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 
 | ID | Segmento | Edad | Ocupación | Utilidad (1–5) | Recomienda | Grabación |
 |---|---|---|---|---|---|---|
-| VI-01 | Facility Admin | 32 | Administrador de tienda | 4 | Sí | [Enlace](#) |
-| VI-02 | Facility Admin | 38 | Encargado de cafetería | 5 | Sí (implícito) | [Enlace](#) |
-| VI-03 | Facility Admin | 29 | Administrador de local de servicios | 4 | Sí (implícito) | [Enlace](#) |
-| VI-04 | Home User | 35 | Trabajador dependiente (con familia) | 5 | Sí (implícito) | [Enlace](#) |
-| VI-05 | Home User | 27 | Trabaja y estudia | 4 | Sí (implícito) | [Enlace](#) |
-| VI-06 | Home User | 42 | Trabajo desde casa (home office) | 5 | Sí | [Enlace](#) |
+| VI-01 | Facility Admin | 32 | Administrador de tienda | 4 | Sí | [[Enlace](https://drive.google.com/file/d/1OfZdCIdc8XxxFVLToAjkFliKZeVWlzoe/view?usp=sharing)](#) |
+| VI-02 | Facility Admin | 38 | Encargado de cafetería | 5 | Sí (implícito) | [[Enlace](https://drive.google.com/file/d/1OfZdCIdc8XxxFVLToAjkFliKZeVWlzoe/view?usp=sharing)](#) |
+| VI-03 | Facility Admin | 29 | Administrador de local de servicios | 4 | Sí (implícito) | [[Enlace](https://drive.google.com/file/d/1OfZdCIdc8XxxFVLToAjkFliKZeVWlzoe/view?usp=sharing)](#) |
+| VI-04 | Home User | 35 | Trabajador dependiente (con familia) | 5 | Sí (implícito) | [[Enlace](https://drive.google.com/file/d/1ZSzI9_VMVX7UIy0jLzjQFU7ATQkK2nxw/view?usp=sharing)](#) |
+| VI-05 | Home User | 27 | Trabaja y estudia | 4 | Sí (implícito) | [[Enlace](https://drive.google.com/file/d/1ZSzI9_VMVX7UIy0jLzjQFU7ATQkK2nxw/view?usp=sharing)](#) |
+| VI-06 | Home User | 42 | Trabajo desde casa (home office) | 5 | Sí | [[Enlace](https://drive.google.com/file/d/1ZSzI9_VMVX7UIy0jLzjQFU7ATQkK2nxw/view?usp=sharing)](#) |
 
 
 ### 6.3.3. Evaluaciones según heurísticas.
