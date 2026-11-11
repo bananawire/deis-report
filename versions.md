@@ -59,6 +59,8 @@
 | 1.1.10  | 11/11/2026 | Victor Nicolas Ortiz Alarcon         | Redacté las secciones 8.2.1 Hypotheses y 8.2.2 Domain Business Metrics en el Capítulo VIII. |
 | 1.1.9   | 11/11/2026 | Iker Barturen                        | Documenté la sección 6.4.2 Auditoría recibida: información del grupo auditor HuariApp, cronograma, contenido de la auditoría según el Anexo D con once hallazgos y el resumen de modificaciones para subsanarlos. |
 | 1.1.10  | 11/11/2026 | Iker Barturen                        | Documenté la sección 8.3 Experimentation: To-Be User Stories con cinco épicas y dieciséis historias (User, Technical y Spike Stories) y el To-Be Product Backlog priorizado por valor de negocio. |
+| 1.1.11  | 09/11/2026 | Dante Mateo Aleman Romano            | Redacté la sección 6.2 Static testing & Verification del Capítulo VI, documentando las convenciones y estándares de código (Spotless, ESLint, Flutter analyze, Ruff y Stylelint), las políticas de calidad y seguridad con SonarQube Quality Gates en 6.2.1, y el proceso de revisiones por pares (Reviews) con branch protection y Pull Requests en 6.2.2. |
+| 1.1.12  | 09/11/2026 | Dante Mateo Aleman Romano            | Redacté la sección 7.4 Continuous Monitoring del Capítulo VII, documentando las herramientas y prácticas de monitoreo de caja negra (UptimeRobot, Dokploy y Discord) en 7.4.1, los componentes del pipeline de monitoreo en 7.4.2, el pipeline de alertas ante fallos o degradación en 7.4.3 y la notificación automática de incidentes y recuperación en 7.4.4. |
 
 
 
