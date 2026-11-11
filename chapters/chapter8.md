@@ -225,15 +225,306 @@ Estas métricas no tienen todavía una línea base, porque el producto no ha est
 
 ### 8.2.3. Measures.
 
+Las métricas de negocio de la sección 8.2.2 describen el producto; las **medidas** de esta sección son su definición operativa para cada experimento: qué se cuenta exactamente, en qué unidad, en qué ventana de tiempo y de qué evento sale el dato. Se clasifican en tres tipos:
+
+- **Primaria:** la medida con la que se decide si se rechaza H0. Hay una por hipótesis (dos en H-04, donde deben cumplirse ambas).
+- **Secundaria:** ayuda a explicar *por qué* cambió la primaria, pero no decide el experimento.
+- **Guardrail (de resguardo):** debe mantenerse dentro de un límite; si se rompe, el cambio no se adopta aunque la primaria mejore.
+
+| ID | Medida | Tipo | Definición operacional | Unidad y escala | Fuente | Métrica (8.2.2) | Hip. |
+|---|---|---|---|---|---|---|---|
+| M-01 | Tasa de alertas atendidas | Primaria | Alertas con acción registrada ("Ya lo hice") o reconocimiento dentro de los 30 minutos desde su emisión ÷ alertas emitidas. | Proporción (0 a 1), por grupo | Alerting (`emitted_at`, `acknowledged_at`) y evento `alert_action_done` | Tasa de alertas atendidas | H-01 |
+| M-02 | Tasa de conversión a registro | Primaria | Visitantes únicos que completan el registro en las 24 h siguientes a su primera visita ÷ visitantes únicos de la landing. | Proporción, por variante | Eventos `experiment_exposure` y `signup_completed` | Tasa de conversión a registro | H-02 |
+| M-03 | Tasa de interpretación correcta | Primaria | Participantes que identifican el estado del aire y eligen la acción adecuada ÷ participantes que vieron la versión. | Proporción, por versión | Herramienta de prueba de 5 segundos | Interpretación correcta del estado | H-03 |
+| M-04 | Tasa de reglas completadas | Primaria | Usuarios que guardan una regla (`rule_saved`) ÷ usuarios que inician el flujo (`rule_creation_started`) en la misma sesión. | Proporción, por variante | Evento móvil | Tasa de reglas completadas | H-04 |
+| M-05 | Tiempo de tarea de creación de regla | Primaria | Mediana de segundos entre `rule_creation_started` y `rule_saved`, solo en flujos completados. | Segundos (razón); se reporta la mediana por sesgo de la cola larga | Evento móvil (`duration_ms`) | (apoya H-04) | H-04 |
+| M-06 | Confianza declarada | Primaria | Respuesta a "¿Confías en las mediciones de Clair?" de 1 a 5, de quienes responden la encuesta. | Likert de 1 a 5 (ordinal); se reporta media y mediana | Evento `trust_survey_answered` | Confianza declarada | H-05 |
+| M-07 | Sesiones semanales por usuario | Primaria | Sesiones (web y móvil, con 30 min de inactividad como corte) ÷ usuarios del grupo, en cada semana desde el registro. | Conteo por usuario-semana (razón) | `session_start` de GA4 y Firebase | Sesiones semanales por usuario | H-06 |
+| M-08 | Usuarios con consulta semanal | Primaria | Usuarios del grupo con al menos una sesión en la semana ÷ usuarios del grupo, para las semanas 2 y 3. | Proporción por semana | `session_start` | Retención semanal | H-06 |
+| M-09 | Tasa de rebote de la landing | Guardrail | Sesiones de la landing sin interacción ni segunda página ÷ sesiones de la landing. | Proporción | GA4 (sesiones no "engaged") | (límite de H-02) | H-02 |
+| M-10 | Clic hacia la página de precios | Secundaria | Visitantes que hacen clic en el enlace de precios ÷ visitantes únicos. | Proporción | Evento `pricing_cta_clicked` | — | H-02 |
+| M-11 | Tiempo hasta atender la alerta | Secundaria | Mediana de minutos entre la emisión y la acción registrada, en alertas atendidas. | Minutos (razón) | Alerting | — | H-01 |
+| M-12 | Latencia de la alerta | Guardrail | Segundos entre la lectura que supera el umbral y la emisión de la alerta. | Segundos (razón) | Evaluation y Alerting | — | H-01 |
+| M-13 | Tasa de entrega de push | Guardrail | Notificaciones con confirmación de entrega ÷ notificaciones enviadas. | Proporción | Notifications y FCM | — | H-01, H-06 |
+| M-14 | Tasa de desactivación de push | Guardrail | Usuarios que desactivan las notificaciones en las 3 semanas ÷ usuarios con push activado por defecto. | Proporción | Evento `push_disabled` | — | H-06 |
+| M-15 | Errores de validación por intento | Secundaria | Eventos `rule_validation_error` ÷ flujos de regla iniciados. | Razón | Evento móvil | — | H-04 |
+| M-16 | Tasa de respuesta de la encuesta | Secundaria | Encuestas respondidas ÷ encuestas mostradas. Sirve para detectar sesgo de respuesta entre variantes. | Proporción | Eventos de encuesta | — | H-05 |
+| M-17 | Conversión a registro (resguardo de H-05) | Guardrail | Igual que M-02, medida en las variantes con y sin la sección de precisión. | Proporción | Igual que M-02 | Tasa de conversión a registro | H-05 |
+
+**Reglas comunes de medición**
+
+- La **unidad de análisis** es la cuenta en los experimentos de producción (H-01, H-04 y H-06), el visitante único en la landing (H-02 y H-05) y el participante en la prueba de usabilidad (H-03). En H-01 la medida se calcula por alerta, pero el análisis agrupa por cuenta, porque las alertas de una misma cuenta no son independientes.
+- Se **excluyen** las cuentas del equipo, las cuentas de demostración, los dispositivos de prueba y el tráfico de bots. Una cuenta solo entra al análisis de H-01 si recibió al menos una alerta durante la ventana.
+- La asignación se **registra una sola vez**, en el evento `experiment_exposure`, y se analiza según el grupo asignado (intención de tratar), no según lo que el usuario terminó viendo.
+- Las medidas M-01, M-11, M-12, M-13 y el cálculo de M-08 salen del **backend**, que es la fuente de verdad; los eventos del cliente solo se usan donde el backend no tiene el dato (por ejemplo, el rebote o los pasos del flujo de reglas).
+
 ### 8.2.4. Conditions.
+
+Las condiciones definen contra qué se compara cada cambio, a quién se le muestra y bajo qué reglas se considera válido el resultado.
+
+**Condiciones generales de todos los experimentos**
+
+| Condición | Valor |
+|---|---|
+| Nivel de significancia | α = 0.05, prueba unilateral (las hipótesis H1 de 8.2.1 tienen dirección) |
+| Potencia estadística | 80% (β = 0.20) |
+| Reparto entre grupos | 50% control y 50% tratamiento |
+| Asignación | Aleatoria y determinista: un *hash* del identificador de cuenta (o del identificador anónimo en la landing) decide el grupo, de modo que la misma persona siempre ve la misma versión |
+| Momento del análisis | Una sola vez, al final de la ventana. No se revisan los resultados para detener el experimento antes de tiempo |
+| Cambios durante la ventana | Los flujos, textos y umbrales del experimento no se modifican mientras dure; los despliegues no relacionados sí están permitidos |
+
+**Condiciones por experimento**
+
+| Experimento | Unidad de asignación | Control (A) | Tratamiento (B) | Segmento y plataforma | Inclusión y exclusión | Ventana |
+|---|---|---|---|---|---|---|
+| EXP-01 (H-01) | Cuenta | Alerta actual: valor y color | Alerta con recomendación según métrica y severidad, y botón "Ya lo hice" | Facility Admin y Home User; web, móvil y push | Cuentas con al menos un dispositivo vinculado y una alerta emitida | 2 semanas |
+| EXP-02 (H-02) | Visitante (cookie) | Hero actual, sin precio | Hero con precio del dispositivo, plan Premium (S/ 29.90 al mes), desglose "pago único + mensual" y mención del plan Free | Visitantes de ambos segmentos; landing | Se excluye tráfico de bots y del equipo; cada visitante cuenta una vez | 4 semanas (ver 8.2.5) |
+| EXP-03 (H-03) | Participante | Pantalla con semáforo de color e ícono | Pantalla con color, ícono, etiqueta ("Bueno", "Moderado", "Malo") y leyenda | Todos los usuarios; prueba de 5 segundos sobre web y móvil | Participantes sin experiencia previa con Clair; cada uno ve solo una versión; mitad Facility Admin y mitad Home User | 1 semana |
+| EXP-04 (H-04) | Cuenta | Flujo actual de reglas personalizadas | Flujo con plantillas ("Oficina", "Dormitorio", "Local con público") | Home User; app móvil | Solo usuarios que inician el flujo de reglas | 2 semanas, ampliable hasta 4 (ver 8.2.5) |
+| EXP-05 (H-05) | Visitante (cookie) | Landing sin la sección de precisión | Landing con la sección "¿Qué tan preciso es Clair?" | Visitantes de ambos segmentos; landing | Igual que EXP-02; la encuesta se muestra tras 30 segundos o al llegar al 50% de la página | 4 semanas, en paralelo con EXP-02 |
+| EXP-06 (H-06) | Cuenta, al registrarse | Alertas solo en el panel web | Notificaciones push activadas por defecto | Usuarios nuevos; web y móvil | Solo cuentas creadas durante la ventana de reclutamiento; cada usuario se observa 3 semanas desde su registro | 3 semanas de observación por usuario |
+
+**Interacciones entre experimentos.** Varios experimentos tocan la misma pantalla o a los mismos usuarios, y si se ejecutan sin coordinar se contaminan entre sí:
+
+- **EXP-02 y EXP-05 comparten la landing.** Se ejecutan como un **diseño factorial 2×2** sobre el mismo tráfico: cada visitante recibe una combinación (precio sí o no, precisión sí o no), con cuatro celdas. Los dos efectos principales se estiman cada uno con la mitad del tráfico frente a la otra mitad, de modo que no se necesita más tráfico que para un solo experimento, y además se puede comprobar si los dos cambios interactúan.
+- **EXP-01, EXP-04 y EXP-06 comparten la aplicación.** Se asignan de forma **independiente** (un *hash* distinto por experimento), así que las mismas cuentas sirven para los tres. Se reportará el tamaño de cada combinación para verificar que no haya celdas vacías.
+- **EXP-03 es una prueba controlada** fuera de producción y no se cruza con ningún otro.
+
+**Condiciones de validez.** Un experimento solo se considera interpretable si se cumplen todas estas condiciones; si alguna falla, el resultado se declara no concluyente y se repite, sin importar la diferencia observada.
+
+| ID | Condición de validez | Umbral | Experimentos | Qué falla si no se cumple |
+|---|---|---|---|---|
+| V-01 | **Sin desbalance de muestra (SRM):** el reparto real entre grupos coincide con el 50/50 esperado | Prueba χ² con p ≥ 0.01 | Todos los de producción | La aleatorización está rota y los grupos no son comparables |
+| V-02 | **Eventos completos:** las sesiones, alertas y registros del backend coinciden con los eventos recibidos | Al menos 95% de coincidencia | Todos | Las medidas quedan vacías o sesgadas (ver 8.2.8) |
+| V-03 | **Dispositivos en línea:** el dispositivo de cada espacio analizado envía lecturas durante la ventana | Al menos 90% del tiempo | EXP-01, EXP-06 | Un sensor caído no genera alertas, y el espacio parecería "sin problemas" sin estarlo |
+| V-04 | **Notificaciones entregadas** | M-13 de al menos 95% | EXP-01, EXP-06 | La alerta existe pero el usuario no se entera; se confunde "no actuó" con "no supo" |
+| V-05 | **Alertas puntuales:** la latencia de emisión se mantiene dentro del límite | M-12 de máximo 60 s (umbral propuesto) | EXP-01 | Una alerta tardía no se puede atender en 30 minutos aunque tenga recomendación |
+| V-06 | **Sin cambios en el flujo evaluado** durante la ventana | Cero despliegues sobre el flujo | Todos | Se mezclan efectos de dos versiones distintas |
+| V-07 | **Sin discrepancia de respuesta** entre variantes | Diferencia de M-16 de máximo 10 puntos | EXP-05 | La confianza medida solo refleja a quienes contestan, no a los visitantes |
 
 ### 8.2.5. Scale Calculations and Decisions.
 
+**Parámetros y fórmulas.** Todas las pruebas son unilaterales con α = 0.05 (z<sub>α</sub> = 1.645) y potencia de 80% (z<sub>β</sub> = 0.842). El tamaño de muestra por grupo se calcula así:
+
+- Para **proporciones** (H-01, H-02, H-03, H-04): n = [ z<sub>α</sub>·√(2·p̄·(1 − p̄)) + z<sub>β</sub>·√(p<sub>0</sub>·(1 − p<sub>0</sub>) + p<sub>1</sub>·(1 − p<sub>1</sub>)) ]² ÷ (p<sub>1</sub> − p<sub>0</sub>)², donde p<sub>0</sub> es la proporción del control, p<sub>1</sub> la que esperamos en el tratamiento y p̄ su promedio.
+- Para **medias** (H-04 en tiempo, H-05, H-06): n = 2·[ (z<sub>α</sub> + z<sub>β</sub>) ÷ d ]², donde d es el efecto estandarizado (diferencia esperada ÷ desviación estándar).
+- Para **alertas agrupadas por cuenta** (H-01): el n anterior se multiplica por el efecto de diseño DEFF = 1 + (m − 1)·ρ, con m alertas por cuenta y ρ la correlación entre alertas de una misma cuenta.
+
+**Supuestos de línea base.** Clair todavía no tiene datos de uso real (sección 8.2.2), así que los valores de partida son **supuestos de planificación**. La semana 0 de cada experimento medirá la línea base real y los cálculos se repetirán con esos valores antes de iniciar.
+
+| Hip. | Medida | Línea base supuesta (p<sub>0</sub> o media) | Meta (criterio de 8.2.1) | Otros supuestos |
+|---|---|---|---|---|
+| H-01 | M-01 | 30% de alertas atendidas | 45% (+15 pp) | 6 alertas por cuenta en 2 semanas; ρ = 0.10, DEFF = 1.5 |
+| H-02 | M-02 | 3% de conversión | 3.6% (+20% relativo) | 100 visitantes únicos por día en la landing |
+| H-03 | M-03 | 55% de interpretación correcta | 80% | — |
+| H-04 | M-04 y M-05 | 40% de reglas completadas; tiempo con coeficiente de variación de 0.5 | 60% (+20 pp) y tiempo −30% (d = 0.6) | — |
+| H-05 | M-06 | Desviación estándar de 1.0 punto | +0.5 punto (d = 0.5) | 20% de respuesta a la encuesta |
+| H-06 | M-07 y M-08 | 2.0 sesiones por semana, desviación estándar de 1.5; 55% con consulta semanal | +25% relativo (d = 0.33) y 70% con consulta semanal | — |
+
+**Tamaños de muestra requeridos**
+
+| Hip. | Cálculo | n por grupo | Total | Unidad |
+|---|---|---|---|---|
+| H-01 | 128 alertas × DEFF 1.5 = 192 alertas, entre 6 alertas por cuenta | 32 cuentas | 64 cuentas | Cuentas con alertas |
+| H-02 | Proporciones, 3% frente a 3.6% | 10,960 | 21,920 | Visitantes únicos |
+| H-03 | Proporciones, 55% frente a 80% | 43 | 86 | Participantes |
+| H-04 | Proporciones, 40% frente a 60% (el tiempo requiere solo 35 por grupo) | 77 | 154 | Flujos iniciados |
+| H-05 | Medias, d = 0.5 | 50 | 100 | Respuestas a la encuesta |
+| H-06 | Medias, d = 0.33 (el criterio de 70% con consulta semanal requiere 65 usuarios en el grupo con push) | 112 | 224 | Usuarios nuevos |
+
+**Decisiones**
+
+| ID | Decisión | Justificación |
+|---|---|---|
+| D-01 | **H-01:** reclutar **40 cuentas por grupo** (80 en total) en lugar de las 32 calculadas. | Deja un margen de 25% por cuentas que no reciban alertas. Con 40 cuentas se detecta una mejora de hasta 13.4 puntos, menor que la meta de 15. |
+| D-02 | **H-02:** el tamaño requerido (10,960 por grupo) no es alcanzable con el tráfico esperado. Se ejecuta **4 semanas** (unos 2,800 visitantes, 1,400 por brazo del factorial) y se complementa con tráfico dirigido (redes del equipo y contactos de los entrevistados). Con 1,400 por brazo se detecta una conversión de 4.8%, es decir, una mejora relativa de 61%. | Con 2 semanas (700 por brazo) solo se detectaría una mejora de 91% relativo, lejos del 20% de la hipótesis. Ampliar la ventana es lo que permite la tarjeta EXP-02 ("o hasta alcanzar el tamaño de muestra necesario"). |
+| D-03 | **Regla de lectura de H-02:** si la mejora observada es de al menos 20% y p < 0.05, la hipótesis queda **confirmada**; si es de al menos 20% pero p ≥ 0.05, queda **prometedora, no confirmada** y se repite con más tráfico; en cualquier otro caso se rechaza. Siempre se reporta el intervalo de confianza. | Evita declarar éxito o fracaso con un experimento que no tiene potencia para detectar el efecto de la meta. |
+| D-04 | **H-03:** reclutar **90 participantes** (45 por versión, 22 o 23 de cada segmento por versión) con una prueba no moderada en línea durante una semana. | Cumple el mínimo de 43 por grupo y mantiene el equilibrio entre Facility Admin y Home User. |
+| D-05 | **H-04:** correr hasta **77 flujos por grupo**, con un máximo de 4 semanas. Si no se alcanzan, la decisión se toma con M-05 (tiempo de tarea, que requiere 35 por grupo) y M-04 se reporta como **dirección del efecto con su intervalo de confianza**. Con 40 flujos por grupo solo se detectaría una mejora de 27 puntos, mayor que los 20 de la meta. | Evita no poder decidir nada si el flujo de reglas se usa poco. |
+| D-06 | **H-05:** no se reduce la muestra. Con 20% de respuesta, 700 visitantes por brazo del factorial dan unas 140 respuestas por brazo, más que las 50 necesarias. La conversión (M-17) se vigila como guardrail pero **no tiene potencia** para demostrar que "no baja": se reporta con intervalo de confianza. | Demostrar que una métrica no empeora requiere mucha más muestra que demostrar que mejora. |
+| D-07 | **H-06:** reclutar **224 usuarios nuevos** (112 por grupo) en una ventana de hasta 4 semanas. El criterio de 70% con consulta semanal se contrasta con una prueba binomial exacta sobre el grupo con push (mínimo 65 usuarios). Con 40 por grupo solo se detectaría una mejora de 42% en sesiones, mayor que el 25% de la meta. | El experimento más exigente en usuarios, por lo que fija la meta de reclutamiento de la app. |
+| D-08 | **Meta de reclutamiento de la app:** unas **230 cuentas nuevas**, de las cuales al menos 155 deben ser Home User con la app móvil. Como EXP-01, EXP-04 y EXP-06 se asignan de forma independiente, **las mismas cuentas sirven para los tres**. | Evita reclutar tres veces. Si no se alcanza la meta, se aplican las reglas D-05 y D-07. |
+| D-09 | **Corrección por comparaciones múltiples:** no se aplica entre hipótesis, porque cada una es una decisión de producto separada. En H-04, donde deben cumplirse **ambos** criterios (completadas y tiempo), no hace falta ajustar α, porque el cambio solo se adopta si los dos pasan. | Mantiene α = 0.05 en cada decisión sin perder potencia. |
+| D-10 | **Parada de emergencia:** un experimento se detiene antes de tiempo solo si un guardrail se rompe de forma grave: rebote de la landing más de 10 puntos sobre el control, o más de 30% de desactivación de push. | Protege a los usuarios y al producto sin abrir la puerta a revisar resultados a mitad de camino. |
+
+Los cálculos se verificaron con un script de Python que aplica las fórmulas anteriores. Antes de iniciar cada experimento se repiten con la línea base medida en la semana 0.
+
 ### 8.2.6. Methods Selection.
+
+Cada método se eligió según qué se está comparando, qué tipo de dato produce y cuánto cuesta ejecutarlo con lo que Clair ya tiene construido.
+
+| Hip. | Experimento | Método experimental | Prueba estadística | Herramienta | Por qué este método | Alternativas descartadas |
+|---|---|---|---|---|---|---|
+| H-01 | EXP-01 | **Prueba A/B** en producción, asignación por cuenta | Prueba z de dos proporciones con errores estándar agrupados por cuenta (equivalente a regresión logística con errores robustos por cuenta) | *Feature flag* en el backend (campo `experiment_variant` del contexto IAM) y Firebase Remote Config en móvil | Mide comportamiento real (alertas atendidas), no lo que el usuario dice que haría, que fue lo único que dieron las entrevistas | **Comparación antes y después:** se confunde con cambios en la calidad del aire. **Más entrevistas:** ya mostraron que el 100% quiere recomendaciones, pero no cuánto cambia la acción |
+| H-02 | EXP-02 | **Prueba A/B** en la landing, en **diseño factorial 2×2** junto con EXP-05 | Prueba z de dos proporciones sobre el efecto principal; prueba de interacción | Asignación en el cliente con cookie y eventos en Google Analytics 4 | La landing es estática en Vercel, sin servidor propio; la asignación en el cliente es la opción más simple | **Pruebas multivariantes completas:** exigen mucho más tráfico del que hay |
+| H-03 | EXP-03 | **Prueba de 5 segundos y de primer clic**, entre grupos (cada participante ve una sola versión) | Prueba z de dos proporciones; prueba exacta de Fisher si algún grupo es menor a 30 | Herramienta de pruebas de usabilidad no moderadas (Maze o Lyssna); si no hay licencia, un formulario con imágenes | El estado del aire debe entenderse de un vistazo, y la prueba de 5 segundos mide justo eso | **Prueba intra-sujeto:** el participante aprendería la respuesta en la primera versión. **Prueba moderada:** demasiado costosa para 90 personas |
+| H-04 | EXP-04 | **Prueba A/B** en la app móvil, complementada con una **prueba de usabilidad moderada** de la tarea de crear una regla | Prueba z de dos proporciones (M-04); prueba U de Mann-Whitney (M-05, por la forma sesgada de los tiempos) | Firebase Remote Config y A/B Testing; eventos del flujo | La A/B mide cuántos terminan; la prueba moderada explica *dónde* se traban, y es lo que la tarjeta EXP-04 pide | **Solo prueba moderada:** muestra pequeña, no estima tasas |
+| H-05 | EXP-05 | **Prueba A/B** en la landing (factorial con EXP-02) más **encuesta de un ítem** | Prueba U de Mann-Whitney sobre M-06 (escala ordinal), con la diferencia de medias y su intervalo de confianza; M-17 como guardrail | Google Analytics 4 y un componente propio de encuesta | La confianza es una percepción: solo una pregunta directa la mide, y la A/B asegura que la diferencia viene de la sección y no de quién visita | **Encuesta única a todos:** sin grupo de comparación no se sabe qué la causa |
+| H-06 | EXP-06 | **Prueba A/B por cohorte de registro**: la cuenta se asigna al crearse, no por semana de calendario | Prueba t de Welch o U de Mann-Whitney sobre M-07 (con regresión binomial negativa como verificación de la sobredispersión del conteo); prueba binomial exacta unilateral sobre M-08 | Firebase Analytics y backend (Notifications) | Asignar por cuenta evita confundir el efecto con la semana del año o con campañas | **Comparar cohortes de semanas distintas:** mezcla el efecto del push con el efecto del calendario |
+
+**Criterios comunes para el análisis**
+
+- **Estimación con intervalos:** además del valor p, cada resultado se reporta con el tamaño del efecto y su intervalo de confianza de 90% (consistente con la prueba unilateral al 5%).
+- **Hipótesis con dos criterios:** en H-04, la hipótesis solo se confirma si M-04 y M-05 alcanzan su meta; en H-05, la confianza (M-06) decide y la conversión (M-17) solo puede vetar.
+- **Cada hipótesis, una decisión:** los seis experimentos no se promedian ni se ordenan entre sí; cada uno responde a su pregunta Q-xx del backlog de la sección 8.1.4.
+- **Análisis reproducible:** el análisis se ejecuta con scripts de Python (las herramientas del equipo ya incluyen Python para analítica, sección 5.1.1) sobre datos exportados, de modo que cualquier integrante pueda repetirlo.
 
 ### 8.2.7. Data Analytics: Goals, KPIs and Metrics Selection.
 
+**Objetivos de analítica.** Cada objetivo parte de una pregunta de negocio y termina en las métricas que la responden.
+
+| ID | Objetivo de negocio | Pregunta analítica | Etapa | KPI que la responde | Hip. |
+|---|---|---|---|---|---|
+| G-1 | Que más visitantes se conviertan en cuentas | ¿Qué parte de quienes llegan a la landing se registra, y confía en lo que mide Clair? | Adquisición | Tasa de conversión a registro; confianza declarada | H-02, H-05 |
+| G-2 | Que cada cuenta nueva llegue pronto al primer valor | ¿Cuántas cuentas vinculan un dispositivo y reciben una lectura? ¿Cuánto tardan? | Activación | Tasa de activación; tiempo de instalación; tasa de reglas completadas | H-04 |
+| G-3 | Que los usuarios actúen cuando hay una alerta | ¿Cuántas alertas terminan en una acción? ¿Se entiende el estado del aire? | Engagement | Alertas atendidas por espacio activo por semana (North Star); tasa de alertas atendidas; interpretación correcta | H-01, H-03 |
+| G-4 | Que Clair se vuelva un hábito | ¿Cuántas veces por semana vuelven? ¿Siguen activos en la semana 2 y 4? | Retención | Sesiones semanales por usuario; retención semanal | H-06 |
+| G-5 | Que usar Clair mejore el aire del espacio | ¿Cuánto tiempo pasa un espacio en WARNING o CRITICAL tras una alerta? | Resultado ambiental | Tiempo en estado crítico | (Q-02, siguiente ciclo) |
+| G-6 | Que el modelo de suscripción sea sostenible | ¿Cuántas cuentas Free pasan a Premium y cuántas se quedan? | Monetización | Conversión Free → Premium; MRR; churn | (Q-08, siguiente ciclo) |
+
+**Criterios de selección.** De las 13 métricas de la sección 8.2.2, un indicador pasa a ser **KPI** de este ciclo solo si cumple los cuatro criterios:
+
+1. **Decide algo:** el equipo cambia una decisión de producto según su valor (por ejemplo, adoptar o descartar una variante).
+2. **Se puede calcular:** sale de los eventos del plan de seguimiento (sección 8.2.8) sin esperar datos que todavía no existen.
+3. **Se puede influir:** un cambio del equipo mueve la métrica; no depende de factores externos.
+4. **No es una métrica de vanidad:** un número que solo sube (registros acumulados, visitas, descargas) no entra, porque no dice si el producto funciona.
+
+**KPIs seleccionados**
+
+| KPI | Fórmula | Fuente | Frecuencia | Meta o umbral | Decisión que habilita |
+|---|---|---|---|---|---|
+| **North Star:** alertas atendidas por espacio activo por semana | Alertas atendidas en la semana ÷ espacios con al menos una lectura en la semana | Alerting y Device | Semanal | Línea base de la semana 0 (sin meta previa) | Si el valor del producto crece o se estanca |
+| Tasa de alertas atendidas (M-01) | Ver 8.2.3 | Alerting | Diaria durante EXP-01 | +15 puntos frente al control | Hacer obligatoria la recomendación (Q-01) |
+| Tasa de conversión a registro (M-02) | Ver 8.2.3 | Landing y IAM | Diaria durante EXP-02 | +20% relativo, con rebote no mayor a +5 puntos | Rediseñar el hero (Q-03) |
+| Confianza declarada (M-06) | Ver 8.2.3 | Landing | Diaria durante EXP-05 | +0.5 punto | Invertir en una prueba de calibración publicable (Q-04) |
+| Interpretación correcta (M-03) | Ver 8.2.3 | Prueba de usabilidad | Al cierre de EXP-03 | 80% | Estandarizar el indicador de estado (Q-05) |
+| Tasa de reglas completadas (M-04) y tiempo de tarea (M-05) | Ver 8.2.3 | App móvil | Diaria durante EXP-04 | +20 puntos y tiempo −30% | Reemplazar el flujo de reglas (Q-06) |
+| Sesiones semanales por usuario (M-07) | Ver 8.2.3 | GA4 y Firebase | Semanal durante EXP-06 | +25% relativo | Priorizar la app móvil como canal (Q-07) |
+| Tasa de activación | Cuentas con dispositivo vinculado y una lectura en 48 h ÷ cuentas creadas | IAM, Device y Evaluation | Semanal | Línea base de la semana 0 | Corregir el proceso de instalación (Q-10) |
+| Tiempo de instalación | Mediana de minutos entre el registro y la primera lectura | Device y Evaluation | Semanal | Menos de 10 minutos (Q-10) | Mantener o corregir la afirmación "instalar toma pocos minutos" (C-03) |
+
+**Métricas que no son KPI en este ciclo.** Conversión Free → Premium, MRR y churn dependen de una base de usuarios activa que todavía no existe; se registran, pero no se usan para decidir hasta el siguiente ciclo (Q-08). El tiempo en estado crítico necesita semanas de datos de uso real y también queda para el siguiente ciclo (Q-02).
+
+**Guardrails**
+
+| Guardrail | Medida | Umbral | Origen del umbral |
+|---|---|---|---|
+| Rebote de la landing | M-09 | No más de +5 puntos sobre el control | Criterio de H-02 (sección 8.2.1) |
+| Entrega de push | M-13 | Al menos 95% | Propuesto por el equipo |
+| Desactivación de push | M-14 | No más de 30% del grupo con push | Propuesto por el equipo |
+| Latencia de la alerta | M-12 | No más de 60 segundos | Propuesto por el equipo |
+
+**Tableros y ritmo de revisión**
+
+| Tablero | Contenido | Frecuencia | Audiencia |
+|---|---|---|---|
+| Salud del experimento | Reparto entre grupos (V-01), volumen de eventos (V-02), guardrails y estado de los dispositivos | Diaria | Equipo de desarrollo |
+| KPIs del producto | North Star y KPIs de la tabla anterior, por semana y por segmento | Semanal, en la revisión del sprint | Todo el equipo |
+| Lectura del experimento | Resultado de cada hipótesis, con efecto, intervalo de confianza y decisión | Al cierre de cada experimento | Todo el equipo y docente |
+
+Los tableros se arman en Looker Studio conectado a Google Analytics 4 y a consultas del backend (contexto Analytics); la lectura final de cada experimento se calcula con scripts de Python.
+
 ### 8.2.8. Web and Mobile Tracking Plan.
+
+El plan de seguimiento define qué eventos se registran, cuándo se disparan y con qué propiedades, de manera que cada medida de la sección 8.2.3 se pueda calcular y verificar.
+
+**Herramientas por plataforma** (propuesta del equipo)
+
+| Plataforma | Tecnología | Herramienta de seguimiento | Justificación |
+|---|---|---|---|
+| Landing Page | Sitio estático en Vercel | Google Analytics 4 (`gtag.js`) con eventos personalizados | Es gratis y no requiere servidor propio |
+| Web Application | Angular en Vercel | Google Analytics 4, mediante un servicio de analítica de Angular | Misma propiedad que la landing, para seguir al usuario desde la visita hasta el registro |
+| Mobile Application | Flutter | Firebase Analytics (`firebase_analytics`) y Firebase Remote Config | El proyecto ya usa Firebase para distribuir la app (sección 7.2.1) |
+| Web Services | Spring Boot en Dokploy | Registro en el contexto Analytics (base de datos del backend) | Es la fuente de verdad de alertas y notificaciones (sección 8.2.3) |
+
+**Convenciones**
+
+- Los nombres de evento van en `snake_case` con el formato `objeto_acción` (`alert_viewed`, `rule_saved`).
+- Toda propiedad usa `snake_case` y un tipo fijo; los identificadores son siempre texto.
+- **Identidad:** antes del registro se usa un `anonymous_id` (cookie en la landing); al completar `signup_completed` se enlaza con el `user_id`. El `user_id` es un UUID, nunca el correo.
+- **Exposición:** el evento `experiment_exposure` se dispara una sola vez, la primera vez que el usuario ve la variante.
+- **Privacidad:** no se envía ningún dato personal (nombre, correo, teléfono) en los eventos. La landing muestra un aviso de consentimiento de cookies y no activa el seguimiento hasta que el visitante acepta, en línea con la Ley N.º 29733, de Protección de Datos Personales.
+
+**Propiedades comunes a todos los eventos**
+
+| Propiedad | Tipo | Descripción |
+|---|---|---|
+| `platform` | texto | `landing`, `web`, `mobile` o `server` |
+| `user_id` | texto | UUID de la cuenta; vacío antes del registro |
+| `anonymous_id` | texto | Identificador anónimo del visitante |
+| `segment` | texto | `facility_admin` o `home_user`, cuando se conoce |
+| `plan` | texto | `free` o `premium` |
+| `experiment_variants` | objeto | Variantes asignadas, por ejemplo `{"exp_01": "B", "exp_06": "A"}` |
+| `app_version` | texto | Versión del sitio o de la aplicación |
+| `timestamp` | fecha y hora | Momento del evento, en UTC |
+
+**Eventos de la landing y de la aplicación web**
+
+| ID | Evento | Se dispara cuando | Propiedades propias | Plataforma | Medida | Hip. |
+|---|---|---|---|---|---|---|
+| EV-01 | `experiment_exposure` | El visitante o usuario ve por primera vez la variante de un experimento | `experiment_id`, `variant` | Landing, web y móvil | Todas | Todas |
+| EV-02 | `pricing_section_viewed` | La sección de precios del hero queda visible al menos un segundo | `variant`, `location` | Landing | M-10 | H-02 |
+| EV-03 | `pricing_cta_clicked` | El visitante hace clic en el enlace a precios | `location` (`hero` o `pricing_page`) | Landing | M-10 | H-02 |
+| EV-04 | `precision_section_viewed` | La sección "¿Qué tan preciso es Clair?" queda visible al menos un segundo | `variant` | Landing | M-16 | H-05 |
+| EV-05 | `trust_survey_shown` | Se muestra la encuesta de confianza | `variant` | Landing | M-16 | H-05 |
+| EV-06 | `trust_survey_answered` | El visitante responde la encuesta | `score` (1 a 5) | Landing | M-06, M-16 | H-05 |
+| EV-07 | `signup_cta_clicked` | El visitante hace clic en un botón de registro | `cta_location` | Landing | M-02 | H-02, H-05 |
+| EV-08 | `signup_started` | Se abre el formulario de registro | `source` | Web | M-02 | H-02, H-05 |
+| EV-09 | `signup_completed` | La cuenta se crea con éxito | `source`, `segment` | Web y servidor | M-02, M-17 | H-02, H-05 |
+| EV-10 | `alert_viewed` | El usuario ve el detalle de una alerta | `alert_id`, `severity`, `metric`, `has_recommendation` | Web y móvil | M-01 | H-01 |
+| EV-11 | `recommendation_viewed` | La recomendación de la alerta queda visible | `alert_id`, `recommendation_id` | Web y móvil | M-01 | H-01 |
+| EV-12 | `alert_action_done` | El usuario toca "Ya lo hice" | `alert_id`, `seconds_since_emitted` | Web y móvil | M-01, M-11 | H-01 |
+| EV-13 | `alert_acknowledged` | El usuario reconoce la alerta (historia MA-US-22 del Capítulo III) | `alert_id`, `seconds_since_emitted` | Web y móvil | M-01, M-11 | H-01 |
+
+**Eventos de la aplicación móvil**
+
+| ID | Evento | Se dispara cuando | Propiedades propias | Medida | Hip. |
+|---|---|---|---|---|---|
+| EV-14 | `rule_creation_started` | El usuario abre el flujo para crear una regla | `entry_point`, `has_templates` | M-04, M-05 | H-04 |
+| EV-15 | `rule_template_selected` | El usuario elige una plantilla | `template_id` | M-04 | H-04 |
+| EV-16 | `rule_step_completed` | El usuario avanza un paso del flujo | `step_index` | M-04 | H-04 |
+| EV-17 | `rule_validation_error` | El formulario muestra un error de validación | `field`, `error_type` | M-15 | H-04 |
+| EV-18 | `rule_saved` | La regla se guarda con éxito | `rule_id`, `template_id`, `duration_ms` | M-04, M-05 | H-04 |
+| EV-19 | `rule_creation_abandoned` | El usuario sale del flujo sin guardar | `last_step_index` | M-04 | H-04 |
+| EV-20 | `push_permission_prompted` | La app pide permiso de notificaciones | — | M-14 | H-06 |
+| EV-21 | `push_permission_result` | El usuario responde al permiso | `granted` (verdadero o falso) | M-14 | H-06 |
+| EV-22 | `push_opened` | El usuario abre la aplicación desde una notificación | `notification_id`, `alert_id` | M-07 | H-06 |
+| EV-23 | `push_disabled` | El usuario desactiva las notificaciones en los ajustes | — | M-14 | H-06 |
+| EV-24 | `session_start` | Se inicia una sesión (evento automático de GA4 y Firebase) | — | M-07, M-08 | H-06 |
+
+**Eventos del servidor** (fuente de verdad)
+
+| ID | Evento | Se dispara cuando | Propiedades propias | Medida | Hip. |
+|---|---|---|---|---|---|
+| EV-25 | `alert_emitted` | El contexto Alerting emite una alerta | `alert_id`, `space_id`, `device_id`, `metric`, `severity`, `reading_at`, `emitted_at` | M-01, M-12 | H-01 |
+| EV-26 | `alert_status_changed` | La alerta cambia a atendida o reconocida | `alert_id`, `status`, `via`, `changed_at` | M-01, M-11 | H-01 |
+| EV-27 | `push_sent` | Notifications envía una notificación | `notification_id`, `alert_id` | M-13 | H-01, H-06 |
+| EV-28 | `push_delivered` | FCM confirma la entrega | `notification_id` | M-13 | H-01, H-06 |
+| EV-29 | `first_reading_received` | Se recibe la primera lectura de un dispositivo nuevo | `device_id`, `minutes_since_signup` | Tasa de activación y tiempo de instalación | — |
+
+**Trazabilidad: cada medida con sus eventos**
+
+| Medida | Numerador | Denominador |
+|---|---|---|
+| M-01 | EV-26 con `status` de atendida o reconocida dentro de 30 min (complementado por EV-12 y EV-13) | EV-25 |
+| M-02 y M-17 | EV-09 con `experiment_exposure` en las 24 h previas | EV-01 únicos por visitante |
+| M-04 | EV-18 | EV-14 |
+| M-05 | `duration_ms` de EV-18 | — |
+| M-06 | `score` de EV-06 | — |
+| M-07 | EV-24 | Usuarios del grupo por semana |
+| M-08 | Usuarios con EV-24 en la semana | Usuarios del grupo |
+| M-13 | EV-28 | EV-27 |
+| M-14 | Usuarios con EV-23 | Usuarios con push activado por defecto |
+
+**H-03 no usa eventos de producción:** la interpretación correcta (M-03) se mide en la herramienta de la prueba de 5 segundos, porque se evalúa con participantes y no con usuarios reales.
+
+**Verificación del plan antes de lanzar cada experimento**
+
+1. **Prueba en entorno de pruebas** de cada evento con GA4 DebugView y Firebase DebugView, comprobando nombre, propiedades y tipo.
+2. **Prueba automática** con Playwright (ya usado en la sección 6.1.3.2) que recorre la landing y la web y comprueba que los eventos esperados llegan al `dataLayer`.
+3. **Conciliación con el backend:** antes de iniciar, se comparan los registros de EV-09 contra las cuentas realmente creadas, y los de EV-12 y EV-13 contra los estados de las alertas, hasta alcanzar el 95% de coincidencia (condición V-02).
+4. **Monitoreo continuo:** el volumen diario de cada evento se vigila con las alertas del pipeline de monitoreo (sección 7.4); una caída de más de 20% frente al día anterior genera un aviso.
+5. **Aviso de consentimiento:** se comprueba que ningún evento se envía antes de que el visitante acepte las cookies en la landing.
 
 ## 8.3. Experimentation
 
