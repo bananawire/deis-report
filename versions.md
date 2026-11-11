@@ -57,6 +57,8 @@
 | 1.1.8   | 09/11/2026 | Huaco Oliva Luis Alonso              | Hacer la auditoría 6.4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | 1.1.9   | 11/11/2026 | Victor Nicolas Ortiz Alarcon         | Redacté la sección 8.1 Experiment Planning (As-Is Summary, materia prima, preguntas listas para experimentar, Question Backlog priorizado y Experiment Cards) en el Capítulo VIII. |
 | 1.1.10  | 11/11/2026 | Victor Nicolas Ortiz Alarcon         | Redacté las secciones 8.2.1 Hypotheses y 8.2.2 Domain Business Metrics en el Capítulo VIII. |
+| 1.1.9   | 11/11/2026 | Iker Barturen                        | Documenté la sección 6.4.2 Auditoría recibida: información del grupo auditor HuariApp, cronograma, contenido de la auditoría según el Anexo D con once hallazgos y el resumen de modificaciones para subsanarlos. |
+| 1.1.10  | 11/11/2026 | Iker Barturen                        | Documenté la sección 8.3 Experimentation: To-Be User Stories con cinco épicas y dieciséis historias (User, Technical y Spike Stories) y el To-Be Product Backlog priorizado por valor de negocio. |
 
 
 
