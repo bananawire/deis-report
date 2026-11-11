@@ -1840,12 +1840,248 @@ El Acuerdo de Servicio (sección 5.2.4) detalla claramente que los dueños puede
 Añadir un texto corto debajo de los botones de pago de los planes que diga: "Cancela en cualquier momento. Sin contratos forzosos". También se puede agregar un enlace directo al apartado de "Política de Cancelación" del Acuerdo de Servicio.
 
 
-## 6.4.2. Auditoría recibida.
+### 6.4.2. Auditoría recibida.
+
+Esta sección registra la evaluación de experiencia de usuario que el equipo HuariApp aplicó sobre los productos de Clair. La auditoría siguió el formato del Anexo D (UX Heuristics & Principles Evaluation) y revisó la landing page, la aplicación web y la aplicación móvil desde tres frentes: heurísticas de usabilidad, principios de inclusive design y facetas de arquitectura de información. Bananawire actuó como cliente de la sesión: preparó los entornos, entregó las credenciales de prueba y recibió el informe de hallazgos.
 
 #### 6.4.2.1. Información del grupo auditor.
 
+| Campo | Detalle |
+|---|---|
+| Equipo auditor | HuariApp |
+| Producto del equipo auditor | PuntoSabor, plataforma móvil que conecta a comensales con huariques de cocina tradicional |
+| Curso | 1ASI0732 Diseño de Experimentos de Ingeniería de Software |
+| NRC | 9112 |
+| Docente | Lennin Percy Cenas Vasquez |
+| Repositorio del informe | https://github.com/HuariApp/puntosabor-report |
+| Equipo auditado (cliente) | Bananawire, producto Clair |
+
+**Integrantes del equipo auditor**
+
+| Código | Apellidos y Nombres |
+|---|---|
+| u20241d995 | Contreras Rojas, Cesar Jair |
+| u202321843 | Delgado Carrasco, Schneider |
+| u202312700 | Lopez Goitia, Carlos Alberto |
+| u202411282 | Montalván Palomino, Bruno Rodolfo |
+| u202410772 | Razuri Alvarez, Matias Francesco |
+
 #### 6.4.2.2. Cronograma de auditoría recibida.
+
+La auditoría se organizó en cuatro momentos. Primero, ambos equipos acordaron el alcance y las tareas que se evaluarían. Después, HuariApp ejecutó la sesión sobre los productos desplegados, entregó el informe y, por último, Bananawire revisó cada hallazgo con el equipo auditor para aclarar dudas antes de planificar las correcciones.
+
+| Fecha | Actividad | Productos | Modalidad | Responsable |
+|---|---|---|---|---|
+| 03/11/2026 | Coordinación del alcance, tareas a evaluar y entrega de credenciales de prueba | Landing page, aplicación web y aplicación móvil | Virtual | Bananawire y HuariApp |
+| 04/11/2026 | Sesión de evaluación de la landing page y de la aplicación web | Landing page y aplicación web | Virtual | HuariApp |
+| 05/11/2026 | Sesión de evaluación de la aplicación móvil instalada mediante Firebase App Distribution | Aplicación móvil Android | Presencial | HuariApp |
+| 07/11/2026 | Entrega del informe de evaluación según el formato del Anexo D | Todos | Virtual | HuariApp |
+| 09/11/2026 | Revisión conjunta de hallazgos y priorización de correcciones | Todos | Virtual | Bananawire y HuariApp |
 
 #### 6.4.2.3. Contenido de auditoría recibida.
 
+**SITE o APP A EVALUAR:**
+
+Clair: landing page, aplicación web (Angular) y aplicación móvil (Flutter).
+
+**TAREAS A EVALUAR:**
+
+El alcance de esta evaluación incluye la revisión de la usabilidad de las siguientes tareas:
+
+1. Consulta de la propuesta de valor y comparación de planes en la landing page.
+2. Registro de un usuario nuevo e inicio de sesión.
+3. Creación de una organización y de un espacio.
+4. Reclamo de un dispositivo mediante token y asignación a un espacio.
+5. Configuración de un umbral de CO₂ o PM2.5 para un dispositivo.
+6. Consulta de alertas activas e interpretación de su gravedad.
+7. Envío de comandos de standby, activación y reinicio a un dispositivo.
+8. Consulta del dashboard y del gráfico de tendencias de un sensor en la aplicación móvil.
+9. Revisión de la lista de notificaciones en la aplicación móvil.
+
+No están incluidas en esta versión de la evaluación las siguientes tareas:
+
+1. Pago de la suscripción Premium mediante Stripe.
+2. Configuración de la red Wi-Fi del dispositivo embebido.
+3. Eliminación de organizaciones, espacios y dispositivos.
+4. Operación del edge service y sus endpoints técnicos.
+
+**ESCALA DE SEVERIDAD:**
+
+Los errores serán puntuados tomando en cuenta la siguiente escala de severidad:
+
+| Nivel | Descripción |
+|---|---|
+| 1 | Problema superficial: puede ser fácilmente superado por el usuario u ocurre con muy poca frecuencia. No necesita ser arreglado a no ser que exista disponibilidad de tiempo. |
+| 2 | Problema menor: puede ocurrir un poco más frecuentemente o es un poco más difícil de superar para el usuario. Se le debería asignar una prioridad baja resolverlo de cara al siguiente release. |
+| 3 | Problema mayor: ocurre frecuentemente o los usuarios no son capaces de resolverlo. Es importante que sea corregido y se le debe asignar una prioridad alta. |
+| 4 | Problema muy grave: un error de gran impacto que impide al usuario continuar con el uso de la herramienta. Es imperativo que sea corregido antes del lanzamiento. |
+
+**TABLA RESUMEN:**
+
+| # | Problema | Escala de severidad | Heurística/Principio violada(o) |
+|---|---|---|---|
+| 1 | Un dispositivo desconectado aparece con el indicador de conectado en la aplicación web | 3 | Usability: Visibilidad del estado del sistema |
+| 2 | Las alertas muestran el valor medido y la gravedad, pero no explican qué significa ni qué acción tomar | 3 | Usability: Coincidencia entre el sistema y el mundo real |
+| 3 | El comando de reinicio se envía al dispositivo sin pedir confirmación | 3 | Usability: Prevención de errores |
+| 4 | El estado de la calidad del aire se comunica solo mediante color | 3 | Inclusive Design: Proporciona experiencias comparables |
+| 5 | Reclamar un dispositivo con el token vacío devuelve un error genérico | 2 | Usability: Ayudar a los usuarios a reconocer, diagnosticar y recuperarse de errores |
+| 6 | La configuración de umbrales no ofrece valores de referencia | 2 | Usability: Ayuda y documentación |
+| 7 | Se usan términos distintos para la misma entidad entre la landing page, la web y la app | 2 | Usability: Consistencia y estándares |
+| 8 | Los comandos del dispositivo se representan solo con íconos | 2 | Usability: Reconocimiento antes que recuerdo |
+| 9 | El primer ingreso a la app móvil sin dispositivos muestra un dashboard vacío sin indicar el siguiente paso | 2 | Information Architecture: Is it usable? |
+| 10 | La página de precios no aclara si el costo del dispositivo está incluido en el plan | 2 | Information Architecture: Is it findable? |
+| 11 | El gráfico de tendencias de la app móvil no muestra las unidades de cada métrica | 1 | Inclusive Design: Prioriza el contenido |
+
+**DESCRIPCIÓN DE PROBLEMAS:**
+
+**PROBLEMA #1: Un dispositivo desconectado aparece con el indicador de conectado en la aplicación web**
+
+Severidad: 3
+
+Heurística violada: Usability - Visibilidad del estado del sistema
+
+Problema:
+En la vista de dispositivos de un espacio, el auditor apagó un sensor de prueba y esperó a que la plataforma registrara el cambio. El estado textual pasó a `DISCONNECTED`, pero el indicador de color se mantuvo como si el dispositivo siguiera conectado. Un administrador que revisa la vista de forma rápida puede asumir que el monitoreo continúa activo cuando el sensor ya no envía lecturas.
+
+Recomendación:
+Corregir la regla que traduce el estado de conectividad al color del indicador, de modo que compare el valor exacto del estado y no una coincidencia parcial del texto. Acompañar el color con la etiqueta del estado.
+
+**PROBLEMA #2: Las alertas muestran el valor medido y la gravedad, pero no explican qué significa ni qué acción tomar**
+
+Severidad: 3
+
+Heurística violada: Usability - Coincidencia entre el sistema y el mundo real
+
+Problema:
+Una alerta de CO₂ presenta la métrica, el valor en ppm y el nivel de gravedad. Los auditores, sin formación técnica en calidad del aire, no pudieron explicar si 1 400 ppm representaba un riesgo ni qué debían hacer. La alerta cumple su función técnica, pero deja al usuario sin una decisión clara, que es justamente la necesidad que Clair declara atender.
+
+Recomendación:
+Añadir a cada alerta una explicación breve del riesgo y una acción concreta según la métrica y la gravedad, por ejemplo ventilar el ambiente ante CO₂ elevado o cerrar ventanas ante PM2.5 exterior elevado.
+
+**PROBLEMA #3: El comando de reinicio se envía al dispositivo sin pedir confirmación**
+
+Severidad: 3
+
+Heurística violada: Usability - Prevención de errores
+
+Problema:
+Los comandos de standby, activación y reinicio se encuentran juntos en la vista del dispositivo. Al intentar activar un sensor, un auditor seleccionó el reinicio por error y el comando se envió de inmediato. Durante el reinicio el dispositivo deja de reportar telemetría, por lo que un error de este tipo interrumpe el monitoreo sin que el usuario lo haya decidido.
+
+Recomendación:
+Solicitar confirmación antes de enviar el reinicio, indicando que el dispositivo dejará de reportar durante unos segundos, y separar visualmente este comando de los comandos no disruptivos.
+
+**PROBLEMA #4: El estado de la calidad del aire se comunica solo mediante color**
+
+Severidad: 3
+
+Heurística violada: Inclusive Design - Proporciona experiencias comparables
+
+Problema:
+En las tarjetas de sensor de la web y en el dashboard de la app móvil, la diferencia entre un estado bueno, moderado y crítico depende del color verde, amarillo o rojo. Una persona con daltonismo, o un usuario que revisa el celular bajo luz solar directa, no recibe la misma información que el resto.
+
+Recomendación:
+Acompañar el color con una etiqueta textual del estado (Bueno, Moderado, Crítico) y con un ícono diferenciado por nivel.
+
+**PROBLEMA #5: Reclamar un dispositivo con el token vacío devuelve un error genérico**
+
+Severidad: 2
+
+Heurística violada: Usability - Ayudar a los usuarios a reconocer, diagnosticar y recuperarse de errores
+
+Problema:
+Al confirmar el reclamo de un dispositivo sin ingresar el token, la aplicación web mostró un mensaje de error inesperado en lugar de indicar que el campo es obligatorio. El usuario no sabe si el problema está en el token, en el dispositivo o en la plataforma.
+
+Recomendación:
+Validar el token antes de enviar la solicitud y mostrar un mensaje que indique el campo faltante y dónde encontrar el token del dispositivo.
+
+**PROBLEMA #6: La configuración de umbrales no ofrece valores de referencia**
+
+Severidad: 2
+
+Heurística violada: Usability - Ayuda y documentación
+
+Problema:
+Para crear un umbral de CO₂ o PM2.5, el usuario debe escribir el valor límite sin ninguna orientación. Los auditores no sabían qué valor era razonable y probaron cifras al azar. Un umbral mal configurado genera alertas innecesarias o, peor, no genera alertas cuando el aire sí es dañino.
+
+Recomendación:
+Mostrar un valor de referencia sugerido para cada métrica y una explicación breve de su origen, permitiendo al usuario aceptarlo o ajustarlo.
+
+**PROBLEMA #7: Se usan términos distintos para la misma entidad entre la landing page, la web y la app**
+
+Severidad: 2
+
+Heurística violada: Usability - Consistencia y estándares
+
+Problema:
+La entidad que agrupa los sensores aparece como "Organización" en la aplicación web, como "Local" en otros textos y la subdivisión aparece como "Espacio" o "Zona" según la pantalla. Los auditores dudaron si se trataba de entidades diferentes al pasar de un producto a otro.
+
+Recomendación:
+Definir un solo término por entidad, alineado con el Ubiquitous Language del informe, y aplicarlo en los tres productos.
+
+**PROBLEMA #8: Los comandos del dispositivo se representan solo con íconos**
+
+Severidad: 2
+
+Heurística violada: Usability - Reconocimiento antes que recuerdo
+
+Problema:
+Los comandos de standby, activación y reinicio se muestran como íconos sin texto. Los auditores tuvieron que pasar el cursor sobre cada uno para descubrir su función, y en la versión móvil no existe ese recurso. Además, los lectores de pantalla no anuncian un nombre útil para estos controles.
+
+Recomendación:
+Añadir una etiqueta visible a cada comando y un nombre accesible para tecnologías de apoyo.
+
+**PROBLEMA #9: El primer ingreso a la app móvil sin dispositivos muestra un dashboard vacío sin indicar el siguiente paso**
+
+Severidad: 2
+
+Heurística violada: Information Architecture - Is it usable?
+
+Problema:
+Un usuario recién registrado que ingresa a la app móvil encuentra el dashboard sin datos y sin un mensaje que explique por qué. No queda claro si la app falló o si falta vincular un dispositivo.
+
+Recomendación:
+Mostrar un estado vacío que explique que aún no hay dispositivos vinculados y que guíe al usuario hacia la creación de su espacio y el reclamo de su primer dispositivo.
+
+**PROBLEMA #10: La página de precios no aclara si el costo del dispositivo está incluido en el plan**
+
+Severidad: 2
+
+Heurística violada: Information Architecture - Is it findable?
+
+Problema:
+La landing page presenta el precio de los planes y el precio del dispositivo Clair Alpha, pero no indica si la suscripción incluye el hardware o si se trata de pagos separados. Los auditores no pudieron estimar el costo total del primer mes.
+
+Recomendación:
+Detallar qué incluye cada plan y presentar el costo inicial total (dispositivo y primer mes de suscripción) junto a cada opción.
+
+**PROBLEMA #11: El gráfico de tendencias de la app móvil no muestra las unidades de cada métrica**
+
+Severidad: 1
+
+Heurística violada: Inclusive Design - Prioriza el contenido
+
+Problema:
+El gráfico de tendencias presenta la curva de cada métrica sin indicar si los valores están en ppm, µg/m³, °C o porcentaje. El usuario lo deduce por el nombre de la métrica, pero la lectura se vuelve más lenta cuando compara varias.
+
+Recomendación:
+Mostrar la unidad junto al nombre de la métrica y en el eje de valores del gráfico.
+
 #### 6.4.2.4. Resumen de modificaciones para subsanar hallazgos.
+
+El equipo revisó los once hallazgos y los clasificó según su origen. Los problemas #1, #3, #5 y #8 son defectos o descuidos de implementación en `clair-ui`, y se corrigen sin cambiar el comportamiento esperado de las User Stories del Capítulo III. El problema #1 coincide con el defecto DEF-02 que la suite de pruebas unitarias ya había detectado en la sección 6.1.3; la auditoría confirmó que el defecto sí afecta al usuario final. Los problemas #2, #4, #6 y #9 tocan la forma en que Clair comunica el estado del aire, que es el supuesto central de las hipótesis Lean UX del Capítulo I. Por eso no se corrigen solo como ajustes de interfaz: se incorporan al To-Be Product Backlog de la sección 8.3 para medir su efecto mediante experimentos. Los problemas #7, #10 y #11 son ajustes de contenido de baja complejidad.
+
+| # | Hallazgo | Modificación | Producto | Severidad | Tratamiento |
+|---|---|---|---|---|---|
+| 1 | Dispositivo desconectado con indicador de conectado | Comparar el valor exacto del estado de conectividad y acompañar el color con la etiqueta del estado | Aplicación web (`clair-ui`) | 3 | Corrección del defecto DEF-02 |
+| 2 | Alertas sin explicación ni acción sugerida | Asociar a cada alerta una recomendación según la métrica y la gravedad | Web services, aplicación web y aplicación móvil | 3 | To-Be User Stories (sección 8.3.1) |
+| 3 | Reinicio sin confirmación | Solicitar confirmación antes de enviar el comando de reinicio y separarlo de los comandos no disruptivos | Aplicación web (`clair-ui`) | 3 | Corrección de interfaz |
+| 4 | Estado comunicado solo por color | Añadir etiqueta textual e ícono por nivel de calidad del aire | Aplicación web y aplicación móvil | 3 | To-Be User Stories (sección 8.3.1) |
+| 5 | Error genérico con token vacío | Validar el token antes de enviar la solicitud y mostrar un mensaje específico | Aplicación web (`clair-ui`) | 2 | Corrección del defecto DEF-01 |
+| 6 | Umbrales sin valores de referencia | Sugerir un valor de referencia por métrica al crear un umbral | Aplicación web | 2 | To-Be User Stories (sección 8.3.1) |
+| 7 | Términos distintos para la misma entidad | Unificar los términos con el Ubiquitous Language de la sección 2.4 | Landing page, aplicación web y aplicación móvil | 2 | Ajuste de contenido |
+| 8 | Comandos representados solo con íconos | Añadir etiqueta visible y nombre accesible a cada comando | Aplicación web y aplicación móvil | 2 | Corrección de interfaz |
+| 9 | Dashboard vacío en el primer ingreso | Mostrar un estado vacío que guíe hacia la vinculación del primer dispositivo | Aplicación móvil | 2 | To-Be User Stories (sección 8.3.1) |
+| 10 | Precios sin detalle de lo incluido | Detallar qué incluye cada plan y el costo inicial total | Landing page | 2 | To-Be User Stories (sección 8.3.1) |
+| 11 | Gráfico sin unidades | Mostrar la unidad junto a la métrica y en el eje de valores | Aplicación móvil | 1 | Ajuste de contenido |
+
+Los hallazgos con severidad 3 tienen prioridad en el siguiente sprint. Las correcciones directas se integran mediante ramas `feature/*` hacia `develop`, con el mismo Pull Request y las mismas revisiones descritas en la sección 6.2.2. Los hallazgos que pasan al To-Be Product Backlog se validan con las métricas definidas en el Capítulo VIII, de modo que el equipo pueda comprobar si la modificación mejora la comprensión del usuario y no solo si la interfaz cambió.
