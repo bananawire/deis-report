@@ -57,7 +57,7 @@
 | 1.1.8   | 09/11/2026 | Huaco Oliva Luis Alonso              | Hacer la auditoría 6.4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | 1.1.9   | 11/11/2026 | Iker Barturen                        | Documenté la sección 6.4.2 Auditoría recibida: información del grupo auditor HuariApp, cronograma, contenido de la auditoría según el Anexo D con once hallazgos y el resumen de modificaciones para subsanarlos. |
 | 1.1.10  | 11/11/2026 | Iker Barturen                        | Documenté la sección 8.3 Experimentation: To-Be User Stories con cinco épicas y dieciséis historias (User, Technical y Spike Stories) y el To-Be Product Backlog priorizado por valor de negocio. |
-
+| 1.1.11  | 11/11/2026 | Anderson Ricardo Ventosilla Trujillo | Redacte las secciones 8.2.3 Measures, 8.2.4 Conditions, 8.2.5 Scale Calculations and Decisions, 8.2.6 Methods Selection, 8.2.7 Data Analytics: Goals, KPIs and Metrics Selection y 8.2.8 Web and Mobile Tracking Plan en el Capítulo VIII. |
 
 
 # Project Report Collaboration Insights
