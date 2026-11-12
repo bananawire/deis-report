@@ -1225,35 +1225,143 @@ El To-Be Product Backlog ordena las 16 historias de la sección 8.3.1 según el 
 
 #### 8.3.3.1. To-Be Sprint Backlogs
 
+El primer Sprint To-Be tiene como objetivo habilitar la medición de los experimentos y entregar la recomendación accionable asociada a las alertas de mayor severidad. El trabajo comienza con la investigación de herramientas, continúa con la asignación estable de variantes y el registro de eventos, y termina con la presentación coherente de la recomendación en web, móvil y notificaciones. Esas historias todavía no están en el tablero ni desplegadas. La captura que sí existe es el Kanban actual de Vikunja, el mismo de la sección 5.2.8: las tareas de pruebas, BDD y CI/CD figuran en Done, y la única tarea en To-Do es actualizar Resend por el cambio de DNS. Doing está vacío. Ese tablero no sustituye el Sprint Backlog To-Be; muestra el punto del que sale.
+
+<img src="https://i.imgur.com/KbqKXn0.png" alt="Kanban de Vikunja: tareas de implementación en Done y la actualización de Resend en To-Do">
+
+| User Story | Work item | Estimación (horas) | Responsable | Estado |
+|---|---|---:|---|---|
+| TB-SP-01 | Comparar herramientas de feature flags y analítica compatibles con Angular, Flutter y Spring Boot | 6 | Anderson Ricardo Ventosilla Trujillo | In-Process |
+| TB-WS-TS-02 | Diseñar y construir el endpoint de eventos de producto con validación de propiedades | 12 | Dante Mateo Aleman Romano | To-do |
+| TB-WS-TS-03 | Implementar la asignación determinista de variantes por cuenta | 10 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-WS-TS-01 | Asociar recomendaciones por métrica y severidad en el contexto Alerting | 12 | Dante Mateo Aleman Romano | In-Process |
+| TB-WA-US-03 | Mostrar el riesgo y la recomendación en el detalle de alerta web | 8 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-MA-US-02 | Incluir la recomendación en la notificación push móvil | 10 | Iker Barturen | To-do |
+
+El segundo Sprint To-Be tiene como objetivo mejorar la comprensión del estado del aire, transparentar precio y precisión en la landing page, simplificar la creación de reglas y verificar que la instrumentación produzca datos conciliables con el backend. No tiene tablero propio: las historias de la tabla siguiente siguen en To-do y no aparecen en la captura de Vikunja.
+
+| User Story | Work item | Estimación (horas) | Responsable | Estado |
+|---|---|---:|---|---|
+| TB-WA-US-01 / TB-MA-US-01 | Incorporar etiqueta textual, ícono y leyenda accesible al estado del aire | 12 | Iker Barturen | To-do |
+| TB-LP-US-03 | Mostrar planes y costo inicial total sin costos ocultos | 8 | Luis Alonso Huaco Oliva | To-do |
+| TB-LP-US-01 | Preparar el espacio para evidencia verificable de precisión y testimonios autorizados | 8 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-MA-US-05 | Preparar la guía de vinculación del primer dispositivo | 8 | Iker Barturen | To-do |
+| EXP-04 | Construir y medir las plantillas de reglas "Oficina", "Dormitorio" y "Local con público" | 10 | Luis Alonso Huaco Oliva | To-do |
+| TB-WA-US-02 | Mostrar valores de referencia al configurar umbrales | 6 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-WS-TS-04 | Consultar resultados agregados por variante y verificar la conciliación de eventos | 10 | Dante Mateo Aleman Romano | To-do |
+
+Ambos Sprints utilizarán el pipeline existente del Capítulo VII: GitHub Actions verificará cada Pull Request, Dokploy recibirá los despliegues del backend y de la aplicación web, y Vercel publicará la landing page. La recolección se realizará según el plan de seguimiento de la sección 8.2.8; por ello, ninguna historia se considerará terminada mientras sus eventos no superen las comprobaciones de identidad, consentimiento y conciliación definidas en ese plan.
+
 #### 8.3.3.2. Implemented To-Be Landing Page Evidence
+
+La landing page To-Be incorporará el precio total desde la primera vista, una explicación verificable de la precisión del sensor y los eventos necesarios para EXP-02 y EXP-05. Estos cambios todavía no están implementados en producción; la versión As-Is permanece disponible en https://site-beige-mu.vercel.app/ y no debe presentarse como evidencia de las variantes experimentales.
+
+La evidencia se completará con capturas de ambas condiciones, la versión publicada y la comprobación de eventos después del Sprint correspondiente.
+
+[INSERTAR IMAGEN AQUÍ]
 
 #### 8.3.3.3. Implemented To-Be Frontend-Web Application Evidence
 
+La aplicación web To-Be mostrará etiquetas textuales accesibles para el estado del aire, recomendaciones accionables en las alertas y valores de referencia al configurar umbrales. La versión actual de https://clair-ui.vercel.app/ sigue siendo la experiencia As-Is y las variantes de EXP-01 y EXP-03 aún no están implementadas en producción.
+
+La evidencia futura incluirá la pantalla de la variante, su asignación mediante feature flag y la verificación del evento correspondiente.
+
+[INSERTAR IMAGEN AQUÍ]
+
 #### 8.3.3.4. Implemented To-Be Native-Mobile Application Evidence
+
+La aplicación móvil To-Be incluirá el estado con texto e ícono, recomendaciones en notificaciones, registro de la acción tomada y una guía para vincular el primer dispositivo. No existe una URL pública de la compilación Flutter y estas historias todavía no están distribuidas a usuarios; por tanto, no se afirma que EXP-01, EXP-03, EXP-04 o EXP-06 estén en ejecución.
+
+La evidencia se incorporará mediante una captura de la compilación Flutter, la versión distribuida y la comprobación de eventos en Firebase DebugView.
+
+[INSERTAR IMAGEN AQUÍ]
 
 #### 8.3.3.5. Implemented To-Be RESTful API and/or Serverless Backend Evidence
 
+El backend To-Be registrará eventos de producto, asignará variantes, asociará recomendaciones a las alertas y expondrá resultados agregados solo a administradores. La API As-Is permanece en https://clair-api.giks.net/; los endpoints y cambios del To-Be aún no están desplegados y no se presentan como funcionalidad disponible.
+
+La evidencia pendiente incluirá la documentación OpenAPI, la ejecución de pruebas y la conciliación entre eventos y registros del backend exigida por V-02.
+
+[INSERTAR IMAGEN AQUÍ]
+
 #### 8.3.3.6. Team Collaboration Insights
+
+La evolución colaborativa del informe se encuentra trazada en `versions.md`, donde se conservan los bloques AV1, TB1 y A2 con sus aportes, commits y Pull Requests. La captura de analítica correspondiente al A2 se añadirá cuando el equipo obtenga la vista definitiva de GitHub y deberá coincidir con ese registro.
+
+[INSERTAR IMAGEN AQUÍ]
 
 ### 8.3.4. To-Be Validation Interviews
 
 #### 8.3.4.1. Diseño de Entrevistas.
 
+Las entrevistas To-Be se realizarán después de publicar las variantes y reunir una primera ventana de exposición. Se convocarán entre tres y cinco participantes del segmento Facility Admin y entre tres y cinco del segmento Home User. Cada sesión solicitará interpretar el estado con y sin etiqueta de EXP-03, revisar una alerta con recomendación y explicar la acción que tomaría para EXP-01, y completar la creación de una regla con plantilla para EXP-04. Se registrarán éxito de tarea, tiempo, errores, comprensión, confianza y comentarios, junto con el consentimiento para la grabación.
+
+El guion no se ejecutará antes del despliegue, porque mostrar únicamente diseños estáticos no permitiría contrastar la interacción real ni los eventos definidos en 8.2.8. A la fecha de este informe, las variantes no están en producción y las entrevistas To-Be no se han realizado.
+
 #### 8.3.4.2. Registro de Entrevistas.
+
+El registro permanece vacío porque todavía no se han ejecutado las entrevistas posteriores a los experimentos. No se incorporan nombres, capturas, tiempos ni testimonios sin una sesión real y su consentimiento. La única evidencia completada corresponde a las seis sesiones As-Is documentadas en la sección 6.3, que se conserva como línea cualitativa de referencia.
 
 ## 8.4. Experiment Aftermath & Analysis
 
 ### 8.4.1. Analysis and Interpretation of Results
 
+Los experimentos de producción aún no cuentan con resultados: las variantes no están desplegadas y no se dispone de las muestras calculadas en 8.2.5. En particular, H-02 requiere alrededor de 21 920 visitantes únicos y H-06 requiere 224 usuarios nuevos. Ejecutar una ventana menor puede producir una señal exploratoria, pero no permite aceptar ni rechazar las hipótesis con la potencia acordada.
+
+La evidencia disponible es cualitativa. Las seis sesiones de 6.3 alcanzaron una utilidad percibida promedio de 4.5/5, lo que apoya de forma direccional el criterio de utilidad del 70%, pero expresa intención declarada y no acción observada. Los seis participantes recomendarían Clair de forma explícita o implícita, aunque eso no equivale a la conversión del 60%. La comprensión del indicador basado solo en color permanece abierta por el problema heurístico 4, y tampoco se midió todavía el uso recurrente del 70%.
+
+| Hipótesis | Resultado disponible | Decisión actual | Próximo paso |
+|---|---|---|---|
+| H-01 | Sin datos de producción sobre alertas atendidas; las entrevistas piden recomendaciones | No aceptar ni rechazar | Ejecutar EXP-01 y calcular M-01 por cuenta |
+| H-02 | Sin datos de producción sobre conversión; existen dudas cualitativas sobre precio | No aceptar ni rechazar | Alcanzar la ventana de tráfico de EXP-02 y vigilar M-09 |
+| H-03 | Sin datos experimentales; el uso exclusivo de color sigue como hallazgo | No aceptar ni rechazar | Ejecutar la prueba entre grupos de EXP-03 y medir M-03 |
+| H-04 | Sin datos de producción sobre reglas completadas o tiempo | No aceptar ni rechazar | Ejecutar EXP-04 y analizar M-04 y M-05 conjuntamente |
+| H-05 | Sin datos experimentales; cinco participantes pidieron evidencia de precisión | No aceptar ni rechazar | Ejecutar EXP-05 y medir M-06 sin deteriorar M-17 |
+| H-06 | Sin datos de producción sobre sesiones o retención | No aceptar ni rechazar | Reclutar 224 usuarios y observar M-07 y M-08 |
+
 ### 8.4.2. Re-scored and Re-prioritized Question Backlog
+
+La priorización se actualiza al cierre documental del A2. Como ningún experimento fue ejecutado, la incertidumbre se mantiene alta. La facilidad de Q-03 y Q-04 disminuye por el tráfico y las respuestas necesarias; Q-01 permanece primero por su impacto directo y porque aprovecha el sistema de alertas existente. Q-02 y Q-08 siguen diferidas hasta contar con uso sostenido.
+
+| Prioridad | ID | Impacto | Incertidumbre | Facilidad | Puntaje | Razón de la nueva posición |
+|---:|---|---:|---:|---:|---:|---|
+| 1 | Q-01 | 5 | 5 | 4 | 14 | Responde al hallazgo de severidad 3 y mide una acción observable |
+| 2 | Q-05 | 4 | 4 | 5 | 13 | Puede evaluarse sin depender del tráfico de producción |
+| 3 | Q-06 | 4 | 4 | 4 | 12 | El flujo móvil existe, pero necesita instrumentación y usuarios |
+| 4 | Q-03 | 4 | 5 | 2 | 11 | El efecto esperado exige más tráfico del disponible |
+| 5 | Q-04 | 4 | 5 | 2 | 11 | Requiere evidencia técnica y suficientes respuestas a la encuesta |
+| 6 | Q-07 | 4 | 4 | 3 | 11 | Necesita una cohorte nueva y tres semanas de observación |
+| 7 | Q-10 | 4 | 3 | 3 | 10 | Puede medirse cuando existan dispositivos y cuentas nuevas |
+| 8 | Q-02 | 5 | 4 | 1 | 10 | Se difiere hasta contar con alertas y acciones suficientes |
+| 9 | Q-08 | 5 | 4 | 1 | 10 | Se difiere hasta que usuarios Free alcancen los límites del plan |
+| 10 | Q-09 | 3 | 4 | 2 | 9 | Depende de demostrar primero el valor de la recomendación fija |
 
 ## 8.5. Continuous Learning
 
 ### 8.5.1. Shareback Session Artifacts: Learning Workflow
 
+El ciclo de aprendizaje comenzará con una revisión diaria del tablero de salud del experimento para detectar desbalance, eventos incompletos y ruptura de guardrails. Cada semana, el equipo revisará la North Star y los KPIs por segmento sin detener anticipadamente los experimentos por resultados favorables. Al cierre de cada ventana se elaborará una lectura con tamaño del efecto, intervalo de confianza, condición de validez y decisión; las notas se conservarán en este informe y originarán la actualización del Question Backlog y del registro de versiones.
+
+La primera sesión de shareback está programada después del segundo Sprint To-Be de 8.3.3.1 y todavía no ha ocurrido. Por ello, no se presentan actas ni decisiones como evidencia completada.
+
+[INSERTAR IMAGEN AQUÍ]
+
 ## 8.6. To-Be Software Platform Pre-launch
 
 ### 8.6.1. About-the-Product Intro Video
 
+La sección 5.3 conserva el video As-Is About-the-Product de 46 segundos en https://bit.ly/4olR1cf. El video introductorio To-Be deberá mostrar los cambios validados e incluir un testimonio positivo autorizado de un participante; todavía no ha sido grabado y no existe un enlace adicional que pueda reportarse como evidencia.
+
 ### 8.6.2. Resumen usando Gees FrameWork
+
+El equipo aplica un marco Goal-Question-Metric para mantener la trazabilidad entre el valor que espera generar, la pregunta que debe responder y la medida que sustenta la decisión. Este resumen no sustituye la ejecución experimental ni convierte los objetivos en resultados.
+
+| Goal | Question | Metric |
+|---|---|---|
+| H-01: aumentar la respuesta útil ante alertas | ¿La recomendación accionable aumenta las alertas atendidas? | M-01, tasa de alertas atendidas |
+| H-02: reducir incertidumbre comercial | ¿Mostrar el precio desde la primera vista aumenta el registro? | M-02, conversión a registro |
+| H-03: hacer comprensible y accesible el estado | ¿El texto junto al color mejora la interpretación? | M-03, interpretación correcta |
+| H-04: simplificar la configuración de alertas | ¿Las plantillas aumentan reglas completadas y reducen el tiempo? | M-04 y M-05, completitud y tiempo |
+| H-05: sustentar la confianza en el sensor | ¿La evidencia de precisión aumenta la confianza? | M-06, confianza declarada |
+| H-06: favorecer el uso recurrente | ¿Las notificaciones push aumentan las sesiones semanales? | M-07, sesiones semanales por usuario |
 
