@@ -33,7 +33,7 @@ El repositorio `clair-core` aloja el backend monolito modular desarrollado en Ja
 
 ```mermaid
 flowchart LR
-    A[Push / Pull Request<br/>a develop o main] --> B[Setup JDK 21<br/>+ cache Maven]
+    A[Push / Pull Request<br/>a develop o main] --> B[Setup JDK 25<br/>+ cache Maven]
     B --> C[Unit Tests<br/>JUnit]
     C --> D[Integration Tests<br/>JUnit + Spring Boot Test]
     D --> E[BDD Scenarios<br/>Cucumber]
@@ -44,7 +44,7 @@ flowchart LR
 | Stage | Job | Comando / Acción | Herramienta | Salida / Artefacto |
 | --- | --- | --- | --- | --- |
 | Trigger | — | `on: push / pull_request` a `develop`/`main` | GitHub Actions | Workflow run |
-| Setup | `setup-backend` | `actions/checkout` + `setup-java` (JDK 21) + `actions/cache` (`~/.m2`) | GitHub Actions | Entorno JDK 21 reproducible |
+| Setup | `setup-backend` | `actions/checkout` + `setup-java` (JDK 25) + `actions/cache` (`~/.m2`) | GitHub Actions | Entorno JDK 25 reproducible |
 | Unit Tests | `unit-tests` | `mvn -B test` | JUnit | Reporte de pruebas unitarias |
 | Integration Tests | `integration-tests` | `mvn -B verify` | JUnit, Spring Boot Test | Reporte de pruebas de integración |
 | BDD | `bdd-tests` | ejecución de features Cucumber | Cucumber | Reporte de escenarios BDD |
@@ -185,7 +185,7 @@ Esta sección describe la topología y los componentes de infraestructura en la 
 **Componentes del Entorno Productivo del Backend (API REST en Dokploy):**
 
 - **Source Control & Trigger:** Repositorio centralizado `clair-core` (rama `main`).
-- **Runtime Environment:** Servidor remoto ejecutando OpenJDK 21 y embebiendo la arquitectura de Spring Boot dentro de un contenedor Docker gestionado por Dokploy.
+- **Runtime Environment:** Servidor remoto ejecutando OpenJDK 25 y embebiendo la arquitectura de Spring Boot dentro de un contenedor Docker gestionado por Dokploy.
 - **Persistencia Transaccional:** Base de datos relacional PostgreSQL administrada mediante migraciones automáticas con **Flyway** durante el pipeline de despliegue, vinculada de forma segura mediante variables de entorno cifradas.
 - **Caché y Broker de Mensajes:** Servicio Redis desplegado como contenedor complementario para la gestión de caché de consultas y la publicación de eventos en tiempo real.
 - **Túnel Seguro de Exposición:** **Cloudflare Tunnel** expone el servicio públicamente sin requerir IP pública, complementado con **Tailscale** para la conexión privada con la red del Edge Station IoT.
@@ -213,16 +213,26 @@ Esta sección describe la topología y los componentes de infraestructura en la 
 - **Notificaciones Push en Tiempo Real:** **OneSignal** se integra como canal de alertas inmediatas para los administradores cuando los sensores detectan condiciones de aire interior que requieren atención.
 - **Identidad y Acceso:** **Google OAuth2** opera como proveedor de identidad federada para el inicio de sesión seguro de los usuarios administradores.
 
-
-
-
-
 ## 7.4. Continuous Monitoring
 
 ### 7.4.1. Tools and Practices
 
+El monitoreo continuo de Clair observa el sistema en producción después del despliegue y no repite las pruebas de la sección 6.1 ni el análisis estático de la sección 6.2. La evidencia disponible es el panel de Dokploy de la aplicación `clair`, en el proyecto `clair-wk1mex`. Desde ahí el equipo ve el uso del servidor, el historial de despliegues y los logs del contenedor, sin entrar por SSH. El endpoint de salud permanece público y liviano, separado de la telemetría, de las sesiones y de las operaciones de pago, para que la vigilancia no cargue PostgreSQL ni Redis ni exponga datos de los establecimientos. La misma separación evita confundir una alerta de operación con una alerta de calidad del aire: la primera avisa al equipo de que la plataforma no responde, y la segunda, ya cubierta por OneSignal, avisa al usuario de que una lectura superó su umbral. No hay un vigilante externo tipo UptimeRobot ni un canal de Discord configurado en la evidencia de esta entrega; el aviso operativo se lee en Dokploy.
+
 ### 7.4.2. Monitoring Pipeline Components
+
+El componente de monitoreo es el panel Monitoring de Dokploy. En la captura, la aplicación `clair` usa 0.48 % de CPU y 789.5 MiB de memoria sobre un límite de 15.49 GiB. El disco registra 21.90 MB leídos y 32.70 MB escritos. La red registra 529.00 MB de entrada y 485.00 MB de salida. Esas cuatro series permiten ver si el contenedor está saturado antes de tratar el síntoma como una caída del servicio. No se afirma un porcentaje de disponibilidad, porque esta vista mide uso del servidor y no el éxito de un sondeo HTTP.
+
+<img src="https://i.imgur.com/Zk3vrzx.png" alt="Panel Monitoring de Dokploy para la aplicación clair: CPU, memoria, disco y red">
 
 ### 7.4.3. Alerting Pipeline Components
 
+La señal de alerta de plataforma es el estado del despliegue y del contenedor, no una alerta ambiental de PM2.5 o de CO2. En Deployments, los tres últimos despliegues de `clair` figuran como Done: el merge del Pull Request #87 desde `bananawire/release/1.0.6` (commit `b177dd38`, Release/1.0.6, duración 1 minuto 1 segundo) y dos ejecuciones del Pull Request #78 desde `bananawire/hotfix/1.0.5` (commit `c69504ad`, corrección de la referencia de OpenJDK en el workflow de CI, duraciones de 11 segundos y de 6 minutos 26 segundos). Un despliegue que no llega a Done, o un contenedor que deja de figurar como running, es la condición que el equipo trata como incidencia. No se muestra en esta captura una alerta disparada y luego recuperada.
+
+<img src="https://i.imgur.com/JL7IDYe.png" alt="Historial de despliegues Done de clair en Dokploy">
+
 ### 7.4.4. Notification Pipeline Components.
+
+El aviso operativo se lee en los logs del contenedor, no en Discord. La captura de Logs muestra el contenedor `clair-clair-wk1mex` en estado running, con 5 días de actividad. El 11 de noviembre de 2026, a las 19:15 UTC, el manejador `TelemetryRecordedEventHandler` registra que el bounded context Alerting recibió telemetría de los dispositivos, y `LocalEdgeTelemetryScheduler` emitió 5 lecturas hacia Evaluation. Ese registro permite distinguir una plataforma que sigue recibiendo datos de una que dejó de responder. OneSignal y Resend siguen reservados a la alerta ambiental y al correo del usuario; no se usan para avisar al equipo de una caída.
+
+<img src="https://i.imgur.com/IvOmmVO.png" alt="Logs de clair-core en Dokploy: telemetría recibida por Alerting el 11 de noviembre de 2026">

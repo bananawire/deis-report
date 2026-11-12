@@ -676,7 +676,9 @@ Gestiona la facturación recurrente, planes SaaS e integración asíncrona media
 
 ### 5.2.8. Team Collaboration Insights
 
-todo
+La implementación de Clair se siguió en el tablero Kanban de Vikunja, con las columnas To-Do, Doing y Done. La captura muestra una tarea pendiente, #8, para actualizar Resend porque cambiaron los DNS y el dominio, y seis tareas ya terminadas. Esas tareas cubren a los cinco integrantes: Iker implementó las pruebas unitarias y de integración del backend; Luis y Anderson implementaron las pruebas de sistema de la aplicación web con Playwright; Dante Mateo integró el Build & Test Suite al pipeline de integración continua y documentó el CI/CD y el despliegue con Dokploy; Victor definió y automatizó los escenarios BDD. La columna Doing está vacía en la captura.
+
+<img src="https://i.imgur.com/KbqKXn0.png" alt="Tablero Kanban de Vikunja con las tareas de implementación de Clair">
 
 ## 5.3. Video About-the-Product.
 
