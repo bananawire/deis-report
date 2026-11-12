@@ -1258,15 +1258,11 @@ La landing page To-Be incorporará el precio total desde la primera vista, una e
 
 La evidencia se completará con capturas de ambas condiciones, la versión publicada y la comprobación de eventos después del Sprint correspondiente.
 
-*Evidencia pendiente: las capturas de ambas variantes de la landing page y la verificación de eventos se incorporarán tras el Sprint To-Be correspondiente.*
-
 #### 8.3.3.3. Implemented To-Be Frontend-Web Application Evidence
 
 La aplicación web To-Be mostrará etiquetas textuales accesibles para el estado del aire, recomendaciones accionables en las alertas y valores de referencia al configurar umbrales. La versión actual de https://clair-ui.vercel.app/ sigue siendo la experiencia As-Is y las variantes de EXP-01 y EXP-03 aún no están implementadas en producción.
 
 La evidencia futura incluirá la pantalla de la variante, su asignación mediante feature flag y la verificación del evento correspondiente.
-
-*Evidencia pendiente: la captura de la variante, su feature flag y la verificación del evento se incorporarán tras el Sprint To-Be correspondiente.*
 
 #### 8.3.3.4. Implemented To-Be Native-Mobile Application Evidence
 
@@ -1274,15 +1270,11 @@ La aplicación móvil To-Be incluirá el estado con texto e ícono, recomendacio
 
 La evidencia se incorporará mediante una captura de la compilación Flutter, la versión distribuida y la comprobación de eventos en Firebase DebugView.
 
-*Evidencia pendiente: la captura de la compilación Flutter, la versión distribuida y los eventos en Firebase DebugView se incorporarán tras el Sprint To-Be correspondiente.*
-
 #### 8.3.3.5. Implemented To-Be RESTful API and/or Serverless Backend Evidence
 
 El backend To-Be registrará eventos de producto, asignará variantes, asociará recomendaciones a las alertas y expondrá resultados agregados solo a administradores. La API As-Is permanece en https://clair-api.giks.net/; los endpoints y cambios del To-Be aún no están desplegados y no se presentan como funcionalidad disponible.
 
-La evidencia pendiente incluirá la documentación OpenAPI, la ejecución de pruebas y la conciliación entre eventos y registros del backend exigida por V-02.
-
-*Evidencia pendiente: la documentación OpenAPI, la ejecución de pruebas y la conciliación de eventos se incorporarán tras el Sprint To-Be correspondiente.*
+La evidencia incluirá la documentación OpenAPI, la ejecución de pruebas y la conciliación entre eventos y registros del backend exigida por V-02.
 
 #### 8.3.3.6. Team Collaboration Insights
 
@@ -1343,8 +1335,6 @@ La priorización se actualiza al cierre documental del A2. Como ningún experime
 El ciclo de aprendizaje comenzará con una revisión diaria del tablero de salud del experimento para detectar desbalance, eventos incompletos y ruptura de guardrails. Cada semana, el equipo revisará la North Star y los KPIs por segmento sin detener anticipadamente los experimentos por resultados favorables. Al cierre de cada ventana se elaborará una lectura con tamaño del efecto, intervalo de confianza, condición de validez y decisión; las notas se conservarán en este informe y originarán la actualización del Question Backlog y del registro de versiones.
 
 La primera sesión de shareback está programada después del segundo Sprint To-Be de 8.3.3.1 y todavía no ha ocurrido. Por ello, no se presentan actas ni decisiones como evidencia completada.
-
-*Evidencia pendiente: los artefactos se incorporarán tras la primera sesión de shareback, programada después del segundo Sprint To-Be.*
 
 ## 8.6. To-Be Software Platform Pre-launch
 
