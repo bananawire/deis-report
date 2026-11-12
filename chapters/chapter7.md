@@ -33,7 +33,7 @@ El repositorio `clair-core` aloja el backend monolito modular desarrollado en Ja
 
 ```mermaid
 flowchart LR
-    A[Push / Pull Request<br/>a develop o main] --> B[Setup JDK 21<br/>+ cache Maven]
+    A[Push / Pull Request<br/>a develop o main] --> B[Setup JDK 25<br/>+ cache Maven]
     B --> C[Unit Tests<br/>JUnit]
     C --> D[Integration Tests<br/>JUnit + Spring Boot Test]
     D --> E[BDD Scenarios<br/>Cucumber]
@@ -44,7 +44,7 @@ flowchart LR
 | Stage | Job | Comando / Acción | Herramienta | Salida / Artefacto |
 | --- | --- | --- | --- | --- |
 | Trigger | — | `on: push / pull_request` a `develop`/`main` | GitHub Actions | Workflow run |
-| Setup | `setup-backend` | `actions/checkout` + `setup-java` (JDK 21) + `actions/cache` (`~/.m2`) | GitHub Actions | Entorno JDK 21 reproducible |
+| Setup | `setup-backend` | `actions/checkout` + `setup-java` (JDK 25) + `actions/cache` (`~/.m2`) | GitHub Actions | Entorno JDK 25 reproducible |
 | Unit Tests | `unit-tests` | `mvn -B test` | JUnit | Reporte de pruebas unitarias |
 | Integration Tests | `integration-tests` | `mvn -B verify` | JUnit, Spring Boot Test | Reporte de pruebas de integración |
 | BDD | `bdd-tests` | ejecución de features Cucumber | Cucumber | Reporte de escenarios BDD |
@@ -185,7 +185,7 @@ Esta sección describe la topología y los componentes de infraestructura en la 
 **Componentes del Entorno Productivo del Backend (API REST en Dokploy):**
 
 - **Source Control & Trigger:** Repositorio centralizado `clair-core` (rama `main`).
-- **Runtime Environment:** Servidor remoto ejecutando OpenJDK 21 y embebiendo la arquitectura de Spring Boot dentro de un contenedor Docker gestionado por Dokploy.
+- **Runtime Environment:** Servidor remoto ejecutando OpenJDK 25 y embebiendo la arquitectura de Spring Boot dentro de un contenedor Docker gestionado por Dokploy.
 - **Persistencia Transaccional:** Base de datos relacional PostgreSQL administrada mediante migraciones automáticas con **Flyway** durante el pipeline de despliegue, vinculada de forma segura mediante variables de entorno cifradas.
 - **Caché y Broker de Mensajes:** Servicio Redis desplegado como contenedor complementario para la gestión de caché de consultas y la publicación de eventos en tiempo real.
 - **Túnel Seguro de Exposición:** **Cloudflare Tunnel** expone el servicio públicamente sin requerir IP pública, complementado con **Tailscale** para la conexión privada con la red del Edge Station IoT.
