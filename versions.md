@@ -85,4 +85,6 @@ Para esta segunda entrega, el equipo Bananawire consolidó la documentación té
 
 - A2
 
-Entre el 9 y el 11 de noviembre de 2026, el equipo Bananawire actualizó el informe para el Avance 2 y fusionó los Pull Requests #38 al #43. La distribución del contenido fue: Dante Mateo Aleman Romano desarrolló 6.2, 7.4 y 8.3.3; Victor Nicolas Ortiz Alarcon desarrolló 8.1, 8.2.1, 8.2.2 y 8.4; Anderson Ricardo Ventosilla Trujillo desarrolló 8.2.3 a 8.2.8 y 8.5.1; Iker Barturen desarrolló 6.4.2, 8.3.1, 8.3.2, 8.3.4 y 8.6; y Luis Alonso Huaco Oliva desarrolló 6.3 y la actualización del outcome y las conclusiones de A2. La captura de colaboración de esta entrega corresponde al repositorio del producto y está en la sección 5.2.8; no se dispone de una captura distinta para el repositorio del informe.
+Entre el 9 y el 11 de noviembre de 2026, el equipo Bananawire actualizó el informe para el Avance 2 y fusionó los Pull Requests #38 al #43. La distribución del contenido fue: Dante Mateo Aleman Romano desarrolló 6.2, 7.4 y 8.3.3; Victor Nicolas Ortiz Alarcon desarrolló 8.1, 8.2.1, 8.2.2 y 8.4; Anderson Ricardo Ventosilla Trujillo desarrolló 8.2.3 a 8.2.8 y 8.5.1; Iker Barturen desarrolló 6.4.2, 8.3.1, 8.3.2, 8.3.4 y 8.6; y Luis Alonso Huaco Oliva desarrolló 6.3 y la actualización del outcome y las conclusiones de A2.
+
+<img src="https://i.imgur.com/Pla10tw.png" alt="insights-a2">
