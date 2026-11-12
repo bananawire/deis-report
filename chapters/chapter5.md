@@ -680,10 +680,6 @@ La implementación de Clair se siguió en el tablero Kanban de Vikunja, con las 
 
 <img src="https://i.imgur.com/KbqKXn0.png" alt="Tablero Kanban de Vikunja con las tareas de implementación de Clair">
 
-El repositorio del producto registra la misma participación. La gráfica de contribuidores de `clair-core` reparte el trabajo entre los cinco: Dante Mateo Aleman Romano, 366 commits; Luis Huaco, 41; Anderson Ricardo Ventosilla Trujillo, 37; Victor Nicolas Ortiz Alarcon, 24; Iker Barturen, 21.
-
-<img src="https://i.imgur.com/Pla10tw.png" alt="Contribuidores de clair-core: Mateo, Luis, Anderson, Victor e Iker">
-
 ## 5.3. Video About-the-Product.
 
 El video About-the-Product es una herramienta de comunicación audiovisual diseñada para presentar la propuesta de valor, el modelo de negocio y el funcionamiento de la solución Clair. Este recurso audiovisual está dirigido a dos audiencias principales:
