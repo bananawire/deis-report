@@ -1246,18 +1246,18 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 
 **Datos del participante:**
 
-| Campo | Detalle |
-|---|---|
-| ID de sesión | VI-02 |
-| Sexo | Varón |
-| Edad | 38 años |
-| Ocupación | Encargado de cafetería |
-| Rol en el establecimiento | Encargado (personal, pedidos y atención al cliente) |
-| Experiencia digital | Uso de dispositivos para gestión del local; no cuenta con equipos de medición ambiental |
-| Conocimiento previo de Clair | Ninguno |
-| Consentimiento informado | Sí |
-| Grabación autorizada | Sí |
-| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1OfZdCIdc8XxxFVLToAjkFliKZeVWlzoe/view?usp=sharing)](#) |
+| Campo | Detalle                                                                                    |
+|---|--------------------------------------------------------------------------------------------|
+| ID de sesión | VI-02                                                                                      |
+| Sexo | Varón                                                                                      |
+| Edad | 38 años                                                                                    |
+| Ocupación | Encargado de cafetería                                                                     |
+| Rol en el establecimiento | Encargado (personal, pedidos y atención al cliente)                                        |
+| Experiencia digital | Uso de dispositivos para gestión del local; no cuenta con equipos de medición ambiental    |
+| Conocimiento previo de Clair | Ninguno                                                                                    |
+| Consentimiento informado | Sí                                                                                         |
+| Grabación autorizada | Sí                                                                                         |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1Fuxax8y_XrHL4jum0VNuOOqwas0Cs9x2/view?usp=sharing)](#)                                                                            |
 
 **Respuestas por bloque del guion:**
 
@@ -1310,7 +1310,7 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 | Conocimiento previo de Clair | Ninguno |
 | Consentimiento informado | Sí |
 | Grabación autorizada | Sí |
-| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1OfZdCIdc8XxxFVLToAjkFliKZeVWlzoe/view?usp=sharing)](#) |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1Ykeqz6M4I1TeI9K124xSAyJaQMSgKS__/view?usp=sharing)](#) |
 
 **Respuestas por bloque del guion:**
 
@@ -1418,7 +1418,7 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 | Conocimiento previo de Clair | Ninguno |
 | Consentimiento informado | Sí |
 | Grabación autorizada | Sí |
-| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1ZSzI9_VMVX7UIy0jLzjQFU7ATQkK2nxw/view?usp=sharing)](#) |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1iL-eMCg3hDCmGkYI8ThPUTo8CTRVtnPu/view?usp=sharing)](#) |
 
 **Respuestas por bloque del guion:**
 
@@ -1463,18 +1463,18 @@ Los resultados cuantitativos (SUS, tiempos, tasa de éxito) y cualitativos (cita
 
 **Datos del participante:**
 
-| Campo | Detalle |
-|---|---|
-| ID de sesión | VI-06 |
-| Sexo | Varón |
-| Edad | 42 años |
-| Ocupación | Trabaja desde casa (home office) |
-| Composición del hogar | No especifica; pasa muchas horas en oficina en casa |
-| Experiencia digital | Uso cotidiano de celular; sin dispositivos de medición ambiental |
-| Conocimiento previo de Clair | Ninguno |
-| Consentimiento informado | Sí |
-| Grabación autorizada | Sí |
-| Link de la grabación | [[Enlace](https://drive.google.com/file/d/1ZSzI9_VMVX7UIy0jLzjQFU7ATQkK2nxw/view?usp=sharing)](#) | 
+| Campo | Detalle                                                                                    |
+|---|--------------------------------------------------------------------------------------------|
+| ID de sesión | VI-06                                                                                      |
+| Sexo | Varón                                                                                      |
+| Edad | 42 años                                                                                    |
+| Ocupación | Trabaja desde casa (home office)                                                           |
+| Composición del hogar | No especifica; pasa muchas horas en oficina en casa                                        |
+| Experiencia digital | Uso cotidiano de celular; sin dispositivos de medición ambiental                           |
+| Conocimiento previo de Clair | Ninguno                                                                                    |
+| Consentimiento informado | Sí                                                                                         |
+| Grabación autorizada | Sí                                                                                         |
+| Link de la grabación | [[Enlace](https://drive.google.com/file/d/162qxMJPrJQsvArMu9YYP19leXY6Mu6tm/view?usp=sharing)](#)                                                                            | 
 
 **Respuestas por bloque del guion:**
 
