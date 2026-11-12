@@ -1258,7 +1258,7 @@ La landing page To-Be incorporará el precio total desde la primera vista, una e
 
 La evidencia se completará con capturas de ambas condiciones, la versión publicada y la comprobación de eventos después del Sprint correspondiente.
 
-[INSERTAR IMAGEN AQUÍ]
+*Evidencia pendiente: las capturas de ambas variantes de la landing page y la verificación de eventos se incorporarán tras el Sprint To-Be correspondiente.*
 
 #### 8.3.3.3. Implemented To-Be Frontend-Web Application Evidence
 
@@ -1266,7 +1266,7 @@ La aplicación web To-Be mostrará etiquetas textuales accesibles para el estado
 
 La evidencia futura incluirá la pantalla de la variante, su asignación mediante feature flag y la verificación del evento correspondiente.
 
-[INSERTAR IMAGEN AQUÍ]
+*Evidencia pendiente: la captura de la variante, su feature flag y la verificación del evento se incorporarán tras el Sprint To-Be correspondiente.*
 
 #### 8.3.3.4. Implemented To-Be Native-Mobile Application Evidence
 
@@ -1274,7 +1274,7 @@ La aplicación móvil To-Be incluirá el estado con texto e ícono, recomendacio
 
 La evidencia se incorporará mediante una captura de la compilación Flutter, la versión distribuida y la comprobación de eventos en Firebase DebugView.
 
-[INSERTAR IMAGEN AQUÍ]
+*Evidencia pendiente: la captura de la compilación Flutter, la versión distribuida y los eventos en Firebase DebugView se incorporarán tras el Sprint To-Be correspondiente.*
 
 #### 8.3.3.5. Implemented To-Be RESTful API and/or Serverless Backend Evidence
 
@@ -1282,13 +1282,13 @@ El backend To-Be registrará eventos de producto, asignará variantes, asociará
 
 La evidencia pendiente incluirá la documentación OpenAPI, la ejecución de pruebas y la conciliación entre eventos y registros del backend exigida por V-02.
 
-[INSERTAR IMAGEN AQUÍ]
+*Evidencia pendiente: la documentación OpenAPI, la ejecución de pruebas y la conciliación de eventos se incorporarán tras el Sprint To-Be correspondiente.*
 
 #### 8.3.3.6. Team Collaboration Insights
 
 La evolución colaborativa del informe se encuentra trazada en `versions.md`, donde se conservan los bloques AV1, TB1 y A2 con sus aportes, commits y Pull Requests. La captura de analítica correspondiente al A2 se añadirá cuando el equipo obtenga la vista definitiva de GitHub y deberá coincidir con ese registro.
 
-[INSERTAR IMAGEN AQUÍ]
+*Evidencia disponible: el historial de contribuciones del repositorio puede consultarse en [GitHub Contributors](https://github.com/bananawire/deis-report/graphs/contributors) y el detalle por entrega en `versions.md`. La captura de analítica del A2 se incorporará cuando el equipo obtenga la vista definitiva.*
 
 ### 8.3.4. To-Be Validation Interviews
 
@@ -1344,7 +1344,7 @@ El ciclo de aprendizaje comenzará con una revisión diaria del tablero de salud
 
 La primera sesión de shareback está programada después del segundo Sprint To-Be de 8.3.3.1 y todavía no ha ocurrido. Por ello, no se presentan actas ni decisiones como evidencia completada.
 
-[INSERTAR IMAGEN AQUÍ]
+*Evidencia pendiente: los artefactos se incorporarán tras la primera sesión de shareback, programada después del segundo Sprint To-Be.*
 
 ## 8.6. To-Be Software Platform Pre-launch
 

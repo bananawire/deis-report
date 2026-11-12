@@ -1698,8 +1698,6 @@ Implementar una interfaz de configuración basada en plantillas o "presets" ráp
 | `[10/11/2026]` | `[17:00]`   | `[19:00]`  | **Revisión de Acuerdo de Servicio (SaaS):** Análisis de claridad legal, políticas de cancelación y transparencia de precios. | `[120] min` | `[Anderson]`            |
 | `[10/11/2026]` | `[20:00]`   | `[23:00]`  | **Consolidación de hallazgos:** Redacción del documento de auditoría, asignación de severidades y propuestas de mitigación (Anexo D). | `[180] min` | `[Iker]`                |
 
----
-**Nota:** Para el punto **6.4.2.4. Resumen de modificaciones para subsanar hallazgos**, puedes usar los 5 problemas que te redacté en el mensaje anterior (Prevención de errores en reseñas, botón "Cómo llegar" en el mapa, guardado automático del formulario de huarique, botón de cambio de rol y transparencia en la política de cancelación) y simplemente redactar una breve conclusión de cómo esas mejoras impactarían positivamente en el producto de HuariApp.
 
 
 #### 6.4.1.3. Contenido de auditoría realizada.
