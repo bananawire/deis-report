@@ -9,9 +9,9 @@ Esta sección define las herramientas que sostienen el flujo de Continuous Integ
 | **Nombre del Producto** | **Propósito de Uso** | **Descripción de Uso en el Proyecto** | **Ruta de Referencia / Descarga** |
 | --- | --- | --- | --- |
 | **GitHub** | Source Code Management | Alojamiento centralizado de los repositorios del proyecto (landing page, `clair-core`, `clair-ui`, aplicación móvil y edge IoT) bajo la organización del equipo. Soporta el modelo GitFlow con Pull Requests, branch protection rules y required status checks, habilitando la integración continua sobre `develop` y `main`. | https://github.com/Vanana-Desarrollo-de-Soluciones-IOT |
-| **GitHub Actions** | Continuous Integration & Deployment | Orquestador del pipeline de CI/CD. Dispara workflows ante eventos `push` y `pull_request` para ejecutar de forma automática análisis estático, pruebas unitarias, pruebas de integración, compilación de artefactos y publicación de imágenes Docker. Tras un merge exitoso en `develop`/`main`, también ejecuta el **auto-deploy de la aplicación web Angular hacia Dokploy** (no se limita a ejecutar pruebas y delegar el deploy a Vercel). | https://github.com/features/actions |
-| **Dokploy** | Self-hosted Deployment Platform | Plataforma PaaS autoalojada que actúa como destino del auto-deploy del frontend Angular y del backend `clair-core` orquestado por GitHub Actions. Aprovisiona los contenedores Docker en entornos de staging y producción con proxy inverso integrado, HTTPS y dominios personalizados. | https://dokploy.com/ |
-| **Vercel** | Deployment & Hosting | Plataforma serverless utilizada únicamente para el despliegue continuo de la landing page estática del proyecto, con CDN global, HTTPS automático y previews por Pull Request. El deploy de la aplicación web Angular se realiza sobre Dokploy, no sobre Vercel. | https://vercel.com/ |
+| **GitHub Actions** | Continuous Integration & Deployment | Orquestador del pipeline de CI/CD. Dispara workflows ante eventos `push` y `pull_request` para ejecutar de forma automática análisis estático, pruebas unitarias, pruebas de integración, compilación de artefactos y publicación de imágenes Docker. Tras integrarse cambios en `main`, **Vercel** publica la aplicación web Angular (`clair-ui`). El backend `clair-core` sigue desplegándose en Dokploy. | https://github.com/features/actions |
+| **Dokploy** | Self-hosted Deployment Platform | Plataforma PaaS autoalojada que actúa como destino del auto-deploy del backend `clair-core` orquestado por GitHub Actions. Aprovisiona los contenedores Docker en entornos de staging y producción con proxy inverso integrado, HTTPS y dominios personalizados. | https://dokploy.com/ |
+| **Vercel** | Deployment & Hosting | Plataforma serverless utilizada para el despliegue continuo de la landing page estática y de la aplicación web Angular (`clair-ui`), con CDN global, HTTPS automático y previews por Pull Request. La versión de producción de `clair-ui` queda en https://clair-ui.vercel.app/. | https://vercel.com/ |
 
 **Prácticas de Ingeniería de Software Adoptadas:**
 
@@ -64,15 +64,14 @@ flowchart LR
 
 **Web Application — `clair-ui` (Angular + Bun)**
 
-El repositorio `clair-ui` aloja la Single Page Application web de Clair construida con Angular y gestionada con Bun. Su pipeline produce el bundle estático de producción que luego es desplegado por Dokploy.
+El repositorio `clair-ui` aloja la Single Page Application web de Clair construida con Angular y gestionada con Bun. Su pipeline produce el bundle estático de producción que luego es desplegado por Vercel.
 
 ```mermaid
 flowchart LR
     A[Push / Pull Request<br/>a develop o main] --> B[Setup Bun<br/>+ cache]
     B --> C[Build SPA<br/>bun run build]
     C --> D[System Tests E2E<br/>Playwright]
-    D --> E[BDD Scenarios<br/>Cucumber]
-    E --> F[Artifact Upload<br/>dist/clair-ui]
+    D --> E[Artifact Upload<br/>dist/clair-ui]
 ```
 
 | Stage | Job | Comando / Acción | Herramienta | Salida / Artefacto |
@@ -81,7 +80,6 @@ flowchart LR
 | Setup | `setup-frontend` | `actions/checkout` + `oven-sh/setup-bun` + `actions/cache` | GitHub Actions | Entorno Bun reproducible |
 | Build | `build-spa` | `bun run build` | Angular CLI, Bun | `dist/clair-ui/browser/` |
 | System Tests | `e2e-system` | `playwright test` | Playwright | Reporte HTML Playwright |
-| BDD | `bdd-tests` | ejecución de features Cucumber | Cucumber | Reporte de escenarios BDD |
 | Artifact Upload | `upload-artifact` | `actions/upload-artifact` con `dist/` | GitHub Actions | `clair-ui-build-<run_id>` |
 
 **Etapa de Construcción Automatizada (Build Stage):**
@@ -89,8 +87,8 @@ flowchart LR
 - **Entorno de Compilación Frontend:** El runtime de **Bun** instala las dependencias declaradas en `package.json`, ejecuta el compilador de Angular y produce el bundle estático de producción en `dist/clair-ui/browser/`, validando la ausencia de errores de tipado TypeScript y de compilación de templates.
 
 **Etapa de Validación e Inyección de Pruebas (Test Suite Stage):**
-- **Ejecución de Core System Tests (E2E):** Utilizando el framework **Playwright**, configurado e implementado para la aplicación Angular, el pipeline ejecuta pruebas automatizadas End-to-End / System Testing que cubren los principales flujos funcionales del sistema desde la perspectiva del usuario: navegación entre vistas, formularios de registro e inicio de sesión, validaciones de campos, renderizado de gráficos de calidad de aire, consumo del backend `clair-core` y comunicación con la API de suscripciones de Stripe. Esta tarea es implementada por **Luis Anderson** y se reporta como evidencia en la sección **6.1.4 Core System Tests**.
-- **Ejecución de Core BDD:** Los escenarios de comportamiento definidos en **Cucumber** se ejecutan contra la aplicación desplegada, validando que las historias de usuario cumplan con los criterios de aceptación en lenguaje natural.
+- **Ejecución de Core System Tests (E2E):** Utilizando el framework **Playwright**, configurado e implementado para la aplicación Angular, el pipeline ejecuta la prueba de sistema de la sección **6.1.3.2**. Esa prueba recorre la interfaz real contra el backend `clair-core` desplegado (`https://clair-api.giks.net`), sin mocks: inicio de sesión, organización, espacio, emparejamiento y reclamo de un dispositivo, ajuste de umbrales y limpieza. Registro, billing, alertas, analítica y reportes quedan fuera de esta suite. Esta tarea es implementada por **Luis Anderson**.
+- **Ejecución de Core BDD:** La aplicación web no ejecuta escenarios **Cucumber**. El Capítulo VI documenta para `clair-ui` las pruebas unitarias de la sección **6.1.3.1** y la prueba de sistema con Playwright de la sección **6.1.3.2**; los escenarios Cucumber corresponden al backend `clair-core` (sección **6.1.1.3**).
 
 **Mobile Application (Flutter)**
 
@@ -101,9 +99,8 @@ flowchart LR
     A[Push / Pull Request<br/>a develop o main] --> B[Setup Flutter SDK<br/>+ cache pub]
     B --> C[Unit Tests<br/>flutter test]
     C --> D[System Tests E2E<br/>Patrol]
-    D --> E[BDD Scenarios<br/>Cucumber]
-    E --> F[Build APK Debug<br/>flutter build apk]
-    F --> G[Artifact Upload<br/>app-debug.apk]
+    D --> E[Build APK Debug<br/>flutter build apk]
+    E --> F[Artifact Upload<br/>app-debug.apk]
 ```
 
 | Stage | Job | Comando / Acción | Herramienta | Salida / Artefacto |
@@ -112,7 +109,6 @@ flowchart LR
 | Setup | `setup-mobile` | `actions/checkout` + `subosito/flutter-action` + `actions/cache` | GitHub Actions | Entorno Flutter reproducible |
 | Unit Tests | `unit-tests` | `flutter test` | flutter_test | Reporte de pruebas unitarias |
 | System Tests | `e2e-system` | `patrol test` | Patrol | Reporte HTML Patrol |
-| BDD | `bdd-tests` | ejecución de features Cucumber | Cucumber | Reporte de escenarios BDD |
 | Build | `build-apk` | `flutter build apk --debug` | Flutter SDK | `build/app/outputs/flutter-apk/app-debug.apk` |
 | Artifact Upload | `upload-artifact` | `actions/upload-artifact` | GitHub Actions | `clair-mobile-debug-<run_id>` |
 
@@ -122,8 +118,8 @@ flowchart LR
 
 **Etapa de Validación e Inyección de Pruebas (Test Suite Stage):**
 - **Ejecución de Core Entities Unit Tests:** El pipeline corre las pruebas unitarias automatizadas en aislamiento absoluto. En el entorno móvil, comprueba la correcta creación, modificación y serialización de las entidades de Lecturas de Calidad de Aire, Sensores, Alertas y Organización.
-- **Ejecución de Core System Tests (E2E):** Utilizando el framework especializado **Patrol**, configurado e integrado en Flutter, el pipeline ejecuta pruebas automatizadas de sistema de extremo a extremo que validan la navegación por la interfaz, la interacción con componentes, los formularios, el consumo real del backend `clair-core` y los escenarios críticos del usuario (sincronización de lecturas, registro de dispositivos del Edge Station, alertas en primer plano, comportamiento sin conexión). Esta tarea forma parte de la sección **6.1.4 Core System Tests**.
-- **Ejecución de Core BDD:** Los escenarios de comportamiento definidos en **Cucumber** se ejecutan contra la aplicación móvil, validando que las historias de usuario cumplan con los criterios de aceptación en lenguaje natural.
+- **Ejecución de Core System Tests (E2E):** Utilizando el framework especializado **Patrol**, configurado e integrado en Flutter, el pipeline ejecuta las pruebas de sistema de la sección **6.1.2.4 Mobile App System Tests**. Cada prueba recorre la interfaz real contra el backend `clair-core` desplegado y cubre el camino feliz de inicio y cierre de sesión, organizaciones, espacios, vinculación y reclamo de dispositivos, umbrales y la lista de notificaciones.
+- **Ejecución de Core BDD:** La aplicación móvil no usa **Cucumber/Gherkin**, como se documenta en la sección **6.1.2.3**. El comportamiento de la interfaz se prueba con Patrol (sección **6.1.2.4**) y las reglas de negocio quedan en las features BDD del backend (sección **6.1.1.3**).
 
 ## 7.2. Continuous Delivery
 
@@ -133,9 +129,10 @@ Para asegurar un flujo de lanzamientos eficiente y desacoplado, el equipo de Ban
 
 **Herramientas de la Suite de Entrega Continua:**
 
-- **Orquestador de Despliegue Autoalojado:** Dokploy actúa como motor de CD para los servicios web backend (`clair-core`), el frontend Angular (`clair-ui`) y el servicio edge IoT (Flask), integrándose de forma directa a nivel de repositorio con la organización `Vanana-Desarrollo-de-Soluciones-IOT` mediante su mecanismo nativo de detección de eventos sobre GitHub.
+- **Orquestador de Despliegue Autoalojado:** Dokploy actúa como motor de CD para el backend (`clair-core`) y el servicio edge IoT (Flask), integrándose de forma directa a nivel de repositorio con la organización `Vanana-Desarrollo-de-Soluciones-IOT` mediante su mecanismo nativo de detección de eventos sobre GitHub.
 - **Distribución de la Solución Móvil:** Firebase App Distribution opera como canal de Entrega Continua para el cliente nativo en Flutter, automatizando la distribución de versiones ejecutables de prueba al equipo de desarrollo y a los evaluadores.
 - **Despliegue de la Landing Page:** Vercel se emplea para la entrega continua del sitio estático institucional de Clair, gestionando previews automáticos por cada Pull Request.
+- **Despliegue de la Aplicación Web:** Vercel publica la SPA Angular del repositorio `clair-ui`. Cada fusión en la rama `main` actualiza la versión de producción en https://clair-ui.vercel.app/.
 - **Persistencia Integrada:** PostgreSQL opera como motor de base de datos relacional para el entorno de staging, provisionado como contenedor gestionado dentro de Dokploy.
 - **Caché y Mensajería:** Redis se despliega como contenedor complementario para los entornos de staging, evitando acoplamiento con los servicios de producción.
 - **Distribución de Artefactos:** GitHub Container Registry (ghcr.io) almacena las imágenes Docker inmutables producidas por el pipeline de CI, listas para ser promovidas a staging.
@@ -143,22 +140,22 @@ Para asegurar un flujo de lanzamientos eficiente y desacoplado, el equipo de Ban
 **Prácticas de Entrega Automatizada:**
 
 - **Despliegue Basado en Eventos (Git-Driven Deployment):** Se restringe cualquier tipo de intervención manual o configuraciones locales en los computadores del equipo. El entorno de staging se sincroniza directamente con la rama `develop` y el de producción con la rama `main`.
-- **Automatización por Confirmación:** Al aprobarse un Pull Request e integrarse los cambios en la rama correspondiente, Dokploy detecta automáticamente el evento de `push` mediante webhooks internos, iniciando la construcción del contenedor y el aprovisionamiento del servicio de manera inmediata.
+- **Automatización por Confirmación:** Al aprobarse un Pull Request e integrarse los cambios en la rama correspondiente, Dokploy detecta automáticamente el evento de `push` mediante webhooks internos para el backend y el edge, y Vercel detecta el mismo evento para `clair-ui`, iniciando el aprovisionamiento del servicio de manera inmediata.
 - **Inmutabilidad del Artefacto:** Cada build de CI produce una imagen Docker etiquetada con el SHA del commit (`ghcr.io/.../clair-core:<sha>`), garantizando que el mismo binario que pasó todas las pruebas sea el promovido a staging.
 - **Aislamiento del Entorno de Staging:** Cada promoción a staging se realiza contra una URL independiente del entorno productivo, permitiendo validar la liberación sin afectar a los establecimientos que ya usan Clair.
 
 ### 7.2.2. Stages Deployment Pipeline Components.
 
-El pipeline de Entrega Continua opera de forma automatizada y transparente. El equipo ha estructurado un pipeline optimizado sobre Dokploy basado en su comportamiento nativo de detección de eventos en GitHub:
+El pipeline de Entrega Continua opera de forma automatizada y transparente. El equipo ha estructurado el despliegue del backend y del edge sobre Dokploy, por su detección nativa de eventos en GitHub, y el de la aplicación web sobre Vercel:
 
 **Etapa de Detección e Integración en la Nube (Cloud Detection Stage):**
 
-- **Monitoreo de Staging:** Dokploy mantiene un escucha activo (listener) sobre los repositorios `clair-core`, `clair-ui` y el servicio edge IoT. Al consolidarse el código en la rama `develop`, la plataforma jala automáticamente los últimos cambios hacia sus servidores de empaquetamiento.
+- **Monitoreo de Staging:** Dokploy mantiene un escucha activo (listener) sobre el repositorio `clair-core` y el servicio edge IoT. Al consolidarse el código en la rama `develop`, la plataforma jala automáticamente los últimos cambios hacia sus servidores de empaquetamiento.
 
 **Etapa de Construcción y Puesta en Operación (Build & Live Stage):**
 
 - **Empaquetamiento Backend Remoto:** El servidor de Dokploy inicializa un entorno aislado, descarga la imagen Docker del backend desde GitHub Container Registry y levanta el contenedor de Spring Boot directamente en la nube, garantizando que el artefacto binario esté optimizado para el entorno de staging.
-- **Empaquetamiento Frontend Remoto:** Para la SPA de Angular, Dokploy sirve el bundle estático de producción construido por el pipeline de CI dentro del contenedor, expuesto a través de **Caddy** como proxy inverso.
+- **Despliegue del Frontend Web:** Para la SPA de Angular, **Vercel** publica el bundle estático de producción del repositorio `clair-ui`. La versión productiva queda en https://clair-ui.vercel.app/, con HTTPS automático y distribución por CDN.
 - **Despliegue Transparente (Zero-Downtime):** Una vez concluida la compilación, Dokploy levanta el nuevo servicio en paralelo y realiza la transición de tráfico sin interrumpir la disponibilidad de Clair para los establecimientos monitoreados, manteniendo la consistencia de los datos en PostgreSQL.
 - **Distribución Móvil:** Firebase App Distribution recibe automáticamente el APK firmado generado en el pipeline de CI y lo pone a disposición del equipo de validación interna.
 
@@ -190,10 +187,10 @@ Esta sección describe la topología y los componentes de infraestructura en la 
 - **Caché y Broker de Mensajes:** Servicio Redis desplegado como contenedor complementario para la gestión de caché de consultas y la publicación de eventos en tiempo real.
 - **Túnel Seguro de Exposición:** **Cloudflare Tunnel** expone el servicio públicamente sin requerir IP pública, complementado con **Tailscale** para la conexión privada con la red del Edge Station IoT.
 
-**Componentes del Entorno Productivo del Frontend (SPA Angular en Dokploy):**
+**Componentes del Entorno Productivo del Frontend (SPA Angular en Vercel):**
 
 - **Source Control & Trigger:** Repositorio centralizado `clair-ui` (rama `main`).
-- **Hosting & Reverse Proxy:** Dokploy con **Caddy** como proxy inverso, configurado para gestionar HTTPS automático y optimizar la entrega del bundle estático Angular a los usuarios finales administradores de Clair.
+- **Hosting & CDN:** Infraestructura de **Vercel**, que publica la Single Page Application en https://clair-ui.vercel.app/ con HTTPS automático para los usuarios administradores de Clair.
 
 **Componentes del Entorno Productivo de la Landing Page:**
 
