@@ -68,6 +68,7 @@
 | 1.1.19  | 11/11/2026 | Iker Barturen                        | Documenté el diseño y el estado pendiente de las entrevistas To-Be de la sección 8.3.4, el estado del video introductorio en 8.6.1 y el resumen Goal-Question-Metric de 8.6.2. |
 | 1.1.20  | 11/11/2026 | Luis Alonso Huaco Oliva              | Actualicé el Student Outcome para A2, las conclusiones y recomendaciones del Avance 2, y el bloque A2 de Project Report Collaboration Insights. |
 | 1.1.21  | 26/11/2026 | Iker Barturen                        | Reescribí la sección 8.3.1 To-Be User Stories a partir de las Experiment Cards EXP-01 a EXP-06: ocho épicas y 24 historias (User, Technical y Spike Stories) con criterios Gherkin, variantes de control y tratamiento, y eventos alineados con el Tracking Plan de la sección 8.2.8. |
+| 1.1.22  | 26/11/2026 | Iker Barturen                        | Reordené la sección 8.3.2 To-Be Product Backlog con las 24 historias de la sección 8.3.1: primero la instrumentación y después cada experimento según la prioridad del Question Backlog, con EXP-02 y EXP-05 como un solo bloque factorial; 80 story points y resumen por épica. |
 
 
 # Project Report Collaboration Insights
