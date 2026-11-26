@@ -72,6 +72,7 @@
 | 1.1.23  | 26/11/2026 | Iker Barturen                        | Rehíce la sección 8.3.3.1 To-Be Sprint Backlogs con la estructura del enunciado: dos Sprints To-Be con objetivo, 42 work items con identificador, descripción, estimación en horas, responsable y estado, y la carga por integrante, alineados con el To-Be Product Backlog de la sección 8.3.2. |
 | 1.1.24  | 26/11/2026 | Iker Barturen                        | Re-puntué la sección 8.4.2 Re-scored and Re-prioritized Question Backlog con los criterios del enunciado (Confianza, Riesgo, Impacto e Interés, con desempate por Riesgo), agregué la motivación y la decisión de cada pregunta, la distinción entre backlog amplio y profundo, la pregunta nueva Q-11 y los cambios frente a la sección 8.1.4. |
 | 1.1.25  | 26/11/2026 | Iker Barturen                        | Reasigné los responsables de la sección 8.3.3.1 según las secciones del TB2 de cada integrante y su historial de commits, repartí las horas entre las semanas 12 y 15 con el periodo de cada Sprint To-Be y actualicé los estados según la revisión de los repositorios del producto. |
+| 1.1.26  | 26/11/2026 | Iker Barturen                        | Agregué las capturas de Vikunja del To-Be Product Backlog en la sección 8.3.2 y del tablero Kanban de cada Sprint To-Be en la sección 8.3.3.1, y reemplacé la captura del tablero As-Is que usaba esta última. |
 
 
 # Project Report Collaboration Insights
