@@ -1581,6 +1581,10 @@ El To-Be Product Backlog ordena las 24 historias de la sección 8.3.1 según el 
 
 Las historias de una misma épica se entregan juntas, porque una variante incompleta rompería la condición V-06 (sin cambios en el flujo evaluado durante la ventana). Los Sprints To-Be de la sección 8.3.3.1 toman las historias en este orden.
 
+El backlog está registrado en el proyecto **experimentos** de Vikunja, el mismo tablero de la sección 5.2.8, con la etiqueta "To-Be Product Backlog". La captura muestra la vista Table filtrada por esa etiqueta y ordenada por número de tarea: las 24 historias aparecen en el mismo orden de la tabla anterior, cada una con sus story points.
+
+<img src="../assets/to-be-backlogs/backlog.png" alt="Vikunja, proyecto experimentos: To-Be Product Backlog con las 24 historias en orden de prioridad y sus story points">
+
 ### 8.3.3. Pipeline-supported, Experiment-Driven To-Be Software Platform Lifecycle
 
 #### 8.3.3.1. To-Be Sprint Backlogs
@@ -1596,13 +1600,17 @@ Los responsables siguen dos criterios: las secciones del Capítulo VIII que cada
 
 En la revisión de los repositorios del producto (`clair-core`, `clair-ui`, `site` y `mobile`) del 26/11/2026, ningún commit posterior a la semana 12 implementa estas historias. Por eso todos los work items figuran en To-do, en coherencia con las secciones 8.3.3.2 a 8.3.3.5.
 
-El tablero del equipo está en Vikunja, el mismo de la sección 5.2.8. La captura muestra su estado actual: las tareas de pruebas, BDD y CI/CD figuran en Done y la actualización de Resend por el cambio de DNS, en To-Do. Los work items de esta sección se registrarán en ese tablero al iniciar cada Sprint To-Be.
-
-<img src="https://i.imgur.com/KbqKXn0.png" alt="Kanban de Vikunja: tareas de implementación en Done y la actualización de Resend en To-Do">
+Los work items están registrados en el proyecto **experimentos** de Vikunja, el mismo tablero de la sección 5.2.8, con las etiquetas "Sprint To-Be 1" y "Sprint To-Be 2". Cada título lleva el identificador, las horas y el responsable de la tabla. Las capturas de cada Sprint muestran el tablero Kanban filtrado por su etiqueta y sin las tareas As-Is: los work items están en To-Do y las columnas Doing y Done siguen vacías, igual que el estado de la tabla. Como la columna To-Do no entra en una sola pantalla, cada Sprint se presenta en tres capturas consecutivas.
 
 **Sprint #: Sprint To-Be 1**
 
 **Objetivo:** dejar lista la medición de los experimentos y entregar EXP-01 completo. Al cierre del Sprint, cada cuenta recibe una variante estable, los eventos del Tracking Plan llegan desde web, móvil y backend, y las alertas de la variante `B` muestran su recomendación en la web, en la app y en la notificación push.
+
+<img src="../assets/to-be-backlogs/sprint-1a.png" alt="Kanban de Vikunja del Sprint To-Be 1, parte 1: work items TB-T20 a TB-T13 en To-Do">
+
+<img src="../assets/to-be-backlogs/sprint-1b.png" alt="Kanban de Vikunja del Sprint To-Be 1, parte 2: work items TB-T12 a TB-T05 en To-Do">
+
+<img src="../assets/to-be-backlogs/sprint-1c.png" alt="Kanban de Vikunja del Sprint To-Be 1, parte 3: work items TB-T08 a TB-T01 en To-Do">
 
 | User Story Id | User Story Title | Work-Item Id | Work-Item Title | Description | Estimation (Hours) | Assigned To | Status |
 |---|---|---|---|---|---:|---|---|
@@ -1630,6 +1638,12 @@ El tablero del equipo está en Vikunja, el mismo de la sección 5.2.8. La captur
 **Sprint #: Sprint To-Be 2**
 
 **Objetivo:** lanzar los experimentos de la landing page, de comprensión del estado y de la aplicación móvil. Al cierre del Sprint, la landing page asigna las cuatro combinaciones del diseño factorial de EXP-02 y EXP-05, el indicador de estado con etiqueta está listo para la prueba de 5 segundos de EXP-03, la app ofrece plantillas de reglas (EXP-04) y asigna la cohorte de notificaciones al registrarse (EXP-06). Además, se incorporan las dos mejoras de la auditoría recibida.
+
+<img src="../assets/to-be-backlogs/sprint-2a.png" alt="Kanban de Vikunja del Sprint To-Be 2, parte 1: work items TB-T42 a TB-T35 en To-Do">
+
+<img src="../assets/to-be-backlogs/sprint-2b.png" alt="Kanban de Vikunja del Sprint To-Be 2, parte 2: work items TB-T35 a TB-T28 en To-Do">
+
+<img src="../assets/to-be-backlogs/sprint-2c.png" alt="Kanban de Vikunja del Sprint To-Be 2, parte 3: work items TB-T28 a TB-T21 en To-Do">
 
 | User Story Id | User Story Title | Work-Item Id | Work-Item Title | Description | Estimation (Hours) | Assigned To | Status |
 |---|---|---|---|---|---:|---|---|
