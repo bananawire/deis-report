@@ -1721,20 +1721,76 @@ La evidencia disponible es cualitativa. Las seis sesiones de 6.3 alcanzaron una 
 
 ### 8.4.2. Re-scored and Re-prioritized Question Backlog
 
-La priorización se actualiza al cierre documental del A2. Como ningún experimento fue ejecutado, la incertidumbre se mantiene alta. La facilidad de Q-03 y Q-04 disminuye por el tráfico y las respuestas necesarias; Q-01 permanece primero por su impacto directo y porque aprovecha el sistema de alertas existente. Q-02 y Q-08 siguen diferidas hasta contar con uso sostenido.
+La sección 8.4.1 muestra que ningún experimento se ejecutó todavía, así que la re-puntuación no se apoya en resultados experimentales. Sí cambió la evidencia disponible desde la sección 8.1.4 en tres frentes:
 
-| Prioridad | ID | Impacto | Incertidumbre | Facilidad | Puntaje | Razón de la nueva posición |
-|---:|---|---:|---:|---:|---:|---|
-| 1 | Q-01 | 5 | 5 | 4 | 14 | Responde al hallazgo de severidad 3 y mide una acción observable |
-| 2 | Q-05 | 4 | 4 | 5 | 13 | Puede evaluarse sin depender del tráfico de producción |
-| 3 | Q-06 | 4 | 4 | 4 | 12 | El flujo móvil existe, pero necesita instrumentación y usuarios |
-| 4 | Q-03 | 4 | 5 | 2 | 11 | El efecto esperado exige más tráfico del disponible |
-| 5 | Q-04 | 4 | 5 | 2 | 11 | Requiere evidencia técnica y suficientes respuestas a la encuesta |
-| 6 | Q-07 | 4 | 4 | 3 | 11 | Necesita una cohorte nueva y tres semanas de observación |
-| 7 | Q-10 | 4 | 3 | 3 | 10 | Puede medirse cuando existan dispositivos y cuentas nuevas |
-| 8 | Q-02 | 5 | 4 | 1 | 10 | Se difiere hasta contar con alertas y acciones suficientes |
-| 9 | Q-08 | 5 | 4 | 1 | 10 | Se difiere hasta que usuarios Free alcancen los límites del plan |
-| 10 | Q-09 | 3 | 4 | 2 | 9 | Depende de demostrar primero el valor de la recomendación fija |
+- **La auditoría recibida (sección 6.4.2)** confirmó, desde un equipo externo, que las alertas no dicen qué hacer (hallazgo #2) y que el estado del aire depende solo del color (hallazgo #4), ambos con severidad 3. También señaló la falta de detalle de precios (#10) y un primer ingreso que no orienta al usuario (#9).
+- **Los cálculos de escala (sección 8.2.5)** mostraron cuánta muestra necesita cada pregunta. EXP-02 requiere 21 920 visitantes y EXP-06, 224 usuarios nuevos, mientras que EXP-03 se resuelve con 90 participantes fuera de producción.
+- **El To-Be Product Backlog (sección 8.3.2)** estimó el costo de construir cada experimento, desde 6 story points (EXP-06) hasta 17 (EXP-01).
+
+Además, la re-puntuación adopta los cuatro criterios que define el enunciado del curso para el Question Backlog, en lugar de los tres usados en la sección 8.1.4. La prioridad anterior se conserva como referencia para ver qué cambió.
+
+**Criterios de puntuación** (de 1 a 5; el puntaje es la suma, con un máximo de 20)
+
+| Criterio | Qué mide | 1 | 5 |
+|---|---|---|---|
+| Confianza | Cuánta evidencia de comportamiento real respalda hoy la creencia. Se puntúa de forma inversa: a menor confianza, más necesidad de responder. | Hay datos observados que ya la responden | No hay ningún dato, solo opiniones o supuestos |
+| Riesgo | Qué pasa si el equipo actúa sin responderla y se equivoca. | El error es barato y reversible | El error compromete la propuesta de valor, la ética o los ingresos |
+| Impacto | Cuánto afecta la respuesta a la adopción, la retención o los ingresos. | Afecta un detalle del producto | Afecta la North Star o una etapa completa del ciclo del usuario |
+| Interés | Cuánto la piden los usuarios, el equipo y la auditoría. | Nadie la mencionó | La pidieron participantes y evaluadores externos |
+
+A igual puntaje, tiene prioridad la pregunta con mayor **Riesgo**, como indica el enunciado; si también empata el Riesgo, decide el Impacto. En este backlog, Q-05 y Q-02 suman 16, y Q-05 va primero por mayor Riesgo; Q-02 y Q-11 suman 16, y Q-02 va primero por mayor Impacto; Q-07 y Q-08 suman 15, y Q-07 va primero por mayor Riesgo; Q-10 y Q-06 suman 14, y Q-10 va primero por mayor Riesgo.
+
+**Question Backlog re-puntuado**
+
+| Prioridad | ID | Pregunta (resumen) | Confianza | Riesgo | Impacto | Interés | Puntaje | Prioridad en 8.1.4 | Cambio |
+|---:|---|---|---:|---:|---:|---:|---:|---:|---|
+| 1 | Q-01 | Recomendación en la alerta → alertas atendidas | 4 | 5 | 5 | 5 | **19** | 1 | = |
+| 2 | Q-04 | Evidencia de precisión → confianza y registro | 5 | 5 | 4 | 4 | **18** | 5 | ▲ 3 |
+| 3 | Q-03 | Precio en la primera vista → tasa de registro | 5 | 4 | 4 | 4 | **17** | 2 | ▼ 1 |
+| 4 | Q-05 | Etiqueta en el semáforo → interpretación correcta | 3 | 5 | 4 | 4 | **16** | 3 | ▼ 1 |
+| 5 | Q-02 | Recomendación → menos tiempo en WARNING o CRITICAL | 5 | 4 | 5 | 2 | **16** | 8 | ▲ 3 |
+| 6 | Q-11 | Canal de adquisición → tráfico suficiente para la landing | 5 | 4 | 4 | 3 | **16** | — | Nueva |
+| 7 | Q-07 | Push frente a panel web → frecuencia de uso | 4 | 4 | 4 | 3 | **15** | 6 | ▼ 1 |
+| 8 | Q-08 | Conversión Free → Premium al llegar al límite | 5 | 3 | 5 | 2 | **15** | 9 | ▲ 1 |
+| 9 | Q-10 | Instalación sin ayuda en menos de 10 minutos | 4 | 4 | 4 | 2 | **14** | 7 | ▼ 2 |
+| 10 | Q-06 | Plantillas de reglas → reglas creadas con éxito | 4 | 3 | 4 | 3 | **14** | 4 | ▼ 6 |
+| 11 | Q-09 | Asistente conversacional frente a recomendación fija | 4 | 2 | 3 | 2 | **11** | 10 | ▼ 1 |
+
+**Motivación, estructura y decisión**
+
+La prioridad ordena el valor de aprender cada respuesta. La decisión, en cambio, también considera si la pregunta puede responderse en este ciclo y si depende de otra.
+
+| ID | Por qué | Estructura | Decisión |
+|---|---|---|---|
+| Q-01 | Sostiene la afirmación C-01 y la North Star. Las entrevistas y la auditoría recibida (hallazgo #2) coinciden en que falta la recomendación, pero nadie midió si cambia lo que hace el usuario. | Amplio (raíz de una cadena profunda) | Ejecutar EXP-01 en el Sprint To-Be 1. |
+| Q-04 | Cinco de seis participantes condicionaron su uso continuo a la precisión, y el equipo todavía no tiene un método para demostrarla (TB-SP-01). | Amplio | Ejecutar EXP-05 en el Sprint To-Be 2, sujeto al resultado de TB-SP-01. |
+| Q-03 | Los tres administradores dudaron del costo y la auditoría recibida marcó la falta de detalle de precios (hallazgo #10). No existe ningún dato de conversión. | Amplio | Ejecutar EXP-02 en el Sprint To-Be 2, junto con EXP-05, y leer el resultado con la regla D-03. |
+| Q-05 | La evaluación heurística y la auditoría recibida (hallazgo #4, severidad 3) confirman el problema; lo que falta saber es cuánto mejora la interpretación. Un indicador que solo usa color excluye a usuarios con daltonismo. | Amplio | Ejecutar EXP-03 en el Sprint To-Be 2; no depende del tráfico de producción. |
+| Q-02 | Respalda la afirmación C-02 de la landing page, pero solo tiene sentido si Q-01 muestra que la recomendación cambia la acción. | Profundo (sigue a Q-01) | Diferir hasta tener el resultado de EXP-01 y semanas de lecturas posteriores a las alertas. |
+| Q-11 | La sección 8.2.5 calculó 21 920 visitantes para EXP-02 frente a unos 2 800 esperados en cuatro semanas. Sin saber de dónde puede venir más tráfico, EXP-02 y EXP-05 quedarían sin conclusión. | Profundo (habilita a Q-03 y Q-04) | Responder con los visitantes por canal que registre Google Analytics 4 durante EXP-02, sin un experimento propio. |
+| Q-07 | Define en qué canal invertir. El supuesto A-04 viene de entrevistas y nunca se comparó con el uso real. | Amplio | Ejecutar EXP-06 en el Sprint To-Be 2; en la siguiente planificación pasa delante de EXP-04. |
+| Q-08 | Afecta los ingresos, pero requiere cuentas Free que alcancen los límites del plan, y esa base todavía no existe. | Amplio | Diferir al siguiente ciclo. |
+| Q-10 | La landing page afirma que instalar Clair toma pocos minutos (C-03) sin haberlo medido, y la auditoría recibida encontró que el primer ingreso no orienta al usuario (hallazgo #9). | Amplio | Medir con la tasa de activación y el tiempo de instalación (EV-29) desde el Sprint To-Be 2, sin un experimento propio. |
+| Q-06 | Configurar una regla es necesario para que las alertas sirvan, pero el problema es de severidad 2 y equivocarse tiene un costo bajo: el flujo actual sigue disponible. | Amplio | Ejecutar EXP-04 en el Sprint To-Be 2, porque el flujo ya existe y su construcción es corta. |
+| Q-09 | Solo vale la pena comparar el asistente si la recomendación fija demuestra valor en Q-01. | Profundo (sigue a Q-01 y Q-02) | Diferir hasta confirmar Q-01. |
+
+**Backlog amplio y backlog profundo**
+
+El backlog amplio reúne las preguntas independientes que cubren distintos frentes del producto: comunicación de alertas (Q-01), confianza y adquisición (Q-03 y Q-04), comprensión del estado (Q-05), configuración (Q-06), canal de uso (Q-07), monetización (Q-08) e instalación (Q-10). El backlog profundo agrupa las preguntas que solo tienen sentido después de responder otra, y se recorre de arriba hacia abajo:
+
+| Cadena | Preguntas en orden | Condición para avanzar al siguiente nivel |
+|---|---|---|
+| Alertas | Q-01 → Q-02 → Q-09 | Q-02 se abre si EXP-01 confirma H-01; Q-09 se abre si la recomendación fija también reduce el tiempo en WARNING o CRITICAL. |
+| Landing page | Q-11 → Q-03 y Q-04 | EXP-02 y EXP-05 se leen como confirmados solo si Q-11 identifica un canal que acerque el tráfico a la muestra de 8.2.5; si no, se aplica la regla D-03 y el resultado queda como prometedor o no concluyente. |
+
+Q-11 es la única pregunta nueva. Surge de preguntar "dónde" (Where) sobre Q-03 con la técnica de las cinco W y una H: sabemos qué medir, pero no de dónde vendrá el tráfico que exige la muestra.
+
+**Cambios respecto de la sección 8.1.4**
+
+- **Q-04 sube del quinto al segundo lugar.** Con la facilidad fuera de los criterios, pesa más que cinco de seis participantes condicionen su uso a la precisión y que el equipo aún no tenga cómo demostrarla.
+- **Q-06 baja del cuarto al décimo lugar** y **Q-07 queda delante de Q-06.** Equivocarse con el flujo de reglas es barato y reversible; equivocarse de canal afecta la retención. Por eso, en la siguiente planificación, EXP-06 pasa delante de EXP-04 en el To-Be Product Backlog.
+- **Q-02 y Q-08 suben de posición, pero siguen diferidas.** Su impacto es alto, pero dependen de datos que todavía no existen.
+- **Q-01 se mantiene primera.** Es la que más se apoya en la auditoría recibida y la que sostiene la North Star Metric.
 
 ## 8.5. Continuous Learning
 

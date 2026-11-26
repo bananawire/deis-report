@@ -70,6 +70,7 @@
 | 1.1.21  | 26/11/2026 | Iker Barturen                        | Reescribí la sección 8.3.1 To-Be User Stories a partir de las Experiment Cards EXP-01 a EXP-06: ocho épicas y 24 historias (User, Technical y Spike Stories) con criterios Gherkin, variantes de control y tratamiento, y eventos alineados con el Tracking Plan de la sección 8.2.8. |
 | 1.1.22  | 26/11/2026 | Iker Barturen                        | Reordené la sección 8.3.2 To-Be Product Backlog con las 24 historias de la sección 8.3.1: primero la instrumentación y después cada experimento según la prioridad del Question Backlog, con EXP-02 y EXP-05 como un solo bloque factorial; 80 story points y resumen por épica. |
 | 1.1.23  | 26/11/2026 | Iker Barturen                        | Rehíce la sección 8.3.3.1 To-Be Sprint Backlogs con la estructura del enunciado: dos Sprints To-Be con objetivo, 42 work items con identificador, descripción, estimación en horas, responsable y estado, y la carga por integrante, alineados con el To-Be Product Backlog de la sección 8.3.2. |
+| 1.1.24  | 26/11/2026 | Iker Barturen                        | Re-puntué la sección 8.4.2 Re-scored and Re-prioritized Question Backlog con los criterios del enunciado (Confianza, Riesgo, Impacto e Interés, con desempate por Riesgo), agregué la motivación y la decisión de cada pregunta, la distinción entre backlog amplio y profundo, la pregunta nueva Q-11 y los cambios frente a la sección 8.1.4. |
 
 
 # Project Report Collaboration Insights
