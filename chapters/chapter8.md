@@ -1585,32 +1585,80 @@ Las historias de una misma épica se entregan juntas, porque una variante incomp
 
 #### 8.3.3.1. To-Be Sprint Backlogs
 
-El primer Sprint To-Be tiene como objetivo habilitar la medición de los experimentos y entregar la recomendación accionable asociada a las alertas de mayor severidad. El trabajo comienza con la investigación de herramientas, continúa con la asignación estable de variantes y el registro de eventos, y termina con la presentación coherente de la recomendación en web, móvil y notificaciones. Esas historias todavía no están en el tablero ni desplegadas. La captura que sí existe es el Kanban actual de Vikunja, el mismo de la sección 5.2.8: las tareas de pruebas, BDD y CI/CD figuran en Done, y la única tarea en To-Do es actualizar Resend por el cambio de DNS. Doing está vacío. Ese tablero no sustituye el Sprint Backlog To-Be; muestra el punto del que sale.
+Los Sprints To-Be toman las 24 historias del To-Be Product Backlog (sección 8.3.2) en su mismo orden y las descomponen en work items. El Sprint To-Be 1 cubre las posiciones 1 a 10 (38 story points) y el Sprint To-Be 2, las posiciones 11 a 24 (42 story points). Cada work item se estima en horas y tiene un responsable; los tasks generales, que no dependen de una historia, aseguran la condición V-02 antes de abrir la ventana de cada experimento.
+
+El tablero del equipo está en Vikunja, el mismo de la sección 5.2.8. La captura muestra su estado actual: las tareas de pruebas, BDD y CI/CD figuran en Done y la actualización de Resend por el cambio de DNS, en To-Do. Los work items de esta sección se registrarán en ese tablero al iniciar cada Sprint To-Be.
 
 <img src="https://i.imgur.com/KbqKXn0.png" alt="Kanban de Vikunja: tareas de implementación en Done y la actualización de Resend en To-Do">
 
-| User Story | Work item | Estimación (horas) | Responsable | Estado |
-|---|---|---:|---|---|
-| TB-SP-01 | Comparar herramientas de feature flags y analítica compatibles con Angular, Flutter y Spring Boot | 6 | Anderson Ricardo Ventosilla Trujillo | In-Process |
-| TB-WS-TS-02 | Diseñar y construir el endpoint de eventos de producto con validación de propiedades | 12 | Dante Mateo Aleman Romano | To-do |
-| TB-WS-TS-03 | Implementar la asignación determinista de variantes por cuenta | 10 | Victor Nicolas Ortiz Alarcon | To-do |
-| TB-WS-TS-01 | Asociar recomendaciones por métrica y severidad en el contexto Alerting | 12 | Dante Mateo Aleman Romano | In-Process |
-| TB-WA-US-03 | Mostrar el riesgo y la recomendación en el detalle de alerta web | 8 | Anderson Ricardo Ventosilla Trujillo | To-do |
-| TB-MA-US-02 | Incluir la recomendación en la notificación push móvil | 10 | Iker Barturen | To-do |
+**Sprint #: Sprint To-Be 1**
 
-El segundo Sprint To-Be tiene como objetivo mejorar la comprensión del estado del aire, transparentar precio y precisión en la landing page, simplificar la creación de reglas y verificar que la instrumentación produzca datos conciliables con el backend. No tiene tablero propio: las historias de la tabla siguiente siguen en To-do y no aparecen en la captura de Vikunja.
+**Objetivo:** dejar lista la medición de los experimentos y entregar EXP-01 completo. Al cierre del Sprint, cada cuenta recibe una variante estable, los eventos del Tracking Plan llegan desde web, móvil y backend, y las alertas de la variante `B` muestran su recomendación en la web, en la app y en la notificación push.
 
-| User Story | Work item | Estimación (horas) | Responsable | Estado |
-|---|---|---:|---|---|
-| TB-WA-US-01 / TB-MA-US-01 | Incorporar etiqueta textual, ícono y leyenda accesible al estado del aire | 12 | Iker Barturen | To-do |
-| TB-LP-US-03 | Mostrar planes y costo inicial total sin costos ocultos | 8 | Luis Alonso Huaco Oliva | To-do |
-| TB-LP-US-01 | Preparar el espacio para evidencia verificable de precisión y testimonios autorizados | 8 | Victor Nicolas Ortiz Alarcon | To-do |
-| TB-MA-US-05 | Preparar la guía de vinculación del primer dispositivo | 8 | Iker Barturen | To-do |
-| EXP-04 | Construir y medir las plantillas de reglas "Oficina", "Dormitorio" y "Local con público" | 10 | Luis Alonso Huaco Oliva | To-do |
-| TB-WA-US-02 | Mostrar valores de referencia al configurar umbrales | 6 | Anderson Ricardo Ventosilla Trujillo | To-do |
-| TB-WS-TS-04 | Consultar resultados agregados por variante y verificar la conciliación de eventos | 10 | Dante Mateo Aleman Romano | To-do |
+| User Story Id | User Story Title | Work-Item Id | Work-Item Title | Description | Estimation (Hours) | Assigned To | Status |
+|---|---|---|---|---|---:|---|---|
+| TB-WS-TS-01 | Asignar la variante de un experimento por cuenta | TB-T01 | Modelar experimentos y variantes en IAM | Agregar la entidad del experimento y el campo `experiment_variant` de la cuenta, con su migración. | 5 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-WS-TS-01 | Asignar la variante de un experimento por cuenta | TB-T02 | Exponer la asignación por cuenta | Implementar GET `/api/v1/experiments/{experimentId}/assignment` con un hash por experimento y la exclusión de cuentas del equipo. | 6 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-WS-TS-02 | Registrar los eventos del servidor del Tracking Plan | TB-T03 | Registrar eventos de alertas en Analytics | Publicar `alert_emitted` y `alert_status_changed` desde Alerting hacia el contexto Analytics. | 6 | Dante Mateo Aleman Romano | To-do |
+| TB-WS-TS-02 | Registrar los eventos del servidor del Tracking Plan | TB-T04 | Registrar eventos de push y de primera lectura | Registrar `push_sent`, `push_delivered` y `first_reading_received` con las propiedades comunes de 8.2.8. | 5 | Dante Mateo Aleman Romano | To-do |
+| TB-WA-TS-01 | Registrar los eventos de la aplicación web y atribuir el registro a la visita | TB-T05 | Configurar Google Analytics 4 en la aplicación web | Crear el servicio de analítica de Angular con las propiedades comunes y el bloqueo de eventos sin consentimiento. | 5 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-WA-TS-01 | Registrar los eventos de la aplicación web y atribuir el registro a la visita | TB-T06 | Atribuir el registro a la visita | Enlazar el `anonymous_id` con el `user_id` y registrar `signup_started` y `signup_completed`. | 3 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-MA-TS-01 | Registrar los eventos de la aplicación móvil en Firebase Analytics | TB-T07 | Integrar Firebase Analytics en la app | Configurar `firebase_analytics` con las propiedades comunes y el evento `experiment_exposure`. | 5 | Iker Barturen | To-do |
+| TB-MA-TS-01 | Registrar los eventos de la aplicación móvil en Firebase Analytics | TB-T08 | Verificar los eventos móviles | Comprobar en Firebase DebugView el nombre, las propiedades y los tipos de cada evento móvil. | 2 | Iker Barturen | To-do |
+| TB-WS-TS-03 | Asociar una recomendación a cada alerta según métrica y severidad | TB-T09 | Definir el catálogo de recomendaciones | Redactar la recomendación de cada combinación de métrica y severidad, y la recomendación general. | 4 | Dante Mateo Aleman Romano | In-Process |
+| TB-WS-TS-03 | Asociar una recomendación a cada alerta según métrica y severidad | TB-T10 | Incluir la recomendación en la API de alertas | Agregar el objeto `recommendation` a GET `/api/v1/alerts` solo para cuentas con la variante `B` de EXP-01. | 4 | Dante Mateo Aleman Romano | To-do |
+| TB-WS-TS-04 | Registrar la acción del usuario ante una alerta | TB-T11 | Exponer el registro de acciones | Implementar POST `/api/v1/alerts/{alertId}/actions` con las respuestas 201, 404 y 409. | 5 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-WA-US-01 | Consultar la recomendación de una alerta y registrar la acción en la aplicación web | TB-T12 | Presentar la recomendación en la alerta web | Mostrar la recomendación y el registro de la acción en el detalle de alerta según la variante. | 6 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-WA-US-01 | Consultar la recomendación de una alerta y registrar la acción en la aplicación web | TB-T13 | Registrar los eventos de la alerta web | Enviar `recommendation_viewed` y `alert_action_done` con sus propiedades. | 2 | Luis Alonso Huaco Oliva | To-do |
+| TB-MA-US-01 | Consultar la recomendación de una alerta y registrar la acción en la aplicación móvil | TB-T14 | Presentar la recomendación en la alerta móvil | Mostrar la recomendación y el registro de la acción en la app según la variante. | 6 | Iker Barturen | To-do |
+| TB-MA-US-01 | Consultar la recomendación de una alerta y registrar la acción en la aplicación móvil | TB-T15 | Registrar los eventos de la alerta móvil | Enviar `alert_action_done` y `alert_acknowledged` con sus propiedades. | 2 | Luis Alonso Huaco Oliva | To-do |
+| TB-MA-US-02 | Recibir la recomendación en la notificación push de una alerta | TB-T16 | Incluir la recomendación en el push | Armar el contenido de la notificación en Notifications según la variante de EXP-01 y presentarlo en la app. | 6 | Iker Barturen | To-do |
+| TB-MA-US-02 | Recibir la recomendación en la notificación push de una alerta | TB-T17 | Registrar la apertura desde el push | Enviar `push_opened` con `notification_id` y `alert_id`. | 2 | Iker Barturen | To-do |
+| TB-WS-TS-07 | Consultar los resultados agregados por variante | TB-T18 | Exponer los resultados por variante | Implementar GET `/api/v1/experiments/{experimentId}/results` con conteos por variante, prueba χ² de V-01 y acceso solo para administradores. | 6 | Victor Nicolas Ortiz Alarcon | To-do |
+| — | Task general del Sprint | TB-T19 | Automatizar la verificación de eventos web | Agregar a la suite de Playwright una prueba que compruebe que los eventos esperados llegan al `dataLayer`. | 4 | Luis Alonso Huaco Oliva | To-do |
+| — | Task general del Sprint | TB-T20 | Conciliar eventos de EXP-01 con el backend | Comparar los eventos de cliente con los registros del backend hasta alcanzar el 95% de coincidencia de V-02. | 4 | Luis Alonso Huaco Oliva | To-do |
 
-Ambos Sprints utilizarán el pipeline existente del Capítulo VII: GitHub Actions verificará cada Pull Request, Dokploy recibirá los despliegues del backend y de la aplicación web, y Vercel publicará la landing page. La recolección se realizará según el plan de seguimiento de la sección 8.2.8; por ello, ninguna historia se considerará terminada mientras sus eventos no superen las comprobaciones de identidad, consentimiento y conciliación definidas en ese plan.
+**Sprint #: Sprint To-Be 2**
+
+**Objetivo:** lanzar los experimentos de la landing page, de comprensión del estado y de la aplicación móvil. Al cierre del Sprint, la landing page asigna las cuatro combinaciones del diseño factorial de EXP-02 y EXP-05, el indicador de estado con etiqueta está listo para la prueba de 5 segundos de EXP-03, la app ofrece plantillas de reglas (EXP-04) y asigna la cohorte de notificaciones al registrarse (EXP-06). Además, se incorporan las dos mejoras de la auditoría recibida.
+
+| User Story Id | User Story Title | Work-Item Id | Work-Item Title | Description | Estimation (Hours) | Assigned To | Status |
+|---|---|---|---|---|---:|---|---|
+| TB-LP-TS-01 | Asignar las variantes factoriales de la landing page | TB-T21 | Asignar las combinaciones factoriales | Crear el `anonymous_id` en una cookie y asignar con hashes independientes las variantes de EXP-02 y EXP-05, solo con consentimiento. | 6 | Luis Alonso Huaco Oliva | To-do |
+| TB-LP-TS-01 | Asignar las variantes factoriales de la landing page | TB-T22 | Registrar la exposición en la landing | Enviar `experiment_exposure` una vez por experimento y visitante. | 2 | Luis Alonso Huaco Oliva | To-do |
+| TB-LP-US-01 | Conocer el precio total desde la primera vista de la landing page | TB-T23 | Construir el hero con precio | Presentar el precio del dispositivo, el plan Premium, el desglose y el plan Free en la variante `B` de EXP-02. | 4 | Luis Alonso Huaco Oliva | To-do |
+| TB-LP-US-01 | Conocer el precio total desde la primera vista de la landing page | TB-T24 | Registrar los eventos de precio | Enviar `pricing_section_viewed`, `pricing_cta_clicked` y `signup_cta_clicked`. | 2 | Luis Alonso Huaco Oliva | To-do |
+| TB-SP-01 | Definir el método de comparación del sensor con un equipo de referencia | TB-T25 | Evaluar el equipo de referencia | Comparar disponibilidad, certificado de calibración y costo de los equipos de referencia para CO₂ y PM2.5. | 4 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-SP-01 | Definir el método de comparación del sensor con un equipo de referencia | TB-T26 | Ejecutar la comparación piloto de 48 horas | Medir en un mismo espacio con Clair Alpha y el equipo de referencia, y documentar la diferencia promedio y máxima. | 6 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-LP-US-02 | Consultar la evidencia de precisión del sensor | TB-T27 | Construir la sección de precisión | Publicar la ficha técnica, el método de calibración y la comparación en la variante `B` de EXP-05. | 5 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-LP-US-02 | Consultar la evidencia de precisión del sensor | TB-T28 | Registrar la vista de la sección | Enviar `precision_section_viewed` con la variante. | 1 | Victor Nicolas Ortiz Alarcon | To-do |
+| TB-LP-US-03 | Responder la encuesta de confianza en las mediciones | TB-T29 | Construir la encuesta de confianza | Presentar la encuesta a los 30 segundos o al 50% del recorrido, una sola vez por visitante. | 4 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-LP-US-03 | Responder la encuesta de confianza en las mediciones | TB-T30 | Registrar los eventos de la encuesta | Enviar `trust_survey_shown` y `trust_survey_answered` con el puntaje. | 2 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-SP-02 | Definir la herramienta de la prueba de 5 segundos | TB-T31 | Elegir la herramienta de la prueba de 5 segundos | Comparar Maze, Lyssna y un formulario con imágenes, y ejecutar un piloto con tres personas del equipo. | 4 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-WA-US-02 | Ver el estado del aire con color, ícono y etiqueta en la aplicación web | TB-T32 | Construir el indicador de estado web | Mostrar color, ícono, etiqueta y leyenda accesible según la severidad de la evaluación más reciente. | 6 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-MA-US-03 | Ver el estado del aire con color, ícono y etiqueta en la aplicación móvil | TB-T33 | Construir el indicador de estado móvil | Aplicar los mismos niveles en el dashboard y preparar las capturas de ambas versiones para EXP-03. | 6 | Iker Barturen | To-do |
+| TB-WS-TS-05 | Consultar las plantillas de reglas de alerta | TB-T34 | Exponer las plantillas de reglas | Implementar GET `/api/v1/rule-templates` y aceptar `template_id` al crear un umbral. | 6 | Dante Mateo Aleman Romano | To-do |
+| TB-MA-US-04 | Crear una regla de alerta a partir de una plantilla | TB-T35 | Construir el flujo con plantillas | Ofrecer las plantillas en la variante `B` de EXP-04 leída desde Firebase Remote Config. | 8 | Luis Alonso Huaco Oliva | To-do |
+| TB-MA-US-04 | Crear una regla de alerta a partir de una plantilla | TB-T36 | Registrar los eventos del flujo de reglas | Enviar los eventos EV-14 a EV-19 con `duration_ms` y el último paso alcanzado. | 3 | Iker Barturen | To-do |
+| TB-WS-TS-06 | Asignar la cohorte de notificaciones al crear la cuenta | TB-T37 | Asignar EXP-06 al crear la cuenta | Asignar la variante al confirmar el registro y condicionar el envío de push a la variante `B`. | 5 | Dante Mateo Aleman Romano | To-do |
+| TB-MA-US-05 | Recibir las alertas como notificaciones push desde el primer uso | TB-T38 | Solicitar el permiso de notificaciones según la variante | Pedir el permiso al primer uso en la variante `B` y respetar los cambios en los ajustes. | 5 | Iker Barturen | To-do |
+| TB-MA-US-05 | Recibir las alertas como notificaciones push desde el primer uso | TB-T39 | Registrar los eventos de notificaciones | Enviar los eventos EV-20 a EV-23 y comprobar `session_start`. | 2 | Iker Barturen | To-do |
+| TB-WA-US-03 | Consultar valores de referencia al configurar un umbral en la aplicación web | TB-T40 | Mostrar valores de referencia de umbrales | Sugerir 15 µg/m³ para PM2.5 y 1000 ppm para CO₂ al configurar un umbral en la web. | 3 | Anderson Ricardo Ventosilla Trujillo | To-do |
+| TB-MA-US-06 | Seguir una guía de primeros pasos sin dispositivos vinculados | TB-T41 | Construir la guía de primeros pasos | Presentar los pasos para crear un espacio y reclamar el primer dispositivo cuando la cuenta no tiene dispositivos. | 5 | Iker Barturen | To-do |
+| — | Task general del Sprint | TB-T42 | Conciliar eventos de landing y app | Verificar V-02 para EXP-02, EXP-04, EXP-05 y EXP-06 antes de abrir sus ventanas. | 4 | Dante Mateo Aleman Romano | To-do |
+
+**Carga por integrante**
+
+| Integrante | Sprint To-Be 1 (horas) | Sprint To-Be 2 (horas) | Total |
+|---|---:|---:|---:|
+| Anderson Ricardo Ventosilla Trujillo | 14 | 19 | 33 |
+| Dante Mateo Aleman Romano | 19 | 15 | 34 |
+| Iker Barturen | 21 | 21 | 42 |
+| Luis Alonso Huaco Oliva | 12 | 22 | 34 |
+| Victor Nicolas Ortiz Alarcon | 22 | 16 | 38 |
+| **Total** | **88** | **93** | **181** |
+
+Ambos Sprints usan el pipeline del Capítulo VII: GitHub Actions verifica cada Pull Request, Dokploy recibe los despliegues del backend y de la aplicación web, y Vercel publica la landing page. Una historia solo pasa a Done cuando sus eventos superan las comprobaciones de identidad, consentimiento y conciliación del Tracking Plan (sección 8.2.8), porque una variante sin datos confiables no sirve para decidir.
 
 #### 8.3.3.2. Implemented To-Be Landing Page Evidence
 
