@@ -530,9 +530,11 @@ El plan de seguimiento define qué eventos se registran, cuándo se disparan y c
 
 ### 8.3.1. To-Be User Stories.
 
-Las To-Be User Stories describen los cambios que Clair necesita para ejecutar los experimentos del Capítulo VIII. Cada épica parte de una de las hipótesis Lean UX de la sección 1.2.2.3 y de los hallazgos de la auditoría recibida en la sección 6.4.2, que mostraron que los usuarios ven los datos de calidad del aire pero no siempre saben qué significan ni qué hacer con ellos. Las User Stories de las épicas TB-EP-01 a TB-EP-04 definen el comportamiento de la condición experimental y, cuando corresponde, el de la condición de control, para que ambas versiones convivan durante el experimento. La épica TB-EP-05 reúne las Technical Stories y la Spike Story que permiten asignar variantes, registrar eventos y consultar resultados; sin ellas no habría datos para aceptar o rechazar ninguna hipótesis.
+Las To-Be User Stories traducen las Experiment Cards de la sección 8.1.5 en cambios concretos de la landing page, la aplicación web, la aplicación móvil y los web services. Cada experimento tiene su propia épica (TB-EP-01 a TB-EP-06), de modo que la trazabilidad va de la pregunta del Question Backlog a la hipótesis de la sección 8.2.1 y de ahí a las historias que la hacen medible. Las historias describen las dos condiciones de la sección 8.2.4: la variante `A` mantiene el comportamiento actual (control) y la variante `B` incorpora el cambio (tratamiento). Así, ambas versiones conviven mientras dura la ventana del experimento.
 
-Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories del Capítulo III, seguido del producto (`LP` landing page, `WA` aplicación web, `MA` aplicación móvil, `WS` web services) y del tipo (`US` User Story, `TS` Technical Story, `SP` Spike Story). Los nombres de eventos, como `alert_viewed` o `demo_requested`, se mantienen en inglés para respetar la convención de nomenclatura del código.
+La épica TB-EP-07 reúne las Technical Stories que asignan las variantes y registran los eventos del Tracking Plan de la sección 8.2.8; los nombres de eventos y sus identificadores (EV-xx) son los de ese plan, y ninguna historia introduce eventos ni medidas fuera de él. Las herramientas siguen lo decidido en la sección 8.2.6: la asignación por cuenta vive en el backend, EXP-04 usa Firebase Remote Config y la landing page asigna con una cookie. La épica TB-EP-08 recoge dos hallazgos de la auditoría recibida (sección 6.4.2) que no forman parte de un experimento, pero que apoyan la tasa de activación de la sección 8.2.2 sin tocar los flujos evaluados.
+
+Los identificadores usan el prefijo `TB`, seguido del producto (`LP` landing page, `WA` aplicación web, `MA` aplicación móvil, `WS` web services) y del tipo (`US` User Story, `TS` Technical Story, `SP` Spike Story). En total son 24 historias: 12 User Stories, 10 Technical Stories y 2 Spike Stories.
 
 **Épicas**
 
@@ -541,40 +543,58 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
     <tr>
       <th style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; text-align: left;">Epic ID</th>
       <th style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; text-align: left;">Título</th>
-      <th style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; text-align: left;">Hipótesis asociada</th>
+      <th style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; text-align: left;">Experimento / hipótesis / pregunta</th>
       <th style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; text-align: left;">Descripción</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">TB-EP-01</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Comprensión del estado del aire en lenguaje claro</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Hipótesis 1 - comprensión</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Usuario, quiero que Clair exprese el estado del aire con un nivel, una etiqueta textual y una explicación breve, para que pueda decidir si mi ambiente es seguro sin interpretar valores técnicos.</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Alertas con recomendación accionable</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">EXP-01 / H-01 / Q-01</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Usuario, quiero que cada alerta incluya una acción concreta según la métrica y la severidad, y poder registrar que la apliqué, para que pueda responder a un problema de calidad del aire sin interpretar valores técnicos.</td>
     </tr>
     <tr>
       <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">TB-EP-02</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Alertas con recomendaciones accionables</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Hipótesis 2 - utilidad de las recomendaciones</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Usuario, quiero que cada alerta incluya una acción concreta según la métrica y la gravedad, para que pueda responder a un problema de calidad del aire sin buscar información adicional.</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Precio visible en la primera vista de la landing</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">EXP-02 / H-02 / Q-03</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Visitante, quiero conocer el costo del dispositivo y del plan desde la primera vista de la landing page, para que pueda decidir si me registro sin buscar el precio en otra sección.</td>
     </tr>
     <tr>
       <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">TB-EP-03</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Consulta recurrente y primeros pasos</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Hipótesis 3 - intención de uso</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Usuario, quiero recibir resúmenes periódicos y una guía para vincular mi primer dispositivo, para que pueda incorporar Clair a mi rutina con poco esfuerzo.</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Estado del aire con etiqueta de texto</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">EXP-03 / H-03 / Q-05</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Usuario, quiero que el estado del aire se exprese con color, ícono y una etiqueta de texto, para que pueda entenderlo de un vistazo aunque no distinga los colores.</td>
     </tr>
     <tr>
       <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">TB-EP-04</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Conversión desde la landing page</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Hipótesis 4 - adopción</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Visitante, quiero conocer resultados concretos, el costo total de los planes y una forma directa de solicitar una demostración, para que pueda decidir si Clair se ajusta a mi establecimiento o a mi hogar.</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Plantillas de reglas en la aplicación móvil</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">EXP-04 / H-04 / Q-06</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Usuario del segmento Home User, quiero crear una regla de alerta a partir de una plantilla, para que pueda configurar mis alertas en menos pasos y sin conocer los valores de cada métrica.</td>
     </tr>
     <tr>
       <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">TB-EP-05</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Instrumentación de experimentos</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Soporte transversal a las hipótesis 1 a 4</td>
-      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Desarrollador, quiero asignar variantes de experimento, registrar eventos de producto y consultar resultados por variante, para que el equipo pueda medir cada experimento con datos de uso reales.</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Evidencia de precisión del sensor</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">EXP-05 / H-05 / Q-04</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Visitante, quiero consultar cómo se verifica la precisión del sensor de Clair, para que pueda confiar en las mediciones antes de registrarme.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">TB-EP-06</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Notificaciones push activadas por defecto</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">EXP-06 / H-06 / Q-07</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Usuario nuevo, quiero recibir las alertas en el celular desde el inicio, para que me entere de un problema de calidad del aire sin tener que abrir el panel web.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">TB-EP-07</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Asignación de variantes e instrumentación</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Condiciones de 8.2.4 y Tracking Plan de 8.2.8</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Desarrollador, quiero asignar las variantes de cada experimento, registrar los eventos del Tracking Plan y consultar los resultados por variante, para que el equipo pueda calcular las medidas de la sección 8.2.3 con datos confiables.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">TB-EP-08</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Mejoras derivadas de la auditoría recibida</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Hallazgos #6 y #9 de la sección 6.4.2</td>
+      <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;">Como Usuario, quiero orientación al configurar umbrales y al empezar sin dispositivos, para que pueda dejar Clair funcionando sin ayuda externa.</td>
     </tr>
   </tbody>
 </table>
@@ -582,6 +602,83 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
 <br>
 
 **User Stories, Technical Stories y Spike Stories**
+
+<!-- ========== HISTORIA TB-WS-TS-03 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-03</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-01</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Asociar una recomendación a cada alerta según métrica y severidad</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero que el contexto Alerting asocie una recomendación a cada alerta según la métrica y la severidad, para que la aplicación web, la aplicación móvil y las notificaciones la presenten sin duplicar reglas de negocio.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Escenario: Alerta con recomendación. Dado que el endpoint "/api/v1/alerts" está disponible y la cuenta tiene la variante `B` de EXP-01, cuando se envía una petición GET, entonces se recibe una respuesta con estado 200 y cada alerta incluye el objeto `recommendation` con `recommendation_id` y `text`.</li>
+        <li>Escenario: Alerta del grupo control. Dado que la cuenta tiene la variante `A` de EXP-01, cuando se envía la petición GET a "/api/v1/alerts", entonces cada alerta incluye la métrica, el valor y la severidad, y no incluye el objeto `recommendation`.</li>
+        <li>Escenario: Combinación sin recomendación. Dado que no existe una recomendación para la combinación de métrica y severidad de una alerta, cuando se responde a una cuenta con la variante `B`, entonces la alerta incluye la recomendación general de revisar el espacio y el servicio registra la combinación faltante en el log.</li>
+        <li>Escenario: Recomendación estable durante la ventana. Dado que EXP-01 está en ejecución, cuando el equipo despliega otros cambios del backend, entonces los textos de las recomendaciones no cambian, como exige la condición V-06.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-WS-TS-04 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-04</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-01</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Registrar la acción del usuario ante una alerta</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero registrar que el usuario aplicó la recomendación de una alerta a través de la API, para que la alerta cuente como atendida en la medida M-01.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Escenario: Registrar acción. Dado que el endpoint "/api/v1/alerts/{alertId}/actions" está disponible y la alerta pertenece a la cuenta, cuando se envía una petición POST autenticada, entonces se recibe una respuesta con estado 201, la alerta pasa a atendida y el contexto Analytics registra `alert_status_changed` (EV-26) con `via` igual a `action`.</li>
+        <li>Escenario: Acción repetida. Dado que la alerta ya tiene una acción registrada, cuando se envía nuevamente la petición POST, entonces se recibe una respuesta con estado 409 y no se registra un segundo evento.</li>
+        <li>Escenario: Alerta de otra cuenta. Dado que la alerta no pertenece a la cuenta autenticada, cuando se envía la petición POST, entonces se recibe una respuesta con estado 404.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 <!-- ========== HISTORIA TB-WA-US-01 ========== -->
 <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
@@ -599,13 +696,13 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Ver el estado del aire en lenguaje claro en la aplicación web</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Consultar la recomendación de una alerta y registrar la acción en la aplicación web</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero ver el estado de la calidad del aire de cada dispositivo como un nivel con etiqueta textual y una explicación breve, para que pueda entender si el ambiente es seguro sin interpretar valores técnicos.</td>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero ver junto a cada alerta activa qué acción tomar y registrar que la apliqué, para que pueda responder al problema y dejar constancia de lo que hice.</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
@@ -613,11 +710,10 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Usuario pertenece al grupo experimental y consulta un dispositivo con lecturas recientes, cuando el sistema calcula el estado del aire, entonces el sistema presenta el nivel (Bueno, Moderado o Crítico), su etiqueta textual y una explicación de una oración sobre su significado.</li>
-        <li>Dado que el Usuario pertenece al grupo de control, cuando consulta el mismo dispositivo, entonces el sistema presenta los valores numéricos de cada métrica sin la explicación en lenguaje claro.</li>
-        <li>Dado que el sistema recibe una nueva lectura que cambia el nivel del dispositivo, cuando el Usuario mantiene abierta la consulta, entonces el sistema actualiza el nivel, la etiqueta y la explicación sin requerir una nueva consulta.</li>
-        <li>Dado que el dispositivo no reporta lecturas en los últimos 10 minutos, cuando el Usuario consulta su estado, entonces el sistema indica que el estado no está disponible y muestra la hora de la última lectura recibida.</li>
-        <li>Dado que el sistema presenta el estado del aire al Usuario, cuando la información queda disponible, entonces el sistema registra el evento air_status_viewed con la variante asignada.</li>
+        <li>Dado que la cuenta tiene la variante `B` de EXP-01 y existe una alerta activa de CO₂, cuando el Usuario consulta la alerta, entonces el sistema presenta la métrica, el valor, la severidad y la recomendación de ventilar el espacio.</li>
+        <li>Dado que la cuenta tiene la variante `A` de EXP-01, cuando el Usuario consulta una alerta activa, entonces el sistema presenta la métrica, el valor y la severidad sin recomendación.</li>
+        <li>Dado que el Usuario de la variante `B` aplicó la recomendación, cuando registra la acción, entonces el sistema marca la alerta como atendida y registra `alert_action_done` (EV-12) con los segundos transcurridos desde la emisión.</li>
+        <li>Dado que la recomendación queda visible para el Usuario, cuando el sistema la presenta, entonces el sistema registra `recommendation_viewed` (EV-11) con `alert_id` y `recommendation_id`.</li>
       </ul>
     </td>
   </tr>
@@ -639,13 +735,13 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Ver el estado del aire en lenguaje claro en la aplicación móvil</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Consultar la recomendación de una alerta y registrar la acción en la aplicación móvil</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero ver en la aplicación móvil el estado del aire de mis espacios como un nivel con etiqueta textual y una explicación breve, para que pueda entender la situación desde el celular en pocos segundos.</td>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero ver en el celular qué acción tomar ante una alerta y registrar que la apliqué, para que pueda actuar desde donde esté.</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
@@ -653,126 +749,10 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Usuario pertenece al grupo experimental y tiene dispositivos con lecturas recientes, cuando consulta el dashboard, entonces el sistema presenta para cada espacio el nivel, su etiqueta textual y una explicación de una oración.</li>
-        <li>Dado que el Usuario pertenece al grupo de control, cuando consulta el dashboard, entonces el sistema presenta los valores numéricos de cada métrica sin la explicación en lenguaje claro.</li>
-        <li>Dado que el nivel de un espacio es Crítico, cuando el sistema presenta el estado, entonces el sistema distingue el nivel mediante la etiqueta textual y un ícono, además del color.</li>
-        <li>Dado que el sistema presenta el estado del aire al Usuario, cuando la información queda disponible, entonces el sistema registra el evento air_status_viewed con la plataforma móvil y la variante asignada.</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<!-- ========== HISTORIA TB-WA-US-02 ========== -->
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-WA-US-02</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-01</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Consultar valores de referencia al configurar un umbral</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero conocer un valor de referencia sugerido para cada métrica al configurar un umbral, para que pueda definir límites de alerta adecuados sin conocimientos técnicos.</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
-      <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Usuario inicia la configuración de un umbral de PM2.5, cuando el sistema presenta los datos de la métrica, entonces el sistema sugiere 15 µg/m³ como valor de referencia e indica que corresponde a la guía de la Organización Mundial de la Salud para el promedio de 24 horas.</li>
-        <li>Dado que el Usuario inicia la configuración de un umbral de CO₂, cuando el sistema presenta los datos de la métrica, entonces el sistema sugiere 1000 ppm como valor de referencia de ventilación adecuada.</li>
-        <li>Dado que el Usuario acepta el valor sugerido, cuando guarda el umbral, entonces el sistema registra el umbral y el evento threshold_suggestion_accepted.</li>
-        <li>Dado que el Usuario ingresa un valor distinto al sugerido, cuando guarda el umbral, entonces el sistema registra el valor ingresado y el evento threshold_suggestion_modified.</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<!-- ========== HISTORIA TB-WS-TS-01 ========== -->
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-01</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-02</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Asociar una recomendación a cada alerta</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero que el servicio de alertas asocie una recomendación a cada alerta según la métrica y la gravedad, para que las aplicaciones web y móvil la presenten sin duplicar reglas de negocio.</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
-      <ul style="margin: 0; padding-left: 20px;">
-        <li>Escenario: Consultar alerta con recomendación. Dado que el endpoint "/api/v1/alerts" está disponible y el usuario pertenece al grupo experimental, cuando se envía una petición GET, entonces se recibe una respuesta con estado 200 y cada alerta incluye los campos `recommendationCode` y `recommendationText`.</li>
-        <li>Escenario: Combinación sin recomendación configurada. Dado que no existe una recomendación para la combinación de métrica y gravedad de una alerta, cuando se envía una petición GET a "/api/v1/alerts", entonces la alerta incluye la recomendación general `REVIEW_SPACE` y el servicio registra la combinación faltante en el log.</li>
-        <li>Escenario: Usuario del grupo de control. Dado que el usuario pertenece al grupo de control, cuando se envía una petición GET a "/api/v1/alerts", entonces se recibe una respuesta con estado 200 y las alertas no incluyen los campos de recomendación.</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<!-- ========== HISTORIA TB-WA-US-03 ========== -->
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-WA-US-03</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-02</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Recibir una recomendación junto a la alerta en la aplicación web</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero que cada alerta activa explique el riesgo y sugiera una acción concreta, para que pueda responder al problema sin conocer los valores técnicos de cada métrica.</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
-      <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Usuario pertenece al grupo experimental y existe una alerta activa de CO₂, cuando consulta sus alertas activas, entonces el sistema presenta una explicación breve del riesgo y la acción recomendada de ventilar el espacio.</li>
-        <li>Dado que el Usuario pertenece al grupo experimental y existe una alerta activa de PM2.5, cuando consulta sus alertas activas, entonces el sistema presenta una explicación breve del riesgo y la acción recomendada correspondiente a esa métrica.</li>
-        <li>Dado que el Usuario pertenece al grupo de control, cuando consulta sus alertas activas, entonces el sistema presenta la métrica, el valor y la gravedad sin recomendación.</li>
-        <li>Dado que el sistema presenta una alerta al Usuario, cuando la información queda disponible, entonces el sistema registra el evento alert_viewed con la variante asignada.</li>
+        <li>Dado que la cuenta tiene la variante `B` de EXP-01 y existe una alerta activa, cuando el Usuario consulta la alerta, entonces el sistema presenta la recomendación que corresponde a la métrica y la severidad.</li>
+        <li>Dado que la cuenta tiene la variante `A` de EXP-01, cuando el Usuario consulta la alerta, entonces el sistema presenta la métrica, el valor y la severidad sin recomendación.</li>
+        <li>Dado que el Usuario de la variante `B` registra que aplicó la recomendación, cuando el servicio confirma la acción, entonces el sistema muestra la alerta como atendida y registra `alert_action_done` (EV-12).</li>
+        <li>Dado que el Usuario reconoce una alerta sin registrar una acción, cuando el servicio confirma el reconocimiento, entonces el sistema registra `alert_acknowledged` (EV-13), que también cuenta para M-01.</li>
       </ul>
     </td>
   </tr>
@@ -790,11 +770,11 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
     <td style="border: 1px solid #ccc; padding: 8px;">TB-MA-US-02</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-02</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-01</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Recibir notificaciones push con recomendación</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Recibir la recomendación en la notificación push de una alerta</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
@@ -808,9 +788,163 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Usuario pertenece al grupo experimental y se genera una alerta en uno de sus espacios, cuando el sistema envía la notificación push, entonces la notificación incluye la métrica, el nombre del espacio y la acción recomendada.</li>
-        <li>Dado que el Usuario pertenece al grupo de control y se genera una alerta, cuando el sistema envía la notificación push, entonces la notificación incluye la métrica, el nombre del espacio y el valor medido.</li>
-        <li>Dado que el Usuario recibe una notificación push de alerta, cuando la abre, entonces el sistema registra el evento alert_notification_opened con la variante asignada y el tiempo transcurrido desde el envío.</li>
+        <li>Dado que la cuenta tiene la variante `B` de EXP-01 y se emite una alerta en uno de sus espacios, cuando el sistema envía la notificación push, entonces la notificación incluye la métrica, el nombre del espacio y la recomendación.</li>
+        <li>Dado que la cuenta tiene la variante `A` de EXP-01, cuando el sistema envía la notificación push de una alerta, entonces la notificación incluye la métrica, el nombre del espacio y el valor medido.</li>
+        <li>Dado que el Usuario abre la aplicación desde la notificación, cuando la alerta queda visible, entonces el sistema registra `push_opened` (EV-22) con `notification_id` y `alert_id`.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-LP-TS-01 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-LP-TS-01</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-02</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Asignar las variantes factoriales de la landing page</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero asignar a cada visitante una combinación de EXP-02 y EXP-05 con una cookie, para que ambos experimentos compartan el tráfico de la landing page en el diseño factorial 2×2 de la sección 8.2.4.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que un visitante acepta las cookies, cuando carga la landing page por primera vez, entonces el sitio crea un `anonymous_id` y asigna con hashes independientes una variante de EXP-02 y una de EXP-05, lo que produce una de las cuatro combinaciones.</li>
+        <li>Dado que el visitante ya tiene una combinación asignada, cuando vuelve a la landing page, entonces el sitio presenta la misma combinación.</li>
+        <li>Dado que el visitante ve por primera vez la variante de un experimento, cuando la condición se presenta, entonces el sitio registra `experiment_exposure` (EV-01) una sola vez por experimento.</li>
+        <li>Dado que el visitante no acepta las cookies, cuando carga la landing page, entonces el sitio presenta la versión de control de ambos experimentos y no registra ningún evento, en línea con la Ley N.º 29733 citada en la sección 8.2.8.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-LP-US-01 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-LP-US-01</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Visitante</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-02</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Conocer el precio total desde la primera vista de la landing page</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Visitante, quiero ver el precio del dispositivo y del plan Premium en la primera vista de la landing page, para que pueda estimar el costo de Clair antes de decidir si me registro.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que el Visitante tiene la variante `B` de EXP-02, cuando carga la landing page, entonces la primera vista presenta el precio del dispositivo Clair Alpha, el plan Premium de S/ 29.90 al mes, el desglose entre pago único y pago mensual y la existencia del plan Free.</li>
+        <li>Dado que el Visitante tiene la variante `A` de EXP-02, cuando carga la landing page, entonces la primera vista presenta la propuesta de valor actual sin precios.</li>
+        <li>Dado que la información de precios queda visible al menos un segundo, cuando el sitio lo detecta, entonces el sitio registra `pricing_section_viewed` (EV-02) con la variante y la ubicación.</li>
+        <li>Dado que el Visitante selecciona el enlace hacia la página de precios o hacia el registro, cuando el sitio lo procesa, entonces el sitio registra `pricing_cta_clicked` (EV-03) o `signup_cta_clicked` (EV-07) según corresponda.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-SP-02 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-SP-02</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-03</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Definir la herramienta de la prueba de 5 segundos</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero evaluar Maze, Lyssna y un formulario con imágenes para la prueba de 5 segundos de EXP-03, para que el equipo elija la opción que permite reclutar 90 participantes entre grupos con el presupuesto disponible.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que se revisan las tres opciones de la sección 8.2.6, cuando se comparan la asignación entre grupos, el límite de participantes del plan gratuito, el control del tiempo de exposición y la exportación de respuestas, entonces se presenta un documento con la opción elegida y su justificación.</li>
+        <li>Dado que se eligió una opción, cuando se prepara una prueba piloto con tres personas del equipo, entonces la prueba muestra una sola versión por participante durante cinco segundos y exporta la respuesta de cada uno.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-WA-US-02 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WA-US-02</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-03</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Ver el estado del aire con color, ícono y etiqueta en la aplicación web</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero que el estado del aire de cada espacio y dispositivo se exprese con color, ícono y la etiqueta Bueno, Moderado o Malo, para que pueda entenderlo sin depender solo del color.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que el dispositivo tiene lecturas recientes y ninguna supera su umbral, cuando el Usuario consulta su estado, entonces el sistema presenta el nivel Bueno con su color, su ícono y su etiqueta.</li>
+        <li>Dado que la evaluación más reciente del dispositivo tiene severidad LOW o WARNING, cuando el Usuario consulta su estado, entonces el sistema presenta el nivel Moderado; y si tiene severidad CRITICAL, entonces presenta el nivel Malo.</li>
+        <li>Dado que el Usuario consulta el estado del aire en cualquier vista, cuando el sistema presenta el nivel, entonces el sistema ofrece una leyenda accesible que explica cada nivel y tiene un nombre legible por lectores de pantalla.</li>
+        <li>Dado que el dispositivo no envía lecturas en los últimos 10 minutos, cuando el Usuario consulta su estado, entonces el sistema indica que el estado no está disponible y la hora de la última lectura.</li>
       </ul>
     </td>
   </tr>
@@ -827,18 +961,18 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;">TB-MA-US-03</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-02</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-03</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Indicar la acción tomada ante una alerta</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Ver el estado del aire con color, ícono y etiqueta en la aplicación móvil</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero indicar qué hice después de recibir una alerta, para que Clair conserve un historial de mis acciones y pueda evaluar la utilidad de sus recomendaciones.</td>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero que el dashboard móvil muestre el estado del aire con color, ícono y etiqueta, para que pueda entenderlo de un vistazo incluso bajo luz solar directa.</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
@@ -846,9 +980,47 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que existe una alerta activa, cuando el Usuario indica que aplicó la recomendación, que realizó otra acción o que no realizó ninguna, entonces el sistema registra la respuesta con la fecha y la hora.</li>
-        <li>Dado que el Usuario registró una acción, cuando la métrica vuelve a un nivel normal dentro de los 30 minutos siguientes, entonces el sistema marca la alerta como resuelta después de una acción del Usuario.</li>
-        <li>Dado que el Usuario registra una respuesta, cuando el sistema la almacena, entonces el sistema registra el evento alert_action_reported con el tipo de respuesta y la variante asignada.</li>
+        <li>Dado que el Usuario consulta el dashboard, cuando el sistema presenta el estado de cada espacio, entonces el sistema usa los mismos niveles, etiquetas e íconos que la aplicación web.</li>
+        <li>Dado que el Usuario consulta la leyenda del estado, cuando el sistema la presenta, entonces el sistema explica qué significa cada nivel y qué acción general se sugiere.</li>
+        <li>Dado que el equipo prepara el material de EXP-03, cuando captura la versión con etiqueta y la versión de control, entonces ambas capturas usan los mismos datos y solo difieren en la etiqueta y la leyenda.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-WS-TS-05 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-05</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-04</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Consultar las plantillas de reglas de alerta</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero obtener las plantillas de reglas a través de la API, para que la aplicación móvil precargue las métricas y los umbrales de cada plantilla.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Escenario: Listar plantillas. Dado que el endpoint "/api/v1/rule-templates" está disponible, cuando se envía una petición GET autenticada, entonces se recibe una respuesta con estado 200 con las plantillas Oficina, Dormitorio y Local con público, cada una con sus métricas y valores de umbral.</li>
+        <li>Escenario: Crear la regla desde una plantilla. Dado que el endpoint "/api/v1/devices/{deviceId}/thresholds" está disponible, cuando se envía una petición POST con los valores de una plantilla y el campo `template_id`, entonces se recibe una respuesta con estado 201 y el umbral queda asociado a la plantilla de origen.</li>
+        <li>Escenario: Petición sin autenticación. Dado que el endpoint "/api/v1/rule-templates" está disponible, cuando se envía una petición GET sin token, entonces se recibe una respuesta con estado 401.</li>
       </ul>
     </td>
   </tr>
@@ -864,96 +1036,19 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;">TB-MA-US-04</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-03</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Recibir un resumen semanal de la calidad del aire</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero recibir cada semana un resumen del estado del aire de mis espacios, para que pueda revisar su evolución sin consultar la aplicación todos los días.</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
-      <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Usuario tiene al menos un dispositivo con lecturas en los últimos 7 días, cuando llega el lunes a las 08:00 en hora de Lima, entonces el sistema envía una notificación push con el porcentaje del tiempo en nivel Bueno, la cantidad de alertas y el espacio con más alertas.</li>
-        <li>Dado que el Usuario no tiene lecturas en los últimos 7 días, cuando llega el horario del resumen, entonces el sistema envía un aviso de que sus dispositivos no reportan datos.</li>
-        <li>Dado que el Usuario desactivó el resumen semanal en sus preferencias, cuando llega el horario del resumen, entonces el sistema no envía la notificación.</li>
-        <li>Dado que el Usuario abre el resumen semanal, cuando el sistema presenta el detalle, entonces el sistema registra el evento weekly_summary_opened.</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<!-- ========== HISTORIA TB-MA-US-05 ========== -->
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-MA-US-05</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-03</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Seguir una guía de primeros pasos sin dispositivos vinculados</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario recién registrado, quiero que la aplicación me indique los pasos para vincular mi primer dispositivo, para que pueda empezar a monitorear sin buscar ayuda externa.</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
-      <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Usuario no tiene dispositivos vinculados, cuando consulta el dashboard, entonces el sistema informa que aún no existen dispositivos y presenta los pasos para crear un espacio y reclamar un dispositivo.</li>
-        <li>Dado que el Usuario completa el reclamo de su primer dispositivo, cuando el sistema confirma la vinculación, entonces el sistema registra el evento first_device_claimed con el tiempo transcurrido desde el registro de la cuenta.</li>
-        <li>Dado que el Usuario ya tiene dispositivos vinculados, cuando consulta el dashboard, entonces el sistema no presenta la guía de primeros pasos.</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<!-- ========== HISTORIA TB-LP-US-01 ========== -->
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-LP-US-01</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Visitante del segmento administradores</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Usuario del segmento Home User</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
     <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-04</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Conocer resultados de establecimientos que usan Clair</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Crear una regla de alerta a partir de una plantilla</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Visitante del segmento administradores, quiero conocer resultados concretos y testimonios de establecimientos que usan Clair, para que pueda confiar en que la solución produce mejoras reales.</td>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario del segmento Home User, quiero elegir una plantilla al crear una regla de alerta, para que la regla quede configurada en menos pasos y pueda ajustarla si lo necesito.</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
@@ -961,85 +1056,11 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Visitante accede a la sección de resultados, cuando el sitio presenta la información, entonces el sitio muestra al menos dos resultados con el tipo de establecimiento, la métrica que mejoró y el periodo de medición.</li>
-        <li>Dado que el sitio publica un testimonio, cuando el Visitante lo consulta, entonces el testimonio corresponde a una persona que autorizó por escrito el uso de su nombre y de su opinión.</li>
-        <li>Dado que el Visitante llega a la sección de resultados, cuando la sección se presenta, entonces el sitio registra el evento results_section_viewed.</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<!-- ========== HISTORIA TB-LP-US-02 ========== -->
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-LP-US-02</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Visitante del segmento administradores</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-04</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Solicitar una demostración de Clair</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Visitante del segmento administradores, quiero solicitar una demostración de Clair dejando mis datos de contacto, para que pueda evaluar el producto en mi establecimiento antes de contratarlo.</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
-      <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Visitante ingresa su nombre, correo electrónico y tipo de establecimiento, cuando envía la solicitud, entonces el sitio registra la solicitud y confirma que el equipo comercial lo contactará en un plazo de dos días hábiles.</li>
-        <li>Dado que el Visitante ingresa un correo electrónico con formato inválido, cuando envía la solicitud, entonces el sitio indica el error y no registra la solicitud.</li>
-        <li>Dado que el Visitante envía una solicitud válida, cuando el sitio la registra, entonces el sitio registra el evento demo_requested con la variante del llamado a la acción que vio el Visitante.</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<!-- ========== HISTORIA TB-LP-US-03 ========== -->
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-LP-US-03</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Visitante</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-04</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Conocer qué incluye cada plan y el costo inicial total</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Visitante, quiero conocer qué incluye cada plan y cuánto pagaré en total al empezar, para que pueda comparar las opciones sin dudas sobre costos ocultos.</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
-  </tr>
-  <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
-      <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que el Visitante consulta los planes, cuando el sitio presenta cada opción, entonces el sitio indica si el plan incluye el dispositivo Clair Alpha o si este se adquiere por separado.</li>
-        <li>Dado que el Visitante consulta un plan, cuando el sitio presenta el precio, entonces el sitio muestra el costo inicial total, compuesto por el dispositivo y el primer mes de suscripción.</li>
-        <li>Dado que el Visitante selecciona un plan, cuando el sitio registra la selección, entonces el sitio registra el evento plan_selected con el nombre del plan.</li>
+        <li>Dado que el Usuario tiene la variante `B` de EXP-04 asignada por Firebase Remote Config, cuando inicia la creación de una regla, entonces el sistema ofrece las plantillas Oficina, Dormitorio y Local con público, y registra `rule_creation_started` (EV-14) con `has_templates` verdadero.</li>
+        <li>Dado que el Usuario elige una plantilla, cuando el sistema la aplica, entonces el sistema precarga sus métricas y umbrales, permite modificarlos y registra `rule_template_selected` (EV-15).</li>
+        <li>Dado que el Usuario tiene la variante `A` de EXP-04, cuando inicia la creación de una regla, entonces el sistema presenta el flujo actual de reglas personalizadas.</li>
+        <li>Dado que el Usuario guarda la regla, cuando el servicio la confirma, entonces el sistema registra `rule_saved` (EV-18) con `duration_ms`; y si sale del flujo sin guardar, entonces registra `rule_creation_abandoned` (EV-19) con el último paso alcanzado.</li>
+        <li>Dado que un valor ingresado no es válido, cuando el sistema valida el formulario, entonces el sistema indica el campo y el motivo, y registra `rule_validation_error` (EV-17).</li>
       </ul>
     </td>
   </tr>
@@ -1061,13 +1082,13 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Investigar herramientas de feature flags y analítica de producto</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Definir el método de comparación del sensor con un equipo de referencia</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero evaluar herramientas de feature flags y analítica de producto compatibles con Angular, Flutter y Spring Boot, para elegir la que permita asignar variantes y medir eventos con el menor costo de integración.</td>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero definir cómo comparar las lecturas de Clair Alpha con un equipo de referencia durante 48 horas, para que la sección de precisión de EXP-05 publique evidencia verificable y no afirmaciones sin sustento.</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
@@ -1075,8 +1096,202 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Dado que se realiza la investigación de herramientas como PostHog, GrowthBook y Firebase Remote Config con Google Analytics 4, cuando se evalúan la disponibilidad de SDK para Angular, Flutter y Java, la asignación estable de variantes por usuario, la exportación de eventos, el costo del plan gratuito y el tratamiento de datos personales, entonces se presenta un documento comparativo con la herramienta recomendada.</li>
-        <li>Dado que se eligió una herramienta, cuando se construye un prototipo mínimo, entonces el prototipo asigna una variante a un usuario de prueba y registra un evento desde la aplicación web y desde la aplicación móvil.</li>
+        <li>Dado que se investiga qué equipo de referencia puede conseguir el equipo para CO₂ y PM2.5, cuando se evalúan su disponibilidad, su certificado de calibración y su costo, entonces se presenta un documento con el equipo elegido o con la conclusión de que no hay uno disponible.</li>
+        <li>Dado que existe un equipo de referencia, cuando se ejecuta una prueba piloto de 48 horas en un mismo espacio, entonces se documentan la diferencia promedio y la diferencia máxima entre ambos equipos para cada métrica.</li>
+        <li>Dado que no se consigue un equipo de referencia, cuando se cierra el spike, entonces la historia TB-LP-US-02 se limita a la ficha técnica y al método de calibración, y el equipo lo comunica antes de lanzar EXP-05.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-LP-US-02 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-LP-US-02</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Visitante</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-05</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Consultar la evidencia de precisión del sensor</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Visitante, quiero consultar la ficha técnica de los sensores, el método de calibración y una comparación con un equipo de referencia, para que pueda evaluar si las mediciones de Clair son confiables.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que el Visitante tiene la variante `B` de EXP-05, cuando recorre la landing page, entonces el sitio presenta la sección de precisión con la ficha técnica de los sensores, el método de calibración y la comparación documentada en TB-SP-01.</li>
+        <li>Dado que el Visitante tiene la variante `A` de EXP-05, cuando recorre la landing page, entonces el sitio no presenta la sección de precisión.</li>
+        <li>Dado que la sección de precisión queda visible al menos un segundo, cuando el sitio lo detecta, entonces el sitio registra `precision_section_viewed` (EV-04) con la variante.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-LP-US-03 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-LP-US-03</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Visitante</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-05</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Responder la encuesta de confianza en las mediciones</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Visitante, quiero indicar cuánto confío en las mediciones de Clair, para que el equipo sepa si la información de la landing page genera confianza.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que el Visitante aceptó las cookies y permanece 30 segundos en la landing page o llega al 50% de su recorrido, cuando se cumple la primera de esas condiciones, entonces el sitio presenta la pregunta "¿Confías en las mediciones de Clair?" con una escala de 1 a 5 y registra `trust_survey_shown` (EV-05).</li>
+        <li>Dado que el Visitante responde la encuesta, cuando el sitio recibe la respuesta, entonces el sitio registra `trust_survey_answered` (EV-06) con el puntaje y no vuelve a presentar la encuesta a ese visitante.</li>
+        <li>Dado que el Visitante cierra la encuesta sin responder, cuando vuelve a la landing page, entonces el sitio no presenta la encuesta otra vez.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-WS-TS-06 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-06</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-06</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Asignar la cohorte de notificaciones al crear la cuenta</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero asignar la variante de EXP-06 en el momento en que se crea una cuenta, para que el efecto de las notificaciones no se confunda con la semana de registro.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Escenario: Asignar al registrarse. Dado que la ventana de reclutamiento de EXP-06 está abierta, cuando se confirma el registro de una cuenta, entonces el servicio asigna la variante `A` o `B` de EXP-06 y la guarda en el campo `experiment_variant` de la cuenta.</li>
+        <li>Escenario: Notificaciones según la variante. Dado que la cuenta tiene la variante `B`, cuando se emite una alerta, entonces el contexto Notifications envía la notificación push; y si tiene la variante `A`, entonces la alerta queda disponible en el panel web sin notificación push.</li>
+        <li>Escenario: Cuenta creada fuera de la ventana. Dado que la ventana de reclutamiento está cerrada, cuando se crea una cuenta, entonces el servicio no la incluye en EXP-06 y aplica la configuración de notificaciones vigente.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-MA-US-05 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-MA-US-05</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-06</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Recibir las alertas como notificaciones push desde el primer uso</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario nuevo, quiero que la aplicación active las notificaciones push al empezar, para que me entere de las alertas sin revisar el panel web.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que la cuenta tiene la variante `B` de EXP-06, cuando el Usuario abre la aplicación por primera vez, entonces el sistema solicita el permiso de notificaciones y registra `push_permission_prompted` (EV-20) y `push_permission_result` (EV-21).</li>
+        <li>Dado que la cuenta tiene la variante `A` de EXP-06, cuando el Usuario abre la aplicación por primera vez, entonces el sistema no solicita el permiso y las alertas quedan disponibles en el panel web.</li>
+        <li>Dado que el Usuario de cualquier variante quiere cambiar sus notificaciones, cuando las activa o desactiva en los ajustes, entonces el sistema respeta su elección y, si las desactiva, registra `push_disabled` (EV-23).</li>
+        <li>Dado que el Usuario inicia una sesión en la aplicación, cuando la sesión comienza, entonces Firebase Analytics registra `session_start` (EV-24), que alimenta las medidas M-07 y M-08.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-WS-TS-01 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-01</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-07</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Asignar la variante de un experimento por cuenta</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero obtener la variante que el backend asigna a cada cuenta en EXP-01 y EXP-06, para que la aplicación web y la aplicación móvil presenten siempre la misma condición a la misma persona.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Escenario: Obtener asignación. Dado que el endpoint "/api/v1/experiments/{experimentId}/assignment" está disponible y el experimento está activo, cuando se envía una petición GET autenticada, entonces se recibe una respuesta con estado 200 y el campo `variant` con el valor `A` (control) o `B` (tratamiento).</li>
+        <li>Escenario: Asignación determinista. Dado que una cuenta ya tiene una variante asignada en un experimento, cuando se envía nuevamente la petición GET, entonces se recibe la misma variante y el campo `experiment_variant` de la cuenta en el contexto IAM no cambia.</li>
+        <li>Escenario: Asignación independiente entre experimentos. Dado que la misma cuenta participa en EXP-01 y EXP-06, cuando se consulta la asignación de cada experimento, entonces cada variante sale de un hash distinto del identificador de la cuenta, como establece la sección 8.2.4.</li>
+        <li>Escenario: Cuenta excluida. Dado que la cuenta pertenece al equipo o es de demostración, cuando se envía la petición GET, entonces se recibe la variante `A` y el campo `excluded` con valor verdadero, para que el análisis la descarte.</li>
+        <li>Escenario: Experimento inexistente. Dado que no existe un experimento con el identificador indicado, cuando se envía la petición GET, entonces se recibe una respuesta con estado 404.</li>
       </ul>
     </td>
   </tr>
@@ -1094,17 +1309,17 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
     <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-02</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-05</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-07</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Registrar eventos de producto</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Registrar los eventos del servidor del Tracking Plan</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero enviar eventos de producto a un endpoint del API, para que el equipo cuente con datos de uso para analizar los experimentos.</td>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero que el contexto Analytics registre los eventos del servidor definidos en la sección 8.2.8, para que las medidas M-01, M-12 y M-13 se calculen desde la fuente de verdad del backend.</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
@@ -1112,16 +1327,17 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Escenario: Registrar evento exitosamente. Dado que el endpoint "/api/v1/analytics/events" está disponible, cuando se envía una petición POST autenticada con los campos `eventName`, `occurredAt`, `platform` y `variant`, entonces se recibe una respuesta con estado 202.</li>
-        <li>Escenario: Evento sin nombre. Dado que el endpoint "/api/v1/analytics/events" está disponible, cuando se envía una petición POST sin el campo `eventName`, entonces se recibe una respuesta con estado 400.</li>
-        <li>Escenario: Petición sin autenticación. Dado que el endpoint "/api/v1/analytics/events" está disponible, cuando se envía una petición POST sin token, entonces se recibe una respuesta con estado 401.</li>
-        <li>Escenario: Protección de datos personales. Dado que se registra un evento, cuando el servicio lo almacena, entonces el evento conserva un identificador seudonimizado del usuario y no almacena su nombre ni su correo electrónico.</li>
+        <li>Dado que el contexto Alerting emite una alerta, cuando se completa la emisión, entonces el contexto Analytics registra el evento `alert_emitted` (EV-25) con `alert_id`, `space_id`, `device_id`, `metric`, `severity`, `reading_at` y `emitted_at`.</li>
+        <li>Dado que una alerta pasa a atendida o reconocida, cuando el contexto Alerting guarda el cambio, entonces el contexto Analytics registra `alert_status_changed` (EV-26) con `status`, `via` y `changed_at`.</li>
+        <li>Dado que el contexto Notifications envía una notificación push, cuando FCM confirma o no confirma la entrega, entonces el contexto Analytics registra `push_sent` (EV-27) y, si corresponde, `push_delivered` (EV-28).</li>
+        <li>Dado que un dispositivo nuevo envía su primera lectura, cuando el contexto Evaluation la procesa, entonces el contexto Analytics registra `first_reading_received` (EV-29) con los minutos transcurridos desde el registro de la cuenta.</li>
+        <li>Dado que se registra cualquier evento del servidor, cuando el contexto Analytics lo almacena, entonces el evento incluye las propiedades comunes de la sección 8.2.8 y no contiene nombre, correo ni teléfono del usuario.</li>
       </ul>
     </td>
   </tr>
 </table>
 
-<!-- ========== HISTORIA TB-WS-TS-03 ========== -->
+<!-- ========== HISTORIA TB-WA-TS-01 ========== -->
 <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
@@ -1130,20 +1346,20 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-03</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WA-TS-01</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-05</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-07</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Asignar la variante de un experimento a cada usuario</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Registrar los eventos de la aplicación web y atribuir el registro a la visita</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero obtener la variante de experimento asignada a un usuario, para que las aplicaciones presenten la condición de control o la experimental de forma consistente.</td>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero que la aplicación web envíe a Google Analytics 4 los eventos del Tracking Plan y enlace el identificador anónimo con la cuenta al registrarse, para que la conversión a registro (M-02) se calcule desde la primera visita a la landing page.</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
@@ -1151,16 +1367,16 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Escenario: Obtener asignación. Dado que el endpoint "/api/v1/experiments/{experimentKey}/assignment" está disponible y el experimento está activo, cuando se envía una petición GET autenticada, entonces se recibe una respuesta con estado 200 y el campo `variant` con el valor `control` o `experimental`.</li>
-        <li>Escenario: Asignación estable. Dado que un usuario ya tiene una variante asignada, cuando se envía nuevamente la petición GET, entonces se recibe la misma variante.</li>
-        <li>Escenario: Experimento inactivo. Dado que el experimento no está activo, cuando se envía la petición GET, entonces se recibe una respuesta con estado 200 y el campo `variant` con el valor `control`.</li>
-        <li>Escenario: Exclusión entre experimentos del mismo tema. Dado que el usuario participa en otro experimento activo sobre el mismo tema, cuando se envía la petición GET, entonces se recibe la variante `control` y el campo `excluded` con valor verdadero.</li>
+        <li>Dado que un visitante llega desde la landing page con un `anonymous_id`, cuando abre el formulario de registro, entonces la aplicación web registra `signup_started` (EV-08) con el `source` de la visita.</li>
+        <li>Dado que la cuenta se crea con éxito, cuando el servicio confirma el registro, entonces la aplicación web registra `signup_completed` (EV-09) y enlaza el `anonymous_id` con el `user_id` de la cuenta.</li>
+        <li>Dado que el usuario consulta una alerta, cuando el detalle queda disponible, entonces la aplicación web registra `alert_viewed` (EV-10) con `alert_id`, `severity`, `metric` y `has_recommendation`.</li>
+        <li>Dado que el visitante no aceptó las cookies, cuando ocurre cualquiera de los eventos anteriores, entonces la aplicación web no envía ningún evento a Google Analytics 4.</li>
       </ul>
     </td>
   </tr>
 </table>
 
-<!-- ========== HISTORIA TB-WS-TS-04 ========== -->
+<!-- ========== HISTORIA TB-MA-TS-01 ========== -->
 <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
@@ -1169,20 +1385,20 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-04</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-MA-TS-01</td>
     <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
-    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-05</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Alta</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-07</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
-    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Consultar resultados agregados por variante</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Registrar los eventos de la aplicación móvil en Firebase Analytics</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero consultar los resultados agregados de un experimento por variante, para que el equipo pueda comparar las condiciones sin exportar los eventos manualmente.</td>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero que la aplicación móvil registre en Firebase Analytics los eventos del Tracking Plan con la variante asignada, para que las medidas de EXP-01, EXP-04 y EXP-06 se calculen por grupo.</td>
   </tr>
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
@@ -1190,9 +1406,124 @@ Los identificadores usan el prefijo `TB` para distinguirlos de las User Stories 
   <tr>
     <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
       <ul style="margin: 0; padding-left: 20px;">
-        <li>Escenario: Consultar resultados. Dado que el endpoint "/api/v1/experiments/{experimentKey}/results" está disponible, cuando un usuario con rol administrador envía una petición GET, entonces se recibe una respuesta con estado 200 con la cantidad de usuarios expuestos, la cantidad de conversiones y la tasa de conversión de cada variante.</li>
+        <li>Dado que el usuario ve por primera vez una variante de un experimento, cuando la condición se presenta, entonces la aplicación registra `experiment_exposure` (EV-01) con `experiment_id` y `variant` una sola vez por experimento.</li>
+        <li>Dado que se registra cualquier evento móvil, cuando Firebase Analytics lo recibe, entonces el evento incluye `platform` con valor `mobile`, el `user_id` y el objeto `experiment_variants` de la sección 8.2.8.</li>
+        <li>Dado que el equipo prepara el lanzamiento de un experimento, cuando ejecuta la aplicación en el entorno de pruebas, entonces cada evento móvil del Tracking Plan aparece en Firebase DebugView con su nombre, sus propiedades y sus tipos.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-WS-TS-07 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WS-TS-07</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Desarrollador</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Media</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-07</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Consultar los resultados agregados por variante</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Desarrollador, quiero consultar los conteos agregados de un experimento por variante, para que el equipo verifique el reparto (V-01), la completitud de eventos (V-02) y prepare el análisis de la sección 8.4.1 sin exportar datos personales.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Escenario: Consultar resultados. Dado que el endpoint "/api/v1/experiments/{experimentId}/results" está disponible, cuando un usuario con rol administrador envía una petición GET, entonces se recibe una respuesta con estado 200 con la cantidad de unidades asignadas, expuestas y convertidas por variante.</li>
+        <li>Escenario: Verificación del reparto. Dado que el experimento tiene unidades asignadas, cuando se consulta el resultado, entonces la respuesta incluye el valor p de la prueba χ² de desbalance de muestra definida en la condición V-01.</li>
         <li>Escenario: Usuario sin permisos. Dado que el endpoint está disponible, cuando un usuario sin rol administrador envía una petición GET, entonces se recibe una respuesta con estado 403.</li>
-        <li>Escenario: Experimento inexistente. Dado que no existe un experimento con la clave indicada, cuando se envía la petición GET, entonces se recibe una respuesta con estado 404.</li>
+        <li>Escenario: Experimento inexistente. Dado que no existe un experimento con el identificador indicado, cuando se envía la petición GET, entonces se recibe una respuesta con estado 404.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-WA-US-03 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-WA-US-03</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Baja</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-08</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Consultar valores de referencia al configurar un umbral en la aplicación web</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario, quiero conocer un valor de referencia para cada métrica al configurar un umbral en la aplicación web, para que pueda definir límites de alerta adecuados sin conocimientos técnicos.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que el Usuario configura un umbral de PM2.5, cuando el sistema presenta los datos de la métrica, entonces el sistema sugiere 15 µg/m³ e indica que corresponde a la guía de la Organización Mundial de la Salud para el promedio de 24 horas.</li>
+        <li>Dado que el Usuario configura un umbral de CO₂, cuando el sistema presenta los datos de la métrica, entonces el sistema sugiere 1000 ppm como referencia de ventilación adecuada.</li>
+        <li>Dado que el Usuario ingresa un valor distinto al sugerido, cuando guarda el umbral, entonces el sistema registra el valor ingresado.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<!-- ========== HISTORIA TB-MA-US-06 ========== -->
+<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 20px;">
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 15%;">Story ID</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 35%;">User</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 20%;">Priority</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #f2f2f2; font-weight: bold; width: 30%;">Epic</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-MA-US-06</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Usuario</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Baja</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">TB-EP-08</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold; width: 15%;">Title</td>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa;" colspan="3">Seguir una guía de primeros pasos sin dispositivos vinculados</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Description</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">Como Usuario recién registrado, quiero que la aplicación me indique los pasos para vincular mi primer dispositivo, para que pueda empezar a monitorear sin ayuda externa.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; background-color: #fafafa; font-weight: bold;" colspan="4">Acceptance Criteria</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;" colspan="4">
+      <ul style="margin: 0; padding-left: 20px;">
+        <li>Dado que el Usuario no tiene dispositivos vinculados, cuando consulta el dashboard, entonces el sistema informa que aún no hay dispositivos y presenta los pasos para crear un espacio y reclamar un dispositivo.</li>
+        <li>Dado que el Usuario completa la vinculación y el dispositivo envía su primera lectura, cuando el backend la recibe, entonces se registra `first_reading_received` (EV-29), que alimenta la tasa de activación y el tiempo de instalación de la sección 8.2.2.</li>
+        <li>Dado que el Usuario ya tiene dispositivos vinculados, cuando consulta el dashboard, entonces el sistema no presenta la guía de primeros pasos.</li>
       </ul>
     </td>
   </tr>

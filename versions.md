@@ -67,6 +67,7 @@
 | 1.1.18  | 11/11/2026 | Anderson Ricardo Ventosilla Trujillo | Documenté la sección 8.5.1 Shareback Session Artifacts: Learning Workflow con el flujo de revisión de salud, KPIs, lectura final y actualización del aprendizaje. |
 | 1.1.19  | 11/11/2026 | Iker Barturen                        | Documenté el diseño y el estado pendiente de las entrevistas To-Be de la sección 8.3.4, el estado del video introductorio en 8.6.1 y el resumen Goal-Question-Metric de 8.6.2. |
 | 1.1.20  | 11/11/2026 | Luis Alonso Huaco Oliva              | Actualicé el Student Outcome para A2, las conclusiones y recomendaciones del Avance 2, y el bloque A2 de Project Report Collaboration Insights. |
+| 1.1.21  | 26/11/2026 | Iker Barturen                        | Reescribí la sección 8.3.1 To-Be User Stories a partir de las Experiment Cards EXP-01 a EXP-06: ocho épicas y 24 historias (User, Technical y Spike Stories) con criterios Gherkin, variantes de control y tratamiento, y eventos alineados con el Tracking Plan de la sección 8.2.8. |
 
 
 # Project Report Collaboration Insights
