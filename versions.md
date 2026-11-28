@@ -73,6 +73,7 @@
 | 1.1.24  | 26/11/2026 | Iker Barturen                        | Re-puntué la sección 8.4.2 Re-scored and Re-prioritized Question Backlog con los criterios del enunciado (Confianza, Riesgo, Impacto e Interés, con desempate por Riesgo), agregué la motivación y la decisión de cada pregunta, la distinción entre backlog amplio y profundo, la pregunta nueva Q-11 y los cambios frente a la sección 8.1.4. |
 | 1.1.25  | 26/11/2026 | Iker Barturen                        | Reasigné los responsables de la sección 8.3.3.1 según las secciones del TB2 de cada integrante y su historial de commits, repartí las horas entre las semanas 12 y 15 con el periodo de cada Sprint To-Be y actualicé los estados según la revisión de los repositorios del producto. |
 | 1.1.26  | 26/11/2026 | Iker Barturen                        | Agregué las capturas de Vikunja del To-Be Product Backlog en la sección 8.3.2 y del tablero Kanban de cada Sprint To-Be en la sección 8.3.3.1, y reemplacé la captura del tablero As-Is que usaba esta última. |
+| 1.1.27  | 28/11/2026 | Dante Mateo Aleman Romano            | Redactó las secciones 8.5 Continuous Learning, 8.5.1 Shareback Session Artifacts: Learning Workflow y 8.6.2 Resumen usando GEES Framework en el Capítulo VIII (flujo de aprendizaje diario/semanal, estado de experimentos pendientes, marco GEES Goal–Experiment–Evaluate–Shareback y nota explícita de evidencias pendientes: tests de reloj, GitHub Insights y poemas). |
 
 
 # Project Report Collaboration Insights
