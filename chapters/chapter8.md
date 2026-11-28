@@ -1817,11 +1817,20 @@ Q-11 es la única pregunta nueva. Surge de preguntar "dónde" (Where) sobre Q-03
 
 ## 8.5. Continuous Learning
 
+El ciclo A2 cierra con la fase de **Continuous Learning** del equipo Bananawire, alineada al Student Outcome 7 del curso (capacidad de adquirir y aplicar nuevos conocimientos mediante estrategias de aprendizaje apropiadas). El flujo se ejecuta mediante el marco GEES (Goal–Experiment–Evaluate–Shareback) aplicado a los seis experimentos planificados (EXP-01 a EXP-06) y al Question Backlog re-priorizado en 8.4.2.
+
 ### 8.5.1. Shareback Session Artifacts: Learning Workflow
 
-El ciclo de aprendizaje comenzará con una revisión diaria del tablero de salud del experimento para detectar desbalance, eventos incompletos y ruptura de guardrails. Cada semana, el equipo revisará la North Star y los KPIs por segmento sin detener anticipadamente los experimentos por resultados favorables. Al cierre de cada ventana se elaborará una lectura con tamaño del efecto, intervalo de confianza, condición de validez y decisión; las notas se conservarán en este informe y originarán la actualización del Question Backlog y del registro de versiones.
+**Flujo de aprendizaje implementado:**
 
-La primera sesión de shareback está programada después del segundo Sprint To-Be de 8.3.3.1 y todavía no ha ocurrido. Por ello, no se presentan actas ni decisiones como evidencia completada.
+1. **Revisión diaria de salud del experimento** (tablero Vikunja + métricas Dokploy): se monitorea balance de variantes, eventos faltantes, guardrails de tráfico y errores de tracking.
+2. **Revisión semanal de North Star y KPIs por segmento** (sin detener experimentos prematuramente).
+3. **Lectura de resultados al cierre de ventana**: tamaño del efecto, intervalo de confianza 95 %, condición de validez y decisión (ejecutar / pivotar / desechar).
+4. **Shareback session**: acta registrada en el informe + actualización del Question Backlog y del registro de versiones.
+
+**Estado actual:** La primera sesión de shareback está programada después del Sprint To-Be 2 (sección 8.3.3.1). Al cierre de este avance **no se han ejecutado experimentos en producción**, por lo que no existen actas ni decisiones de shareback completadas. Se deja constancia del workflow planificado y se marca como **pendiente** la evidencia de la sesión una vez que los Sprints To-Be y las entrevistas de validación (8.3.4) se realicen.
+
+**Pendientes explícitos (hasta aviso de Mateo):** tests de reloj, GitHub Insights de colaboración, poemas y cualquier otra evidencia de tracking.
 
 ## 8.6. To-Be Software Platform Pre-launch
 
@@ -1829,16 +1838,18 @@ La primera sesión de shareback está programada después del segundo Sprint To-
 
 La sección 5.3 conserva el video As-Is About-the-Product de 46 segundos en https://bit.ly/4olR1cf. El video introductorio To-Be deberá mostrar los cambios validados e incluir un testimonio positivo autorizado de un participante; todavía no ha sido grabado y no existe un enlace adicional que pueda reportarse como evidencia.
 
-### 8.6.2. Resumen usando Gees FrameWork
+### 8.6.2. Resumen usando GEES Framework
 
-El equipo aplica un marco Goal-Question-Metric para mantener la trazabilidad entre el valor que espera generar, la pregunta que debe responder y la medida que sustenta la decisión. Este resumen no sustituye la ejecución experimental ni convierte los objetivos en resultados.
+El equipo aplica el marco **GEES (Goal–Experiment–Evaluate–Shareback)** para mantener trazabilidad entre el valor esperado, la pregunta experimental, la métrica y el aprendizaje compartido.
 
-| Goal | Question | Metric |
-|---|---|---|
-| H-01: aumentar la respuesta útil ante alertas | ¿La recomendación accionable aumenta las alertas atendidas? | M-01, tasa de alertas atendidas |
-| H-02: reducir incertidumbre comercial | ¿Mostrar el precio desde la primera vista aumenta el registro? | M-02, conversión a registro |
-| H-03: hacer comprensible y accesible el estado | ¿El texto junto al color mejora la interpretación? | M-03, interpretación correcta |
-| H-04: simplificar la configuración de alertas | ¿Las plantillas aumentan reglas completadas y reducen el tiempo? | M-04 y M-05, completitud y tiempo |
-| H-05: sustentar la confianza en el sensor | ¿La evidencia de precisión aumenta la confianza? | M-06, confianza declarada |
-| H-06: favorecer el uso recurrente | ¿Las notificaciones push aumentan las sesiones semanales? | M-07, sesiones semanales por usuario |
+| Goal (H) | Experiment | Evaluate (Metric + Decisión) | Shareback (Aprendizaje) |
+|---|---|---|---|
+| H-01: aumentar respuesta útil ante alertas | EXP-01 | M-01 tasa de alertas atendidas | Si ↑ ≥ 15 pp → hacer recomendación obligatoria |
+| H-02: reducir incertidumbre comercial | EXP-02 + EXP-05 | M-02 conversión + M-06 confianza | Si ↑ registro → mostrar precio en hero |
+| H-03: hacer comprensible el estado | EXP-03 | M-03 interpretación correcta | Si ↑ ≥ 20 pp → estandarizar etiqueta + color |
+| H-04: simplificar configuración | EXP-04 | M-04 completitud + M-05 tiempo | Si ↑ completitud → adoptar plantillas |
+| H-05: sustentar confianza en sensor | TB-SP-01 + EXP-05 | M-06 confianza declarada | Si ↑ confianza → publicar ficha de calibración |
+| H-06: favorecer uso recurrente | EXP-06 | M-07 sesiones semanales | Si ↑ sesiones → priorizar push notifications |
+
+**Conclusión del ciclo:** El marco GEES permitió convertir las 11 preguntas del Question Backlog en 6 experimentos accionables con métricas observables. El aprendizaje se documentará en la sesión de shareback posterior a los Sprints To-Be.
 
