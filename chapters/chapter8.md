@@ -1715,23 +1715,89 @@ La evolución colaborativa del informe se encuentra trazada en `versions.md`, do
 
 ### 8.3.4. To-Be Validation Interviews
 
+En esta sección se validan con usuarios de ambos segmentos las propuestas To-Be definidas en las Experiment Cards (8.1.5). A la fecha de elaboración, las variantes no están implementadas en los productos desplegados, por lo que las sesiones usan un **prototipo navegable** con la condición actual (A) y la propuesta (B). Son entrevistas **formativas**: permiten observar comprensión, errores y preferencias, pero no miden el comportamiento en producción ni permiten aceptar o rechazar las hipótesis de 8.2.1.
+
 #### 8.3.4.1. Diseño de Entrevistas.
 
-Las entrevistas To-Be se realizarán después de publicar las variantes y reunir una primera ventana de exposición. Se convocarán entre tres y cinco participantes del segmento Facility Admin y entre tres y cinco del segmento Home User. Cada sesión solicitará interpretar el estado con y sin etiqueta de EXP-03, revisar una alerta con recomendación y explicar la acción que tomaría para EXP-01, y completar la creación de una regla con plantilla para EXP-04. Se registrarán éxito de tarea, tiempo, errores, comprensión, confianza y comentarios, junto con el consentimiento para la grabación.
+**Objetivo general:** identificar si usuarios representativos comprenden y pueden usar las propuestas To-Be de Clair, y recoger ajustes antes de implementarlas y lanzar los experimentos.
 
-El guion no se ejecutará antes del despliegue, porque mostrar únicamente diseños estáticos no permitiría contrastar la interacción real ni los eventos definidos en 8.2.8. A la fecha de este informe, las variantes no están en producción y las entrevistas To-Be no se han realizado.
+**Objetivos específicos**
+
+1. Observar si la recomendación en la alerta lleva al participante a explicar una acción adecuada (EXP-01).
+2. Observar si la etiqueta de texto facilita la interpretación del estado del aire (EXP-03).
+3. Observar si las plantillas permiten crear una regla con menos errores y en menos tiempo (EXP-04).
+4. Recoger la reacción al precio visible (EXP-02) y a la sección de precisión (EXP-05).
+5. Conocer la preferencia de canal para recibir alertas (EXP-06).
+
+**Perfil de los participantes.** Entre 3 y 5 personas por segmento, que no hayan participado en el diseño del producto.
+
+| Segmento | Perfil | Exclusión |
+|---|---|---|
+| Facility Admin | Administrador, dueño o encargado de un establecimiento en Lima Metropolitana, usuario cotidiano de smartphone | Integrantes del equipo y personas que diseñaron el producto |
+| Home User | Persona adulta de Lima Metropolitana interesada en el aire de su hogar, usuaria cotidiana de smartphone | Integrantes del equipo y personas con formación técnica en calidad del aire |
+
+**Condiciones de la sesión.** Sesión moderada e individual de 25 a 30 minutos, presencial o por videollamada, con consentimiento informado y autorización de grabación antes de iniciar. En las tareas A/B se alterna el orden para reducir el efecto de aprendizaje: las sesiones impares ven primero A y las pares primero B. Aun así, la segunda condición puede beneficiarse de la primera, así que la comparación se lee solo como indicio.
+
+**Guion de la entrevista**
+
+| Bloque | Min. | Actividad y preguntas |
+|---|---:|---|
+| 0. Consentimiento | 2 | Explicar que se evalúa el prototipo y no a la persona, y que puede retirarse cuando quiera. Pedir autorización de grabación. |
+| 1. Perfil | 3 | P1. ¿A qué se dedica y cómo es un día habitual en su hogar o establecimiento? P2. ¿Cómo decide hoy cuándo ventilar? |
+| 2. Landing | 5 | P3. Sin desplazarse, ¿qué ofrece Clair y cuánto cree que cuesta? P4. ¿El precio mostrado cambia su interés? ¿Qué falta? P5. Luego de ver la sección de precisión, del 1 al 5, ¿cuánto confía en las mediciones? ¿Por qué? |
+| 3. Estado del aire | 4 | P6. ¿En qué estado está el aire? ¿Qué haría? (A y B) P7. ¿Cuál versión le resultó más clara y por qué? |
+| 4. Alerta | 5 | P8. Llega esta alerta: ¿qué haría ahora? (A y B) P9. ¿Marcaría «Ya lo hice»? ¿Qué le impediría hacerlo? |
+| 5. Regla de alerta | 6 | P10. Cree una regla para recibir un aviso cuando el CO₂ supere 1000 ppm (A y B). P11. ¿Qué fue confuso? |
+| 6. Canal y cierre | 4 | P12. ¿Prefiere notificaciones al celular o revisar un panel web? ¿Cuándo las desactivaría? P13. Del 1 al 5, ¿qué tan útil le parece Clair? P14. ¿Lo recomendaría? ¿Qué cambiaría primero? |
+
+El Facility Admin responde pensando en su establecimiento y el Home User en su hogar. La tarea de regla de alerta se aplica a ambos, aunque EXP-04 analiza solo al segmento Home User.
+
+**Criterios de observación**
+
+| Tarea | Experimento | Historia | Éxito de la tarea | Datos a registrar |
+|---|---|---|---|---|
+| T-01 Precio (P3, P4) | EXP-02 | TB-LP-US-01 | Identifica el plan Free y el precio Premium | Éxito, comentario |
+| T-02 Precisión (P5) | EXP-05 | TB-LP-US-02, TB-LP-US-03 | Responde la escala y justifica | Puntaje 1 a 5, comentario |
+| T-03 Estado (P6, P7) | EXP-03 | TB-WA-US-02, TB-MA-US-03 | Nombra el estado y una acción adecuada | Éxito en A y B, preferencia |
+| T-04 Alerta (P8, P9) | EXP-01 | TB-WA-US-01, TB-MA-US-01 | Explica una acción adecuada | Éxito en A y B, tiempo |
+| T-05 Regla (P10, P11) | EXP-04 | TB-MA-US-04 | Guarda la regla con CO₂ y 1000 ppm | Éxito, tiempo y errores en A y B |
+| T-06 Canal (P12) | EXP-06 | TB-MA-US-05 | No aplica | Preferencia y motivo de desactivación |
 
 #### 8.3.4.2. Registro de Entrevistas.
 
-El registro permanece vacío porque todavía no se han ejecutado las entrevistas posteriores a los experimentos. No se incorporan nombres, capturas, tiempos ni testimonios sin una sesión real y su consentimiento. La única evidencia completada corresponde a las seis sesiones As-Is documentadas en la sección 6.3, que se conserva como línea cualitativa de referencia.
+A la fecha de este informe las sesiones To-Be no se han realizado, por lo que no se reportan participantes, respuestas ni grabaciones de esta ronda. La siguiente tabla presenta la programación definida según el diseño de 8.3.4.1. La evidencia de entrevistas disponible es la de las seis sesiones As-Is de la sección 6.3.2, que se analiza en 8.4.1.
+
+| Sesión | Segmento | Orden de las condiciones | Tareas | Estado |
+|---|---|---|---|---|
+| TB-VI-01 | Facility Admin | A y luego B | T-01 a T-06 | No realizada |
+| TB-VI-02 | Facility Admin | B y luego A | T-01 a T-06 | No realizada |
+| TB-VI-03 | Facility Admin | A y luego B | T-01 a T-06 | No realizada |
+| TB-VI-04 | Home User | B y luego A | T-01 a T-06 | No realizada |
+| TB-VI-05 | Home User | A y luego B | T-01 a T-06 | No realizada |
+| TB-VI-06 | Home User | B y luego A | T-01 a T-06 | No realizada |
 
 ## 8.4. Experiment Aftermath & Analysis
 
 ### 8.4.1. Analysis and Interpretation of Results
 
-Los experimentos de producción aún no cuentan con resultados: las variantes no están desplegadas y no se dispone de las muestras calculadas en 8.2.5. En particular, H-02 requiere alrededor de 21 920 visitantes únicos y H-06 requiere 224 usuarios nuevos. Ejecutar una ventana menor puede producir una señal exploratoria, pero no permite aceptar ni rechazar las hipótesis con la potencia acordada.
+**Estado de los experimentos.** Ninguno de los experimentos EXP-01 a EXP-06 se ha ejecutado: las variantes no están desplegadas y no existen las muestras calculadas en 8.2.5. Por ejemplo, H-02 requiere 21 920 visitantes únicos y H-06 requiere 224 usuarios nuevos. En consecuencia, no hay valores p, intervalos de confianza ni tamaños de efecto que reportar.
 
-La evidencia disponible es cualitativa. Las seis sesiones de 6.3 alcanzaron una utilidad percibida promedio de 4.5/5, lo que apoya de forma direccional el criterio de utilidad del 70%, pero expresa intención declarada y no acción observada. Los seis participantes recomendarían Clair de forma explícita o implícita, aunque eso no equivale a la conversión del 60%. La comprensión del indicador basado solo en color permanece abierta por el problema heurístico 4, y tampoco se midió todavía el uso recurrente del 70%.
+**Línea cualitativa As-Is (sección 6.3).** Las seis sesiones alcanzaron una utilidad percibida promedio de 4.5 sobre 5 (tres puntajes de 4 y tres de 5). Expresan opinión e intención declarada, no comportamiento observado, y varios puntajes estuvieron condicionados a la precisión, el precio o el mantenimiento.
+
+**Entrevistas To-Be (sección 8.3.4).** No se han realizado, por lo que no aportan resultados a este análisis.
+
+**Lectura de las sesiones As-Is por experimento.** Los conteos incluyen solo las menciones registradas en 6.3.2. Que un participante no mencione un tema no significa que lo rechace.
+
+| Experimento | Evidencia registrada | Sesiones | Interpretación |
+|---|---|---|---|
+| EXP-01 | 5 de 6 piden o valoran recomendaciones sobre qué hacer | VI-01, VI-02, VI-03, VI-04, VI-06 | Justifica probar la recomendación; no demuestra que aumente las alertas atendidas |
+| EXP-02 | 5 de 6 expresan dudas o condiciones sobre el costo | VI-01 a VI-05 | Justifica probar el precio visible; no mide su efecto en el registro |
+| EXP-03 | 1 de 6 pide que los colores vayan con explicación; otro prefiere un semáforo simple | VI-05, VI-04 | La necesidad de la etiqueta debe comprobarse |
+| EXP-04 | 1 de 3 Home User pide pocos pasos para configurar alertas | VI-04 | Señal inicial a favor de simplificar el flujo |
+| EXP-05 | 5 de 6 mencionan la precisión o fiabilidad de las mediciones | VI-01, VI-02, VI-03, VI-05, VI-06 | Justifica probar la evidencia de precisión |
+| EXP-06 | 3 de 6 mencionan avisos o notificaciones en el celular | VI-01, VI-04, VI-05 | Señal a favor de las notificaciones; no mide frecuencia de uso |
+
+**Estado de las hipótesis**
 
 | Hipótesis | Resultado disponible | Decisión actual | Próximo paso |
 |---|---|---|---|
@@ -1739,7 +1805,7 @@ La evidencia disponible es cualitativa. Las seis sesiones de 6.3 alcanzaron una 
 | H-02 | Sin datos de producción sobre conversión; existen dudas cualitativas sobre precio | No aceptar ni rechazar | Alcanzar la ventana de tráfico de EXP-02 y vigilar M-09 |
 | H-03 | Sin datos experimentales; el uso exclusivo de color sigue como hallazgo | No aceptar ni rechazar | Ejecutar la prueba entre grupos de EXP-03 y medir M-03 |
 | H-04 | Sin datos de producción sobre reglas completadas o tiempo | No aceptar ni rechazar | Ejecutar EXP-04 y analizar M-04 y M-05 conjuntamente |
-| H-05 | Sin datos experimentales; cinco participantes pidieron evidencia de precisión | No aceptar ni rechazar | Ejecutar EXP-05 y medir M-06 sin deteriorar M-17 |
+| H-05 | Sin datos experimentales; cinco participantes mencionaron la precisión o fiabilidad de las mediciones | No aceptar ni rechazar | Ejecutar EXP-05 y medir M-06 sin deteriorar M-17 |
 | H-06 | Sin datos de producción sobre sesiones o retención | No aceptar ni rechazar | Reclutar 224 usuarios y observar M-07 y M-08 |
 
 ### 8.4.2. Re-scored and Re-prioritized Question Backlog
